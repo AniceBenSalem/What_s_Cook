@@ -1,6 +1,5 @@
 package fr.iutinfo;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import fr.iutinfo.unites.Unite;

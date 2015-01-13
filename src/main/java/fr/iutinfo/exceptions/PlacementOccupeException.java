@@ -7,6 +7,11 @@ package fr.iutinfo.exceptions;
  */
 public class PlacementOccupeException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PlacementOccupeException () {
 		System.out.println("Impossible de placer une ile a cet endroit : deja occupe.");
 	}

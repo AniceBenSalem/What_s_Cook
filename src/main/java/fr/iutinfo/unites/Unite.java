@@ -12,7 +12,7 @@ public abstract class Unite {
 	protected int tempsFabrication; // en secondes
 	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
 	String nom;
-	Map <String, Integer> coutFabrication; 
+	protected Map <String, Integer> coutFabrication; 
 	
 
 	public Unite () {
@@ -47,21 +47,25 @@ public abstract class Unite {
 	}
 	
 	/**
-	 * Permet de vérifier si une unite est morte ou non.
+	 * Fait subir i degats a cette unite.
 	 */
-	public void subitDegats(int degats){
-		this.pv-=degats;
+	public void subitDegats(int i){
+		this.pv-=i;
 	}
-	public abstract int getPV();
+	
+	public int getPV(){
+		return this.pv;
+	}
+	public abstract String getDescription();
+	
+	public int getNiveauCaserneRequis(){
+		return this.niveauCaserneNecessaire;
+	}
+	
 	public boolean estMort(){
-		if(pv <= 0){
-			return true;
-		}
-		else {
-			return false;
-		}
+		return pv<=0;
 	}
-
+	
 	public int getCoutDeplacement() {
 		return coutDeplacement;
 	}

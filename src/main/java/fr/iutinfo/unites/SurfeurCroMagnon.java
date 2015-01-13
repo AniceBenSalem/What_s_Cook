@@ -26,8 +26,8 @@ public class SurfeurCroMagnon extends Unite {
 	}
 
 	@Override
-	public int getPV() {
-		return pv;
+	public String getDescription() {
+		return "Un homme préhistorique équipé d'un surf volant et lancant des cailloux. N'est ce pas formidable ?";
 	}
 	
 	
