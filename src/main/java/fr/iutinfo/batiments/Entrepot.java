@@ -1,8 +1,6 @@
 package fr.iutinfo.batiments;
 
-import fr.iutinfo.Ile;
 import fr.iutinfo.exceptions.NoCoquillageException;
-import fr.iutinfo.ressources.Ressource;
 
 
 /**
@@ -13,6 +11,15 @@ import fr.iutinfo.ressources.Ressource;
 public class Entrepot extends Batiment {
 
 	private int coquillage;
+	private int capacite;
+	
+	public int getCapacite() {
+		return capacite;
+	}
+
+	public void setCapacite(int capacite) {
+		this.capacite = capacite;
+	}
 	
 	public int getCoquillage() {
 		return coquillage;
@@ -21,7 +28,6 @@ public class Entrepot extends Batiment {
 	public void setCoquillage(int coquillage) {
 		this.coquillage = coquillage;
 	}
-
 
 
 	/**
@@ -34,6 +40,7 @@ public class Entrepot extends Batiment {
 		this.levelMax=10;
 		this.idBatiment=2;
 		this.name = "Entrepot";
+		this.capacite = 100;
 		this.initialiseRessources();
 
 	}
@@ -42,7 +49,6 @@ public class Entrepot extends Batiment {
 		this.coquillage = 0;
 		
 	}
-
 
 
 	/**
@@ -64,15 +70,14 @@ public class Entrepot extends Batiment {
 			else {
 				throw new NoCoquillageException();
 			}
-			
 		}
-		
-		
+	
 	}
 
 	@Override
 	public void amelioration() {
-		// TODO Auto-generated method stub
+		this.level ++;
+		this.capacite = this.capacite * 2;
 		
 	}
 }
