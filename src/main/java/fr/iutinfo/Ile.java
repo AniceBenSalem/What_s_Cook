@@ -8,7 +8,8 @@ public class Ile {
 	private String proprietaire;
 	private ArrayList<Batiment> listeBatiments;
 	private Armee armee;
-	
+	int x; 
+	int y;
 	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
 		this.id=univers.getMaxId()+1;
@@ -17,6 +18,8 @@ public class Ile {
 		this.armee=new Armee();
 		this.listeBatiments = new ArrayList <Batiment> ();
 		univers.addIle(this, x, y);
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void construire(Batiment b){
@@ -24,6 +27,22 @@ public class Ile {
 	}
 	public int getId() {
 		return id;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public void setId(int id) {

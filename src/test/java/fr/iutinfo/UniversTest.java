@@ -24,22 +24,28 @@ public class UniversTest extends JerseyTest{
 		assertEquals(2,univ.getMaxId());
 	}
 	
-	
-	
+	@Test
 	public void TestgetNomUnivers() throws PlacementOccupeException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,11);
-		//univ.addIle(ile,10,10);
 		univ.addIle(ile,11,11);
 		assertEquals( "Omega",univ.getNomUnivers());
 	}
 	
+	@Test
 	public void TestToString() throws PlacementOccupeException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
-		univ.addIle(ile,10,10);
 		univ.addIle(ile,11,11);
 		assertEquals( "l'univer Omega possede 2 ile(s).",univ.toString());
+	}
+	
+	@Test
+	public void TestDistanceIles() throws PlacementOccupeException {
+		Univers univ = new Univers("Omega");
+		Ile ile1 = new Ile(univ, "Japon",5,5);
+		Ile ile2 = new Ile(univ, "Madagascar",150,150);
+		assertEquals(205,univ.distanceIles(ile1,ile2));
 	}
 	
 	@Test(expected=PlacementOccupeException.class)
@@ -49,5 +55,5 @@ public class UniversTest extends JerseyTest{
 		Ile ile2 = new Ile (univ, "moiAussiMaggle", 0,0);
 
 	}
-
+	
 }
