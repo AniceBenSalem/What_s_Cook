@@ -1,4 +1,5 @@
-package fr.iutinfo;
+package fr.iutinfo.unites;
+
 
 public class SurfeurCroMagnon extends Unite {
 
@@ -17,6 +18,16 @@ public class SurfeurCroMagnon extends Unite {
 	public void initialiseCoutFabrication() {
 		this.coutFabrication.put("Coquillage", new Integer(20));
 		
+	}
+
+	@Override
+	public String getNom() {
+		return "Surfeur Cro-Magnon";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Un homme préhistorique équipé d'un surf volant et lancant des cailloux. N'est ce pas formidable ?";
 	}
 	
 	
