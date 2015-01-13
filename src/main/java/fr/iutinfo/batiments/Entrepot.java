@@ -35,6 +35,7 @@ public class Entrepot extends Batiment {
 	 */
 	public Entrepot () {
 		this.coquillage=0;
+		this.nombre=1;
 	}
 
 	/**

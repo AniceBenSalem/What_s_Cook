@@ -4,6 +4,8 @@ package fr.iutinfo.unites;
 public class SurfeurCroMagnon extends Unite {
 
 	public SurfeurCroMagnon () {
+		super();
+		this.nombre=0;
 		this.force = 10;
 		this.pv = 42;
 		this.coutDeplacement = 1;
@@ -13,7 +15,7 @@ public class SurfeurCroMagnon extends Unite {
 	
 
 	}
-
+	
 	@Override
 	public void initialiseCoutFabrication() {
 		this.coutFabrication.put("Coquillage", new Integer(20));
@@ -28,6 +30,12 @@ public class SurfeurCroMagnon extends Unite {
 	@Override
 	public String getDescription() {
 		return "Un homme préhistorique équipé d'un surf volant et lancant des cailloux. N'est ce pas formidable ?";
+	}
+
+	@Override
+	public void up() {
+		this.nombre++;
+		
 	}
 	
 	

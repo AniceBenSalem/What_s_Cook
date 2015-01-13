@@ -6,7 +6,10 @@ import java.util.Map;
 import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
+import fr.iutinfo.batiments.Generateur;
+import fr.iutinfo.batiments.GenerateurCoquillage;
 import fr.iutinfo.exceptions.PlacementOccupeException;
+import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
 public class Ile {
@@ -18,6 +21,8 @@ public class Ile {
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
 	int y;
+	
+	private SurfeurCroMagnon surfeur;
 	
 	private Entrepot entrepot;
 	private Generateur generateurCoquillage;

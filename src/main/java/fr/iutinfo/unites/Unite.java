@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Unite {
-	
+	protected int nombre;
 	protected int pv;
 	protected int force;
-	protected int id;
 	protected int coutDeplacement;
 	protected int tempsFabrication; // en secondes
 	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
@@ -19,6 +18,11 @@ public abstract class Unite {
 		this.coutFabrication = new HashMap <String, Integer> ();
 	}
 	
+	public int getNombre(){
+		return nombre;
+	}
+	
+	public abstract void up();
 	/**
 	 * Initialise le cout de fabrication selon les ressources
 	 */
