@@ -8,6 +8,8 @@ package fr.iutinfo;
  */
 public class Entrepot extends Batiment {
 
+	private int coquillage;
+	
 	public int getCoquillage() {
 		return coquillage;
 	}
@@ -17,17 +19,23 @@ public class Entrepot extends Batiment {
 	}
 
 
-	public int coquillage;
-	
+
+	/**
+	 * On initialise un entrepot sur une ile
+	 * @param ile
+	 */
 	public Entrepot (Ile ile) {
 		super(200, 2, 1000, 60);
 		this.niveau = 0;
 		this.nom = "Entrepot";
+		ile.addBatiment(this);
+		this.initialiseRessources();
 
 	}
 	
 	public void initialiseRessources() {
 		this.coquillage = 0;
+		
 	}
 
 	@Override

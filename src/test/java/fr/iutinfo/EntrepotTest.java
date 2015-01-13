@@ -25,8 +25,8 @@ public class EntrepotTest {
 			e1.printStackTrace();
 		}
 		
-		assertEquals(35, e.coquillage);
-		assertEquals(15, e2.coquillage);
+		assertEquals(35, e.getCoquillage());
+		assertEquals(15, e2.getCoquillage());
 	}
 	
 	@Test(expected=NoCoquillageException.class)
