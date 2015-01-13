@@ -1,19 +1,25 @@
 package fr.iutinfo;
 
+import java.util.ArrayList;
+
 public class Ile {
 	private int id;
 	private Univers univers;
 	private String proprietaire;
-	private ArrayList<Batiment[]> batiments;
+	private ArrayList<Batiment> listeBatiments;
 	private Armee armee;
 	
 	public Ile(Univers univers,String proprietaire){
-		this.id=univers.getMaxId();
+		this.id=univers.getMaxId()+1;
 		this.univers=univers;
 		this.proprietaire=proprietaire;
 		this.armee=new Armee();
+		univers.addIle(this);
 	}
-
+	
+	public void construire(Batiment b){
+		listeBatiments.add(b);
+	}
 	public int getId() {
 		return id;
 	}
@@ -34,12 +40,12 @@ public class Ile {
 		this.proprietaire = proprietaire;
 	}
 
-	public ArrayList<Batiment[]> getBatiments() {
-		return batiments;
+	public ArrayList<Batiment> getBatiments() {
+		return listeBatiments;
 	}
 
-	public void setBatiments(ArrayList<Batiment[]> batiments) {
-		this.batiments = batiments;
+	public void setBatiments(ArrayList<Batiment> batiments) {
+		this.listeBatiments = batiments;
 	}
 
 	public Armee getArmee() {

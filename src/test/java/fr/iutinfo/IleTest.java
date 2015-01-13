@@ -2,15 +2,21 @@ package fr.iutinfo;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.ws.rs.core.Application;
+
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 
 public class IleTest extends JerseyTest{
+	@Override
+	protected Application configure(){
+		return new App();
+	}
 	Univers u;
 	@Before
 	public void testInit(){
-		u = new Univers();
+		u = new Univers("UnivTest");
 	}
 	@Test
 	public void TestIleConstructeurId() {
