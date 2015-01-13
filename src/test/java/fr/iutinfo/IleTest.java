@@ -20,15 +20,15 @@ public class IleTest extends JerseyTest{
 	}
 	@Test
 	public void TestIleConstructeurId() {
-		Ile i = new Ile(u,"leon");
+		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getId(),1);
-		Ile i2 = new Ile(u,"henry");
+		Ile i2 = new Ile(u,"henry",11,11);
 		assertEquals(i2.getId(),2);
 	}
 	
 	@Test
 	public void TestIleConstructeur() {
-		Ile i = new Ile(u,"leon");
+		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getUnivers(),u);
 		assertEquals(i.getProprietaire(),"leon");
 	}

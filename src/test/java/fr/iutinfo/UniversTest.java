@@ -19,9 +19,9 @@ public class UniversTest extends JerseyTest{
 	@Test
 	public void TestGetMaxId() {
 		Univers univ = new Univers("Omega");
-		Ile ile = new Ile(univ, "Ara..terroriste");
-		univ.addIle(ile);
-		univ.addIle(ile);
+		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
+		univ.addIle(ile,10,10);
+		univ.addIle(ile,11,11);
 		assertEquals(3,univ.getMaxId());
 	}
 	
@@ -29,17 +29,17 @@ public class UniversTest extends JerseyTest{
 	
 	public void TestgetNomUnivers(){
 		Univers univ = new Univers("Omega");
-		Ile ile = new Ile(univ, "Ara..terroriste");
-		univ.addIle(ile);
-		univ.addIle(ile);
+		Ile ile = new Ile(univ, "Ara..terroriste",10,11);
+		univ.addIle(ile,10,10);
+		univ.addIle(ile,11,11);
 		assertEquals( "Omega",univ.getNomUnivers());
 	}
 	
 	public void TestToString(){
 		Univers univ = new Univers("Omega");
-		Ile ile = new Ile(univ, "Ara..terroriste");
-		univ.addIle(ile);
-		univ.addIle(ile);
+		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
+		univ.addIle(ile,10,10);
+		univ.addIle(ile,11,11);
 		assertEquals( "l'univer Omega possede 2 ile(s).",univ.toString());
 	}
 	
