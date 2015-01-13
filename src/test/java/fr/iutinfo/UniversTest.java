@@ -17,25 +17,24 @@ public class UniversTest extends JerseyTest{
     }
 	
 	@Test
-	public void TestGetMaxId() {
+	public void TestGetMaxId() throws PlacementOccupeException {
 		Univers univ = new Univers("Omega");
-		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
-		univ.addIle(ile,10,10);
+		Ile ile = new Ile(univ, "lala",10,10);
 		univ.addIle(ile,11,11);
-		assertEquals(3,univ.getMaxId());
+		assertEquals(2,univ.getMaxId());
 	}
 	
 	
 	
-	public void TestgetNomUnivers(){
+	public void TestgetNomUnivers() throws PlacementOccupeException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,11);
-		univ.addIle(ile,10,10);
+		//univ.addIle(ile,10,10);
 		univ.addIle(ile,11,11);
 		assertEquals( "Omega",univ.getNomUnivers());
 	}
 	
-	public void TestToString(){
+	public void TestToString() throws PlacementOccupeException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
 		univ.addIle(ile,10,10);
@@ -43,5 +42,12 @@ public class UniversTest extends JerseyTest{
 		assertEquals( "l'univer Omega possede 2 ile(s).",univ.toString());
 	}
 	
+	@Test(expected=PlacementOccupeException.class)
+	public void testAddIle () throws PlacementOccupeException {
+		Univers univ = new Univers("Omega");
+		Ile ile = new Ile(univ, "bonjourJeSuisUneIle",0,0);
+		Ile ile2 = new Ile (univ, "moiAussiMaggle", 0,0);
+
+	}
 
 }

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class EntrepotTest {
 
 	@Test
-	public void testEnvoiRessourceAssezDeCoquillages() {
+	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire", 10,10);
 		Entrepot e = new Entrepot (ile);
@@ -30,7 +30,7 @@ public class EntrepotTest {
 	}
 	
 	@Test(expected=NoCoquillageException.class)
-	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException {
+	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire",10,10);
 		Entrepot e = new Entrepot (ile);

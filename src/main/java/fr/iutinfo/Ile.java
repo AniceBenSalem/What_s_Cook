@@ -10,7 +10,7 @@ public class Ile {
 	private Armee armee;
 	
 	
-	public Ile(Univers univers,String proprietaire, int x, int y){
+	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;
 		this.proprietaire=proprietaire;
