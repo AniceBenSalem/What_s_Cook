@@ -30,4 +30,25 @@ public abstract class Unite {
 	 * Initialise le cout de fabrication selon les ressources
 	 */
 	public abstract void initialiseCoutFabrication ();
+	
+	/**
+	 * Fais attaquer une unite contre une autre unite.
+	 */
+	
+	public void combat(Unite u) {
+		u.pv = u.pv - this.force;
+	}
+	
+	/**
+	 * Permet de vérifier si une unite est morte ou non.
+	 */
+	
+	boolean estMort(){
+		if(pv <= 0){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
