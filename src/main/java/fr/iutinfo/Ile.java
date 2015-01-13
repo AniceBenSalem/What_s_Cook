@@ -15,6 +15,7 @@ public class Ile {
 		this.univers=univers;
 		this.proprietaire=proprietaire;
 		this.armee=new Armee();
+		this.listeBatiments = new ArrayList <Batiment> ();
 		univers.addIle(this, x, y);
 	}
 	
