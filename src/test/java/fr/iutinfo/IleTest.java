@@ -19,7 +19,7 @@ public class IleTest extends JerseyTest{
 		u = new Univers("UnivTest");
 	}
 	@Test
-	public void TestIleConstructeurId() {
+	public void TestIleConstructeurId() throws PlacementOccupeException {
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getId(),1);
 		Ile i2 = new Ile(u,"henry",11,11);
@@ -27,7 +27,7 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestIleConstructeur() {
+	public void TestIleConstructeur() throws PlacementOccupeException {
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getUnivers(),u);
 		assertEquals(i.getProprietaire(),"leon");

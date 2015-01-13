@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Armee {
+
 	private Stack<Unite> effectifs;
 	private int force;
 	private int pv;
