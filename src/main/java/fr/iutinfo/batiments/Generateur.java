@@ -1,9 +1,9 @@
-package fr.iutinfo;
+package fr.iutinfo.batiments;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import fr.iutinfo.batiments.Batiment;
+import fr.iutinfo.Ile;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 
 public abstract class Generateur extends Batiment{

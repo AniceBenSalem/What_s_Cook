@@ -10,9 +10,7 @@ public abstract class Batiment {
 		this.nombre=0;
 	}
 	public abstract String getNom();
-	public void up(){
-		this.nombre++;
-	}
+	public abstract  void up();
 	
 	public int getNombre(){
 		return this.nombre;
