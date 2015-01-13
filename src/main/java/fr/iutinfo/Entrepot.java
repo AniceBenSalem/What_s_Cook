@@ -25,9 +25,9 @@ public class Entrepot extends Batiment {
 	 * @param ile
 	 */
 	public Entrepot (Ile ile) {
-		super(200, 2, 1000, 60);
-		this.niveau = 0;
-		this.nom = "Entrepot";
+		super("Entrepot",2, 999, 60, 60);
+		this.level = 0;
+		this.name = "Entrepot";
 		ile.addBatiment(this);
 		this.initialiseRessources();
 
@@ -38,12 +38,7 @@ public class Entrepot extends Batiment {
 		
 	}
 
-	@Override
-	public void amelioration(int niveau, int coutAmelioraiton,
-			int tempsConstruction) {
 
-	}
-	
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -67,6 +62,12 @@ public class Entrepot extends Batiment {
 			
 		}
 		
+		
+	}
+
+	@Override
+	public void amelioration() {
+		// TODO Auto-generated method stub
 		
 	}
 }

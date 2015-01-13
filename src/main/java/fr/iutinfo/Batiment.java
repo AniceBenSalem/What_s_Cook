@@ -4,7 +4,7 @@ package fr.iutinfo;
 public abstract class Batiment {
 	
 	int level, levelMax, idBatiment, coutdeConstruction , tempsConstruction; 
-	String name;
+	protected String name;
 	
 	/**To create a building, define the name of this, id, level max, cost of construction, time of construction*/
 	public Batiment(String name, int idBatiment, int levelMax, int coutdeConstruction, int tempsConstruction){
