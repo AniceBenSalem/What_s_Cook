@@ -35,6 +35,10 @@ public abstract class Unite {
 	public abstract void initialiseCoutFabrication ();
 	
 	/**
+	 * Retourne le nom de l'unité
+	 */
+	public abstract String getNom();
+	/**
 	 * Fais attaquer une unite contre une autre unite.
 	 */
 	
@@ -45,7 +49,10 @@ public abstract class Unite {
 	/**
 	 * Permet de vérifier si une unite est morte ou non.
 	 */
-	
+	public void subitDegats(int degats){
+		this.pv-=degats;
+	}
+	public abstract int getPV();
 	boolean estMort(){
 		if(pv <= 0){
 			return true;

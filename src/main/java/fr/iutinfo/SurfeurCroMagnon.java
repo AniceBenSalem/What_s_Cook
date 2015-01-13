@@ -18,6 +18,16 @@ public class SurfeurCroMagnon extends Unite {
 		this.coutFabrication.put("Coquillage", new Integer(20));
 		
 	}
+
+	@Override
+	public String getNom() {
+		return "Surfeur Cro-Magnon";
+	}
+
+	@Override
+	public int getPV() {
+		return pv;
+	}
 	
 	
 	

@@ -1,21 +1,47 @@
 package fr.iutinfo;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class Armee {
-	private Map<Unite,Integer> effectifs;
+	private Stack<Unite> effectifs;
+	private int force;
+	private int pv;
 	
 	public Armee(){
-		this.effectifs=new TreeMap<Unite,Integer>();
+		this.effectifs=new Stack<Unite>();
+	}
+	
+	public Stack<Unite> getStack(){
+		return this.effectifs;
+	}
+	public void addUnite(Unite u){
+		effectifs.push(u);
+		force+=u.getForce();
+		pv+=u.getPV();
+	}
+	public void subitDegats(int degats){
+		while(degats>0 && this.pv >=0 && !effectifs.isEmpty()){
+			Unite u = effectifs.peek();
+			u.subitDegats(degats);
+			if(u.estMort()){
+				
+				effectifs.pop();
+				degats-=u.getPV();
+				this.pv-=u.getPV();
+				System.out.println(u.getNom()+" est mort !");
+			}else{
+				this.pv-=degats;
+				degats=0;
+			}
+		}
 	}
 	
 	public int getForce(){
-		int f=0;
-		for(Entry<Unite,Integer> e :effectifs.entrySet()){
-			f+= e.getKey().getForce();
-		}
-		return f;
+		return force;
+	}
+	
+	public int getPV(){
+		return pv;
 	}
 }
