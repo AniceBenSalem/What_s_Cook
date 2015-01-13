@@ -1,11 +1,14 @@
 package fr.iutinfo;
 
+import java.util.ArrayList;
+
 public class Ile {
 	private int id;
 	private Univers univers;
 	private String proprietaire;
-	private ArrayList<Batiment[]> batiments;
+	private ArrayList<Batiment> batiments;
 	private Armee armee;
+	
 	
 	public Ile(Univers univers,String proprietaire){
 		this.id=univers.getMaxId();
@@ -48,6 +51,10 @@ public class Ile {
 
 	public void setArmee(Armee armee) {
 		this.armee = armee;
+	}
+	
+	public void addBatiment (Batiment b) {
+		this.batiments.add(b);
 	}
 	
 }
