@@ -89,4 +89,9 @@ public class Ile {
 		this.listeBatiments.add(b);
 	}
 	
+	public Entrepot getEntrepot () {
+		return entrepot;
+	}
+	
+	
 }
