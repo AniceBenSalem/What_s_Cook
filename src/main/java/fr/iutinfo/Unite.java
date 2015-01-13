@@ -5,12 +5,12 @@ import java.util.Map;
 
 public abstract class Unite {
 	
-	int pv;
-	int force;
-	int id;
-	int coutDeplacement;
-	int tempsFabrication; // en secondes
-	int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
+	protected int pv;
+	protected int force;
+	protected int id;
+	protected int coutDeplacement;
+	protected int tempsFabrication; // en secondes
+	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
 	String nom;
 	Map <String, Integer> coutFabrication; 
 	
@@ -19,6 +19,9 @@ public abstract class Unite {
 		this.coutFabrication = new HashMap <String, Integer> ();
 	}
 	
+	public int getForce(){
+		return this.force;
+	}
 	/**
 	 * Initialise le cout d'un deplacement
 	 */
