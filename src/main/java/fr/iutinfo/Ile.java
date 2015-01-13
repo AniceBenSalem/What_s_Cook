@@ -3,6 +3,7 @@ package fr.iutinfo;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
@@ -19,7 +20,7 @@ public class Ile {
 	int y;
 	
 	private Entrepot entrepot;
-	private Generateur generateur;
+	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
 	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
@@ -29,7 +30,7 @@ public class Ile {
 		
 		this.entrepot=new Entrepot();
 		this.cococanon=new CocoCanon();
-		this.generateur=new GenerateurCoquillage(this);
+		this.generateurCoquillage=new GenerateurCoquillage(this);
 		
 		univers.addIle(this, x, y);
 		this.x = x;
@@ -53,7 +54,7 @@ public class Ile {
 	}
 	
 	public void upGenerateur(){
-		generateur.up();
+		generateurCoquillage.up();
 	}
 	
 	public void upEntrepot(){
@@ -86,6 +87,15 @@ public class Ile {
 	
 	public Entrepot getEntrepot () {
 		return entrepot;
+	}
+
+	public Generateur getGenerateurCoquillage() {
+		return this.generateurCoquillage;
+	}
+
+	public Batiment getCococanon() {
+		// TODO Auto-generated method stub
+		return this.cococanon;
 	}
 	
 	

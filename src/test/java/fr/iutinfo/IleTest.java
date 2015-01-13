@@ -16,10 +16,12 @@ public class IleTest extends JerseyTest{
 		return new App();
 	}
 	Univers u;
+	
 	@Before
 	public void testInit(){
 		u = new Univers("UnivTest");
 	}
+	
 	@Test
 	public void TestIleConstructeurId() throws PlacementOccupeException {
 		Ile i = new Ile(u,"leon",10,10);
@@ -29,9 +31,33 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestIleConstructeur() throws PlacementOccupeException {
+	public void TestGetValeurDefense() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
-		assertEquals(i.getUnivers(),u);
-		assertEquals(i.getProprietaire(),"leon");
+		i.upCococanon();
+		assertEquals(i.getValeurDefense(),1); // NORMAL SI CA BUG
+	}
+	
+	@Test
+	public void TestUpGenerateur() throws PlacementOccupeException{
+		Ile i = new Ile(u,"leon",10,10);
+		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
+		i.upGenerateur();
+		assertEquals(i.getGenerateurCoquillage().getNombre(),2);
+	}
+	
+	@Test
+	public void TestUpCococanon() throws PlacementOccupeException{
+		Ile i = new Ile(u,"leon",10,10);
+		assertEquals(i.getCococanon().getNombre(),0);
+		i.upCococanon();
+		assertEquals(i.getCococanon().getNombre(),1);
+	}
+	
+	@Test
+	public void TestUpEntrepot() throws PlacementOccupeException{
+		Ile i = new Ile(u,"leon",10,10);
+		assertEquals(i.getEntrepot().getNombre(),1);
+		i.upEntrepot();
+		assertEquals(i.getEntrepot().getNombre(),2);
 	}
 }
