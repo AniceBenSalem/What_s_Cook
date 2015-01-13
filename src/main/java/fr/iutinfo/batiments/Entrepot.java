@@ -28,9 +28,11 @@ public class Entrepot extends Batiment {
 	 * On initialise un entrepot sur une ile
 	 * @param ile
 	 */
-	public Entrepot (Ile ile) {
-		super("Entrepot",2, 999, 60, 60, ile);
-		this.level = 0;
+	public Entrepot () {
+		this.coquillage=0;
+		this.level=1;
+		this.levelMax=10;
+		this.idBatiment=2;
 		this.name = "Entrepot";
 		this.initialiseRessources();
 
