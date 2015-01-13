@@ -25,10 +25,9 @@ public class Entrepot extends Batiment {
 	 * @param ile
 	 */
 	public Entrepot (Ile ile) {
-		super("Entrepot",2, 999, 60, 60);
+		super("Entrepot",2, 999, 60, 60, ile);
 		this.level = 0;
 		this.name = "Entrepot";
-		ile.addBatiment(this);
 		this.initialiseRessources();
 
 	}

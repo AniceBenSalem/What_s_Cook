@@ -5,13 +5,16 @@ public abstract class Batiment {
 	
 	protected int level, levelMax, idBatiment, coutdeConstruction , tempsConstruction; 
 	protected String name;
+	protected Ile ile;
 	
 	/**To create a building, define the name of this, id, level max, cost of construction, time of construction*/
-	public Batiment(String name, int idBatiment, int levelMax, int coutdeConstruction, int tempsConstruction){
+	public Batiment(String name, int idBatiment, int levelMax, int coutdeConstruction, int tempsConstruction, Ile ile){
 		this.coutdeConstruction = coutdeConstruction;
 		this.idBatiment = idBatiment;
 		this.levelMax = levelMax;
 		this.tempsConstruction = tempsConstruction;
+		this.ile = ile;
+		ile.addBatiment(this);
 	}
 	
 	/**Allow to upgrade the level*/
