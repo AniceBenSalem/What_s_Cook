@@ -1,9 +1,16 @@
 .log{	
 	width: 36%;
 	border: 3px solid RGB(68,114,196);
-	background-color: RGB(150,176,222);
+	background-color: RGB(170,170,170);
 }
 
-h1{
-    font-family: "Comic Sans MS";
+.bienvenue{
+    color: white;
+}
+
+body {
+	background-repeat:no-repeat;
+    background-image: url("image/fond.jpg");
+    background-size: cover;
+    background-color: #cccccc;
 }
