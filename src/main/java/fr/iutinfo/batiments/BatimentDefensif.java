@@ -1,6 +1,6 @@
 package fr.iutinfo.batiments;
 
-import fr.iutinfo.Ile;
+
 
 public abstract class BatimentDefensif extends Batiment{
 
