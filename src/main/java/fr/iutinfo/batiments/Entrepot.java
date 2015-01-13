@@ -26,23 +26,11 @@ public class Entrepot extends Batiment {
 
 	/**
 	 * On initialise un entrepot sur une ile
-	 * @param ile
 	 */
 	public Entrepot () {
 		this.coquillage=0;
-		this.level=1;
-		this.levelMax=10;
-		this.idBatiment=2;
-		this.name = "Entrepot";
-		this.initialiseRessources();
 
 	}
-	
-	public void initialiseRessources() {
-		this.coquillage = 0;
-		
-	}
-
 
 
 	/**
@@ -71,8 +59,7 @@ public class Entrepot extends Batiment {
 	}
 
 	@Override
-	public void amelioration() {
-		// TODO Auto-generated method stub
-		
+	public String getNom() {
+		return "Entrepot";
 	}
 }

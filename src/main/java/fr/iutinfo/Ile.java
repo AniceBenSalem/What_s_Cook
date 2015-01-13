@@ -10,12 +10,12 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.Unite;
 
 public class Ile {
-	private int defense;
 	private int id;
 	private Univers univers;
 	private String proprietaire;
-	private ArrayList<Batiment> listeBatiments;
+	private Map<String,Integer> batiments;
 	private Entrepot entrepot;
+	private 
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
 	int y;
@@ -24,7 +24,7 @@ public class Ile {
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;
 		this.proprietaire=proprietaire;
-		this.listeBatiments = new ArrayList <Batiment> ();
+		this.batiments = new HashMap<String,Integer> ();
 		this.entrepot=new Entrepot();
 		univers.addIle(this, x, y);
 		this.x = x;
@@ -39,9 +39,15 @@ public class Ile {
 			reserve.put(u.getNom(),1);
 		}
 	}
-	public void construire(Batiment b){
-		listeBatiments.add(b);
+	
+	public void addBatiment(Batiment b){
+		if(reserve.containsKey(b.getNom())){
+			reserve.put(b.getNom(), reserve.get(b.getNom())+1);
+		}else{
+			reserve.put(b.getNom(),1);
+		}
 	}
+	
 	public int getId() {
 		return id;
 	}
@@ -58,36 +64,8 @@ public class Ile {
 		return y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Univers getUnivers() {
-		return univers;
-	}
-
 	public String getProprietaire() {
 		return proprietaire;
-	}
-
-	public void setProprietaire(String proprietaire) {
-		this.proprietaire = proprietaire;
-	}
-
-	public ArrayList<Batiment> getBatiments() {
-		return listeBatiments;
-	}
-
-	public void setBatiments(ArrayList<Batiment> batiments) {
-		this.listeBatiments = batiments;
-	}
-	
-	public void addBatiment (Batiment b) {
-		this.listeBatiments.add(b);
 	}
 	
 }
