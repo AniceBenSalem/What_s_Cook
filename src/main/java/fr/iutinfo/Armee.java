@@ -58,4 +58,37 @@ public class Armee {
 	public void setCoutDeplacementGeneral(int coutDeplacementGeneral) {
 		this.coutDeplacementGeneral = coutDeplacementGeneral;
 	}
+	
+	
+	
+	public String attaquerIle(Ile ile){
+		int valdef = ile.getValeurDefense();
+		int forceArm = getForce();
+		int tmp = 0;
+		
+		if (forceArm > valdef){
+			if( effectifs.peek().getPV() < valdef){
+				while(valdef < effectifs.peek().getPV()){
+					valdef -= effectifs.pop().getPV();					
+				}
+			}
+			return "Armee gagne";
+		}
+		else{
+			for(int i = 0 ; i< 3 ;i++){
+				valdef -= forceArm;
+				if( effectifs.peek().getPV() < valdef){
+					while(valdef < effectifs.peek().getPV()){
+						valdef -= effectifs.pop().getPV();					
+					}
+				}
+				if(effectifs.isEmpty()){
+					return "Perdu";
+				}
+				
+			}
+			
+		}
+		return "match null";
+	}
 }
