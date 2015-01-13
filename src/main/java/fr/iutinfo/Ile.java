@@ -13,7 +13,7 @@ import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
 public class Ile {
-	
+
 	private int id;
 	private Univers univers;
 	private String proprietaire;
@@ -21,33 +21,33 @@ public class Ile {
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
 	int y;
-	
+
 	private SurfeurCroMagnon surfeur;
-	
+
 	private Entrepot entrepot;
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
-	
+
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
-		
+
 		this.entrepot=new Entrepot();
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
-		
+
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
 	}
-	
+
 	public int getValeurDefense(){
 		int def=0;
-		
+
 		def+=this.cococanon.getPv()*cococanon.getNombre();
-		
+
 		return def;
 	}
 	public void addUnite(Unite u){
@@ -57,19 +57,21 @@ public class Ile {
 			reserve.put(u.getNom(),1);
 		}
 	}
-	
+
 	public void upGenerateur(){
-		generateurCoquillage.up();
+		if(this.entrepot.getCoquillage()>0){
+			generateurCoquillage.up();
+		}
 	}
-	
+
 	public void upEntrepot(){
 		entrepot.up();
 	}
-	
+
 	public void upCococanon(){
 		cococanon.up();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -89,7 +91,7 @@ public class Ile {
 	public String getProprietaire() {
 		return proprietaire;
 	}
-	
+
 	public Entrepot getEntrepot () {
 		return entrepot;
 	}
@@ -99,9 +101,8 @@ public class Ile {
 	}
 
 	public Batiment getCococanon() {
-		// TODO Auto-generated method stub
 		return this.cococanon;
 	}
-	
-	
+
+
 }

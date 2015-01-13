@@ -8,4 +8,9 @@ public class CocoCanon extends BatimentDefensif{
 	public String getNom() {
 		return "CocoCanon";
 	}
+
+	@Override
+	public void up() {
+		this.nombre++;		
+	}
 }

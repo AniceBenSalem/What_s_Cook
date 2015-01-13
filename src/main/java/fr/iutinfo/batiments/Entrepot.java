@@ -65,4 +65,10 @@ public class Entrepot extends Batiment {
 	public String getNom() {
 		return "Entrepot";
 	}
+
+	@Override
+	public void up() {
+		this.nombre++;
+		
+	}
 }
