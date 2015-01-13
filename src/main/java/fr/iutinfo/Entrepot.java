@@ -1,7 +1,5 @@
 package fr.iutinfo;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Sert a stocker les ressources d'une ile
@@ -9,18 +7,27 @@ import java.util.Map;
  *
  */
 public class Entrepot extends Batiment {
-	
-	Map <String, Integer> ressources;
+
+	public int getCoquillage() {
+		return coquillage;
+	}
+
+	public void setCoquillage(int coquillage) {
+		this.coquillage = coquillage;
+	}
+
+
+	public int coquillage;
 	
 	public Entrepot (Ile ile) {
 		super(200, 2, 1000, 60);
 		this.niveau = 0;
 		this.nom = "Entrepot";
-		this.ressources = new HashMap <String, Integer> ();
+
 	}
 	
 	public void initialiseRessources() {
-		this.ressources.put ("Coquillage", 0);
+		this.coquillage = 0;
 	}
 
 	@Override
@@ -35,8 +42,23 @@ public class Entrepot extends Batiment {
 	 * @param r
 	 * @param montant
 	 * @param e
+	 * @throws NoCoquillageException 
 	 */
-	public void donnerRessource (Ressource r, int montant, Entrepot e) {
-
+	public void donnerRessource (Ressource r, int montant, Entrepot e) throws NoCoquillageException {
+		
+		if (r instanceof Coquillage) {
+		
+			if (this.coquillage >= montant) {
+				this.coquillage -= montant;
+				e.coquillage += montant;
+			}
+				
+			else {
+				throw new NoCoquillageException();
+			}
+			
+		}
+		
+		
 	}
 }
