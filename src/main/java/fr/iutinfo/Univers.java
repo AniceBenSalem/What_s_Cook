@@ -11,7 +11,7 @@ public class Univers {
 	private Ile [][] repere;
 	
 	
-	public Univers (String nomUniver){
+	public Univers (String nomUniver) {
 		this.nomUniver = nomUniver;
 		listeIle = new ArrayList<Ile>();
 		this.repere = new Ile [200][200];

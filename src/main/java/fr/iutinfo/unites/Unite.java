@@ -8,7 +8,7 @@ public abstract class Unite {
 	protected int pv;
 	protected int force;
 	protected int id;
-	protected int coutDeplacement;
+	protected int vitesseDeplacement; // sur une échelle de 1 à 10 (1 étant le plus rapide, 10 le plus lent)
 	protected int tempsFabrication; // en secondes
 	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
 	String nom;
@@ -52,7 +52,7 @@ public abstract class Unite {
 	}
 	
 	public int getCoutDeplacement() {
-		return this.coutDeplacement;
+		return this.vitesseDeplacement;
 	}
 	
 	public abstract String getDescription();
