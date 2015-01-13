@@ -20,7 +20,7 @@ public abstract class Batiment {
 	/**Allow to upgrade the level*/
 	public void upgradeLevel(){
 		if(level++ > levelMax)
-			System.out.println("you are in max level");
+			System.out.println("Vous êtes déjà au niveau maximum");
 		else
 			level++;
 	}
