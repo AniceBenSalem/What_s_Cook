@@ -19,19 +19,19 @@ public class Test {
                 
                 //String query = "insert into users values('troll', 'lolilol', 'prout@geugeul.fr', 152)";
                 String query = "select * from users";
-                System.out.println(query);
-                //ResultSet rs = stmt.executeQuery(query);
                 ResultSet rs  = stmt.executeQuery(query);
                 
                 while(rs.next()){
-                    System.out.println("coucou");
+                	System.out.println(rs.getString(1) + " ," + rs.getString(2) + " ," + rs.getString(3) + " ," + rs.getString(4));
                 }
                 con.close();
             }catch(Exception e){
                 System.out.println("Problem requete");
+                System.out.println(e.getMessage());
             }
         }catch(ClassNotFoundException e){
             System.out.println("Problem connection");
+            
         }
 	}
 }
