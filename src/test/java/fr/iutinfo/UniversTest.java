@@ -6,6 +6,7 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
+import fr.iutinfo.exceptions.*;
 
 public class UniversTest extends JerseyTest{
 	

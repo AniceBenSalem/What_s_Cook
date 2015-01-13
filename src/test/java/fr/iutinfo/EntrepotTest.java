@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import fr.iutinfo.exceptions.NoCoquillageException;
+import fr.iutinfo.exceptions.PlacementOccupeException;
+
 /**
  * Permet de tester les methodes associees a l'entrepot
  * @author dumetza

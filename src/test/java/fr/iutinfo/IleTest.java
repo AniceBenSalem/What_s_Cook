@@ -8,6 +8,8 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.iutinfo.exceptions.PlacementOccupeException;
+
 public class IleTest extends JerseyTest{
 	@Override
 	protected Application configure(){
