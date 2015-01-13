@@ -51,7 +51,9 @@ public class Univers {
 		return  "l'univer "+getNomUnivers()+" possede "+getListeIle().size()+ " ile(s).";
 	}
 	
-	
+	public int distanceIles (Ile i1, Ile i2) {
+		return (int) (Math.sqrt(Math.pow((i2.getX()-i1.getX()),2) + Math.pow(i2.getY()-i1.getY(),2)));	
+	}
 	
 	
 }
