@@ -57,5 +57,4 @@ public class Univers {
 		return (int) (Math.sqrt(Math.pow((i2.getX()-i1.getX()),2) + Math.pow(i2.getY()-i1.getY(),2)));	
 	}
 	
-	
 }

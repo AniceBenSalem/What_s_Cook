@@ -1,6 +1,6 @@
 package fr.iutinfo.batiments;
 
-import fr.iutinfo.Ile;
+
 
 /**This class allow to create a building*/
 public abstract class Batiment {
@@ -10,7 +10,13 @@ public abstract class Batiment {
 		this.nombre=0;
 	}
 	public abstract String getNom();
+	public void up(){
+		this.nombre++;
+	}
 	
+	public int getNombre(){
+		return this.nombre;
+	}
 }
 
 

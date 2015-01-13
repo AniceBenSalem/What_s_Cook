@@ -1,8 +1,6 @@
 package fr.iutinfo.batiments;
 
-import fr.iutinfo.Ile;
 import fr.iutinfo.exceptions.NoCoquillageException;
-import fr.iutinfo.ressources.Ressource;
 
 
 /**
@@ -13,6 +11,15 @@ import fr.iutinfo.ressources.Ressource;
 public class Entrepot extends Batiment {
 
 	private int coquillage;
+	private int capacite;
+	
+	public int getCapacite() {
+		return capacite;
+	}
+
+	public void setCapacite(int capacite) {
+		this.capacite = capacite;
+	}
 	
 	public int getCoquillage() {
 		return coquillage;
@@ -23,15 +30,12 @@ public class Entrepot extends Batiment {
 	}
 
 
-
 	/**
 	 * On initialise un entrepot sur une ile
 	 */
 	public Entrepot () {
 		this.coquillage=0;
-
 	}
-
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -52,10 +56,8 @@ public class Entrepot extends Batiment {
 			else {
 				throw new NoCoquillageException();
 			}
-			
 		}
-		
-		
+	
 	}
 
 	@Override
