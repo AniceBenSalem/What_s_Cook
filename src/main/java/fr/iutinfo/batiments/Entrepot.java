@@ -2,7 +2,6 @@ package fr.iutinfo.batiments;
 
 import fr.iutinfo.Ile;
 import fr.iutinfo.exceptions.NoCoquillageException;
-import fr.iutinfo.ressources.Coquillage;
 import fr.iutinfo.ressources.Ressource;
 
 
@@ -51,9 +50,9 @@ public class Entrepot extends Batiment {
 	 * @param e
 	 * @throws NoCoquillageException 
 	 */
-	public void donnerRessource (Ressource r, int montant, Entrepot e) throws NoCoquillageException {
+	public void donnerRessource (String ressource, int montant, Entrepot e) throws NoCoquillageException {
 		
-		if (r instanceof Coquillage) {
+		if (ressource.equals("Coquillage")) {
 		
 			if (this.coquillage >= montant) {
 				this.coquillage -= montant;

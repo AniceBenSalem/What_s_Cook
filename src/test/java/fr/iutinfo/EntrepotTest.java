@@ -7,7 +7,6 @@ import org.junit.Test;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.NoCoquillageException;
 import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.ressources.Coquillage;
 
 /**
  * Permet de tester les methodes associees a l'entrepot
@@ -25,7 +24,7 @@ public class EntrepotTest {
 		Ile ile2 = new Ile (u, "proprietaire2", 11,11);
 		Entrepot e2 = new Entrepot (ile2);
 		try {
-			e.donnerRessource(new Coquillage(), 15, e2);
+			e.donnerRessource("Coquillage", 15, e2);
 		} catch (NoCoquillageException e1) {
 			e1.printStackTrace();
 		}
@@ -42,7 +41,7 @@ public class EntrepotTest {
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2",11,11);
 		Entrepot e2 = new Entrepot (ile2);
-		e.donnerRessource(new Coquillage(), 60, e2);
+		e.donnerRessource("Coquillage", 60, e2);
 		
 		
 		
