@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.iutinfo.batiments.Batiment;
+import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.Unite;
 
@@ -13,6 +14,7 @@ public class Ile {
 	private Univers univers;
 	private String proprietaire;
 	private ArrayList<Batiment> listeBatiments;
+	private Entrepot entrepot;
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
 	int y;
@@ -22,11 +24,13 @@ public class Ile {
 		this.univers=univers;
 		this.proprietaire=proprietaire;
 		this.listeBatiments = new ArrayList <Batiment> ();
+		this.entrepot=new Entrepot();
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
 	}
+	
 	public void addUnite(Unite u){
 		if(reserve.containsKey(u.getNom())){
 			reserve.put(u.getNom(), reserve.get(u.getNom())+1);

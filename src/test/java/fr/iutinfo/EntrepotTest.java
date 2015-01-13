@@ -19,10 +19,10 @@ public class EntrepotTest {
 	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire", 10,10);
-		Entrepot e = new Entrepot (ile);
+		Entrepot e = new Entrepot ();
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2", 11,11);
-		Entrepot e2 = new Entrepot (ile2);
+		Entrepot e2 = new Entrepot ();
 		try {
 			e.donnerRessource("Coquillage", 15, e2);
 		} catch (NoCoquillageException e1) {
@@ -37,10 +37,10 @@ public class EntrepotTest {
 	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire",10,10);
-		Entrepot e = new Entrepot (ile);
+		Entrepot e = new Entrepot ();
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2",11,11);
-		Entrepot e2 = new Entrepot (ile2);
+		Entrepot e2 = new Entrepot ();
 		e.donnerRessource("Coquillage", 60, e2);
 		
 		
