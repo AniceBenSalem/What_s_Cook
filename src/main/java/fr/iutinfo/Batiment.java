@@ -1,43 +1,53 @@
 package fr.iutinfo;
 
+/**This class allow to create a building*/
 public abstract class Batiment {
-	int coutdeConstruction; 
-	String nom; 
-	int idBatiment;
-	int niveau;
-	int tempsConstruction;
-	int niveauMax;
-
-	public Batiment(int coutdeConstruction, int idBatiment, int niveauMax, int tempsConstruction){
+	
+	int level, levelMax, idBatiment, coutdeConstruction , tempsConstruction; 
+	String name;
+	
+	/**To create a building, define the name of this, id, level max, cost of construction, time of construction*/
+	public Batiment(String name, int idBatiment, int levelMax, int coutdeConstruction, int tempsConstruction){
 		this.coutdeConstruction = coutdeConstruction;
 		this.idBatiment = idBatiment;
-		this.niveauMax = niveauMax;
+		this.levelMax = levelMax;
 		this.tempsConstruction = tempsConstruction;
 	}
 	
+	/**Allow to upgrade the level*/
+	public void upgradeLevel(){
+		if(level++ > levelMax)
+			System.out.println("you are in max level");
+		else
+			level++;
+	}
+	
+	/**Return true if the current level is the max level else false*/
+	public boolean isLevelMax(){
+		return level == levelMax ? true : false;
+	}
+	
+	/**Allow to know if the building is built*/
 	public boolean estConstruit(boolean enConstruction){
-		if (enConstruction || this.niveau ==0){ 
+		if (enConstruction || this.level ==0){ 
 			return false; 
 		}
 		else{
 			return true;
 		}
 	}
-	public boolean estDetruit(boolean existe){
+	
+	/*Utile ? (instanciation à null pour supprimer un batiment)
+	 * public boolean estDetruit(boolean existe){
 		if(existe){ 
 			return false;
 		}
 		return true;
-	}
+	}*/
 	
-	public boolean estNiveauMax(int niveau, int niveauMax){
-		if (niveau >= niveauMax){
-			return true; 
-		}else{
-			return false; 
-		}
-	}
-	
-	public abstract void amelioration(int niveau, int coutAmelioraiton, int tempsConstruction);
+	/**Allow to improve the building*/
+	public abstract void amelioration();
 	
 }
+
+
