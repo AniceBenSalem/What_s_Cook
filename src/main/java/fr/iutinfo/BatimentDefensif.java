@@ -12,8 +12,9 @@ public abstract class BatimentDefensif extends Batiment{
 		this.pv = pv;
 		this.force = force;
 	}
-	public void setPv (){
-		pv = pv- Armee.getForce();
+	
+	public void setPv(){
+		pv -= Armee.getForce();
 	}
 	
 	public int getPv(){
@@ -25,14 +26,7 @@ public abstract class BatimentDefensif extends Batiment{
 	}
 	
 	public boolean estDetruit(){
-		if (pv <=0){
-			return true;
-		}else{
-			return false;
-		}
+		return pv <= 0 ? true : false;
 	}
 	
-	
-	
-
 }
