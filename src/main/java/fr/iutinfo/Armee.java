@@ -13,9 +13,8 @@ public class Armee {
 	
 	public static int getForce(){
 		int f=0;
-		for(Entry<Unite,Integer> e :effectifs.entrySet()){
+		for(Entry<Unite,Integer> e :effectifs.entrySet())
 			f+= e.getKey().getForce();
-		}
 		return f;
 	}
 }
