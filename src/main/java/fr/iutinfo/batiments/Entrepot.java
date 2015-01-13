@@ -1,6 +1,9 @@
-package fr.iutinfo;
+package fr.iutinfo.batiments;
 
+import fr.iutinfo.Ile;
 import fr.iutinfo.exceptions.NoCoquillageException;
+import fr.iutinfo.ressources.Coquillage;
+import fr.iutinfo.ressources.Ressource;
 
 
 /**

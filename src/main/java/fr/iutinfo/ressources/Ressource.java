@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.ressources;
 
 public abstract class Ressource {
 	

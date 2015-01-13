@@ -1,4 +1,5 @@
-package fr.iutinfo;
+package fr.iutinfo.unites;
+
 
 public class SurfeurCroMagnon extends Unite {
 

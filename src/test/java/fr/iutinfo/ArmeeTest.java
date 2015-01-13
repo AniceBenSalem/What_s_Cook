@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import fr.iutinfo.App;
 import fr.iutinfo.Armee;
-import fr.iutinfo.SurfeurCroMagnon;
+import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class ArmeeTest extends JerseyTest{
 	Armee a;

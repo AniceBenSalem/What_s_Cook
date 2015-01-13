@@ -3,6 +3,8 @@ package fr.iutinfo;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import fr.iutinfo.unites.Unite;
+
 public class Armee {
 
 	private Stack<Unite> effectifs;

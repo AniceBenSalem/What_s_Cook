@@ -1,4 +1,4 @@
-package fr.iutinfo;
+package fr.iutinfo.unites;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ public abstract class Unite {
 	protected int pv;
 	protected int force;
 	protected int id;
-	protected int coutDeplacement;
+	private int coutDeplacement;
 	protected int tempsFabrication; // en secondes
 	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
 	String nom;
@@ -26,7 +26,7 @@ public abstract class Unite {
 	 * Initialise le cout d'un deplacement
 	 */
 	public void initialiseDeplacement () {
-		this.coutDeplacement = this.force + this.pv;
+		this.setCoutDeplacement(this.force + this.pv);
 	}
 
 	/**
@@ -53,12 +53,20 @@ public abstract class Unite {
 		this.pv-=degats;
 	}
 	public abstract int getPV();
-	boolean estMort(){
+	public boolean estMort(){
 		if(pv <= 0){
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+
+	public int getCoutDeplacement() {
+		return coutDeplacement;
+	}
+
+	public void setCoutDeplacement(int coutDeplacement) {
+		this.coutDeplacement = coutDeplacement;
 	}
 }

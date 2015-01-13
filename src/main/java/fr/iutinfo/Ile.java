@@ -2,6 +2,7 @@ package fr.iutinfo;
 
 import java.util.ArrayList;
 
+import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 
 public class Ile {

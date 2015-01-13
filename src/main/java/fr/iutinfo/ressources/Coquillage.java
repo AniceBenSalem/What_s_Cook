@@ -1,4 +1,5 @@
-package fr.iutinfo;
+package fr.iutinfo.ressources;
+
 
 /**
  * Classe representant la ressource Coquillage
