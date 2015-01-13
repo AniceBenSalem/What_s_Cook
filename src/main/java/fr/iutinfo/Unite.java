@@ -35,7 +35,7 @@ public abstract class Unite {
 	 * Fais attaquer une unite contre une autre unite.
 	 */
 	
-	public void combat(Unite u) {
+	public void attaque(Unite u) {
 		u.pv = u.pv - this.force;
 	}
 	
