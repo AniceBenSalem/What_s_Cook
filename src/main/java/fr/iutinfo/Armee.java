@@ -9,6 +9,7 @@ public class Armee {
 	private Stack<Unite> effectifs;
 	private int force;
 	private int pv;
+	private int coutDeplacementGeneral;
 	
 	public Armee(){
 		this.effectifs=new Stack<Unite>();
@@ -21,6 +22,9 @@ public class Armee {
 		effectifs.push(u);
 		force+=u.getForce();
 		pv+=u.getPV();
+		if(u.getCoutDeplacement() > coutDeplacementGeneral)
+			coutDeplacementGeneral = u.getCoutDeplacement();
+		
 	}
 	public void subitDegats(int degats){
 		while(degats>0 && this.pv >=0 && !effectifs.isEmpty()){
@@ -45,5 +49,13 @@ public class Armee {
 	
 	public int getPV(){
 		return pv;
+	}
+
+	public int getCoutDeplacementGeneral() {
+		return coutDeplacementGeneral;
+	}
+
+	public void setCoutDeplacementGeneral(int coutDeplacementGeneral) {
+		this.coutDeplacementGeneral = coutDeplacementGeneral;
 	}
 }

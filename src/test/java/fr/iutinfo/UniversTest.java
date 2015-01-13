@@ -7,6 +7,7 @@ import javax.ws.rs.core.Application;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import fr.iutinfo.exceptions.*;
+import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class UniversTest extends JerseyTest{
 	
@@ -43,7 +44,7 @@ public class UniversTest extends JerseyTest{
 	
 	@Test
 	public void TestDistanceIles() throws PlacementOccupeException {
-		Univers univ = new Univers("Omega");
+		Univers univ = new Univers("Vinland");
 		Ile ile1 = new Ile(univ, "Japon",5,5);
 		Ile ile2 = new Ile(univ, "Madagascar",150,150);
 		assertEquals(205,univ.distanceIles(ile1,ile2));
@@ -55,6 +56,17 @@ public class UniversTest extends JerseyTest{
 		Ile ile = new Ile(univ, "bonjourJeSuisUneIle",0,0);
 		Ile ile2 = new Ile (univ, "moiAussiMaggle", 0,0);
 
+	}
+	
+	@Test
+	public void testTempsDeplacement () throws PlacementOccupeException {
+		Univers univ = new Univers("Vinland");
+		Ile ile1 = new Ile(univ, "Atlantis", 0,0);
+		Ile ile2 = new Ile(univ, "Villeneuve d'Ausque",50,50);
+		SurfeurCroMagnon thibault = new SurfeurCroMagnon();
+		Armee armee = new Armee();
+		armee.addUnite(thibault);
+		assertEquals("01:10:00",univ.tempsDeplacement(ile1, ile2, armee).toString());
 	}
 	
 }

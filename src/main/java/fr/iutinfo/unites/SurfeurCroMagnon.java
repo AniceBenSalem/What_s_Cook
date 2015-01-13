@@ -6,9 +6,9 @@ public class SurfeurCroMagnon extends Unite {
 	public SurfeurCroMagnon () {
 		this.force = 10;
 		this.pv = 42;
+		this.coutDeplacement = 1;
 		this.tempsFabrication = 20;
 		this.niveauCaserneNecessaire = 1;
-		this.initialiseDeplacement();
 		this.initialiseCoutFabrication();
 	
 
