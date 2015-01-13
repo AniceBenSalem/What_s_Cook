@@ -20,13 +20,17 @@ public class Univers {
 		listeIle.add(ile);
 	}
 	
+	public String getNomUnivers(){
+		return nomUniver;
+	}
+	
 	public int getMaxId(){
 		return listeIle.size();
 	}
 	
 	
 	public String toString(){
-		return  "l'univer possede "+getListeIle().size()+ " ile(s).";
+		return  "l'univer "+getNomUnivers()+" possede "+getListeIle().size()+ " ile(s).";
 	}
 	
 	

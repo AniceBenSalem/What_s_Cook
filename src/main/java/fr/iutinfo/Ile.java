@@ -9,6 +9,7 @@ public class Ile {
 	private ArrayList<Batiment> listeBatiments;
 	private Armee armee;
 	
+	
 	public Ile(Univers univers,String proprietaire){
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;
@@ -54,6 +55,10 @@ public class Ile {
 
 	public void setArmee(Armee armee) {
 		this.armee = armee;
+	}
+	
+	public void addBatiment (Batiment b) {
+		this.listeBatiments.add(b);
 	}
 	
 }

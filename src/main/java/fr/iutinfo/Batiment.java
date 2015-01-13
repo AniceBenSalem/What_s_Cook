@@ -16,9 +16,10 @@ public abstract class Batiment {
 	}
 	
 	public boolean estConstruit(boolean enConstruction){
-		if (enConstruction){ 
+		if (enConstruction || this.niveau ==0){ 
 			return false; 
-		}else{
+		}
+		else{
 			return true;
 		}
 	}
