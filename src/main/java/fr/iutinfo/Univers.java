@@ -1,5 +1,6 @@
 package fr.iutinfo;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
@@ -57,5 +58,14 @@ public class Univers {
 		return (int) (Math.sqrt(Math.pow((i2.getX()-i1.getX()),2) + Math.pow(i2.getY()-i1.getY(),2)));	
 	}
 	
-	
+	public Time tempsDeplacement (Ile i1, Ile i2, Armee a) {
+		int distance = distanceIles(i1,i2);
+		int deplacement = a.getCoutDeplacementGeneral();
+		int tempsMinute = distance * deplacement;
+		int tempsHeure = (int) tempsMinute/60;
+		tempsMinute %= 60;
+		Time attaqueArmee = new Time(tempsHeure, tempsMinute, 0);
+		return attaqueArmee;
+		
+	}
 }
