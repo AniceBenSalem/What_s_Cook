@@ -35,6 +35,7 @@ public class Entrepot extends Batiment {
 	 */
 	public Entrepot () {
 		this.coquillage=0;
+		this.nombre=1;
 	}
 
 	/**
@@ -63,5 +64,11 @@ public class Entrepot extends Batiment {
 	@Override
 	public String getNom() {
 		return "Entrepot";
+	}
+
+	@Override
+	public void up() {
+		this.nombre++;
+		
 	}
 }

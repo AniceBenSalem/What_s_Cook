@@ -1,4 +1,6 @@
-package fr.iutinfo;
+package fr.iutinfo.batiments;
+
+import fr.iutinfo.Ile;
 
 public class GenerateurCoquillage extends Generateur{
 
@@ -14,6 +16,11 @@ public class GenerateurCoquillage extends Generateur{
 	@Override
 	public String getNom() {
 		return "Generateur de coquillage";
+	}
+
+	@Override
+	public void up() {
+		this.nombre++;
 	}
 
 }
