@@ -1,5 +1,7 @@
 package fr.iutinfo;
 
+import fr.iutinfo.exceptions.NoCoquillageException;
+
 
 /**
  * Sert a stocker les ressources d'une ile

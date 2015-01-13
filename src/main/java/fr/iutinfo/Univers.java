@@ -2,6 +2,8 @@ package fr.iutinfo;
 
 import java.util.ArrayList;
 
+import fr.iutinfo.exceptions.PlacementOccupeException;
+
 public class Univers {
 	private String nomUniver;
 	private ArrayList<Ile> listeIle;

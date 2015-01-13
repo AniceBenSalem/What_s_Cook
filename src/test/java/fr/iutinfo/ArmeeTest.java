@@ -7,6 +7,10 @@ import javax.ws.rs.core.Application;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
+import fr.iutinfo.App;
+import fr.iutinfo.Armee;
+import fr.iutinfo.SurfeurCroMagnon;
+
 public class ArmeeTest extends JerseyTest{
 	Armee a;
 	@Override
