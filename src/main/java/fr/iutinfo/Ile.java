@@ -10,6 +10,7 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.Unite;
 
 public class Ile {
+	private int defense;
 	private int id;
 	private Univers univers;
 	private String proprietaire;
