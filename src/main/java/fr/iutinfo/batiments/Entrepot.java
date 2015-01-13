@@ -32,24 +32,10 @@ public class Entrepot extends Batiment {
 
 	/**
 	 * On initialise un entrepot sur une ile
-	 * @param ile
 	 */
 	public Entrepot () {
 		this.coquillage=0;
-		this.level=1;
-		this.levelMax=10;
-		this.idBatiment=2;
-		this.name = "Entrepot";
-		this.capacite = 100;
-		this.initialiseRessources();
-
 	}
-	
-	public void initialiseRessources() {
-		this.coquillage = 0;
-		
-	}
-
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -75,9 +61,7 @@ public class Entrepot extends Batiment {
 	}
 
 	@Override
-	public void amelioration() {
-		this.level ++;
-		this.capacite = this.capacite * 2;
-		
+	public String getNom() {
+		return "Entrepot";
 	}
 }
