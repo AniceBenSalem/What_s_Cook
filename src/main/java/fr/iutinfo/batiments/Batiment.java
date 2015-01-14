@@ -18,18 +18,22 @@ public abstract class Batiment {
 	public void setTempsConstruction(int tempsConstruction) { // en minute
 		this.tempsConstruction = tempsConstruction;
 	}
+	
+	public int getNombre() {
+		return this.nombre;
+	}
+	
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
-	}
+	}	
+
 	public Batiment(){
 		this.nombre=0;
 	}
+	
 	public abstract String getNom();
 	public abstract  void up();
 	
-	public int getNombre(){
-		return this.nombre;
-	}
 }
 
 

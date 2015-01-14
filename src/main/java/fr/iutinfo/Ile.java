@@ -14,16 +14,25 @@ import fr.iutinfo.unites.Unite;
 
 public class Ile {
 
+	/*General*/
 	private int id;
 	private Univers univers;
 	private String proprietaire;
-
-	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
+	boolean dansUnClan;
+	private int points;
+	
+	/*pos*/
 	int x; 
 	int y;
-
+	
+	/*Unites*/
 	private SurfeurCroMagnon surfeur;
-
+	
+	/*Armees*/
+	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
+	private Armee armee;
+	
+	/*Batiments*/
 	private Entrepot entrepot;
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
@@ -41,35 +50,71 @@ public class Ile {
 		this.x = x;
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
+		this.setDansUnClan(false);
+		this.setPoints(0);
+	}
+
+	public boolean isDansUnClan() {
+		return dansUnClan;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public void setDansUnClan(boolean dansUnClan) {
+		this.dansUnClan = dansUnClan;
 	}
 
 	public int getValeurDefense(){
 		int def=0;
-
-		def+=this.cococanon.getPv()*cococanon.getNombre();
-
+		def+=this.cococanon.getPv();
+		System.out.println(cococanon.getPv());
 		return def;
 	}
-	public void addUnite(Unite u){
-		if(reserve.containsKey(u.getNom())){
-			reserve.put(u.getNom(), reserve.get(u.getNom())+1);
-		}else{
-			reserve.put(u.getNom(),1);
-		}
-	}
-
-	public void upGenerateur(){
-		if(this.entrepot.getCoquillage()>0){
+	
+	public void upCromagnonSurfeur(){
+		int cout = surfeur.getCoutFabrication("Coquillage");
+		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 5);
+		}
+
+	}
+	
+	public void upGenerateurCoquillage(){
+		int cout = generateurCoquillage.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>=cout){
+			generateurCoquillage.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 100);
 		}
 	}
 
 	public void upEntrepot(){
-		entrepot.up();
+		int cout = entrepot.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>cout){
+			entrepot.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 80);
+		}	
+		
+
 	}
 
 	public void upCococanon(){
-		cococanon.up();
+		int cout = cococanon.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>cout){
+			cococanon.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 120);
+
+		}
 	}
 
 	public int getId() {

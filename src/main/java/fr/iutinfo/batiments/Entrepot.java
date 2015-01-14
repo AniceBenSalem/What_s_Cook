@@ -41,8 +41,8 @@ public class Entrepot extends Batiment {
 		this.setCapacite(capacite);
 		this.setTempsConstruction(tempsConstructionEntrepot);
 		this.setCoutdeConstruction(coutDeConstructionEntrepot);
-		this.setNombre(0);
-	}
+		this.setNombre(0);	
+		}
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -66,19 +66,17 @@ public class Entrepot extends Batiment {
 		}
 	
 	}
-
+	
 	@Override
 	public String getNom() {
 		return "Entrepot";
 	}
 
-	/**
-	 * On double la capacite de stockage a chaque augmentation de niveau
-	 */
 	@Override
 	public void up() {
 		this.setCapacite(this.capacite *2);
 		this.setCoutdeConstruction(coutdeConstruction*4);
 		this.setTempsConstruction((int) (tempsConstruction*1.5));
+		this.nombre++;
 	}
 }

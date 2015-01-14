@@ -20,6 +20,11 @@ public class CocoCanon extends BatimentDefensif {
 	@Override
 	public void up() {
 		this.nombre++;
-		this.setPv(pvCocoCanon*nombre);
+		this.setPv(pvCocoCanon*nombre);	
+	}
+
+	@Override
+	public int getPv() {
+		return this.pv*nombre;
 	}
 }
