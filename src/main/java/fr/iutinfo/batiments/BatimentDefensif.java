@@ -9,6 +9,10 @@ public abstract class BatimentDefensif extends Batiment{
 		return this.pv;
 	}
 	
+	public void setPv(int a) {
+		this.pv = a;
+	}
+	
 	public boolean estDetruit(){
 		return pv <= 0 ? true : false;
 	}
