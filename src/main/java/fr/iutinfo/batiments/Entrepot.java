@@ -12,8 +12,8 @@ public class Entrepot extends Batiment {
 
 	private int coquillage = 0;
 	private int capacite = 200;
-	private int coutDeConstructionEntrepot = 100;
-	private int tempsConstructionEntrepot = 11; //en minute
+	private final int coutDeConstructionEntrepot = 100;
+	private final int tempsConstructionEntrepot = 11; //en minute
 	
 	
 	public int getCapacite() {

@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import fr.iutinfo.App;
 import fr.iutinfo.Armee;
+import fr.iutinfo.batiments.BatimentDefensif;
+import fr.iutinfo.batiments.CocoCanon;
+import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class ArmeeTest extends JerseyTest{
@@ -52,5 +55,38 @@ public class ArmeeTest extends JerseyTest{
 		a.addUnite(new SurfeurCroMagnon());
 		assertEquals(a.getForce(),new SurfeurCroMagnon().getForce()*2);
 	}
+	
+	@Test
+	public void testAttaquerIle() throws PlacementOccupeException {
+		a=new Armee();
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		
+		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+		ile.upCococanon();
+		
+		assertEquals("Armee gagne",a.attaquerIle(ile));
+	}
+	
+	@Test
+	public void testAttaquerIle2() throws PlacementOccupeException {
+		a=new Armee();
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		
+		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+		ile.upCococanon();
+		
+		assertEquals("Perdu",a.attaquerIle(ile));
+	}
+	
 
 }
