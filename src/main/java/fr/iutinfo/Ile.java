@@ -49,7 +49,7 @@ public class Ile {
 		this.x = x;
 		this.y = y;
 		this.setDansUnClan(false);
-		this.setPoints(0);
+		this.points = 0;
 	}
 	
 	public boolean isDansUnClan() {
@@ -81,8 +81,12 @@ public class Ile {
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 5);
 		}
-
+		
+		points +=5;
 	}
+
+
+
 	
 	public void upGenerateurCoquillage(){
 		int cout = generateurCoquillage.getCoutDeConstruction();
@@ -97,12 +101,16 @@ public class Ile {
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
-			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+
+			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
+			points += 80;
+		}	
+	entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 80);
 		}	
 		
 
-	}
+	
 
 	public void upCococanon(){
 		int cout = cococanon.getCoutDeConstruction();
@@ -112,6 +120,8 @@ public class Ile {
 			this.setPoints(this.points + 120);
 
 		}
+		points += 120;
+
 	}
 
 	public int getId() {

@@ -10,8 +10,11 @@ import fr.iutinfo.exceptions.NoCoquillageException;
  */
 public class Entrepot extends Batiment {
 
-	private int coquillage;
-	private int capacite;
+	private int coquillage = 0;
+	private int capacite = 200;
+	private int coutDeConstructionEntrepot = 100;
+	private int tempsConstructionEntrepot = 11; //en minute
+	
 	
 	public int getCapacite() {
 		return capacite;
@@ -34,9 +37,12 @@ public class Entrepot extends Batiment {
 	 * On initialise un entrepot sur une ile
 	 */
 	public Entrepot () {
-		this.coquillage=0;
-		this.nombre=1;
-	}
+		this.setCoquillage(coquillage);
+		this.setCapacite(capacite);
+		this.setTempsConstruction(tempsConstructionEntrepot);
+		this.setCoutdeConstruction(coutDeConstructionEntrepot);
+		this.setNombre(0);	
+		}
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -66,9 +72,12 @@ public class Entrepot extends Batiment {
 		return "Entrepot";
 	}
 
+	// niveau  = nombre
 	@Override
 	public void up() {
+		this.setCapacite(this.capacite *2);
+		this.setCoutdeConstruction(coutdeConstruction*4);
+		this.setTempsConstruction((int) (tempsConstruction*1.5));
 		this.nombre++;
-		
 	}
 }

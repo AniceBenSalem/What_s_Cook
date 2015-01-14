@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
+import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class IleTest extends JerseyTest{
 	@Override
@@ -41,7 +42,7 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestUpGenerateurCoquillage() throws PlacementOccupeException{
+	public void TestUpGenerateur() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
@@ -65,5 +66,22 @@ public class IleTest extends JerseyTest{
 		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
 		assertEquals(i.getEntrepot().getNombre(),2);
+	}
+	
+	@Test
+	public void testPointsIle () throws PlacementOccupeException {
+		Ile i = new Ile(u,"amaury",10,10);
+		assertEquals(0, i.getPoints());
+		i.upEntrepot();
+		assertEquals(80, i.getPoints());
+		i.upCococanon();
+		assertEquals(200, i.getPoints());
+		i.upGenerateurCoquillage();
+		assertEquals(300, i.getPoints());
+		SurfeurCroMagnon scm = new SurfeurCroMagnon();
+		i.addUnite(scm);
+		assertEquals(305, i.getPoints());
+	
+
 	}
 }
