@@ -78,9 +78,7 @@ public class IleTest extends JerseyTest{
 		assertEquals(200, i.getPoints());
 		i.upGenerateurCoquillage();
 		assertEquals(300, i.getPoints());
-		SurfeurCroMagnon scm = new SurfeurCroMagnon();
-		i.addUnite(scm);
-		assertEquals(305, i.getPoints());
+
 	
 
 	}
