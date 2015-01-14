@@ -21,17 +21,17 @@ public class Ile {
 	private String proprietaire;
 	boolean dansUnClan;
 	private int points;
-	
+
 	/*pos*/
 	int x; 
 	int y;
-	
+
 	/*Unites*/
 	private SurfeurCroMagnon surfeur;
-	
+
 	/*Armees*/
 	private Armee armee;
-	
+
 	/*Batiments*/
 	private Entrepot entrepot;
 	private Caserne caserne;
@@ -44,6 +44,7 @@ public class Ile {
 		this.proprietaire=proprietaire;
 
 		this.entrepot=new Entrepot();
+		this.caserne = new Caserne();
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 
@@ -53,11 +54,11 @@ public class Ile {
 		this.setDansUnClan(false);
 		this.points = 0;
 	}
-	
+
 	public boolean isDansUnClan() {
 		return dansUnClan;
 	}
-	
+
 	public int getPoints() {
 		return points;
 	}
@@ -69,20 +70,21 @@ public class Ile {
 	public void setDansUnClan(boolean dansUnClan) {
 		this.dansUnClan = dansUnClan;
 	}
-	
+
 	public int getValeurDefense(){
 		int def=0;
 		def+=this.cococanon.getPv();
 		return def;
 	}
-	
+
 	public void upCromagnonSurfeur(){
 		int cout = surfeur.getCoutFabrication("Coquillage");
-		if(this.entrepot.getCoquillage()>=cout){
+		
+		if(this.entrepot.getCoquillage()>=cout && surfeur.getNiveauCaserneRequis() >= caserne.getNombre()){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}
-	
+
 	}
 
 	public void upGenerateurCoquillage(){
@@ -98,13 +100,10 @@ public class Ile {
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
-
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 			points += 80;
 		}	
-	entrepot.setCoquillage(entrepot.getCoquillage()-cout);
-			this.setPoints(this.points + 80);
-		}	
+	}	
 
 	public void upCococanon(){
 		int cout = cococanon.getCoutDeConstruction();
@@ -114,7 +113,6 @@ public class Ile {
 			this.setPoints(this.points + 120);
 
 		}
-		points += 120;
 
 	}
 
@@ -149,7 +147,7 @@ public class Ile {
 	public Batiment getCococanon() {
 		return this.cococanon;
 	}
-	
+
 	public void putSurfeurCromagnonArmee(){
 		if(surfeur.getNombre()>0){
 			this.armee.addUnite(new SurfeurCroMagnon());

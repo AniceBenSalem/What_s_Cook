@@ -10,10 +10,10 @@ import fr.iutinfo.exceptions.NoCoquillageException;
  */
 public class Entrepot extends Batiment {
 
-	private int coquillage = 0;
-	private int capacite = 200;
-	private final int coutDeConstructionEntrepot = 100;
-	private final int tempsConstructionEntrepot = 11; //en minute
+	private int coquillage;
+	private int capacite;
+	private int coutDeConstructionEntrepot;
+	private int tempsConstructionEntrepot; //en minute
 	
 	
 	public int getCapacite() {
@@ -37,11 +37,11 @@ public class Entrepot extends Batiment {
 	 * On initialise un entrepot sur une ile
 	 */
 	public Entrepot () {
-		this.setCoquillage(coquillage);
-		this.setCapacite(capacite);
-		this.setTempsConstruction(tempsConstructionEntrepot);
-		this.setCoutDeConstruction(coutDeConstructionEntrepot);
-		this.setNombre(0);	
+		coquillage=0;
+		capacite = 200;
+		coutDeConstructionEntrepot = 100;
+		tempsConstructionEntrepot = 11;
+		this.setNombre(1);	
 		}
 
 	/**
