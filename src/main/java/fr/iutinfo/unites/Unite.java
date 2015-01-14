@@ -16,6 +16,7 @@ public abstract class Unite {
 
 	public Unite () {
 		this.coutFabrication = new HashMap <String, Integer> ();
+		this.nombre=0;
 	}
 	
 	public int getNombre(){

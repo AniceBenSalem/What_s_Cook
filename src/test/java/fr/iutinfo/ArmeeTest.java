@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.iutinfo.App;
@@ -16,30 +17,29 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class ArmeeTest extends JerseyTest{
+	Univers u;
 	Armee a;
+	Ile i,i2;
+	
+	@Before
+	public void init() throws PlacementOccupeException{
+		a=new Armee();
+		
+		
+		//Initialise 2 ile avec 1000000 coquillages
+	}
+
 	@Override
     protected Application configure() {
         return new App();
     }
-	
+
 	@Test
 	public void testAddUnite() {
-		a=new Armee();
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
 		assertEquals(a.getStack().size(),2);
 	}
-	
-//	@Test
-//	public void testSubitDegats() {
-//		a=new Armee();
-//		a.addUnite(new SurfeurCroMagnon());
-//		a.addUnite(new SurfeurCroMagnon());
-//		a.subitDegats(10);
-//		assertEquals((new SurfeurCroMagnon().getPV()*2)-10,a.getPV());
-//		a.subitDegats(100);
-//		assertEquals(a.getStack().size(),0);
-//	}
 	
 	@Test
 	public void testGetPV() {
@@ -58,22 +58,41 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testAttaquerIle() throws PlacementOccupeException {
-		assertTrue(true);
+	public void testAttaquerIlePerdu() throws PlacementOccupeException {
+		u=new Univers("test");
+		i = new Ile(u,"leon",1,1);
+		i.getEntrepot().setCoquillage(1000000);
+		i2 = new Ile(u,"un mechant",2,2);
+		i2.getEntrepot().setCoquillage(1000000);
+		i.upCococanon(); //Cococanon lvl 1 = 100 pv
+		for(int i = 0;i<2;i++){
+			i2.upCromagnonSurfeur();
+		} // cree 2 cromagnon = 42pv, 10force
+		i2.putAllSurfeurCromagnonArmee();
+		assertFalse(i2.getArmee().attaquerIle(i)); //on attend un echec de l'attaque
+		assertTrue(i2.getArmee().getStack().isEmpty()); // tous morts
 		
 	}
 	
-//	@Test
-//	public void testAttaquerIle2() throws PlacementOccupeException {
-//		a=new Armee();
-//		a.addUnite(new SurfeurCroMagnon());
-//		a.addUnite(new SurfeurCroMagnon());
-//		
-//		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
-//		ile.upCococanon();
-//		
-//		assertEquals("Perdu",a.attaquerIle(ile));
-//	}
+	@Test
+	public void testAttaquerIleGagner() throws PlacementOccupeException {
+		u=new Univers("test");
+		i = new Ile(u,"leon",1,1);
+		i.getEntrepot().setCoquillage(1000000);
+		i2 = new Ile(u,"un mechant",2,2);
+		i2.getEntrepot().setCoquillage(1000000);
+		i.upCococanon(); //Cococanon lvl 1 = 100 pv
+		System.out.println(i.getValeurDefense());
+		for(int i = 0;i<11;i++){
+			i2.upCromagnonSurfeur();
+		} // cree 11 cromagnon = 42pv, 10force (total = 462pv et 110 force)
+		i2.putAllSurfeurCromagnonArmee();
+		System.out.println(i2.getArmee().getForce());
+		boolean test =i2.getArmee().attaquerIle(i);
+		assertFalse(i2.getArmee().getStack().isEmpty()); // tous morts
+		assertTrue(test); //on attend une reussite de l'attaque
+
+	}
 	
 	public void testAttaquerIle3() throws PlacementOccupeException {
 	a = new Armee();
