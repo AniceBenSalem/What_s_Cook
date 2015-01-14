@@ -18,13 +18,11 @@ import javax.servlet.http.HttpSession;
 public class Authent extends HttpServlet{
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		System.out.println("coucou toi");
 		try{
 			//Creation de la session
 			HttpSession session = req.getSession( true );
 			session.setAttribute("identificateur",req.getParameter("login"));
 			session.setMaxInactiveInterval(10*60*60);
-			System.out.println(req.getParameter("login"));
 
 			//Enregistrement du driver
 			Class.forName("org.sqlite.JDBC");			
@@ -34,28 +32,27 @@ public class Authent extends HttpServlet{
 			String name = null;
 			String passwd = null;
 			try (Connection con = DriverManager.getConnection(url, name, passwd)) {
-				System.out.println("ccccc");
-
+System.out.println("coucou1");
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "select * from users Where login = '" + req.getParameter("login") + "' AND password = '" + req.getParameter("password") + "'";
 				ResultSet rs = stmt.executeQuery(query);
-
+System.out.println("coucou2");
 				PrintWriter out = res.getWriter();
 				res.setContentType("text/html");
 				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
-
+System.out.println("coucou3");
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
 					if(session.getAttribute("url") != null)
 						res.sendRedirect((String) session.getAttribute("url"));
 					else
 						res.sendRedirect("Menu");    //A modifier
-				}else
-					System.out.println("coucou");
-				session.setAttribute("idTrue",rs.getString("false"));
-				res.sendRedirect("../index.html");
-
+				}else{
+					res.sendRedirect("../index.html");
+					//session.setAttribute("idTrue",rs.getString("false"));
+				}
+System.out.println("coucou4");
 				//fermeture des espaces
 				con.close();
 			}catch(Exception e){
