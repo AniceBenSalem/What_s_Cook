@@ -80,4 +80,12 @@ public class Clan {
 
 	}
 
+	public int getNombreMembres() {
+		return nombreMembres;
+	}
+
+	public void setNombreMembres(int nombreMembres) {
+		this.nombreMembres = nombreMembres;
+	}
+
 }

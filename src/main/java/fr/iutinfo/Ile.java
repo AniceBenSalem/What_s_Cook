@@ -19,6 +19,7 @@ public class Ile {
 	private Univers univers;
 	private String proprietaire;
 	boolean dansUnClan;
+	private int points;
 	
 	/*pos*/
 	int x; 
@@ -50,10 +51,19 @@ public class Ile {
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
 		this.setDansUnClan(false);
+		this.setPoints(0);
 	}
 
 	public boolean isDansUnClan() {
 		return dansUnClan;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public void setDansUnClan(boolean dansUnClan) {
@@ -72,8 +82,9 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 5);
 		}
-		
+
 	}
 	
 	public void upGenerateurCoquillage(){
@@ -81,6 +92,7 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 100);
 		}
 	}
 
@@ -89,7 +101,10 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 80);
 		}	
+		
+
 	}
 
 	public void upCococanon(){
@@ -97,6 +112,8 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>cout){
 			cococanon.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+			this.setPoints(this.points + 120);
+
 		}
 	}
 
