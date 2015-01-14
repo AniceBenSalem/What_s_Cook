@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.iutinfo.batiments.Batiment;
+import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.batiments.Generateur;
@@ -34,6 +35,7 @@ public class Ile {
 	
 	/*Batiments*/
 	private Entrepot entrepot;
+	private Caserne caserne;
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
 
@@ -89,17 +91,12 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
-			this.setPoints(this.points + 5);
 		}
-		
-		points +=5;
+	
 	}
 
-
-
-	
 	public void upGenerateurCoquillage(){
-		int cout = generateurCoquillage.getCoutDeConstruction();
+		int cout = generateurCoquillage.getCoutdeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
@@ -108,22 +105,19 @@ public class Ile {
 	}
 
 	public void upEntrepot(){
-		int cout = entrepot.getCoutDeConstruction();
+		int cout = entrepot.getCoutdeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
 
-			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
+			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutdeConstruction());
 			points += 80;
 		}	
 	entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 80);
 		}	
-		
-
-	
 
 	public void upCococanon(){
-		int cout = cococanon.getCoutDeConstruction();
+		int cout = cococanon.getCoutdeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			cococanon.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
