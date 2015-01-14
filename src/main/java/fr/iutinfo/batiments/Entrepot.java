@@ -40,7 +40,7 @@ public class Entrepot extends Batiment {
 		this.setCoquillage(coquillage);
 		this.setCapacite(capacite);
 		this.setTempsConstruction(tempsConstructionEntrepot);
-		this.setCoutdeConstruction(coutDeConstructionEntrepot);
+		this.setCoutDeConstruction(coutDeConstructionEntrepot);
 		this.setNombre(0);	
 		}
 
@@ -76,7 +76,7 @@ public class Entrepot extends Batiment {
 	@Override
 	public void up() {
 		this.setCapacite(this.capacite *2);
-		this.setCoutdeConstruction(coutdeConstruction*4);
+		this.setCoutDeConstruction(coutdeConstruction*4);
 		this.setTempsConstruction((int) (tempsConstruction*1.5));
 		this.nombre++;
 	}

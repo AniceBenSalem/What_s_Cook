@@ -6,10 +6,9 @@ public class CocoCanon extends BatimentDefensif {
 	private int tempsConstructionCocoCanon = 5; //en minute
 	
 	public CocoCanon() {
-		this.setTempsConstruction(tempsConstructionCocoCanon);
-		this.setCoutdeConstruction(coutConstructionCocoCanon);
-		this.setPv(pvCocoCanon);
-		this.setNombre(0);
+		this.pv=100;
+		this.coutConstructionCocoCanon=50;
+		this.tempsConstruction=5;
 	}
 
 	@Override

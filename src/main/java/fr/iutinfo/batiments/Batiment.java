@@ -6,10 +6,10 @@ package fr.iutinfo.batiments;
 public abstract class Batiment {
 	protected int nombre, coutdeConstruction, tempsConstruction; 	
 
-	public int getCoutdeConstruction() {
+	public int getCoutDeConstruction() {
 		return coutdeConstruction;
 	}
-	public void setCoutdeConstruction(int coutdeConstruction) {
+	public void setCoutDeConstruction(int coutdeConstruction) {
 		this.coutdeConstruction = coutdeConstruction;
 	}
 	public int getTempsConstruction() { //en minute
