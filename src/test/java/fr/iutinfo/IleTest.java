@@ -78,11 +78,9 @@ public class IleTest extends JerseyTest{
 		assertEquals(200, i.getPoints());
 		i.upGenerateurCoquillage();
 		assertEquals(300, i.getPoints());
-<<<<<<< HEAD
-		assertEquals(305, i.getPoints());
-=======
 
->>>>>>> cf344630f71fc0fcae0a19c981a37e138e6ef72d
+
+
 	
 
 	}
