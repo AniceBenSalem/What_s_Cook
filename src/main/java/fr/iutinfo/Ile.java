@@ -53,7 +53,7 @@ public class Ile {
 		this.setDansUnClan(false);
 		this.setPoints(0);
 	}
-
+	
 	public boolean isDansUnClan() {
 		return dansUnClan;
 	}
@@ -69,11 +69,18 @@ public class Ile {
 	public void setDansUnClan(boolean dansUnClan) {
 		this.dansUnClan = dansUnClan;
 	}
-
+	
+	public void addUnite(Unite u){
+		if(reserve.containsKey(u.getNom())){
+			reserve.put(u.getNom(), reserve.get(u.getNom())+1);
+		}else{
+			reserve.put(u.getNom(),1);
+		}
+	}
+	
 	public int getValeurDefense(){
 		int def=0;
 		def+=this.cococanon.getPv();
-		System.out.println(cococanon.getPv());
 		return def;
 	}
 	
