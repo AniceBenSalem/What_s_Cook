@@ -61,11 +61,31 @@ public class ArmeeTest extends JerseyTest{
 		a=new Armee();
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
+		
 		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
-		BatimentDefensif def = new CocoCanon();
+		ile.upCococanon();
 		
+		assertEquals("Armee gagne",a.attaquerIle(ile));
+	}
+	
+	@Test
+	public void testAttaquerIle2() throws PlacementOccupeException {
+		a=new Armee();
+		a.addUnite(new SurfeurCroMagnon());
+		a.addUnite(new SurfeurCroMagnon());
 		
-		assertEquals(a.getForce(),new SurfeurCroMagnon().getForce()*2);
+		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+		ile.upCococanon();
+		
+		assertEquals("Perdu",a.attaquerIle(ile));
 	}
 	
 
