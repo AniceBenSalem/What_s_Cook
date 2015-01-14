@@ -31,6 +31,8 @@ public class Test {
             }
         }catch(ClassNotFoundException e){
             System.out.println("Problem connection");
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
             
         }
 	}
