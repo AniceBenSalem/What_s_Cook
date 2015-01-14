@@ -34,8 +34,8 @@ public class IleTest extends JerseyTest{
 	@Test
 	public void TestGetValeurDefense() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
-		i.upCococanon();
 		assertEquals(i.getValeurDefense(),0);
+		i.upCococanon();
 		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
 		assertEquals(i.getValeurDefense(),100);
@@ -60,12 +60,31 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
+	public void TestUpSurfeur() throws PlacementOccupeException{
+		Ile i = new Ile(u,"leon",10,10);
+		assertEquals(i.getSurfeur().getNombre(),0);
+		i.getEntrepot().setCoquillage(300);
+		i.upCromagnonSurfeur();
+		assertEquals(1,i.getSurfeur().getNombre());
+	}
+	
+	@Test
 	public void TestUpEntrepot() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getEntrepot().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
 		assertEquals(i.getEntrepot().getNombre(),2);
+	}
+	
+	@Test
+	public void testPutSurfeur() throws PlacementOccupeException{
+		u=new Univers("test");
+		Ile i = new Ile(u,"leon",1,1);
+		i.getEntrepot().setCoquillage(1000000);	
+		i.upCromagnonSurfeur();
+		i.putSurfeurCromagnonArmee();
+		assertEquals(1,i.getArmee().getStack().size());
 	}
 	
 	@Test

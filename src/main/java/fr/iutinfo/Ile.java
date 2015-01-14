@@ -43,11 +43,16 @@ public class Ile {
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
 
+		/*Batiments*/
 		this.entrepot=new Entrepot();
 		this.caserne = new Caserne();
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
-
+		
+		/*Unites*/
+		this.armee=new Armee();
+		this.surfeur=new SurfeurCroMagnon();
+		
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
@@ -79,9 +84,9 @@ public class Ile {
 
 	public void upCromagnonSurfeur(){
 		int cout = surfeur.getCoutFabrication("Coquillage");
-		
-		if(this.entrepot.getCoquillage()>=cout && surfeur.getNiveauCaserneRequis() >= caserne.getNombre()){
-			generateurCoquillage.up();
+		System.out.println(cout);
+		if(this.entrepot.getCoquillage()>=cout){
+			surfeur.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}
 
@@ -98,7 +103,7 @@ public class Ile {
 
 	public void upEntrepot(){
 		int cout = entrepot.getCoutDeConstruction();
-		if(this.entrepot.getCoquillage()>cout){
+		if(this.entrepot.getCoquillage()>=cout){
 			entrepot.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 			points += 80;
@@ -111,7 +116,6 @@ public class Ile {
 			cococanon.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 120);
-
 		}
 
 	}
@@ -150,9 +154,24 @@ public class Ile {
 
 	public void putSurfeurCromagnonArmee(){
 		if(surfeur.getNombre()>0){
-			this.armee.addUnite(new SurfeurCroMagnon());
+			SurfeurCroMagnon surf = new SurfeurCroMagnon();
+			surf.up();
+			this.armee.addUnite(surf);
 			surfeur.retire();
 		}
+	}
+	public SurfeurCroMagnon getSurfeur() {
+		return surfeur;
+	}
+
+	public void putAllSurfeurCromagnonArmee(){
+		while(this.surfeur.getNombre()>0){
+			putSurfeurCromagnonArmee();
+		}
+	}
+
+	public Armee getArmee() {
+		return armee;
 	}
 
 }
