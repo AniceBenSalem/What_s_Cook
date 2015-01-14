@@ -13,11 +13,10 @@
 }
 
 body {
-	margin:0;
-	padding:0;
-	 -webkit-background-size: cover;
-    background-image: url("image/fond.jpg") no-repeat center fixed;
+    background-image: url("image/fond.jpg");
+    background-size: cover;
     background-color: #cccccc;
+    background-repeat : no-repeat;
 }
 
 @font-face {
