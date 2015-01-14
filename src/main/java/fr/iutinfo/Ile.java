@@ -44,6 +44,7 @@ public class Ile {
 		this.proprietaire=proprietaire;
 
 		this.entrepot=new Entrepot();
+		this.caserne = new Caserne();
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 
@@ -78,7 +79,8 @@ public class Ile {
 
 	public void upCromagnonSurfeur(){
 		int cout = surfeur.getCoutFabrication("Coquillage");
-		if(this.entrepot.getCoquillage()>=cout){
+		
+		if(this.entrepot.getCoquillage()>=cout && surfeur.getNiveauCaserneRequis() >= caserne.getNombre()){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}

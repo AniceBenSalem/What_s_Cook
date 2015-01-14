@@ -52,7 +52,7 @@ public abstract class Unite {
 	 * Fait subir i degats a cette unite.
 	 */
 	public void subitDegats(int i){
-		this.pv-=i;
+		this.pv -= i;
 	}
 	
 	public int getForce(){
