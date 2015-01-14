@@ -3,7 +3,7 @@ package fr.iutinfo;
 import java.util.Stack;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.unites.MockUnite;
+/*import fr.iutinfo.unites.MockUnite;*/
 import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
@@ -153,6 +153,7 @@ public class Armee {
 
 	public static void main(String[] args) throws PlacementOccupeException {
 		Armee a=new Armee();
+		/*a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
@@ -163,8 +164,7 @@ public class Armee {
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
-		a.addUnite(new MockUnite());
-		a.addUnite(new MockUnite());
+		a.addUnite(new MockUnite());*/
 		Ile ile = new Ile(new Univers("fake"),"leon",1,1);
 		ile.getEntrepot().setCoquillage(300);
 		ile.upCococanon();
