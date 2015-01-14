@@ -42,7 +42,7 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestUpGenerateurCoquillage() throws PlacementOccupeException{
+	public void TestUpGenerateur() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
@@ -76,7 +76,7 @@ public class IleTest extends JerseyTest{
 		assertEquals(80, i.getPoints());
 		i.upCococanon();
 		assertEquals(200, i.getPoints());
-		i.upGenerateur();
+		i.upGenerateurCoquillage();
 		assertEquals(300, i.getPoints());
 		SurfeurCroMagnon scm = new SurfeurCroMagnon();
 		i.addUnite(scm);

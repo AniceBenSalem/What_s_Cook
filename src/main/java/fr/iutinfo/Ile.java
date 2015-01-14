@@ -91,14 +91,12 @@ public class Ile {
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 5);
 		}
-<<<<<<< HEAD
 		
 		points +=5;
 	}
-=======
->>>>>>> 0c3df4ee1cbf68e52b83e7b6d71ce80554816737
 
-	}
+
+
 	
 	public void upGenerateurCoquillage(){
 		int cout = generateurCoquillage.getCoutDeConstruction();
@@ -113,18 +111,16 @@ public class Ile {
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
-<<<<<<< HEAD
+
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 			points += 80;
 		}	
-=======
-			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+	entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 80);
 		}	
 		
 
->>>>>>> 0c3df4ee1cbf68e52b83e7b6d71ce80554816737
-	}
+	
 
 	public void upCococanon(){
 		int cout = cococanon.getCoutDeConstruction();
@@ -134,10 +130,8 @@ public class Ile {
 			this.setPoints(this.points + 120);
 
 		}
-<<<<<<< HEAD
 		points += 120;
-=======
->>>>>>> 0c3df4ee1cbf68e52b83e7b6d71ce80554816737
+
 	}
 
 	public int getId() {
