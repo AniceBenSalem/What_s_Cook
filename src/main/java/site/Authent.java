@@ -23,7 +23,8 @@ public class Authent extends HttpServlet{
 			//Creation de la session
 			HttpSession session = req.getSession( true );
 			session.setAttribute("identificateur",req.getParameter("login"));
-			session.setMaxInactiveInterval(6*60);
+			session.setMaxInactiveInterval(10*60*60);
+			System.out.println(req.getParameter("login"));
 				
 			//Enregistrement du driver
 			Class.forName("org.sqlite.JDBC");			
@@ -42,17 +43,17 @@ public class Authent extends HttpServlet{
 	
 				PrintWriter out = res.getWriter();
 				res.setContentType("text/html");
-				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>");
+				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
 				
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
 					if(session.getAttribute("url") != null)
 						res.sendRedirect((String) session.getAttribute("url"));
 					else
-						res.sendRedirect("Menu");
+						res.sendRedirect("Menu");    //A modifier
 				}else
 					System.out.println("coucou");
-					res.sendRedirect("../login.html");
+					res.sendRedirect("index.html");
 				
 				//fermeture des espaces
 				con.close();
