@@ -30,7 +30,6 @@ public class Ile {
 	private SurfeurCroMagnon surfeur;
 	
 	/*Armees*/
-	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	private Armee armee;
 	
 	/*Batiments*/
@@ -51,7 +50,6 @@ public class Ile {
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
-		this.reserve = new HashMap<String,Integer>();
 		this.setDansUnClan(false);
 		this.points = 0;
 	}
@@ -70,14 +68,6 @@ public class Ile {
 
 	public void setDansUnClan(boolean dansUnClan) {
 		this.dansUnClan = dansUnClan;
-	}
-	
-	public void addUnite(Unite u){
-		if(reserve.containsKey(u.getNom())){
-			reserve.put(u.getNom(), reserve.get(u.getNom())+1);
-		}else{
-			reserve.put(u.getNom(),1);
-		}
 	}
 	
 	public int getValeurDefense(){
@@ -159,6 +149,12 @@ public class Ile {
 	public Batiment getCococanon() {
 		return this.cococanon;
 	}
-
+	
+	public void putSurfeurCromagnonArmee(){
+		if(surfeur.getNombre()>0){
+			this.armee.addUnite(new SurfeurCroMagnon());
+			surfeur.retire();
+		}
+	}
 
 }
