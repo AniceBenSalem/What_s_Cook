@@ -88,5 +88,14 @@ public class ArmeeTest extends JerseyTest{
 		assertEquals("Perdu",a.attaquerIle(ile));
 	}
 	
-
+	public void testAttaquerIle3() throws PlacementOccupeException {
+	a = new Armee();
+	for (int i = 0; i < 9; i++) {
+		a.addUnite(new SurfeurCroMagnon());	
+	}
+	Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+	ile.upCococanon();
+	ile.upCococanon();
+	assertEquals("Match null", a.attaquerIle(ile));
+	}
 }
