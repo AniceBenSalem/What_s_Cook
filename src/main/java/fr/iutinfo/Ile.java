@@ -17,7 +17,16 @@ public class Ile {
 	private int id;
 	private Univers univers;
 	private String proprietaire;
-	boolean dansUnClan;
+	private boolean dansUnClan;
+	private int points;
+	
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
 
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
@@ -43,6 +52,7 @@ public class Ile {
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
 		this.setDansUnClan(false);
+		this.setPoints(0);
 	}
 
 	public boolean isDansUnClan() {
@@ -65,12 +75,15 @@ public class Ile {
 		}else{
 			reserve.put(u.getNom(),1);
 		}
+		
+		this.setPoints(this.points + 5);
 	}
 
 	public void upGenerateur(){
 		if(this.entrepot.getCoquillage()>0){
 			generateurCoquillage.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-generateurCoquillage.getCoutDeConstruction());
+			this.setPoints(this.points + 100);
 		}
 	}
 
@@ -79,6 +92,8 @@ public class Ile {
 			entrepot.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 		}	
+		
+		this.setPoints(this.points + 80);
 	}
 
 	public void upCococanon(){
@@ -87,6 +102,7 @@ public class Ile {
 			cococanon.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}
+		this.setPoints(this.points + 120);
 	}
 
 	public int getId() {
