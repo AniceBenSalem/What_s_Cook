@@ -11,10 +11,23 @@ public class Univers {
 	private Ile [][] repere;
 	
 	
+	public Ile[][] getRepere() {
+		return repere;
+	}
+
+	public void setRepere(Ile[][] repere) {
+		this.repere = repere;
+	}
+
 	public Univers (String nomUniver) {
 		this.nomUniver = nomUniver;
 		listeIle = new ArrayList<Ile>();
 		this.repere = new Ile [200][200];
+	}
+	
+	
+	public Ile getIleFromUnivers(int x, int y) {
+		return this.repere[x][y];
 	}
 	
 	public void initialiseRepere () {
@@ -68,4 +81,6 @@ public class Univers {
 		return attaqueArmee;
 		
 	}
+	
+	
 }

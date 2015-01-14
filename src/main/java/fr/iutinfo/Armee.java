@@ -3,7 +3,7 @@ package fr.iutinfo;
 import java.util.Stack;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
-/*import fr.iutinfo.unites.MockUnite;*/
+
 import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
@@ -151,6 +151,7 @@ public class Armee {
 	//		return "Match null";
 	//	}
 
+	/*
 	public static void main(String[] args) throws PlacementOccupeException {
 		Armee a=new Armee();
 		/*a.addUnite(new MockUnite());
@@ -170,5 +171,6 @@ public class Armee {
 		ile.upCococanon();
 		a.attaquerIle(ile);
 	}
+	*/
 
 }
