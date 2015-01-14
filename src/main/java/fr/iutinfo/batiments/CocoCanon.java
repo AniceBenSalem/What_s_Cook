@@ -4,9 +4,9 @@ public class CocoCanon extends BatimentDefensif {
 
 	public CocoCanon() {
 		this.tempsConstruction = 0;
-		this.coutdeConstruction = 50;
+		this.coutDeConstruction = 50;
 		this.nombre = 0;
-		this.pv = 100*nombre;
+		this.pv = 100;
 	}
 
 	@Override
@@ -16,7 +16,11 @@ public class CocoCanon extends BatimentDefensif {
 
 	@Override
 	public void up() {
-		this.nombre++;
-		
+		this.nombre++;		
+	}
+
+	@Override
+	public int getPv() {
+		return this.pv*nombre;
 	}
 }

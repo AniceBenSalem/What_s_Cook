@@ -45,9 +45,8 @@ public class Ile {
 
 	public int getValeurDefense(){
 		int def=0;
-
-		def+=this.cococanon.getPv()*cococanon.getNombre();
-
+		def+=this.cococanon.getPv();
+		System.out.println(cococanon.getPv());
 		return def;
 	}
 	public void addUnite(Unite u){
@@ -61,15 +60,23 @@ public class Ile {
 	public void upGenerateur(){
 		if(this.entrepot.getCoquillage()>0){
 			generateurCoquillage.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-generateurCoquillage.getCoutDeConstruction());
 		}
 	}
 
 	public void upEntrepot(){
-		entrepot.up();
+		if(this.entrepot.getCoquillage()>0){
+			entrepot.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
+		}	
 	}
 
 	public void upCococanon(){
-		cococanon.up();
+		int cout = cococanon.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>cout){
+			cococanon.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+		}
 	}
 
 	public int getId() {

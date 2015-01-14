@@ -22,7 +22,7 @@ public class Test {
                 ResultSet rs  = stmt.executeQuery(query);
                 
                 while(rs.next()){
-                	System.out.println(rs.getString(1) + " ," + rs.getString(2) + " ," + rs.getString(3) + " ," + rs.getString(4) + " ," + rs.getString(5));
+                	System.out.println(rs.getString(1) + " ," + rs.getString(2) + " ," + rs.getString(3) + " ," + rs.getString(4));
                 }
                 con.close();
             }catch(Exception e){
@@ -30,7 +30,8 @@ public class Test {
                 System.out.println(e.getMessage());
             }
         }catch(ClassNotFoundException e){
-            System.out.println("Problem connection");  
+            System.out.println("Problem connection");
+            
         }
 	}
 }

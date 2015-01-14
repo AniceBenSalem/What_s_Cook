@@ -34,8 +34,8 @@ public class Entrepot extends Batiment {
 	 * On initialise un entrepot sur une ile
 	 */
 	public Entrepot () {
-		this.setCoquillage(0);
-		
+		this.coquillage=0;
+		this.nombre=1;
 	}
 
 	/**
@@ -60,17 +60,15 @@ public class Entrepot extends Batiment {
 		}
 	
 	}
-
+	
 	@Override
 	public String getNom() {
 		return "Entrepot";
 	}
 
-	/**
-	 * On double la capacite de stockage a chaque augmentation de niveau
-	 */
 	@Override
 	public void up() {
-		this.setCapacite(this.capacite *2);		
+		this.nombre++;
+		
 	}
 }
