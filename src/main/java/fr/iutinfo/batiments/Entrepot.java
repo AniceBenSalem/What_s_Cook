@@ -66,6 +66,7 @@ public class Entrepot extends Batiment {
 		return "Entrepot";
 	}
 
+	// niveau  = nombre
 	@Override
 	public void up() {
 		this.nombre++;

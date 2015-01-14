@@ -52,7 +52,7 @@ public class Ile {
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
 		this.setDansUnClan(false);
-		this.setPoints(0);
+		this.points = 0;
 	}
 
 	public boolean isDansUnClan() {
@@ -76,7 +76,7 @@ public class Ile {
 			reserve.put(u.getNom(),1);
 		}
 		
-		this.setPoints(this.points + 5);
+		points +=5;
 	}
 
 	public void upGenerateur(){
@@ -91,9 +91,8 @@ public class Ile {
 		if(this.entrepot.getCoquillage()>0){
 			entrepot.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
+			points += 80;
 		}	
-		
-		this.setPoints(this.points + 80);
 	}
 
 	public void upCococanon(){
@@ -102,7 +101,7 @@ public class Ile {
 			cococanon.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}
-		this.setPoints(this.points + 120);
+		points += 120;
 	}
 
 	public int getId() {
