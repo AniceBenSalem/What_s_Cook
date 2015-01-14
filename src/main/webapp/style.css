@@ -16,6 +16,7 @@ body {
     background-image: url("image/fond.jpg");
     background-size: cover;
     background-color: #cccccc;
+    background-repeat : no-repeat;
 }
 
 @font-face {
