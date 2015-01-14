@@ -1,12 +1,17 @@
 package fr.iutinfo.batiments;
 
 public class CocoCanon extends BatimentDefensif {
-
+	private int pvCocoCanon = 100;
+	private int coutConstructionCocoCanon = 50;
+	private int tempsConstructionCocoCanon = 5; //en minute
+	
 	public CocoCanon() {
-		this.tempsConstruction = 0;
-		this.coutdeConstruction = 50;
-		this.nombre = 1;
-		this.pv = 100*nombre;
+
+		this.setTempsConstruction(tempsConstructionCocoCanon);
+		this.setCoutdeConstruction(coutConstructionCocoCanon);
+		this.setPv(pvCocoCanon);
+		this.setNombre(0);
+
 	}
 
 	@Override
@@ -16,6 +21,12 @@ public class CocoCanon extends BatimentDefensif {
 
 	@Override
 	public void up() {
-		this.nombre++;		
+		this.nombre++;
+		this.setPv(pvCocoCanon*nombre);	
+	}
+
+	@Override
+	public int getPv() {
+		return this.pv*nombre;
 	}
 }

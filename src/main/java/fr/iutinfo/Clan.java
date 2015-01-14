@@ -3,18 +3,19 @@ package fr.iutinfo;
 import java.util.ArrayList;
 
 public class Clan {
-	
-	ArrayList <Ile> membresClan ;
+
+	ArrayList<Ile> membresClan;
 	String nom;
 	int capacite;
 	int nombreMembres;
-	
-	public Clan () {
+	int nombre;
+
+	public Clan() {
 		this.setNom("clan");
-		this.membresClan = new ArrayList <Ile> ();
+		this.membresClan = new ArrayList<Ile>();
 		this.setCapacite(50);
 		this.nombreMembres = 0;
-		
+		this.nombre = 1;
 	}
 
 	public int getCapacite() {
@@ -43,38 +44,48 @@ public class Clan {
 
 	/**
 	 * Ajoute un membre dans le clan
+	 * 
 	 * @param e
 	 * @return true si l'ajout a fonctionne false sinon
 	 */
-	public boolean addMembre (Ile e) {
-		
+	public boolean addMembre(Ile e) {
+
 		if (this.nombreMembres == this.capacite) {
 			return false;
 		}
-		
+
 		else {
 			this.membresClan.add(e);
+			e.setDansUnClan(true);
 			this.nombreMembres ++;
 			return true;
 		}
-	
+
 	}
-	
+
 	/**
 	 * Supprime un membre du clan
+	 * 
 	 * @param e
 	 * @return true si la suppression a fonctionne false sinon
 	 */
-	public boolean removeMembre (Ile e) {
-		if (this.nombreMembres <=0) {
-			return false;
-		}
-		else {
+	public boolean removeMembre(Ile e) {
+		if (e.isDansUnClan() && this.nombreMembres > 0) {
+			e.setDansUnClan(false);
 			this.membresClan.remove(e);
 			this.nombreMembres --;
 			return true;
 		}
-		
+		return false;
+
 	}
-	
+
+	public int getNombreMembres() {
+		return nombreMembres;
+	}
+
+	public void setNombreMembres(int nombreMembres) {
+		this.nombreMembres = nombreMembres;
+	}
+
 }

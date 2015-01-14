@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
+import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class IleTest extends JerseyTest{
 	@Override
@@ -34,14 +35,18 @@ public class IleTest extends JerseyTest{
 	public void TestGetValeurDefense() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		i.upCococanon();
-		assertEquals(i.getValeurDefense(),1); // NORMAL SI CA BUG
+		assertEquals(i.getValeurDefense(),0);
+		i.getEntrepot().setCoquillage(300);
+		i.upCococanon();
+		assertEquals(i.getValeurDefense(),100);
 	}
 	
 	@Test
 	public void TestUpGenerateur() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
-		i.upGenerateur();
+		i.getEntrepot().setCoquillage(300);
+		i.upGenerateurCoquillage();
 		assertEquals(i.getGenerateurCoquillage().getNombre(),2);
 	}
 	
@@ -49,6 +54,7 @@ public class IleTest extends JerseyTest{
 	public void TestUpCococanon() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getCococanon().getNombre(),0);
+		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
 		assertEquals(i.getCococanon().getNombre(),1);
 	}
@@ -57,7 +63,25 @@ public class IleTest extends JerseyTest{
 	public void TestUpEntrepot() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getEntrepot().getNombre(),1);
+		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
 		assertEquals(i.getEntrepot().getNombre(),2);
+	}
+	
+	@Test
+	public void testPointsIle () throws PlacementOccupeException {
+		Ile i = new Ile(u,"amaury",10,10);
+		assertEquals(0, i.getPoints());
+		i.upEntrepot();
+		assertEquals(80, i.getPoints());
+		i.upCococanon();
+		assertEquals(200, i.getPoints());
+		i.upGenerateurCoquillage();
+		assertEquals(300, i.getPoints());
+		SurfeurCroMagnon scm = new SurfeurCroMagnon();
+		i.addUnite(scm);
+		assertEquals(305, i.getPoints());
+	
+
 	}
 }

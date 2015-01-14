@@ -3,16 +3,16 @@ package fr.iutinfo.batiments;
 import fr.iutinfo.Ile;
 
 public class GenerateurCoquillage extends Generateur{
-	private int valeur;
+	private int productionParMinute;
 	
 	public GenerateurCoquillage(Ile ile) {
 		super(ile);
-		valeur=1;
+		productionParMinute=1;
 	}
 
 	@Override
 	public void ajouterRessource() {
-		ile.getEntrepot().setCoquillage(ile.getEntrepot().getCoquillage()+valeur);
+		ile.getEntrepot().setCoquillage(ile.getEntrepot().getCoquillage()+productionParMinute);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class GenerateurCoquillage extends Generateur{
 	@Override
 	public void up() {
 		this.nombre++;
-		valeur++;
+		productionParMinute++;
 	}
 
 }

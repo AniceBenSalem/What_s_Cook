@@ -22,6 +22,14 @@ public abstract class Unite {
 		return nombre;
 	}
 	
+	public int getCoutFabrication(String ressource){
+		return coutFabrication.get(ressource);
+	}
+	
+	public void retire(){
+		nombre--;
+	}
+	
 	public abstract void up();
 	/**
 	 * Initialise le cout de fabrication selon les ressources
