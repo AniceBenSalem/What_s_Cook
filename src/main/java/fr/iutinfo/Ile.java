@@ -17,6 +17,7 @@ public class Ile {
 	private int id;
 	private Univers univers;
 	private String proprietaire;
+	boolean dansUnClan;
 
 	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
 	int x; 
@@ -41,6 +42,15 @@ public class Ile {
 		this.x = x;
 		this.y = y;
 		this.reserve = new HashMap<String,Integer>();
+		this.setDansUnClan(false);
+	}
+
+	public boolean isDansUnClan() {
+		return dansUnClan;
+	}
+
+	public void setDansUnClan(boolean dansUnClan) {
+		this.dansUnClan = dansUnClan;
 	}
 
 	public int getValeurDefense(){
