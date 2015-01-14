@@ -14,17 +14,24 @@ import fr.iutinfo.unites.Unite;
 
 public class Ile {
 
+	/*General*/
 	private int id;
 	private Univers univers;
 	private String proprietaire;
 	boolean dansUnClan;
-
-	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
+	
+	/*pos*/
 	int x; 
 	int y;
-
+	
+	/*Unites*/
 	private SurfeurCroMagnon surfeur;
-
+	
+	/*Armees*/
+	private Map<String,Integer> reserve; //une map representant les reserves d'unite disponibles, sous la forme <Type d'unité,nombre disponible>
+	private Armee armee;
+	
+	/*Batiments*/
 	private Entrepot entrepot;
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
@@ -59,25 +66,29 @@ public class Ile {
 		System.out.println(cococanon.getPv());
 		return def;
 	}
-	public void addUnite(Unite u){
-		if(reserve.containsKey(u.getNom())){
-			reserve.put(u.getNom(), reserve.get(u.getNom())+1);
-		}else{
-			reserve.put(u.getNom(),1);
-		}
-	}
-
-	public void upGenerateur(){
-		if(this.entrepot.getCoquillage()>0){
+	
+	public void upCromagnonSurfeur(){
+		int cout = surfeur.getCoutFabrication("Coquillage");
+		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.up();
-			entrepot.setCoquillage(entrepot.getCoquillage()-generateurCoquillage.getCoutDeConstruction());
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
+		}
+		
+	}
+	
+	public void upGenerateurCoquillage(){
+		int cout = generateurCoquillage.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>=cout){
+			generateurCoquillage.up();
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}
 	}
 
 	public void upEntrepot(){
-		if(this.entrepot.getCoquillage()>0){
+		int cout = entrepot.getCoutDeConstruction();
+		if(this.entrepot.getCoquillage()>cout){
 			entrepot.up();
-			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
+			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 		}	
 	}
 
