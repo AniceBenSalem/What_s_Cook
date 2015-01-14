@@ -42,11 +42,11 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestUpGenerateur() throws PlacementOccupeException{
+	public void TestUpGenerateurCoquillage() throws PlacementOccupeException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
-		i.upGenerateur();
+		i.upGenerateurCoquillage();
 		assertEquals(i.getGenerateurCoquillage().getNombre(),2);
 	}
 	
