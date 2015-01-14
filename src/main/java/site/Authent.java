@@ -1,17 +1,24 @@
 package site;
 
-import java.io.*;
-import javax.servlet.*; // pour les servlets
-import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import java.sql.*;
 @WebServlet("/servlet/Authent")
 
 public class Authent extends HttpServlet{
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		System.out.println("coucou");
+		System.out.println("coucou toi");
 		try{
 			//Creation de la session
 			HttpSession session = req.getSession( true );
@@ -23,9 +30,10 @@ public class Authent extends HttpServlet{
 
 			//Connexion a la base
 			String url = "jdbc:sqlite:vinland.db";
-			String nom = null;
-			String mdp = null;
-			try (Connection con = DriverManager.getConnection(url, nom, mdp)) {
+            String name = null;
+            String passwd = null;
+            try (Connection con = DriverManager.getConnection(url, name, passwd)) {
+            	System.out.println("ccccc");
 			
 				//execution de la requete
 				Statement stmt = con.createStatement();

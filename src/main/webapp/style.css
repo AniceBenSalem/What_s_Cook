@@ -1,9 +1,35 @@
 .log{	
 	width: 36%;
+	width: 28%;
 	border: 3px solid RGB(68,114,196);
-	background-color: RGB(150,176,222);
+	background-color: RGB(190,190,190);
+	border-radius: 8px;
 }
 
-h1{
-    font-family: "Comic Sans MS";
+.bienvenue{
+	font-family : PoliceDeBG;
+    color: white;
+    font-size: 70px;
+}
+
+body {
+    background-image: url("image/fond.jpg");
+    background-size: cover;
+    background-color: #cccccc;
+}
+
+@font-face {
+    font-family: 'PoliceDeBGTroll';
+    src: url('DJB_This_Font_is_Worn.ttf');
+}
+
+@font-face {
+    font-family: 'PoliceDeBG';
+    src: url('Burn_out_fade_away.ttf');
+}
+
+.troll{
+	color: red;
+	font-family : PoliceDeBGTroll;
+	font-size: 200px;
 }
