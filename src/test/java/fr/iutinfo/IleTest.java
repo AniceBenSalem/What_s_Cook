@@ -72,10 +72,13 @@ public class IleTest extends JerseyTest{
 	public void testPointsIle () throws PlacementOccupeException {
 		Ile i = new Ile(u,"amaury",10,10);
 		assertEquals(0, i.getPoints());
+		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
 		assertEquals(80, i.getPoints());
+		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
 		assertEquals(200, i.getPoints());
+		i.getEntrepot().setCoquillage(300);
 		i.upGenerateurCoquillage();
 		assertEquals(300, i.getPoints());
 
