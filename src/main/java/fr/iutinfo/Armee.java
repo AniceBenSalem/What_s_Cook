@@ -89,7 +89,7 @@ public class Armee {
 		System.out.println("Fin de la guerre");
 
 	}
-
+	
 	//	public String attaquerIle(Ile ile){
 	//		int valdef = ile.getValeurDefense();
 	//		int forceArm = getForce();
@@ -165,11 +165,11 @@ public class Armee {
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
 		a.addUnite(new MockUnite());
-		a.addUnite(new MockUnite());*/
-		Ile ile = new Ile(new Univers("fake"),"leon",1,1);
-		ile.getEntrepot().setCoquillage(300);
-		ile.upCococanon();
-		a.attaquerIle(ile);
+		a.addUnite(new MockUnite());
+		//Ile ile = new Ile(new Univers("fake"),"leon",1,1);
+		//ile.getEntrepot().setCoquillage(300);
+		//ile.upCococanon();
+		//a.attaquerIle(ile);
 	}
 	*/
 
