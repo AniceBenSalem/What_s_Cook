@@ -8,13 +8,31 @@ public class Clan {
 	String nom;
 	int capacite;
 	int nombreMembres;
+	int nombre;
 	
 	public Clan () {
 		this.setNom("clan");
 		this.membresClan = new ArrayList <Ile> ();
 		this.setCapacite(50);
 		this.nombreMembres = 0;
+		this.nombre = 1;
 		
+	}
+
+	public int getNombreMembres() {
+		return nombreMembres;
+	}
+
+	public void setNombreMembres(int nombreMembres) {
+		this.nombreMembres = nombreMembres;
+	}
+
+	public int getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(int nombre) {
+		this.nombre = nombre;
 	}
 
 	public int getCapacite() {
@@ -54,7 +72,7 @@ public class Clan {
 		
 		else {
 			this.membresClan.add(e);
-			this.nombreMembres ++;
+			this.setNombreMembres(this.nombreMembres + 1);
 			return true;
 		}
 	
@@ -71,7 +89,7 @@ public class Clan {
 		}
 		else {
 			this.membresClan.remove(e);
-			this.nombreMembres --;
+			this.setNombreMembres(this.nombreMembres - 1);
 			return true;
 		}
 		

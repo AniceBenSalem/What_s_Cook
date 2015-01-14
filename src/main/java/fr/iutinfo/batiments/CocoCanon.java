@@ -16,6 +16,7 @@ public class CocoCanon extends BatimentDefensif {
 
 	@Override
 	public void up() {
-		this.nombre++;		
+		this.nombre++;
+		
 	}
 }
