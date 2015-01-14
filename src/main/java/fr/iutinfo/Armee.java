@@ -1,11 +1,9 @@
 package fr.iutinfo;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Stack;
 
 import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.unites.MockUnite;
+
 import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
@@ -81,6 +79,5 @@ public class Armee {
 		
 		return valdef<0;
 	}
-
 
 }
