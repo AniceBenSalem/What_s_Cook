@@ -34,8 +34,10 @@ public class Armee {
 		while(degats>0 && this.pv >=0 && !effectifs.isEmpty()){
 			Unite u = effectifs.peek();
 			u.subitDegats(degats);
+			System.out.println(degats);
+			System.out.println(this.pv);
 			if(u.estMort()){
-				System.out.println("if degats :"+degats);
+				System.out.println("		if degats :"+degats);
 				effectifs.pop();
 				degats=u.getPV() - degats;
 				this.pv=u.getPV() - this.pv;
@@ -43,6 +45,7 @@ public class Armee {
 				this.pv-=degats;
 				degats=0;
 			}
+			
 		}
 	}
 	
@@ -70,6 +73,7 @@ public class Armee {
 		int tmp = 0;
 		System.out.println("force = "+forceArm);
 		System.out.println("valdef = "+valdef);
+		System.out.println("effectifs"+effectifs);
 		if (forceArm >= valdef){
 			System.out.println(""+forceArm +" > "+valdef );
 			if( effectifs.peek().getPV() < valdef){
@@ -92,7 +96,7 @@ public class Armee {
 				
 				valdef -= forceArm;
 				this.subitDegats(valdef);
-				System.out.println("valdef : "+valdef);
+				System.out.println("		valdef : "+valdef);
 				System.out.println(effectifs);
 				
 				//if( effectifs.peek().getPV() < valdef){
@@ -131,6 +135,7 @@ public class Armee {
 		
 		
 		Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+		ile.getEntrepot().setCoquillage(300);
 		ile.upCococanon();
 		//a.subitDegats(ile.getValeurDefense());
 		
