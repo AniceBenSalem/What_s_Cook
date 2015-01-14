@@ -8,13 +8,18 @@ import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
 public class Armee {
-
+	
+	private Ile ile;
+	
 	private Stack<Unite> effectifs;
 	private int force;
 	private int pv;
 	private int coutDeplacementGeneral;
 
-	public Armee(){
+	public Armee(Ile i){
+		ile = i;
+		this.force=0;
+		this.pv=0;
 		this.effectifs=new Stack<Unite>();
 	}
 
@@ -42,10 +47,17 @@ public class Armee {
 		return coutDeplacementGeneral;
 	}
 
+	public void volerRessources(Ile i){
+		int taux = this.ile.getPoints()-i.getPoints(); // A FAIRE
+	}
+	
 	public void setCoutDeplacementGeneral(int coutDeplacementGeneral) {
 		this.coutDeplacementGeneral = coutDeplacementGeneral;
 	}
-
+	/*
+	 * Envoie l'armée attaque une ile. Si c'est une victoire : return true, false si c'est une défaite 
+	 * 
+	 */
 	public boolean attaquerIle(Ile ile){
 		int valdef = ile.getValeurDefense();
 		int forceIle = valdef;
