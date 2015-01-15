@@ -170,7 +170,7 @@ public class Ile {
 	public void upGenerateurCoquillage(){
 		int cout = generateurCoquillage.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
-			generateurCoquillage.up();
+			generateurCoquillage.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 100);
 		}
@@ -179,7 +179,7 @@ public class Ile {
 	public void upEntrepot(){
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
-			entrepot.up();
+			entrepot.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 			points += 80;
 		}	
@@ -188,7 +188,7 @@ public class Ile {
 	public void upCococanon(){
 		int cout = cococanon.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
-			cococanon.up();
+			cococanon.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 120);
 		}
