@@ -3,8 +3,11 @@ package site;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import fr.iutinfo.Ile;
+import fr.iutinfo.Univers;
+import fr.iutinfo.exceptions.PlacementOccupeException;
 
 public class ConnectionSQL {	
 	Connection con = null;
@@ -32,8 +35,16 @@ public class ConnectionSQL {
 	}
 	
 	public void addIle (Ile i) {
+		Connection con = this.getCon();
+		Statement stmt = con.createStatement();
 		
-		con = getCon();
+		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y) values (";
+		query+= "'" + i.getUnivers().getNomUnivers() + "',";
+		query += "'"+  i.getProprietaire() + "',";
+		query+= "'false',";
+		query+= i.getX() + ",";
+		query+= i.getY() + ");";
+		System.out.println("Query = " + query);
 	}
 	
 	
@@ -75,4 +86,11 @@ public class ConnectionSQL {
 	}
 	
 	*/
+	
+	
+	public static void main(String[] args) throws PlacementOccupeException {
+		Univers u = new Univers ("UniversTest");
+		Ile i = new Ile (u,"amaury", 42,42);
+	
+	}
 }
