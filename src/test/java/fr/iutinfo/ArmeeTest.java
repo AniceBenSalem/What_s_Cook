@@ -2,6 +2,8 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
@@ -19,7 +21,7 @@ public class ArmeeTest extends JerseyTest{
 	Ile i,i2;
 	
 	@Before
-	public void init() throws PlacementOccupeException{
+	public void init() throws PlacementOccupeException, SQLException{
 		a=new Armee(i);
 		u=new Univers("test");
 		i=new Ile(u,"test1",1,1);
@@ -111,7 +113,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testAttaquerIlePerdu() throws PlacementOccupeException {
+	public void testAttaquerIlePerdu() throws PlacementOccupeException, SQLException {
 		u=new Univers("test");
 		i = new Ile(u,"leon",1,1);
 		i.getEntrepot().setCoquillage(1000000);
@@ -128,7 +130,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testAttaquerIleGagner() throws PlacementOccupeException {
+	public void testAttaquerIleGagner() throws PlacementOccupeException, SQLException {
 		u=new Univers("test");
 		i = new Ile(u,"leon",1,1);
 		i.getEntrepot().setCoquillage(1000000);
@@ -145,7 +147,7 @@ public class ArmeeTest extends JerseyTest{
 
 	}
 	
-	public void testAttaquerIle3() throws PlacementOccupeException {
+	public void testAttaquerIle3() throws PlacementOccupeException, SQLException {
 	a = new Armee(i);
 	for (int i = 0; i < 9; i++) {
 		a.addUnite(new SurfeurCroMagnon());	

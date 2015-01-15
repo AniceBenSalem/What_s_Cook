@@ -2,6 +2,8 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ public class ClanTest {
 	Ile i3;
 
 	@Before
-	public void init() throws PlacementOccupeException {
+	public void init() throws PlacementOccupeException, SQLException {
 		Univers u = new Univers("Univers");
 		i1 = new Ile(u, "Proprietaire", 10, 20);
 		i2 = new Ile(u, "Proprietaire 2", 15, 25);
