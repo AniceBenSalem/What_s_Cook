@@ -1,14 +1,13 @@
 package fr.iutinfo.batiments;
 
 import java.util.Calendar;
-import java.util.Date;
 
 
 
 /**This class allow to create a building*/
 public abstract class Batiment {
 
-protected int id=0,nombre, coutdeConstruction, tempsConstruction; 	
+protected int id,nombre, coutdeConstruction, tempsConstruction; 	
 	protected Calendar lancement,fin;
 
 	public boolean enConstruction(){

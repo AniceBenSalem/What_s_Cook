@@ -4,6 +4,7 @@ public class Caserne extends Batiment {
 
 	private final int coutDeConstructionCaserne = 150;
 	private final int tempsConstructionCaserne = 15; // en minute
+	private int k = 10;
 
 	/**
 	 * On initialise un entrepot sur une ile
@@ -12,6 +13,8 @@ public class Caserne extends Batiment {
 		this.setTempsConstruction(tempsConstructionCaserne);
 		this.setCoutDeConstruction(coutDeConstructionCaserne);
 		this.setNombre(0);
+		this.id = k;
+		this.k ++;
 	}
 
 	@Override
@@ -25,6 +28,31 @@ public class Caserne extends Batiment {
 		this.setCoutDeConstruction(coutdeConstruction * 4);
 		this.setTempsConstruction((int) (tempsConstruction * 1.5));
 		this.nombre++;
+	
+	}
+
+	public int getK() {
+		return k;
+	}
+
+	public void setK(int k) {
+		this.k = k;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCoutDeConstructionCaserne() {
+		return coutDeConstructionCaserne;
+	}
+
+	public int getTempsConstructionCaserne() {
+		return tempsConstructionCaserne;
 	}
 
 }
