@@ -1,5 +1,8 @@
 package fr.iutinfo.batiments;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class TikiTotem extends BatimentDefensif{
 
 	
