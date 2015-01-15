@@ -1,5 +1,6 @@
 package fr.iutinfo.batiments;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -8,11 +9,22 @@ import java.util.Date;
 public abstract class Batiment {
 
 protected int id=0,nombre, coutdeConstruction, tempsConstruction; 	
-	protected Date lancement,fin;
-	protected boolean enConstruction;
+	protected Calendar lancement,fin;
 
+	public boolean enConstruction(){
+		return !Calendar.getInstance().after(fin);	
+	}
 	
-
+	public boolean estDispo(){
+		return Calendar.getInstance().after(fin);	
+	}
+	
+	public void lanceConstruction(){
+		this.lancement= Calendar.getInstance();
+		this.fin=(Calendar) lancement.clone();
+		this.fin.add(Calendar.SECOND,tempsConstruction);
+		this.up();
+	}
 	
 	public int getId() {
 		return id;
