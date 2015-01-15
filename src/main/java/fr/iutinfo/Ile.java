@@ -273,5 +273,11 @@ public class Ile {
 	public Armee getArmee() {
 		return armee;
 	}
+	
+	public Integer nombreCoquillageEntrepot() {
+		String s = "select coquillage from entrepot where id='" + this.entrepot.getId() + "'";
+		return id;
+		
+	}
 
 }
