@@ -4,7 +4,6 @@ package fr.iutinfo;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import site.ConnectionSQL;
 import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.Caserne;
@@ -103,7 +102,7 @@ public class Ile {
 
 
 	
-	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
+	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
 		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
@@ -126,11 +125,28 @@ public class Ile {
 		
 		/*Connection sql*/
 
-		conn = connectionSQL.getCon();
-		connectionSQL.addIle(this);
+		conn = ConnectionSQL.getCon();
+		try {
+			connectionSQL.addIle(this);
+			System.out.println("insertion OK");
+			this.id = ConnectionSQL.recupIDIle(this);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("pb de ajout ile");
+			e.printStackTrace();
+		}
+	
+		System.out.println("Je suis une ile mon id vaut : " + this.id);
 		
-		conn.close();
-		//con.getCon();
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("pb fermeture");
+			e.printStackTrace();
+		}
+
 		
 
 	}
