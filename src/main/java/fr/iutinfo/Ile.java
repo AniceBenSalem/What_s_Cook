@@ -104,7 +104,7 @@ public class Ile {
 
 	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
-		this.id=univers.getMaxId()+1;
+		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
 
@@ -121,7 +121,7 @@ public class Ile {
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
-		this.setDansUnClan(false);
+
 		this.points = 0;
 		
 		/*Connection sql*/
@@ -129,7 +129,9 @@ public class Ile {
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
 		
+		conn.close();
 		//con.getCon();
+		
 
 	}
 
@@ -145,7 +147,8 @@ public class Ile {
 		this.points = points;
 	}
 
-	public void setDansUnClan(boolean dansUnClan) {
+	public void setDansUnClan(boolean dansUnClan) throws SQLException {
+		connectionSQL.setDansUnClan(this, dansUnClan);
 		this.dansUnClan = dansUnClan;
 	}
 

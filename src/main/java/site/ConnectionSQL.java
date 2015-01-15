@@ -13,7 +13,7 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
 public class ConnectionSQL {	
 	Connection con = null;
 	
-	public Connection getCon () {
+	public static Connection getCon () {
 		
         try {
 			Class.forName("org.sqlite.JDBC");
@@ -47,11 +47,33 @@ public class ConnectionSQL {
 		query+= i.getY() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
+		con.close();
 	}
+	
+	public static void setDansUnClan (Ile i, boolean b) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "update ile set dansUnClan='" + b + "'where id=" + i.getId() + ";";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
+	public static void recupIDIle (Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		//String query = "sle"
+		
+	}
+
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
-		Ile i = new Ile (u,"maBiteDeKeBla", 42,42);
+		Ile i = new Ile (u,"ma", 42,42);
+		ConnectionSQL c = new ConnectionSQL();
+		c.setDansUnClan(i, true);
+		
+	 
 	}
 	
 	

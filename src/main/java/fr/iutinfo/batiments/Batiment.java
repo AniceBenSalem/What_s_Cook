@@ -6,14 +6,33 @@ import java.util.Date;
 
 /**This class allow to create a building*/
 public abstract class Batiment {
-	protected int nombre, coutdeConstruction, tempsConstruction;
+
+protected int id=0,nombre, coutdeConstruction, tempsConstruction; 	
 	protected Date lancement,fin;
 	protected boolean enConstruction;
+
+	
+
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+
 
 	public int getCoutDeConstruction() {
 		return coutdeConstruction;
 	}
 	public void setCoutDeConstruction(int coutdeConstruction) {
+		this.coutdeConstruction = coutdeConstruction;
+	}
+	public int getCoutdeConstruction() {
+		return coutdeConstruction;
+	}
+	public void setCoutdeConstruction(int coutdeConstruction) {
 		this.coutdeConstruction = coutdeConstruction;
 	}
 	public int getTempsConstruction() { //en minute
@@ -33,6 +52,7 @@ public abstract class Batiment {
 
 	public Batiment(){
 		this.nombre=0;
+		this.id ++;
 	}
 	
 	public abstract String getNom();

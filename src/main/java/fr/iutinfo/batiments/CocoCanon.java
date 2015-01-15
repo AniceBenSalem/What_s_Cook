@@ -18,7 +18,7 @@ public class CocoCanon extends BatimentDefensif {
 	@Override
 	public void up() {
 		this.lancement= new Date();
-		this.fin=lancement.
+		//this.fin=lancement.
 		this.enConstruction=true;
 		this.nombre+=1;
 	}
