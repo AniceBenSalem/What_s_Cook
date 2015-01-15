@@ -10,7 +10,15 @@ public class GenerateurCoquillage extends Generateur{
 		super(ile);
 		productionParMinute=1;
 	}
+	
+	public int getProductionParMinute() {
+		return productionParMinute;
+	}
 
+	public void setProductionParMinute(int productionParMinute) {
+		this.productionParMinute = productionParMinute;
+	}
+	
 	@Override
 	public void ajouterRessource() {
 		ile.getEntrepot().ajouter("Coquillage",productionParMinute);
