@@ -2,6 +2,9 @@ package fr.iutinfo;
 
 
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import site.ConnectionSQL;
 import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.Caserne;
@@ -36,13 +39,71 @@ public class Ile {
 	private Caserne caserne;
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
-
 	
 	/*Connection*/
-	ConnectionSQL con = null;
+	ConnectionSQL connectionSQL = new ConnectionSQL();
+	Connection conn = null;
+	
+	public Caserne getCaserne() {
+		return caserne;
+	}
+
+	public void setCaserne(Caserne caserne) {
+		this.caserne = caserne;
+	}
+
+	public ConnectionSQL getCon() {
+		return connectionSQL;
+	}
+
+	public void setCon(ConnectionSQL con) {
+		this.connectionSQL = con;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setProprietaire(String proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setSurfeur(SurfeurCroMagnon surfeur) {
+		this.surfeur = surfeur;
+	}
+
+	public void setArmee(Armee armee) {
+		this.armee = armee;
+	}
+
+	public void setEntrepot(Entrepot entrepot) {
+		this.entrepot = entrepot;
+	}
+
+	public void setGenerateurCoquillage(Generateur generateurCoquillage) {
+		this.generateurCoquillage = generateurCoquillage;
+	}
+
+	public void setCococanon(CocoCanon cococanon) {
+		this.cococanon = cococanon;
+	}
+
+	public Univers getUnivers() {
+		return univers;
+	}
+
+	public void setUnivers(Univers univers) {
+		this.univers = univers;
+	}
+
+
 
 	
-	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
+	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
@@ -64,8 +125,12 @@ public class Ile {
 		this.points = 0;
 		
 		/*Connection sql*/
-		//con.getCon();
+
+		conn = connectionSQL.getCon();
+		connectionSQL.addIle(this);
 		
+		//con.getCon();
+
 	}
 
 	public boolean isDansUnClan() {
