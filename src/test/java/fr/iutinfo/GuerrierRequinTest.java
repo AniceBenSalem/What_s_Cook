@@ -21,10 +21,10 @@ public class GuerrierRequinTest extends JerseyTest {
 	public void testConstructeur(){
 		GuerrierRequin Gr = new GuerrierRequin();
 		assertEquals(Gr.getNombre(),0);
-		assertEquals(Gr.getForce(),10);
-		assertEquals(Gr.getCoutDeplacement(),1);
-		assertEquals(Gr.getCoutFabrication("Coquillage"),20);
-		assertEquals(Gr.getNiveauCaserneRequis(),1);
+		assertEquals(Gr.getForce(),40);
+		assertEquals(Gr.getCoutDeplacement(),2);
+		assertEquals(Gr.getCoutFabrication("Coquillage"),50);
+		assertEquals(Gr.getNiveauCaserneRequis(),3);
 	}
 	
 	@Test

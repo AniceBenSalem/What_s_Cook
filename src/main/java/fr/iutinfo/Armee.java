@@ -84,8 +84,6 @@ public class Armee {
 	
 	public void volRessource(Ile i){
 		int taux = i.getPoints()/this.ile.getPoints()*100;
-		System.out.println("vous : "+this.ile.getPoints()+", votre ennemi : "+i.getPoints());
-		System.out.println("taux "+taux);
 		
 		if(taux>40)
 			taux=40;
@@ -93,7 +91,6 @@ public class Armee {
 			taux=0;
 		
 		int vol = i.getEntrepot().getCoquillage()*taux/100;
-		System.out.println("vol "+vol);
 		
 		i.getEntrepot().retirer("Coquillage",vol);
 		this.ile.getEntrepot().ajouter("Coquillage",vol);

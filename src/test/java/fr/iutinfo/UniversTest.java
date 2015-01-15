@@ -64,7 +64,7 @@ public class UniversTest extends JerseyTest{
 	public void testTempsDeplacement () throws PlacementOccupeException, SQLException {
 		Univers univ = new Univers("Vinland");
 		Ile ile1 = new Ile(univ, "Atlantis", 0,0);
-		Ile ile2 = new Ile(univ, "Villeneuve d'Ausque",50,50);
+		Ile ile2 = new Ile(univ, "Villeneuve dAusque",50,50);
 		SurfeurCroMagnon thibault = new SurfeurCroMagnon();
 		Armee armee = new Armee(ile1);
 		armee.addUnite(thibault);
