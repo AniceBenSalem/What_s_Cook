@@ -20,7 +20,7 @@ body {
 }
 
 @font-face {
-    font-family: 'PoliceDeBGTroll';
+    font-family: 'PoliceDinscription';
     src: url('DJB_This_Font_is_Worn.ttf');
 }
 
@@ -30,4 +30,12 @@ body {
 }
 
 /NewUser------------------------------------------------------------------------/
+
+.legend{
+	font-family : PoliceDinscription;
+}
+
+.formulaire{
+	margin-left: 40%;
+}
 

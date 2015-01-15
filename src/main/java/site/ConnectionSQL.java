@@ -1,9 +1,46 @@
 package site;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class Test {
+import fr.iutinfo.Ile;
 
+public class ConnectionSQL {	
+	Connection con = null;
+	
+	public Connection getCon () {
+		
+        try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Probleme dans le driver");
+			e.printStackTrace();
+		}			
+        String url = "jdbc:sqlite:vinland.db";
+        String name = null;
+        String passwd = null;
+        try {
+			return DriverManager.getConnection(url, name, passwd);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Probleme dans la co");
+			e.printStackTrace();
+		}
+        return null;
+	}
+	
+	public void addIle (Ile i) {
+		
+		con = getCon();
+	}
+	
+	
+	
+	
+	
+	/*
 	public static void main(String[] args) throws SQLException {
 		
 		try{
@@ -18,7 +55,7 @@ public class Test {
             	Statement stmt = con.createStatement();
                 
                 //String query = "insert into users values('troll', 'lolilol', 'prout@geugeul.fr', 152)";
-                String query = "select * from users";
+                String query = "select * from ile";
                 ResultSet rs  = stmt.executeQuery(query);
                 
                 while(rs.next()){
@@ -36,4 +73,6 @@ public class Test {
             
         }
 	}
+	
+	*/
 }

@@ -1,8 +1,8 @@
 package fr.iutinfo;
 
-import java.util.HashMap;
-import java.util.Map;
 
+
+import site.ConnectionSQL;
 import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
@@ -11,7 +11,6 @@ import fr.iutinfo.batiments.Generateur;
 import fr.iutinfo.batiments.GenerateurCoquillage;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
-import fr.iutinfo.unites.Unite;
 
 public class Ile {
 
@@ -38,6 +37,11 @@ public class Ile {
 	private Generateur generateurCoquillage;
 	private CocoCanon cococanon;
 
+	
+	/*Connection*/
+	ConnectionSQL con = null;
+
+	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;	
@@ -58,6 +62,10 @@ public class Ile {
 		this.y = y;
 		this.setDansUnClan(false);
 		this.points = 0;
+		
+		/*Connection sql*/
+		con.getCon();
+		
 	}
 
 	public boolean isDansUnClan() {

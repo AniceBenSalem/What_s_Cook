@@ -4,6 +4,7 @@ import fr.iutinfo.Ile;
 
 public class GenerateurCoquillage extends Generateur{
 	private int productionParMinute;
+	private int coutConstruction = 100; 
 	
 	public GenerateurCoquillage(Ile ile) {
 		super(ile);
@@ -23,7 +24,8 @@ public class GenerateurCoquillage extends Generateur{
 	@Override
 	public void up() {
 		this.nombre++;
-		productionParMinute++;
+		coutConstruction = (int) (coutConstruction * 1.8);
+		productionParMinute= (int) (productionParMinute*1.5);
 	}
 
 }
