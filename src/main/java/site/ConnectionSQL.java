@@ -192,7 +192,7 @@ public class ConnectionSQL {
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
-		ConnectionSQL c = new ConnectionSQL();
+
 	}
 	
 	

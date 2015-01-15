@@ -120,7 +120,7 @@ public class Ile {
 		
 		/*Batiments*/
 		this.entrepot=new Entrepot(this);
-		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id='" + this.getId()+ ";";
+		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
 		System.out.println("Query = " + query);
 		conn.createStatement().executeUpdate(query);
 		
