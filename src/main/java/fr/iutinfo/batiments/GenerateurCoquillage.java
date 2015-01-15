@@ -13,7 +13,7 @@ public class GenerateurCoquillage extends Generateur{
 
 	@Override
 	public void ajouterRessource() {
-		ile.getEntrepot().setCoquillage(ile.getEntrepot().getCoquillage()+productionParMinute);
+		ile.getEntrepot().ajouter("Coquillage",productionParMinute);
 	}
 
 	@Override

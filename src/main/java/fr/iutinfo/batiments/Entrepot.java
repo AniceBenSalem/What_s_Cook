@@ -75,6 +75,8 @@ public class Entrepot extends Batiment {
 		switch(ressource){
 		case "Coquillage":	
 			this.coquillage+=montant;
+			if(this.coquillage>capacite)
+				this.coquillage=capacite;
 			break;
 		default:
 			break;
