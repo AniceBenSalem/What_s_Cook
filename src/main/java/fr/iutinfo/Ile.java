@@ -116,14 +116,27 @@ public class Ile {
 		System.out.println("Je suis une ile mon id = " + this.id);
 		
 		
-		/*Batiments*/
+		/*entrepot*/
 		this.entrepot=new Entrepot(this);
 		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
 		System.out.println("Query = " + query);
 		conn.createStatement().executeUpdate(query);
 		
+		/*niveau entrepot*/
+		
+		
+		
+		
+		// caserne
 		
 		this.caserne = new Caserne();
+		String query2 = "update ile set idCaserne=" + this.caserne.getId() + " where id=" + this.getId()+ ";";
+		System.out.println("Query2 = " + query);
+		conn.createStatement().executeUpdate(query2);
+
+		
+		
+		// cococanon
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 		
@@ -239,7 +252,7 @@ public class Ile {
 		return this.cococanon;
 	}
 
-	public void putSurfeurCromagnonArmee(){
+	public void putSurfeurCromagnonArmee() throws SQLException{
 		if(surfeur.getNombre()>0){
 			SurfeurCroMagnon surf = new SurfeurCroMagnon();
 			surf.up();
@@ -251,7 +264,7 @@ public class Ile {
 		return surfeur;
 	}
 
-	public void putAllSurfeurCromagnonArmee(){
+	public void putAllSurfeurCromagnonArmee() throws SQLException{
 		while(this.surfeur.getNombre()>0){
 			putSurfeurCromagnonArmee();
 		}
@@ -259,6 +272,12 @@ public class Ile {
 
 	public Armee getArmee() {
 		return armee;
+	}
+	
+	public Integer nombreCoquillageEntrepot() {
+		String s = "select coquillage from entrepot where id='" + this.entrepot.getId() + "'";
+		return id;
+		
 	}
 
 }

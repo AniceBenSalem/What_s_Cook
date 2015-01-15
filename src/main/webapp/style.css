@@ -36,6 +36,18 @@ body {
 }
 
 .formulaire{
+	
+	margin-top: 5%;
 	margin-left: 40%;
+	font-size: 15px;
+	color: black;
+	
+	
+5
+}
+.fieldset{
+	border: 3px solid RGB(68,114,196);
+	background-color: RGB(190,190,190);
+	border-radius: 8px;
 }
 

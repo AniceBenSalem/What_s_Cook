@@ -12,21 +12,22 @@
 		<form method="post" action="../servlet/NewUser">
 			<div class=formulaire>
 				<fieldset class=fieldset style="width:40%">
-					<legend class=legend>Créer votre nouveau compte</legend>
+					<h3> <legend  class=legend>Creer votre nouveau compte</legend> </h3>
 					<label for="login">Login <span class="requis">*</span></label>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 					<input class="newUserForm" type="text" id="login" name="newLogin" required size="20" maxlength="20" />
 					<br>
 					<label for="password">Password <span class="requis">*</span></label>
-					&nbsp&nbsp&nbsp&nbsp
-					<input class="newUserForm" type="text" id="password" name="newPassword" required size="20" maxlength="20" />
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input class="newUserForm" type="password" id="password" name="newPassword" required size="20" maxlength="20" />
 					<br>
 					<label for="password1">Confirmation 
 					&nbsp&nbsp&nbsp
-					<input class="newUserForm" type="text" id="password1" name="newPassword1" required oninput="check(this)" size="20" maxlength="20"/>
-					<br>mot de passe <span class="requis">*</span></label>
+					<input class="newUserForm" type="password" id="password1" name="newPassword1" required oninput="check(this)" size="20" maxlength="20"/>
+					<br>password <span class="requis">*</span></label>
 					<br>
 					<label for="mail">Adresse Mail <span class="requis">*</span></label>
+					&nbsp
 					<input class="newUserForm" type="text" id="mail" name="newMail" required size="20" maxlength="20" />
 					<br><br>
 					<input type="submit" value="Enregistrer" />
@@ -37,9 +38,9 @@
 			function check(input) {
 			  if (input.value != document.getElementById('password').value) {
 				input.setCustomValidity('Les deux mots de passe ne sont pas identique');
-			  } else {
+			 } else {
 				// input is valid -- reset the error message
-				input.setCustomValidity('bon');
+				input.setCustomValidity("");
 			  }
 			}
 		</script>

@@ -3,6 +3,8 @@ package fr.iutinfo.unites;
 
 public class SurfeurCroMagnon extends Unite {
 
+	int id=0;
+	
 	public SurfeurCroMagnon () {
 		super();
 		this.nombre=0;
@@ -12,8 +14,7 @@ public class SurfeurCroMagnon extends Unite {
 		this.tempsFabrication = 20;
 		this.niveauCaserneNecessaire = 1;
 		this.initialiseCoutFabrication();
-	
-
+		id ++;
 	}
 	
 	@Override
