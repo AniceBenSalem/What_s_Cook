@@ -135,7 +135,7 @@ public class ConnectionSQL {
 		
 	}
 
-	public void addEntrepot (Entrepot e) throws SQLException {
+	public void addEntrepot () throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		String query = "insert into entrepot(coquillage,capacite, nombre) values (";
