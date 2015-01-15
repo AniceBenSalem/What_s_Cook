@@ -8,15 +8,15 @@
 
 .bienvenue{
 	font-family : PoliceDeBG;
-    color: white;
-    font-size: 70px;
+    color: black;
+    font-size: 140px;
 }
 
 body {
-    background-image: url("image/fond.jpg");
-    background-size: cover;
-    background-color: #cccccc;
-    background-repeat : no-repeat;
+	margin:0;
+	padding:0;
+	background: url(image/fond.jpg) no-repeat center fixed;
+	background-size: cover;
 }
 
 @font-face {
@@ -26,11 +26,8 @@ body {
 
 @font-face {
     font-family: 'PoliceDeBG';
-    src: url('Burn_out_fade_away.ttf');
+    src: url('HeavenlyWings.ttf');
 }
 
-.troll{
-	color: red;
-	font-family : PoliceDeBGTroll;
-	font-size: 200px;
-}
+/NewUser------------------------------------------------------------------------/
+

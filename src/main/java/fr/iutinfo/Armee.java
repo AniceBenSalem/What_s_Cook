@@ -13,14 +13,17 @@ public class Armee {
 	private int force;
 	private int pv;
 	private int coutDeplacementGeneral;
+	private Ile ile;
 
-	public Armee(){
+	public Armee(Ile i){
+		this.ile=i;
 		this.effectifs=new Stack<Unite>();
 	}
 
 	public Stack<Unite> getStack(){
 		return this.effectifs;
 	}
+	
 	public void addUnite(Unite u){
 		effectifs.push(u);
 		force+=u.getForce();
@@ -78,6 +81,17 @@ public class Armee {
 		}
 		
 		return valdef<0;
+	}
+	
+	public void volRessource(Ile i){
+		int taux = this.ile.getPoints()/i.getPoints()/100;
+		
+		if(taux>40)
+			taux=40;
+		if(taux<0)
+			taux=0;
+		
+		
 	}
 
 }

@@ -2,6 +2,10 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import javax.ws.rs.core.Application;
+
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.iutinfo.batiments.Entrepot;
@@ -13,8 +17,59 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
  * @author dumetza
  *
  */
-public class EntrepotTest {
-
+public class EntrepotTest extends JerseyTest {
+	
+	Ile i;
+	Univers u;
+	
+	@Override
+    protected Application configure() {
+        return new App();
+        
+    }
+	
+	@Before
+	public void init() throws PlacementOccupeException{
+		u = new Univers("test");
+		i = new Ile(u,"test",1,1);
+		i.getEntrepot().setCoquillage(200);
+	}
+	
+	@Test
+	public void retirerRessourceTestOK(){
+		i.getEntrepot().setCoquillage(200);
+		i.getEntrepot().retirer("Coquillage", 50);
+		assertEquals(150,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void retirerRessourceTestNegatif(){
+		i.getEntrepot().setCoquillage(20);
+		i.getEntrepot().retirer("Coquillage", 50);
+		assertEquals(0,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void retirerRessourceTestMauvaiseRessource(){
+		i.getEntrepot().setCoquillage(200);
+		i.getEntrepot().retirer("Coquillage", 50);
+		assertEquals(150,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void ajouterRessourceTestOK(){
+		i.getEntrepot().setCoquillage(200);
+		i.getEntrepot().ajouter("Coquillage", 50);
+		assertEquals(250,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void ajouterRessourceTestMauvaiseRessource(){
+		i.getEntrepot().setCoquillage(200);
+		i.getEntrepot().ajouter("trolololo", 50);
+		assertEquals(200,i.getEntrepot().getCoquillage());
+	}
+	
 	@Test
 	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException {
 		Univers u = new Univers ("Univers");
@@ -41,9 +96,7 @@ public class EntrepotTest {
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2",11,11);
 		Entrepot e2 = new Entrepot ();
-		e.donnerRessource("Coquillage", 60, e2);
-		
-		
+		e.donnerRessource("Coquillage", 60, e2);	
 		
 	}
 
