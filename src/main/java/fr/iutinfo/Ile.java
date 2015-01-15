@@ -1,7 +1,6 @@
 package fr.iutinfo;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 import fr.iutinfo.batiments.Batiment;
 import fr.iutinfo.batiments.Caserne;
@@ -11,7 +10,6 @@ import fr.iutinfo.batiments.Generateur;
 import fr.iutinfo.batiments.GenerateurCoquillage;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
-import fr.iutinfo.unites.Unite;
 
 public class Ile {
 
