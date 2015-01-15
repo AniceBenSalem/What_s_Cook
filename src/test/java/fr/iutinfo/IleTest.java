@@ -25,14 +25,6 @@ public class IleTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestIleConstructeurId() throws PlacementOccupeException, SQLException {
-		Ile i = new Ile(u,"leon",10,10);
-		assertEquals(i.getId(),1);
-		Ile i2 = new Ile(u,"henry",11,11);
-		assertEquals(i2.getId(),2);
-	}
-	
-	@Test
 	public void TestGetValeurDefense() throws PlacementOccupeException, SQLException{
 		Ile i = new Ile(u,"leon",10,10);
 		assertEquals(i.getValeurDefense(),0);
