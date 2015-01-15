@@ -1,7 +1,5 @@
 package fr.iutinfo.batiments;
 
-import fr.iutinfo.Ile;
-import fr.iutinfo.Univers;
 import fr.iutinfo.exceptions.NoCoquillageException;
 
 
