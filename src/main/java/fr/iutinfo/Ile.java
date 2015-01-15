@@ -23,6 +23,7 @@ public class Ile {
 	private String proprietaire;
 	boolean dansUnClan;
 	private int points;
+	
 
 	/*pos*/
 	int x; 
@@ -104,13 +105,34 @@ public class Ile {
 
 	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
-		this.id=univers.getMaxId()+1;
+		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
+		
 
-		/*Batiments*/
-		this.entrepot=new Entrepot();
+		conn = connectionSQL.getCon();
+		connectionSQL.addIle(this);
+		this.id = ConnectionSQL.recupIDIle(this);
+		System.out.println("Je suis une ile mon id = " + this.id);
+		
+		
+		/*entrepot*/
+		this.entrepot=new Entrepot(this);
+		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
+		System.out.println("Query = " + query);
+		conn.createStatement().executeUpdate(query);
+		
+		
+		// caserne
+		
 		this.caserne = new Caserne();
+		String query2 = "update ile set idCaserne=" + this.caserne.getId() + " where id=" + this.getId()+ ";";
+		System.out.println("Query2 = " + query);
+		conn.createStatement().executeUpdate(query);
+
+		
+		
+		// cococanon
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 		
@@ -121,15 +143,16 @@ public class Ile {
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
-		this.setDansUnClan(false);
+
 		this.points = 0;
 		
 		/*Connection sql*/
 
-		conn = connectionSQL.getCon();
-		connectionSQL.addIle(this);
+	
 		
+		conn.close();
 		//con.getCon();
+		
 
 	}
 
@@ -145,7 +168,8 @@ public class Ile {
 		this.points = points;
 	}
 
-	public void setDansUnClan(boolean dansUnClan) {
+	public void setDansUnClan(boolean dansUnClan) throws SQLException {
+		connectionSQL.setDansUnClan(this, dansUnClan);
 		this.dansUnClan = dansUnClan;
 	}
 
@@ -167,7 +191,7 @@ public class Ile {
 	public void upGenerateurCoquillage(){
 		int cout = generateurCoquillage.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
-			generateurCoquillage.up();
+			generateurCoquillage.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 100);
 		}
@@ -176,7 +200,7 @@ public class Ile {
 	public void upEntrepot(){
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
-			entrepot.up();
+			entrepot.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-entrepot.getCoutDeConstruction());
 			points += 80;
 		}	
@@ -185,7 +209,7 @@ public class Ile {
 	public void upCococanon(){
 		int cout = cococanon.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
-			cococanon.up();
+			cococanon.lanceConstruction();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);
 			this.setPoints(this.points + 120);
 		}

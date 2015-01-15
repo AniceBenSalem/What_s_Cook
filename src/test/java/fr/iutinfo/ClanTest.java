@@ -24,7 +24,7 @@ public class ClanTest {
 	}
 
 	@Test
-	public void testAjoutOk() {
+	public void testAjoutOk() throws SQLException {
 		Clan c = new Clan();
 		c.setCapacite(1);
 		assertTrue(c.addMembre(i1));
@@ -32,7 +32,7 @@ public class ClanTest {
 	}
 
 	@Test
-	public void testAjoutKo() {
+	public void testAjoutKo() throws SQLException {
 		Clan c = new Clan();
 		c.setCapacite(1);
 		assertTrue(c.addMembre(i1));
@@ -41,7 +41,7 @@ public class ClanTest {
 	}
 
 	@Test
-	public void testRemoveOk() {
+	public void testRemoveOk() throws SQLException {
 		Clan c = new Clan();
 		c.setCapacite(2);
 		c.addMembre(i1);
@@ -51,7 +51,7 @@ public class ClanTest {
 	}
 
 	@Test
-	public void testRemoveKo() {
+	public void testRemoveKo() throws SQLException {
 		Clan c = new Clan();
 		c.setCapacite(2);
 		c.addMembre(i1);

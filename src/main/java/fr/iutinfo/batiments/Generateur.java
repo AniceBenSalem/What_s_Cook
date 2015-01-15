@@ -10,6 +10,7 @@ public abstract class Generateur extends Batiment{
 	Timer timer = new Timer();
 	Ile ile ;
 	int delay = 60; // delai avant generation
+	protected int productionCoquillageParMinute;
 
 	public Generateur (Ile ile){
 		this.ile = ile;
@@ -18,7 +19,10 @@ public abstract class Generateur extends Batiment{
 	}
 
 
-
+	public int getProductionCoquillage(){
+		return productionCoquillageParMinute;
+	}
+	
 	public abstract void ajouterRessource();
 	public void genererRessource()  {
 		timer.scheduleAtFixedRate(new TimerTask() {
