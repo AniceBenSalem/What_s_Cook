@@ -64,7 +64,7 @@ public class UniversTest extends JerseyTest{
 		Ile ile1 = new Ile(univ, "Atlantis", 0,0);
 		Ile ile2 = new Ile(univ, "Villeneuve d'Ausque",50,50);
 		SurfeurCroMagnon thibault = new SurfeurCroMagnon();
-		Armee armee = new Armee();
+		Armee armee = new Armee(ile1);
 		armee.addUnite(thibault);
 		assertEquals("01:10:00",univ.tempsDeplacement(ile1, ile2, armee).toString());
 	}
