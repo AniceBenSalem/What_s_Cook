@@ -122,13 +122,17 @@ public class Ile {
 		System.out.println("Query = " + query);
 		conn.createStatement().executeUpdate(query);
 		
+		/*niveau entrepot*/
+		
+		
+		
 		
 		// caserne
 		
 		this.caserne = new Caserne();
 		String query2 = "update ile set idCaserne=" + this.caserne.getId() + " where id=" + this.getId()+ ";";
 		System.out.println("Query2 = " + query);
-		conn.createStatement().executeUpdate(query);
+		conn.createStatement().executeUpdate(query2);
 
 		
 		

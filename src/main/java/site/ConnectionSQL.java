@@ -144,9 +144,10 @@ public class ConnectionSQL {
 	public void addEntrepot (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		String query = "insert into entrepot(id, coquillage, nombre) values (";
+		String query = "insert into entrepot(id, coquillage,capacite, nombre) values (";
 		query+= e.getId() + ",";
-		query+= "100,";
+		query+= "0,";
+		query+= "200,";
 		query += "0);";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
@@ -236,7 +237,8 @@ public class ConnectionSQL {
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
-		
+		System.out.println("Id entrepot = " + i.getEntrepot().getId());
+		System.out.println("Id caserne = " + i.getCaserne().getId());
 
 	}
 	
