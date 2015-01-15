@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Stack;
 
 import fr.iutinfo.Armee;
 import fr.iutinfo.Ile;
@@ -13,6 +14,9 @@ import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
+import fr.iutinfo.unites.GuerrierRequin;
+import fr.iutinfo.unites.SurfeurCroMagnon;
+import fr.iutinfo.unites.Unite;
 
 public class ConnectionSQL {	
 	Connection con = null;
@@ -118,6 +122,30 @@ public class ConnectionSQL {
 		return a;
 		
 	}
+	public void addArmee(Armee armee) throws SQLException{
+		Connection con = this.getCon();
+		Statement stmt = con.createStatement();
+		int nbSurfeurCroMagnon = 0;
+		int nbRequinGuerrier = 0 ;
+		Stack<Unite> pile = armee.getStack();
+		while(!pile.isEmpty()){
+			Unite u = pile.pop();
+			if(u instanceof GuerrierRequin){
+				nbRequinGuerrier++;
+			}
+			if(u instanceof SurfeurCroMagnon){
+				nbSurfeurCroMagnon++;
+			}
+		}
+		String query = "insert into armee (surfeurCroMagnon, requinGuerrier) values (";
+		query+= " "+ nbSurfeurCroMagnon + ",";
+		query += ""+  nbRequinGuerrier + "";
+		query +=");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+		
+	}  
 	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
