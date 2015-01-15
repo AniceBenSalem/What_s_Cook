@@ -104,7 +104,7 @@ public class Ile {
 
 	
 	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
-		this.id=univers.getMaxId()+1;
+		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
 
@@ -128,7 +128,7 @@ public class Ile {
 
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
-
+		
 		conn.close();
 		//con.getCon();
 		

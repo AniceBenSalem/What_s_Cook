@@ -59,6 +59,12 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
+	public static void recupIDIle (Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		//String query = "sle"
+		
+	}
 
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
