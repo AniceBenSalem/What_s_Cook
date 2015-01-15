@@ -121,15 +121,17 @@ public class Ile {
 		univers.addIle(this, x, y);
 		this.x = x;
 		this.y = y;
-		this.setDansUnClan(false);
+
 		this.points = 0;
 		
 		/*Connection sql*/
 
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
-		
+
+		conn.close();
 		//con.getCon();
+		
 
 	}
 
@@ -145,7 +147,8 @@ public class Ile {
 		this.points = points;
 	}
 
-	public void setDansUnClan(boolean dansUnClan) {
+	public void setDansUnClan(boolean dansUnClan) throws SQLException {
+		connectionSQL.setDansUnClan(this, dansUnClan);
 		this.dansUnClan = dansUnClan;
 	}
 
