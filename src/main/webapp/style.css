@@ -20,7 +20,7 @@ body {
 }
 
 @font-face {
-    font-family: 'PoliceDeBGTroll';
+    font-family: 'PoliceDinscription';
     src: url('DJB_This_Font_is_Worn.ttf');
 }
 
@@ -31,3 +31,7 @@ body {
 
 /NewUser------------------------------------------------------------------------/
 
+.fieldset{
+	width : 40%;
+	font-family : "Comic Sans MS";
+}

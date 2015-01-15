@@ -5,12 +5,12 @@
 	<head>
 		<meta charset="utf-8" /> 
 		<LINK rel="stylesheet" href="style.css" type="text/css"> 
-		<link rel="icon" type="image/png" href="IMG/favicon.png" />
+		<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico" />
 		<head><title>Nouvel utilisateur</title></head>
 	</head>
 	<body>
 		<form method="post" action="../servlet/NewUser">
-			<fieldset>
+			<fieldset class=fieldset>
 				<legend>Créer votre nouveau compte</legend> 
 				
 				<label for="login">Login <span class="requis">*</span></label>
