@@ -24,8 +24,8 @@ public class ArmeeTest extends JerseyTest{
 	public void init() throws PlacementOccupeException, SQLException{
 		a=new Armee(i);
 		u=new Univers("test");
-		i=new Ile(u,"test1",1,1);
-		i2=new Ile(u,"test2",2,2);
+		i=new Ile(u,"test1");
+		i2=new Ile(u,"test2");
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i2.getGenerateurCoquillage().stopGenererRessource();
 
@@ -115,9 +115,9 @@ public class ArmeeTest extends JerseyTest{
 	@Test
 	public void testAttaquerIlePerdu() throws PlacementOccupeException, SQLException {
 		u=new Univers("test");
-		i = new Ile(u,"leon",1,1);
+		i = new Ile(u,"leon");
 		i.getEntrepot().setCoquillage(1000000);
-		i2 = new Ile(u,"un mechant",2,2);
+		i2 = new Ile(u,"un mechant");
 		i2.getEntrepot().setCoquillage(1000000);
 		i.upCococanon(); //Cococanon lvl 1 = 100 pv
 		for(int i = 0;i<2;i++){
@@ -132,9 +132,9 @@ public class ArmeeTest extends JerseyTest{
 	@Test
 	public void testAttaquerIleGagner() throws PlacementOccupeException, SQLException {
 		u=new Univers("test");
-		i = new Ile(u,"leon",1,1);
+		i = new Ile(u,"leon");
 		i.getEntrepot().setCoquillage(1000000);
-		i2 = new Ile(u,"un mechant",2,2);
+		i2 = new Ile(u,"un mechant");
 		i2.getEntrepot().setCoquillage(1000000);
 		i.upCococanon(); //Cococanon lvl 1 = 100 pv
 		for(int i = 0;i<11;i++){
@@ -152,7 +152,7 @@ public class ArmeeTest extends JerseyTest{
 	for (int i = 0; i < 9; i++) {
 		a.addUnite(new SurfeurCroMagnon());	
 	}
-	Ile ile = new Ile(new Univers("omega"), "moi", 5, 5);
+	Ile ile = new Ile(new Univers("omega"), "moi");
 	ile.upCococanon();
 	ile.upCococanon();
 	//assertEquals("Match null", a.attaquerIle(ile));

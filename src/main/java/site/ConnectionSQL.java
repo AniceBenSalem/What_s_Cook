@@ -52,8 +52,6 @@ public class ConnectionSQL {
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
 		query+= "'false',";
-		query+= i.getX() + ",";
-		query+= i.getY() + ",";
 		query += addArmee(i.getArmee())+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
@@ -236,7 +234,7 @@ public class ConnectionSQL {
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
-		Ile i = new Ile (u,"ma", 42,42);
+		Ile i = new Ile (u,"ma");
 		System.out.println("Id entrepot = " + i.getEntrepot().getId());
 		System.out.println("Id caserne = " + i.getCaserne().getId());
 

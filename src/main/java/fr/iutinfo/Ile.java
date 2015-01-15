@@ -23,11 +23,6 @@ public class Ile {
 	private String proprietaire;
 	boolean dansUnClan;
 	private int points;
-	
-
-	/*pos*/
-	int x; 
-	int y;
 
 	/*Unites*/
 	private SurfeurCroMagnon surfeur;
@@ -69,10 +64,6 @@ public class Ile {
 		this.proprietaire = proprietaire;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	public void setSurfeur(SurfeurCroMagnon surfeur) {
 		this.surfeur = surfeur;
 	}
@@ -104,7 +95,7 @@ public class Ile {
 
 
 	
-	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
+	public Ile(Univers univers,String proprietaire) throws PlacementOccupeException, SQLException{
 		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
@@ -143,10 +134,6 @@ public class Ile {
 		/*Unites*/
 		this.armee=new Armee(this);
 		this.surfeur=new SurfeurCroMagnon();
-		
-		univers.addIle(this, x, y);
-		this.x = x;
-		this.y = y;
 
 		this.points = 0;
 		
@@ -222,18 +209,6 @@ public class Ile {
 
 	public int getId() {
 		return id;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
 	}
 
 	public String getProprietaire() {
