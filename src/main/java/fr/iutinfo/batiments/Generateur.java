@@ -20,7 +20,6 @@ public abstract class Generateur extends Batiment{
 
 
 	public abstract void ajouterRessource();
-	
 	public void genererRessource()  {
 		timer.scheduleAtFixedRate(new TimerTask() {
 

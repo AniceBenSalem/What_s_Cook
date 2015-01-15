@@ -82,5 +82,16 @@ public class Armee {
 		
 		return valdef<0;
 	}
+	
+	public void volRessource(Ile i){
+		int taux = this.ile.getPoints()/i.getPoints()/100;
+		
+		if(taux>40)
+			taux=40;
+		if(taux<0)
+			taux=0;
+		
+		
+	}
 
 }
