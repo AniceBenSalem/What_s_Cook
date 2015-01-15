@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.iutinfo.Armee;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
@@ -39,7 +40,7 @@ public class ConnectionSQL {
 	}
 	
 	public void addIle (Ile i) throws SQLException {
-		Connection con = this.getCon();
+		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
 		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y) values (";
@@ -51,6 +52,7 @@ public class ConnectionSQL {
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
+		System.out.println("OK maggle");
 	}
 	
 	public static void setEntrepot (Entrepot e) throws SQLException {
@@ -103,19 +105,42 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
-	public static void recupIDIle (Ile i) throws SQLException {
+	public static Integer recupIDIle (Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		//String query = "sle"
+		String query = "select id from ile where proprietaire = '" + i.getProprietaire() + "';";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("id");
+		Integer a = Integer.parseInt(s);
+		System.out.println("s = " + s);
+		con.close();
+		return a;
 		
 	}
 
+	public void addArmee(Armee armee) throws SQLException{
+		Connection con = this.getCon();
+		Statement stmt = con.createStatement();
+		
+		String query = "insert into armee (nomUnivers, proprietaire, dansUnClan, x,y) values (";
+		query+= "'" + i.getUnivers().getNomUnivers() + "',";
+		query += "'"+  i.getProprietaire() + "',";
+		query+= "'false',";
+		query+= i.getX() + ",";
+		query+= i.getY() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+		
+	}
+	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
 		ConnectionSQL c = new ConnectionSQL();
-		c.setDansUnClan(i, true);
+		ConnectionSQL.setDansUnClan(i, true);
 		
 	 
 	}
