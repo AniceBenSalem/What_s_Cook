@@ -97,13 +97,12 @@ public class Ile {
 	
 	public Ile(Univers univers,String proprietaire) throws PlacementOccupeException, SQLException{
 		//this.id=univers.getMaxId()+1;
+		conn = connectionSQL.getCon();
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
 		
 
-		conn = connectionSQL.getCon();
-		connectionSQL.addIle(this);
-		this.id = ConnectionSQL.recupIDIle(this);
+
 		System.out.println("Je suis une ile mon id = " + this.id);
 		
 		
@@ -139,7 +138,9 @@ public class Ile {
 		
 		/*Connection sql*/
 
-	
+		
+		connectionSQL.addIle(this);
+		this.id = ConnectionSQL.recupIDIle(this);
 		
 		conn.close();
 		//con.getCon();
