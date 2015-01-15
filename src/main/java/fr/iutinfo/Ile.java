@@ -160,7 +160,6 @@ public class Ile {
 
 	public void upCromagnonSurfeur(){
 		int cout = surfeur.getCoutFabrication("Coquillage");
-		System.out.println(cout);
 		if(this.entrepot.getCoquillage()>=cout){
 			surfeur.up();
 			entrepot.setCoquillage(entrepot.getCoquillage()-cout);

@@ -83,7 +83,9 @@ public class Armee {
 	}
 	
 	public void volRessource(Ile i){
-		int taux = this.ile.getPoints()/i.getPoints()*100;
+		int taux = i.getPoints()/this.ile.getPoints()*100;
+		System.out.println("vous : "+this.ile.getPoints()+", votre ennemi : "+i.getPoints());
+		System.out.println("taux "+taux);
 		
 		if(taux>40)
 			taux=40;

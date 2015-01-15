@@ -2,6 +2,8 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
@@ -19,7 +21,7 @@ public class UniversTest extends JerseyTest{
     }
 	
 	@Test
-	public void TestGetMaxId() throws PlacementOccupeException {
+	public void TestGetMaxId() throws PlacementOccupeException, SQLException {
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "lala",10,10);
 		univ.addIle(ile,11,11);
@@ -27,7 +29,7 @@ public class UniversTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestgetNomUnivers() throws PlacementOccupeException{
+	public void TestgetNomUnivers() throws PlacementOccupeException, SQLException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,11);
 		univ.addIle(ile,11,11);
@@ -35,7 +37,7 @@ public class UniversTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestToString() throws PlacementOccupeException{
+	public void TestToString() throws PlacementOccupeException, SQLException{
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "Ara..terroriste",10,10);
 		univ.addIle(ile,11,11);
@@ -43,7 +45,7 @@ public class UniversTest extends JerseyTest{
 	}
 	
 	@Test
-	public void TestDistanceIles() throws PlacementOccupeException {
+	public void TestDistanceIles() throws PlacementOccupeException, SQLException {
 		Univers univ = new Univers("Vinland");
 		Ile ile1 = new Ile(univ, "Japon",5,5);
 		Ile ile2 = new Ile(univ, "Madagascar",150,150);
@@ -51,7 +53,7 @@ public class UniversTest extends JerseyTest{
 	}
 	
 	@Test(expected=PlacementOccupeException.class)
-	public void testAddIle () throws PlacementOccupeException {
+	public void testAddIle () throws PlacementOccupeException, SQLException {
 		Univers univ = new Univers("Omega");
 		Ile ile = new Ile(univ, "bonjourJeSuisUneIle",0,0);
 		Ile ile2 = new Ile (univ, "moiAussiMaggle", 0,0);
@@ -59,7 +61,7 @@ public class UniversTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testTempsDeplacement () throws PlacementOccupeException {
+	public void testTempsDeplacement () throws PlacementOccupeException, SQLException {
 		Univers univ = new Univers("Vinland");
 		Ile ile1 = new Ile(univ, "Atlantis", 0,0);
 		Ile ile2 = new Ile(univ, "Villeneuve d'Ausque",50,50);

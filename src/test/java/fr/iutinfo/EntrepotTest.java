@@ -2,6 +2,8 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
@@ -29,7 +31,7 @@ public class EntrepotTest extends JerseyTest {
     }
 	
 	@Before
-	public void init() throws PlacementOccupeException{
+	public void init() throws PlacementOccupeException, SQLException{
 		u = new Univers("test");
 		i = new Ile(u,"test",1,1);
 		i.getEntrepot().setCoquillage(200);
@@ -66,7 +68,7 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void ajouterRessourceTestMauvaiseRessource() throws PlacementOccupeException{
+	public void ajouterRessourceTestMauvaiseRessource() throws PlacementOccupeException, SQLException{
 		i=new Ile(new Univers("test"),"test",1,1);
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().setCoquillage(200);
@@ -76,7 +78,7 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void ajouterRessourceTestZero() throws PlacementOccupeException{
+	public void ajouterRessourceTestZero() throws PlacementOccupeException, SQLException{
 		i=new Ile(new Univers("test"),"test",1,1);
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().setCoquillage(200);
@@ -86,7 +88,7 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException {
+	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire", 10,10);
 		Entrepot e = new Entrepot ();
@@ -104,7 +106,7 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test(expected=NoCoquillageException.class)
-	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException {
+	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException, SQLException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire",10,10);
 		Entrepot e = new Entrepot ();
