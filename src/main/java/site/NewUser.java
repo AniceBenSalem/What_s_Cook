@@ -1,9 +1,14 @@
 package site;
 
 import java.io.*;
+
 import javax.servlet.*; // pour les servlets
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
+
+import fr.iutinfo.Ile;
+import fr.iutinfo.Univers;
+
 import java.sql.*;
 @WebServlet("/servlet/NewUser")
 
@@ -15,24 +20,24 @@ public class NewUser extends HttpServlet{
 			res.setContentType("text/html");
 			out.println(html());
 			
-			if(req.getParameter("newLogin").equals("") || req.getParameter("newPassword").equals("") || req.getParameter("newPassword1").equals("") || req.getParameter("newMail").equals("") || req.getParameter("newAge").equals(""))
+			if(req.getParameter("newLogin").equals("") || req.getParameter("newPassword").equals("") || req.getParameter("newPassword1").equals("") || req.getParameter("newMail").equals(""))
 				res.sendRedirect("../NewUser.jsp");
 			else{
-				if(!req.getParameter("newPassword").equals(req.getParameter("newPassword1")))
-					res.sendRedirect("../NewUser.jsp");
-				
 				//Enregistrement du driver
-				Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");			
+				Class.forName("org.sqlite.JDBC");
 
 				//Connexion a la base
-				String url = "jdbc:odbc:Personne";
+				String url = "jdbc:sqlite:vinland.db";
 				String nom = null;
 				String mdp = null;
 				Connection con = DriverManager.getConnection(url, nom, mdp);
 				
+				//Instanciation de l'ile
+				Ile ile = new Ile(null, req.getParameter("newLogin"));
+				
 				//execution de la requete
 				Statement stmt = con.createStatement();
-				String query = "Insert into user(login,password,role,prenom,nom,mail,age) values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','user','" + req.getParameter("newPrenom") + "','" + req.getParameter("newNom") + "','" + req.getParameter("newMail") + "'," + req.getParameter("newAge") + ")";
+				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
 				int update = stmt.executeUpdate(query);
 				
 				con.close();

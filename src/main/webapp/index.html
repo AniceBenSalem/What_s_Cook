@@ -14,7 +14,8 @@
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		
 		<!-- bootstrap -->
-		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 		
@@ -23,7 +24,7 @@
 	</head>
 	<body>
 	
-	<center><h1 class=bienvenue>Bienvenue a Vinland jeune Viking !</h1></center>
+		<center><h1 class=bienvenue>Bienvenue a Vinland jeune Viking !</h1></center>
 		<br><br><br>
 		<center><form class="log" method="post" action="./servlet/Authent">
 			<br>
@@ -34,6 +35,36 @@
 			<p><a href="NewUserJsp.jsp">=> Créez Votre Compte</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<input type="submit" value="Valider" /></p>
 		</form></center>
-		<center><div class=troll id="id_div_1" style="display:none;">Troll </div></center>
+		<script type="text/javascript"> 
+			function visibilite(thingId){ 
+				var targetElement; 
+				targetElement = document.getElementById(thingId) ; 
+				if (targetElement.style.display == "none"){ 
+					targetElement.style.display = "" ; 
+				} else { 
+					targetElement.style.display = "none" ; 
+				} 
+			} 
+		</script>
+		<script type="text/javascript">
+		   function envoi() {
+			 // par défaut, pas d'envoi
+			 document.formu.action="";
+			 // recherche de @ dans l'adresse
+			 var address=window.document.formu.adr.value;
+			 var pos=address.indexOf("@");
+			 if (address=="") {
+			  alert("Vous devez donner une adresse e-mail.");
+			 }
+			 else {
+			  if (pos==-1 || pos==0 || pos==address.length-1) {
+			   alert("Une adresse e-mail a le format nom@domaine");
+			  }
+			  else // tout va bien, on envoie le formulaire
+			   document.formu.action='mailto:moi@ici.fr?subject="Cours JavaScript"';
+			 }
+		</script>
+		<img class="messagerie" src="image/Enveloppe.png" alt="Messagerie" width="50px" ONCLICK="envoi();" onmouseover="javascript:visibilite('id_div_1'); return false;" onmouseout="javascript:visibilite('id_div_1'); return false;">
+		<A HREF="mailto:vinlandagilite@gmail.com" id="id_div_1" style="display:none;">vinlandagilite@gmail.com</A>
 	</body>
 </html>
