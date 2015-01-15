@@ -51,12 +51,9 @@ public class ConnectionSQL {
 		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan) values (";
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
-<<<<<<< HEAD
 		query+= "'false');";
 		//query += addArmee(i.getArmee().getId()+");";
-=======
-		query+= "'false';";
->>>>>>> 31cdaf3f0064af20e3504c6097a24e7f2968eb2c
+
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -262,7 +259,7 @@ public class ConnectionSQL {
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
-		Ile i = new Ile (u,"ma", 42,42);
+		Ile i = new Ile (u,"ma");
 		System.out.println("Id entrepot = " + i.getEntrepot().getId());
 		System.out.println("Id caserne = " + i.getCaserne().getId());
 
