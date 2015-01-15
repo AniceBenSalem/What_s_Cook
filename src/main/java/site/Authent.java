@@ -32,16 +32,13 @@ public class Authent extends HttpServlet{
 			String name = null;
 			String passwd = null;
 			try (Connection con = DriverManager.getConnection(url, name, passwd)) {
-System.out.println("coucou1");
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "select * from users Where login = '" + req.getParameter("login") + "' AND password = '" + req.getParameter("password") + "'";
 				ResultSet rs = stmt.executeQuery(query);
-System.out.println("coucou2");
 				PrintWriter out = res.getWriter();
 				res.setContentType("text/html");
 				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
-System.out.println("coucou3");
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
 					if(session.getAttribute("url") != null)
@@ -52,7 +49,6 @@ System.out.println("coucou3");
 					res.sendRedirect("../index.html");
 					//session.setAttribute("idTrue",rs.getString("false"));
 				}
-System.out.println("coucou4");
 				//fermeture des espaces
 				con.close();
 			}catch(Exception e){
