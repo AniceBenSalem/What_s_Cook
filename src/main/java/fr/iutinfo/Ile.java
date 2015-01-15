@@ -50,7 +50,7 @@ public class Ile {
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 		
 		/*Unites*/
-		this.armee=new Armee();
+		this.armee=new Armee(this);
 		this.surfeur=new SurfeurCroMagnon();
 		
 		univers.addIle(this, x, y);
