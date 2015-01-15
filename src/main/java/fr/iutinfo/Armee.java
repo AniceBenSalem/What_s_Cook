@@ -1,9 +1,10 @@
 package fr.iutinfo;
 
+import java.sql.SQLException;
 import java.util.Stack;
 
+import site.ConnectionSQL;
 import fr.iutinfo.exceptions.PlacementOccupeException;
-
 import fr.iutinfo.unites.SurfeurCroMagnon;
 import fr.iutinfo.unites.Unite;
 
@@ -24,13 +25,17 @@ public class Armee {
 		return this.effectifs;
 	}
 	
-	public void addUnite(Unite u){
+	public Ile getIle(){
+		return this.ile;
+	}
+	
+	public void addUnite(Unite u) throws SQLException{
 		effectifs.push(u);
 		force+=u.getForce();
 		pv+=u.getPV();
 		if(u.getCoutDeplacement() > coutDeplacementGeneral)
 			coutDeplacementGeneral = u.getCoutDeplacement();
-
+		new ConnectionSQL().addUnitee(this,u);
 	}
 
 	public int getForce(){
