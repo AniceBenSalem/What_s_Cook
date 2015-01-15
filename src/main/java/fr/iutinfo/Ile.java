@@ -116,14 +116,23 @@ public class Ile {
 		System.out.println("Je suis une ile mon id = " + this.id);
 		
 		
-		/*Batiments*/
+		/*entrepot*/
 		this.entrepot=new Entrepot(this);
 		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
 		System.out.println("Query = " + query);
 		conn.createStatement().executeUpdate(query);
 		
 		
+		// caserne
+		
 		this.caserne = new Caserne();
+		String query2 = "update ile set idCaserne=" + this.caserne.getId() + " where id=" + this.getId()+ ";";
+		System.out.println("Query2 = " + query);
+		conn.createStatement().executeUpdate(query);
+
+		
+		
+		// cococanon
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
 		
