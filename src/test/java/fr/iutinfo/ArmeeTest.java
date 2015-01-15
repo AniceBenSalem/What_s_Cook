@@ -23,7 +23,7 @@ public class ArmeeTest extends JerseyTest{
 	
 	@Before
 	public void init() throws PlacementOccupeException{
-		a=new Armee();
+		a=new Armee(i);
 		
 		
 		//Initialise 2 ile avec 1000000 coquillages
@@ -43,7 +43,7 @@ public class ArmeeTest extends JerseyTest{
 	
 	@Test
 	public void testGetPV() {
-		a=new Armee();
+		a=new Armee(i);
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
 		assertEquals(a.getPV(),new SurfeurCroMagnon().getPV()*2);
@@ -51,7 +51,7 @@ public class ArmeeTest extends JerseyTest{
 	
 	@Test
 	public void testGetForce() {
-		a=new Armee();
+		a=new Armee(i);
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
 		assertEquals(a.getForce(),new SurfeurCroMagnon().getForce()*2);
@@ -95,7 +95,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	public void testAttaquerIle3() throws PlacementOccupeException {
-	a = new Armee();
+	a = new Armee(i);
 	for (int i = 0; i < 9; i++) {
 		a.addUnite(new SurfeurCroMagnon());	
 	}

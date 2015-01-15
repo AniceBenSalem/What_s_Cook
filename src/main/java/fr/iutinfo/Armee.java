@@ -23,6 +23,7 @@ public class Armee {
 	public Stack<Unite> getStack(){
 		return this.effectifs;
 	}
+	
 	public void addUnite(Unite u){
 		effectifs.push(u);
 		force+=u.getForce();
