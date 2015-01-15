@@ -3,6 +3,7 @@ package fr.iutinfo;
 
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import site.ConnectionSQL;
 import fr.iutinfo.batiments.Batiment;
@@ -102,7 +103,7 @@ public class Ile {
 
 
 	
-	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException{
+	public Ile(Univers univers,String proprietaire, int x, int y) throws PlacementOccupeException, SQLException{
 		this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
@@ -124,14 +125,12 @@ public class Ile {
 		this.points = 0;
 		
 		/*Connection sql*/
-<<<<<<< HEAD
+
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
 		
-=======
 		//con.getCon();
->>>>>>> 927a485f5c3d716bea3584c2d5c5b26f847d1424
-		
+
 	}
 
 	public boolean isDansUnClan() {
