@@ -52,6 +52,8 @@ public class ConnectionSQL {
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
 		query+= "'false',";
+		query+= i.getX() + ",";
+		query+= i.getY() + ",";
 		query += addArmee(i.getArmee())+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
@@ -135,14 +137,14 @@ public class ConnectionSQL {
 		
 	}
 
-	public void addEntrepot () throws SQLException {
+	public void addEntrepot (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		String query = "insert into entrepot(coquillage,capacite, nombre) values (";
 		//query+= e.getId() + ",";
-		query+= "0,";
-		query+= "200,";
-		query += "0);";
+		query+= e.getCoquillage() + ",";
+		query+= e.getCapacite() + ",";
+		query += e.getNombre() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -250,7 +252,7 @@ public class ConnectionSQL {
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
-		Ile i = new Ile (u,"ma");
+		Ile i = new Ile (u,"ma", 42,42);
 		System.out.println("Id entrepot = " + i.getEntrepot().getId());
 		System.out.println("Id caserne = " + i.getCaserne().getId());
 
