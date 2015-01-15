@@ -19,11 +19,11 @@
 					<br>
 					<label for="password">Password <span class="requis">*</span></label>
 					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-					<input class="newUserForm" type="text" id="password" name="newPassword" required size="20" maxlength="20" />
+					<input class="newUserForm" type="password" id="password" name="newPassword" required size="20" maxlength="20" />
 					<br>
 					<label for="password1">Confirmation 
 					&nbsp&nbsp&nbsp
-					<input class="newUserForm" type="text" id="password1" name="newPassword1" required oninput="check(this)" size="20" maxlength="20"/>
+					<input class="newUserForm" type="password" id="password1" name="newPassword1" required oninput="check(this)" size="20" maxlength="20"/>
 					<br>password <span class="requis">*</span></label>
 					<br>
 					<label for="mail">Adresse Mail <span class="requis">*</span></label>
@@ -38,10 +38,9 @@
 			function check(input) {
 			  if (input.value != document.getElementById('password').value) {
 				input.setCustomValidity('Les deux mots de passe ne sont pas identique');
-			  } else {
+			 } else {
 				// input is valid -- reset the error message
-				input.setCustomValidity('bon');
-				break;
+				input.setCustomValidity("");
 			  }
 			}
 		</script>
