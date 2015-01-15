@@ -1,5 +1,7 @@
 package fr.iutinfo.batiments;
 
+import fr.iutinfo.Ile;
+import fr.iutinfo.Univers;
 import fr.iutinfo.exceptions.NoCoquillageException;
 
 
@@ -14,8 +16,8 @@ public class Entrepot extends Batiment {
 	private int capacite;
 	private int coutDeConstructionEntrepot;
 	private int tempsConstructionEntrepot; //en minute
-	
-	
+
+
 	public int getCapacite() {
 		return capacite;
 	}
@@ -23,13 +25,15 @@ public class Entrepot extends Batiment {
 	public void setCapacite(int capacite) {
 		this.capacite = capacite;
 	}
-	
+
 	public int getCoquillage() {
 		return coquillage;
 	}
 
 	public void setCoquillage(int coquillage) {
 		this.coquillage = coquillage;
+		if(this.coquillage<0)
+			this.coquillage=0;
 	}
 
 
@@ -42,7 +46,7 @@ public class Entrepot extends Batiment {
 		coutDeConstructionEntrepot = 100;
 		tempsConstructionEntrepot = 11;
 		this.setNombre(1);	
-		}
+	}
 
 	/**
 	 * Donne des ressources au joueur possedant l'entrepot e
@@ -52,21 +56,41 @@ public class Entrepot extends Batiment {
 	 * @throws NoCoquillageException 
 	 */
 	public void donnerRessource (String ressource, int montant, Entrepot e) throws NoCoquillageException {
-		
+
 		if (ressource.equals("Coquillage")) {
-		
+
 			if (this.coquillage >= montant) {
 				this.coquillage -= montant;
 				e.coquillage += montant;
 			}
-				
+
 			else {
 				throw new NoCoquillageException();
 			}
 		}
-	
+
 	}
-	
+
+	public void ajouter(String ressource,int montant ){
+		switch(ressource){
+		case "Coquillage":	
+			this.coquillage+=montant;
+			break;
+		}
+	}
+
+	public void retirer(String ressource,int montant){
+		switch(ressource){
+		case "Coquillage":
+			this.coquillage-=montant;
+			if(this.coquillage<0)
+				this.coquillage=0;
+			break;
+		default:
+			break;
+		}
+	}
+
 	@Override
 	public String getNom() {
 		return "Entrepot";

@@ -25,8 +25,6 @@ public class GuerrierRequinTest extends JerseyTest {
 		assertEquals(Gr.getCoutDeplacement(),1);
 		assertEquals(Gr.getCoutFabrication("Coquillage"),20);
 		assertEquals(Gr.getNiveauCaserneRequis(),1);
-
-
 	}
 	
 	@Test
