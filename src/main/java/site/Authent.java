@@ -38,9 +38,14 @@ public class Authent extends HttpServlet{
 				ResultSet rs = stmt.executeQuery(query);
 				PrintWriter out = res.getWriter();
 				res.setContentType("text/html");
+				
+				
 				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
+					// on se connecte
+				
+					
 					if(session.getAttribute("url") != null)
 						res.sendRedirect((String) session.getAttribute("url"));
 					else

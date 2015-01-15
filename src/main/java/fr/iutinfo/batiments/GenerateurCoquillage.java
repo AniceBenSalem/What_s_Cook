@@ -3,25 +3,25 @@ package fr.iutinfo.batiments;
 import fr.iutinfo.Ile;
 
 public class GenerateurCoquillage extends Generateur{
-	private int productionParMinute;
+	
 	private int coutConstruction = 100; 
 	
 	public GenerateurCoquillage(Ile ile) {
 		super(ile);
-		productionParMinute=1;
+		this.productionCoquillageParMinute=1;
 	}
 	
 	public int getProductionParMinute() {
-		return productionParMinute;
+		return productionCoquillageParMinute;
 	}
 
 	public void setProductionParMinute(int productionParMinute) {
-		this.productionParMinute = productionParMinute;
+		this.productionCoquillageParMinute = productionParMinute;
 	}
 	
 	@Override
 	public void ajouterRessource() {
-		ile.getEntrepot().ajouter("Coquillage",productionParMinute);
+		ile.getEntrepot().ajouter("Coquillage",productionCoquillageParMinute);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GenerateurCoquillage extends Generateur{
 	public void up() {
 		this.nombre++;
 		coutConstruction = (int) (coutConstruction * 1.8);
-		productionParMinute= (int) (productionParMinute*1.5);
+		productionCoquillageParMinute= (int) (productionCoquillageParMinute*1.5);
 	}
 
 }

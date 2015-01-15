@@ -23,6 +23,7 @@ public class Ile {
 	private String proprietaire;
 	boolean dansUnClan;
 	private int points;
+	
 
 	/*pos*/
 	int x; 
@@ -107,9 +108,23 @@ public class Ile {
 		//this.id=univers.getMaxId()+1;
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
-
+		
+		
+		
+		
+		conn = connectionSQL.getCon();
+		connectionSQL.addIle(this);
+		this.id = ConnectionSQL.recupIDIle(this);
+		System.out.println("Je suis une ile mon id = " + this.id);
+		
+		
 		/*Batiments*/
-		this.entrepot=new Entrepot();
+		this.entrepot=new Entrepot(this);
+		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
+		System.out.println("Query = " + query);
+		conn.createStatement().executeUpdate(query);
+		
+		
 		this.caserne = new Caserne();
 		this.cococanon=new CocoCanon();
 		this.generateurCoquillage=new GenerateurCoquillage(this);
@@ -126,8 +141,7 @@ public class Ile {
 		
 		/*Connection sql*/
 
-		conn = connectionSQL.getCon();
-		connectionSQL.addIle(this);
+	
 		
 		conn.close();
 		//con.getCon();

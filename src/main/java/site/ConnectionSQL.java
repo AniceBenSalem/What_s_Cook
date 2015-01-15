@@ -21,7 +21,7 @@ import fr.iutinfo.unites.Unite;
 
 public class ConnectionSQL {	
 	Connection con = null;
-	
+	private int i = 0;
 	public static Connection getCon () {
 		
         try {
@@ -48,12 +48,13 @@ public class ConnectionSQL {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
-		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y) values (";
+		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y,idArmee) values (";
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
 		query+= "'false',";
 		query+= i.getX() + ",";
-		query+= i.getY() + ");";
+		query+= i.getY() + ",";
+		query += addArmee(i.getArmee())+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -129,19 +130,63 @@ public class ConnectionSQL {
 		ResultSet rs = stmt.executeQuery(query);
 		String s = rs.getString("id");
 		Integer a = Integer.parseInt(s);
-		System.out.println("s = " + s);
+		System.out.println("id ile= " + s);
 		con.close();
 		return a;
 		
 	}
+<<<<<<< HEAD
+
+	public void addEntrepot (Entrepot e) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "insert into entrepot(id, coquillage, nombre) values (";
+		query+= e.getId() + ",";
+		query+= "100,";
+		query += "0);";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
 	
+	public Integer afficheCoquillage (Entrepot e) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "select coquillage from entrepot where id = " + e.getId() + ";";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("coquillage");
+		Integer a = Integer.parseInt(s);
+		System.out.println("Coquillage = " + s);
+		con.close();
+		return a;
+		
+		
+	}
+	
+	public void idIlePourEntrepot (Entrepot e, Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "update entrepot set idIle='" + i.getId() + "'where id=" + e.getId() + ";";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+		
+	}
+	/*
 	public void addArmee(Armee armee) throws SQLException{
+=======
+	
+	public int addArmee(Armee armee) throws SQLException{
+		
+>>>>>>> d93d139125d3d02e1ef0a196dd6c2d57f5da3339
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
 		int nbSurfeurCroMagnon = 0;
 		int nbRequinGuerrier = 0 ;
 		Stack<Unite> pile = armee.getStack();
-		while(!pile.isEmpty()){
+		
+		while(!pile.isEmpty()){//incrementation des NB selon le type d'unité
 			Unite u = pile.pop();
 			if(u instanceof GuerrierRequin){
 				nbRequinGuerrier++;
@@ -150,23 +195,44 @@ public class ConnectionSQL {
 				nbSurfeurCroMagnon++;
 			}
 		}
+		
 		String query = "insert into armee (surfeurCroMagnon, requinGuerrier) values (";
 		query+= " "+ nbSurfeurCroMagnon + ",";
 		query += ""+  nbRequinGuerrier + "";
 		query +=");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
-		con.close();
+		ResultSet rs = stmt.executeQuery("select max(id) from armee;");
+		int id=0;
+		if(rs.next()){
+			id = Integer.parseInt(rs.getString("id"));
+		}
 		
+		
+		con.close();
+		return id;
 	}  
+	*/
+	
+	public Integer recupIDEntrepot(Entrepot e, Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "select id from entrepot where idIle = " + i.getId() + ";";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("id");
+		Integer a = Integer.parseInt(s);
+		System.out.println("Id entrepot = " + s);
+		con.close();
+		return a;
+	}
+	
+	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
-		ConnectionSQL c = new ConnectionSQL();
-		ConnectionSQL.setDansUnClan(i, true);
-		
-	 
+
 	}
 	
 	
