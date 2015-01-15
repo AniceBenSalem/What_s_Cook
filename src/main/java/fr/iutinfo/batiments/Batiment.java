@@ -1,10 +1,14 @@
 package fr.iutinfo.batiments;
 
+import java.util.Date;
+
 
 
 /**This class allow to create a building*/
 public abstract class Batiment {
-	protected int nombre, coutdeConstruction, tempsConstruction; 	
+	protected int nombre, coutdeConstruction, tempsConstruction;
+	protected Date lancement,fin;
+	protected boolean enConstruction;
 
 	public int getCoutDeConstruction() {
 		return coutdeConstruction;
@@ -33,6 +37,7 @@ public abstract class Batiment {
 	
 	public abstract String getNom();
 	public abstract  void up();
+
 	
 }
 
