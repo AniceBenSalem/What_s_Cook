@@ -16,7 +16,7 @@ import fr.iutinfo.exceptions.PlacementOccupeException;
 
 public class ConnectionSQL {	
 	Connection con = null;
-	
+	private int i = 0;
 	public static Connection getCon () {
 		
         try {
@@ -113,12 +113,49 @@ public class ConnectionSQL {
 		ResultSet rs = stmt.executeQuery(query);
 		String s = rs.getString("id");
 		Integer a = Integer.parseInt(s);
-		System.out.println("s = " + s);
+		System.out.println("id ile= " + s);
 		con.close();
 		return a;
 		
 	}
 
+	public void addEntrepot (Entrepot e) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "insert into entrepot(id, coquillage, nombre) values (";
+		query+= e.getId() + ",";
+		query+= "100,";
+		query += "0);";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
+	public Integer afficheCoquillage (Entrepot e) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "select coquillage from entrepot where id = " + e.getId() + ";";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("coquillage");
+		Integer a = Integer.parseInt(s);
+		System.out.println("Coquillage = " + s);
+		con.close();
+		return a;
+		
+		
+	}
+	
+	public void idIlePourEntrepot (Entrepot e, Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "update entrepot set idIle='" + i.getId() + "'where id=" + e.getId() + ";";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+		
+	}
+	/*
 	public void addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
@@ -134,15 +171,28 @@ public class ConnectionSQL {
 		con.close();
 		
 	}  
+	*/
+	
+	public Integer recupIDEntrepot(Entrepot e, Ile i) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "select id from entrepot where idIle = " + i.getId() + ";";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("id");
+		Integer a = Integer.parseInt(s);
+		System.out.println("Id entrepot = " + s);
+		con.close();
+		return a;
+	}
+	
+	
 	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
 		ConnectionSQL c = new ConnectionSQL();
-		ConnectionSQL.setDansUnClan(i, true);
-		
-	 
 	}
 	
 	

@@ -89,12 +89,14 @@ public class EntrepotTest extends JerseyTest {
 	
 	@Test
 	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException, SQLException {
+		Univers a = new Univers ("lala");
+		Ile i = new Ile (a, "a",10,52);
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire", 10,10);
-		Entrepot e = new Entrepot ();
+		Entrepot e = new Entrepot (i);
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2", 11,11);
-		Entrepot e2 = new Entrepot ();
+		Entrepot e2 = new Entrepot (i);
 		try {
 			e.donnerRessource("Coquillage", 15, e2);
 		} catch (NoCoquillageException e1) {
@@ -109,10 +111,10 @@ public class EntrepotTest extends JerseyTest {
 	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException, SQLException {
 		Univers u = new Univers ("Univers");
 		Ile ile = new Ile (u, "proprietaire",10,10);
-		Entrepot e = new Entrepot ();
+		Entrepot e = new Entrepot (ile);
 		e.setCoquillage(50);
 		Ile ile2 = new Ile (u, "proprietaire2",11,11);
-		Entrepot e2 = new Entrepot ();
+		Entrepot e2 = new Entrepot (ile2);
 		e.donnerRessource("Coquillage", 60, e2);	
 		
 	}

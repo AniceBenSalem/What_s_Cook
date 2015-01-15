@@ -1,5 +1,9 @@
 package fr.iutinfo.batiments;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import site.ConnectionSQL;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
 import fr.iutinfo.exceptions.NoCoquillageException;
@@ -17,7 +21,20 @@ public class Entrepot extends Batiment {
 	private int coutDeConstructionEntrepot;
 	private int tempsConstructionEntrepot; //en minute
 
+	private int k= 1;
+	private Ile ile;
+	
+	public Ile getIle() {
+		return ile;
+	}
 
+	public void setIle(Ile ile) {
+		this.ile = ile;
+	}
+
+	/*Connection*/
+	ConnectionSQL connectionSQL = new ConnectionSQL();
+	Connection conn = null;
 	public int getCapacite() {
 		return capacite;
 	}
@@ -39,13 +56,18 @@ public class Entrepot extends Batiment {
 
 	/**
 	 * On initialise un entrepot sur une ile
+	 * @throws SQLException 
 	 */
-	public Entrepot () {
+	public Entrepot (Ile i) throws SQLException {
 		coquillage=0;
 		capacite = 200;
 		coutDeConstructionEntrepot = 100;
 		tempsConstructionEntrepot = 11;
 		this.setNombre(1);	
+		connectionSQL.addEntrepot(this);
+		this.ile = i;
+		this.id = k;
+		k++;
 	}
 
 	/**
