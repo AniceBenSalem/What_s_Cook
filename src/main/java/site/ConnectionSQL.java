@@ -48,11 +48,11 @@ public class ConnectionSQL {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
-		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y,idArmee) values (";
+		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan) values (";
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
-		query+= "'false',";
-		query += addArmee(i.getArmee())+");";
+		query+= "'false');";
+		//query += addArmee(i.getArmee().getId()+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -173,7 +173,7 @@ public class ConnectionSQL {
 		
 	}
 	
-	
+	/*
 	public int addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
@@ -207,7 +207,7 @@ public class ConnectionSQL {
 		con.close();
 		return id;
 	}  
-	
+	*/
 	public void addUnitee(Armee armee, Unite u) throws SQLException{
 		int idIle = recupIDIle(armee.getIle());
 		Connection con = this.getCon();

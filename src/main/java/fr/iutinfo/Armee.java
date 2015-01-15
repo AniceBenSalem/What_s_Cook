@@ -15,6 +15,15 @@ public class Armee {
 	private int pv;
 	private int coutDeplacementGeneral;
 	private Ile ile;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Armee(Ile i){
 		this.ile=i;
