@@ -31,7 +31,11 @@ body {
 
 /NewUser------------------------------------------------------------------------/
 
-.fieldset{
-	width : 40%;
-	font-family : "Comic Sans MS";
+.legend{
+	font-family : PoliceDinscription;
 }
+
+.formulaire{
+	margin-left: 40%;
+}
+
