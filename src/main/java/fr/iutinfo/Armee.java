@@ -13,8 +13,10 @@ public class Armee {
 	private int force;
 	private int pv;
 	private int coutDeplacementGeneral;
+	private Ile ile;
 
-	public Armee(){
+	public Armee(Ile i){
+		this.ile=i;
 		this.effectifs=new Stack<Unite>();
 	}
 
