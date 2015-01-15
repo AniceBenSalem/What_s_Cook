@@ -51,10 +51,7 @@ public class ConnectionSQL {
 		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y,idArmee) values (";
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
-		query+= "'false',";
-		query+= i.getX() + ",";
-		query+= i.getY() + ",";
-		query += addArmee(i.getArmee())+");";
+		query+= "'false';";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -142,9 +139,9 @@ public class ConnectionSQL {
 		Statement stmt = con.createStatement();
 		String query = "insert into entrepot(coquillage,capacite, nombre) values (";
 		//query+= e.getId() + ",";
-		query+= "0,";
-		query+= "200,";
-		query += "0);";
+		query+= e.getCoquillage() + ",";
+		query+= e.getCapacite() + ",";
+		query += e.getNombre() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();

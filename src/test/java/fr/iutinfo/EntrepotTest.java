@@ -33,7 +33,7 @@ public class EntrepotTest extends JerseyTest {
 	@Before
 	public void init() throws PlacementOccupeException, SQLException{
 		u = new Univers("test");
-		i = new Ile(u,"test",1,1);
+		i = new Ile(u,"test");
 		i.getEntrepot().setCoquillage(200);
 		i.getGenerateurCoquillage().stopGenererRessource();
 	}
@@ -70,7 +70,7 @@ public class EntrepotTest extends JerseyTest {
 	
 	@Test
 	public void ajouterRessourceTestMauvaiseRessource() throws PlacementOccupeException, SQLException{
-		i=new Ile(new Univers("test"),"test",1,1);
+		i=new Ile(new Univers("test"),"test");
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().setCoquillage(200);
 		assertEquals(200,i.getEntrepot().getCoquillage());
@@ -80,7 +80,7 @@ public class EntrepotTest extends JerseyTest {
 	
 	@Test
 	public void ajouterRessourceTestZero() throws PlacementOccupeException, SQLException{
-		i=new Ile(new Univers("test"),"test",1,1);
+		i=new Ile(new Univers("test"),"test");
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().setCoquillage(200);
 		assertEquals(200,i.getEntrepot().getCoquillage());
@@ -91,12 +91,12 @@ public class EntrepotTest extends JerseyTest {
 	@Test
 	public void testEnvoiRessourceAssezDeCoquillages() throws PlacementOccupeException, SQLException {
 		Univers a = new Univers ("lala");
-		Ile i = new Ile (a, "a",10,52);
+		Ile i = new Ile (a, "a");
 		Univers u = new Univers ("Univers");
-		Ile ile = new Ile (u, "proprietaire", 10,10);
+		Ile ile = new Ile (u, "proprietaire");
 		Entrepot e = new Entrepot (i);
 		e.setCoquillage(50);
-		Ile ile2 = new Ile (u, "proprietaire2", 11,11);
+		Ile ile2 = new Ile (u, "proprietaire2");
 		Entrepot e2 = new Entrepot (i);
 		try {
 			e.donnerRessource("Coquillage", 15, e2);
@@ -111,10 +111,10 @@ public class EntrepotTest extends JerseyTest {
 	@Test(expected=NoCoquillageException.class)
 	public void testEnvoiRessourcePasAssezCoquillages () throws NoCoquillageException, PlacementOccupeException, SQLException {
 		Univers u = new Univers ("Univers");
-		Ile ile = new Ile (u, "proprietaire",10,10);
+		Ile ile = new Ile (u, "proprietaire");
 		Entrepot e = new Entrepot (ile);
 		e.setCoquillage(50);
-		Ile ile2 = new Ile (u, "proprietaire2",11,11);
+		Ile ile2 = new Ile (u, "proprietaire2");
 		Entrepot e2 = new Entrepot (ile2);
 		e.donnerRessource("Coquillage", 60, e2);	
 		

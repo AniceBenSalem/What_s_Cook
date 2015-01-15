@@ -17,9 +17,9 @@ public class ClanTest {
 	@Before
 	public void init() throws PlacementOccupeException, SQLException {
 		Univers u = new Univers("Univers");
-		i1 = new Ile(u, "Proprietaire", 10, 20);
-		i2 = new Ile(u, "Proprietaire 2", 15, 25);
-		i3 = new Ile(u, "Proprietaire 2", 11, 25);
+		i1 = new Ile(u, "Proprietaire");
+		i2 = new Ile(u, "Proprietaire 2");
+		i3 = new Ile(u, "Proprietaire 2");
 
 	}
 
