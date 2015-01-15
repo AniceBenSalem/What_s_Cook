@@ -63,6 +63,7 @@ public class EntrepotTest extends JerseyTest {
 	@Test
 	public void ajouterRessourceTestOK(){
 		i.getEntrepot().setCoquillage(200);
+		i.getEntrepot().setCapacite(300);
 		i.getEntrepot().ajouter("Coquillage", 50);
 		assertEquals(250,i.getEntrepot().getCoquillage());
 	}
