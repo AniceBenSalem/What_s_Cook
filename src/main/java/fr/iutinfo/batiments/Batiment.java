@@ -11,6 +11,7 @@ protected int id,nombre, coutdeConstruction, tempsConstruction;
 	protected Calendar lancement,fin;
 
 	public boolean enConstruction(){
+		System.out.println("bite");
 		return !Calendar.getInstance().after(fin);	
 	}
 	

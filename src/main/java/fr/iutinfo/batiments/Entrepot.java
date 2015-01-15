@@ -1,11 +1,14 @@
 package fr.iutinfo.batiments;
 
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import site.ConnectionSQL;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
+=======
+>>>>>>> d93d139125d3d02e1ef0a196dd6c2d57f5da3339
 import fr.iutinfo.exceptions.NoCoquillageException;
 
 

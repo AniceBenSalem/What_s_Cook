@@ -1,14 +1,13 @@
 package fr.iutinfo.batiments;
 
-import java.util.Calendar;
-import java.util.Date;
 
 public class CocoCanon extends BatimentDefensif {
 
 	
 	public CocoCanon() {
 		this.pv=70;
-		//this.tempsConstruction=5;
+		this.tempsConstruction=5;
+		this.coutdeConstruction=40;
 	}
 
 	@Override
