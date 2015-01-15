@@ -64,7 +64,7 @@ public class Ile {
 		this.points = 0;
 		
 		/*Connection sql*/
-		con.getCon();
+		//con.getCon();
 		
 	}
 

@@ -8,9 +8,8 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.unites.SurfeurCroMagnon;
-
 public class IleTest extends JerseyTest{
 	@Override
 	protected Application configure(){
@@ -38,7 +37,7 @@ public class IleTest extends JerseyTest{
 		i.upCococanon();
 		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
-		assertEquals(i.getValeurDefense(),100);
+		assertEquals(i.getValeurDefense(),((CocoCanon)i.getCococanon()).getPv());
 	}
 	
 	@Test
