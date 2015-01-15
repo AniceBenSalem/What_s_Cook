@@ -61,7 +61,12 @@ public class ConnectionSQL {
 		System.out.println("OK maggle");
 	}
 	
-	public static void addEntrepot (Entrepot e) throws SQLException {
+	private String addArmee(Armee armee) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static void addEntrepot2 (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
@@ -106,7 +111,7 @@ public class ConnectionSQL {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		String query = "insert into generateurCoquillage (productionParMinute, nombre) values (";
-		query+= genCoq.getProductionParMinute() + ",";
+		query+= genCoq.getProductionCoquillage() + ",";
 		query+= genCoq.getNombre() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
@@ -135,7 +140,6 @@ public class ConnectionSQL {
 		return a;
 		
 	}
-<<<<<<< HEAD
 
 	public void addEntrepot (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();

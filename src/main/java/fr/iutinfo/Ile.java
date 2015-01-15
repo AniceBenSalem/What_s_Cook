@@ -109,9 +109,7 @@ public class Ile {
 		this.univers=univers;	
 		this.proprietaire=proprietaire;
 		
-		
-		
-		
+
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
 		this.id = ConnectionSQL.recupIDIle(this);
