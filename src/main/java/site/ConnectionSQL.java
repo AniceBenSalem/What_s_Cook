@@ -13,6 +13,7 @@ import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
+import fr.iutinfo.batiments.GenerateurCoquillage;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.GuerrierRequin;
 import fr.iutinfo.unites.SurfeurCroMagnon;
@@ -100,6 +101,17 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
+	public static void addGenerateurCoquillage (GenerateurCoquillage genCoq) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "insert into generateurCoquillage (productionParMinute, nombre) values (";
+		query+= genCoq.getProductionParMinute() + ",";
+		query+= genCoq.getNombre() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
 	public static void setDansUnClan (Ile i, boolean b) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -122,6 +134,7 @@ public class ConnectionSQL {
 		return a;
 		
 	}
+	
 	public void addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
@@ -146,7 +159,6 @@ public class ConnectionSQL {
 		con.close();
 		
 	}  
-	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
