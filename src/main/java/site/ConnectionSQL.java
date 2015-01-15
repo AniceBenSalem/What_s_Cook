@@ -55,7 +55,7 @@ public class ConnectionSQL {
 		System.out.println("OK maggle");
 	}
 	
-	public static void setEntrepot (Entrepot e) throws SQLException {
+	public static void addEntrepot (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
@@ -70,7 +70,7 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
-	public static void setCaserne(Caserne c) throws SQLException {
+	public static void addCaserne(Caserne c) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
@@ -83,7 +83,7 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
-	public static void setCocoCanon (CocoCanon coco) throws SQLException {
+	public static void addCocoCanon (CocoCanon coco) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		String query = "insert into cococanon (pvCanon, coutDeConstructionCocoCanon, tempsDeConstructionCocoCanon, nombre) values (";
@@ -116,22 +116,6 @@ public class ConnectionSQL {
 		System.out.println("s = " + s);
 		con.close();
 		return a;
-		
-	}
-
-	public void addArmee(Armee armee) throws SQLException{
-		Connection con = this.getCon();
-		Statement stmt = con.createStatement();
-		
-		String query = "insert into armee (nomUnivers, proprietaire, dansUnClan, x,y) values (";
-		query+= "'" + i.getUnivers().getNomUnivers() + "',";
-		query += "'"+  i.getProprietaire() + "',";
-		query+= "'false',";
-		query+= i.getX() + ",";
-		query+= i.getY() + ");";
-		System.out.println("Query = " + query);
-		stmt.executeUpdate(query);
-		con.close();
 		
 	}
 	
