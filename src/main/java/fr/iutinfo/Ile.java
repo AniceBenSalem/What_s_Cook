@@ -124,9 +124,13 @@ public class Ile {
 		this.points = 0;
 		
 		/*Connection sql*/
+<<<<<<< HEAD
 		conn = connectionSQL.getCon();
 		connectionSQL.addIle(this);
 		
+=======
+		//con.getCon();
+>>>>>>> 927a485f5c3d716bea3584c2d5c5b26f847d1424
 		
 	}
 

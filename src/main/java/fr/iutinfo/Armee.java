@@ -77,19 +77,24 @@ public class Armee {
 			}
 			
 			valdef-=forceArm;
-			System.out.println(valdef);
 		}
 		
 		return valdef<0;
 	}
 	
 	public void volRessource(Ile i){
-		int taux = this.ile.getPoints()/i.getPoints()/100;
+		int taux = this.ile.getPoints()/i.getPoints()*100;
 		
 		if(taux>40)
 			taux=40;
 		if(taux<0)
 			taux=0;
+		
+		int vol = i.getEntrepot().getCoquillage()*taux/100;
+		System.out.println("vol "+vol);
+		
+		i.getEntrepot().retirer("Coquillage",vol);
+		this.ile.getEntrepot().ajouter("Coquillage",vol);
 		
 		
 	}

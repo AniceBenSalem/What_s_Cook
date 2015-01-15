@@ -76,7 +76,10 @@ public class Entrepot extends Batiment {
 		case "Coquillage":	
 			this.coquillage+=montant;
 			break;
+		default:
+			break;
 		}
+		
 	}
 
 	public void retirer(String ressource,int montant){

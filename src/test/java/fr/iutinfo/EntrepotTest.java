@@ -33,6 +33,7 @@ public class EntrepotTest extends JerseyTest {
 		u = new Univers("test");
 		i = new Ile(u,"test",1,1);
 		i.getEntrepot().setCoquillage(200);
+		i.getGenerateurCoquillage().stopGenererRessource();
 	}
 	
 	@Test
@@ -52,6 +53,7 @@ public class EntrepotTest extends JerseyTest {
 	@Test
 	public void retirerRessourceTestMauvaiseRessource(){
 		i.getEntrepot().setCoquillage(200);
+		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().retirer("Coquillage", 50);
 		assertEquals(150,i.getEntrepot().getCoquillage());
 	}
@@ -64,9 +66,22 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void ajouterRessourceTestMauvaiseRessource(){
+	public void ajouterRessourceTestMauvaiseRessource() throws PlacementOccupeException{
+		i=new Ile(new Univers("test"),"test",1,1);
+		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().setCoquillage(200);
+		assertEquals(200,i.getEntrepot().getCoquillage());
 		i.getEntrepot().ajouter("trolololo", 50);
+		assertEquals(200,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void ajouterRessourceTestZero() throws PlacementOccupeException{
+		i=new Ile(new Univers("test"),"test",1,1);
+		i.getGenerateurCoquillage().stopGenererRessource();
+		i.getEntrepot().setCoquillage(200);
+		assertEquals(200,i.getEntrepot().getCoquillage());
+		i.getEntrepot().ajouter("Coquillage", 0);
 		assertEquals(200,i.getEntrepot().getCoquillage());
 	}
 	
