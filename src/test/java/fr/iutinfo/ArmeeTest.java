@@ -1,7 +1,6 @@
 package fr.iutinfo;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.core.Application;
 
@@ -11,8 +10,6 @@ import org.junit.Test;
 
 import fr.iutinfo.App;
 import fr.iutinfo.Armee;
-import fr.iutinfo.batiments.BatimentDefensif;
-import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
 
@@ -24,16 +21,50 @@ public class ArmeeTest extends JerseyTest{
 	@Before
 	public void init() throws PlacementOccupeException{
 		a=new Armee(i);
-		
-		
-		//Initialise 2 ile avec 1000000 coquillages
+		u=new Univers("test");
+		i=new Ile(u,"test1",1,1);
+		i2=new Ile(u,"test2",2,2);
+
 	}
 
 	@Override
     protected Application configure() {
         return new App();
     }
-
+	
+	@Test
+	public void testVol(){
+		i.setPoints(100);
+		i.getEntrepot().setCoquillage(100);
+		i2.setPoints(100);
+		i2.getEntrepot().setCoquillage(0);
+		i2.getArmee().volRessource(i);
+		assertEquals(40,i2.getEntrepot().getCoquillage());
+		assertEquals(60,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void testVolPetitRatio(){
+		i.setPoints(100);
+		i.getEntrepot().setCoquillage(100);
+		i2.setPoints(15030);
+		i2.getEntrepot().setCoquillage(0);
+		i2.getArmee().volRessource(i);
+		assertEquals(0,i2.getEntrepot().getCoquillage());
+		assertEquals(100,i.getEntrepot().getCoquillage());
+	}
+	
+	@Test
+	public void testVolGrosRatio(){
+		i.setPoints(15000);
+		i.getEntrepot().setCoquillage(100);
+		i2.setPoints(100);
+		i2.getEntrepot().setCoquillage(0);
+		i2.getArmee().volRessource(i);
+		assertEquals(40,i2.getEntrepot().getCoquillage());
+		assertEquals(60,i.getEntrepot().getCoquillage());
+	}
+	
 	@Test
 	public void testAddUnite() {
 		a.addUnite(new SurfeurCroMagnon());
