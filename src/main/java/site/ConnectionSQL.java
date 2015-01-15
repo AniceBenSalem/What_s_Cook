@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
+import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 
 public class ConnectionSQL {	
@@ -45,6 +46,21 @@ public class ConnectionSQL {
 		query+= "'false',";
 		query+= i.getX() + ",";
 		query+= i.getY() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
+	public static void setEntrepot (Entrepot e) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		
+		String query = "insert into entrepot (coquillage, capacite, coutDeConstructionEntrepot, tempsDeConstructionEntrepot, nombre) values (";
+		query+= e.getCoquillage() + ",";
+		query += e.getCapacite() + ",";
+		query+= e.getCoutdeConstruction() + ",";
+		query+= e.getTempsConstruction() + ",";
+		query+= e.getNombre() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();

@@ -1,5 +1,6 @@
 package fr.iutinfo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Clan {
@@ -47,8 +48,9 @@ public class Clan {
 	 * 
 	 * @param e
 	 * @return true si l'ajout a fonctionne false sinon
+	 * @throws SQLException 
 	 */
-	public boolean addMembre(Ile e) {
+	public boolean addMembre(Ile e) throws SQLException {
 
 		if (this.nombreMembres == this.capacite) {
 			return false;
@@ -68,8 +70,9 @@ public class Clan {
 	 * 
 	 * @param e
 	 * @return true si la suppression a fonctionne false sinon
+	 * @throws SQLException 
 	 */
-	public boolean removeMembre(Ile e) {
+	public boolean removeMembre(Ile e) throws SQLException {
 		if (e.isDansUnClan() && this.nombreMembres > 0) {
 			e.setDansUnClan(false);
 			this.membresClan.remove(e);
