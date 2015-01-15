@@ -26,7 +26,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestGetValeurDefense() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon",10,10);
+		Ile i = new Ile(u,"test");
 		assertEquals(i.getValeurDefense(),0);
 		i.upCococanon();
 		i.getEntrepot().setCoquillage(300);
@@ -36,7 +36,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpGenerateur() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon",10,10);
+		Ile i = new Ile(u,"test");
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
 		i.upGenerateurCoquillage();
@@ -45,7 +45,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpCococanon() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon",10,10);
+		Ile i = new Ile(u,"leon");
 		assertEquals(i.getCococanon().getNombre(),0);
 		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
@@ -54,7 +54,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpSurfeur() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon",10,10);
+		Ile i = new Ile(u,"leon");
 		assertEquals(i.getSurfeur().getNombre(),0);
 		i.getEntrepot().setCoquillage(300);
 		i.upCromagnonSurfeur();
@@ -63,7 +63,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpEntrepot() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon",10,10);
+		Ile i = new Ile(u,"leon");
 		assertEquals(i.getEntrepot().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
@@ -73,7 +73,7 @@ public class IleTest extends JerseyTest{
 	@Test
 	public void testPutSurfeur() throws PlacementOccupeException, SQLException{
 		u=new Univers("test");
-		Ile i = new Ile(u,"leon",1,1);
+		Ile i = new Ile(u,"leon");
 		i.getEntrepot().setCoquillage(1000000);	
 		i.upCromagnonSurfeur();
 		i.putSurfeurCromagnonArmee();
@@ -82,7 +82,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void testPointsIle () throws PlacementOccupeException, SQLException {
-		Ile i = new Ile(u,"amaury",10,10);
+		Ile i = new Ile(u,"amaury");
 		assertEquals(0, i.getPoints());
 		i.getEntrepot().setCoquillage(300);
 		i.upEntrepot();
