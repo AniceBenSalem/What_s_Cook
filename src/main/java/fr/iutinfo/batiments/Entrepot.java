@@ -65,7 +65,7 @@ public class Entrepot extends Batiment {
 		coutDeConstructionEntrepot = 100;
 		tempsConstructionEntrepot = 11;
 		this.setNombre(1);	
-		connectionSQL.addEntrepot(this);
+		connectionSQL.addEntrepot();
 		this.ile = i;
 	}
 

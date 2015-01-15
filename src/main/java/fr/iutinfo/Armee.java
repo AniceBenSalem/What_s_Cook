@@ -42,9 +42,9 @@ public class Armee {
 		effectifs.push(u);
 		force+=u.getForce();
 		pv+=u.getPV();
-		if(u.getCoutDeplacement() > coutDeplacementGeneral)
-			coutDeplacementGeneral = u.getCoutDeplacement();
-		new ConnectionSQL().addUnitee(this,u);
+//		if(u.getCoutDeplacement() > coutDeplacementGeneral)
+//			coutDeplacementGeneral = u.getCoutDeplacement();
+//		new ConnectionSQL().addUnitee(this,u);
 	}
 
 	public int getForce(){

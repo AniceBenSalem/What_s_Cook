@@ -208,30 +208,38 @@ public class ConnectionSQL {
 		return id;
 	}  
 	*/
-	public void addUnitee(Armee armee, Unite u) throws SQLException{
-		int idIle = recupIDIle(armee.getIle());
-		Connection con = this.getCon();
-		Statement stmt = con.createStatement();
-		String query;
-		query = "update armee set ";
-		if (u instanceof SurfeurCroMagnon){
-			query += "nbSurfeurCroMagnon = nbSurfeurCroMagnon + 1";
-		}
-		if (u instanceof GuerrierRequin){
-			query += "requinGuerrier = requinGuerrier + 1";
-		}
-		query += " where idArmee = (select idArmee from ile where id = "+idIle;
-		query +=" );";
-		System.out.println("Query = " + query);
-		stmt.executeQuery(query);
-		ResultSet rs = stmt.executeQuery("select max(id) from armee;");
-		int id=0;
-		if(rs.next()){
-			id = Integer.parseInt(rs.getString("id"));
-		}
-		
-		con.close();
-	} 
+	
+//	
+//	public void addUnitee(Armee armee, Unite u) throws SQLException{
+////		//int idIle = recupIDIle(armee.getIle());
+////		Connection con = this.getCon();
+//////		Statement stmt = con.createStatement();
+//////		String query;
+//////		query = "update armee set ";
+//		if (u instanceof SurfeurCroMagnon){
+//			//query += "nbSurfeurCroMagnon = nbSurfeurCroMagnon + 1";
+//		}
+//		if (u instanceof GuerrierRequin){
+//			//query += "requinGuerrier = requinGuerrier + 1";
+//		}
+//		//query += " where idArmee = (select idArmee from ile where id = "+idIle;
+//		//query +=" );";
+////		System.out.println("Query hhhh= " + query);
+//		//stmt.executeUpdate(query);
+//		//ResultSet rs = stmt.executeQuery("select max(idArmee) from armee;");
+//		//ResultSet aaa = stmt.executeQuery("PRAGMA table_info(armee);");
+//		///System.out.println(aaa.toString());
+//		
+//		
+//		//ResultSet rs = stmt.executeQuery("select * from armee;");
+//		int id=0;
+//		/*if(rs.next()){
+//			id = Integer.parseInt(rs.getString("idArmee"));
+//		}
+//		*/
+//		con.close();
+//	} 
+	
 	
 	public Integer recupIDEntrepot(Entrepot e, Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
