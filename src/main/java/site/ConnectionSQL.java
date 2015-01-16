@@ -119,7 +119,7 @@ public class ConnectionSQL {
 		stmt.executeUpdate(query);
 		con.close();
 		
-	}
+	}  
 	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
