@@ -41,20 +41,33 @@ public class NewUser extends HttpServlet {
 				
 				System.out.println("On est ici");
 				//Instanciation de l'ile
+				
+				
 				Ile ile = new Ile(null, req.getParameter("newLogin"));
 				
+				/*
+				try {
+					ile.ajouterABDD();
+				}
+				
+				catch (Exception e) {
+					System.out.println("PB ajout ile " + e.getMessage());
+				}
+				
+				*/
 				//execution de la requete
 				Statement stmt = con.createStatement();
+				System.out.println("New user : login =  " + req.getParameter("newLogin"));
+				out.println("Compte cree :-)" + "bienvenue " +req.getParameter("newLogin"));
 				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
 				int update = stmt.executeUpdate(query);
 							
 				
 				System.out.println("On est a cet endroit");
-				String Champ = req.getParameter("newLogin");
 				HttpSession session = req.getSession();
-				session.setAttribute("login", Champ);
-				out.println("Compte cree :-)" + "bienvenue " + Champ);
-				res.sendRedirect("MonIleJsp.jsp");
+				session.setAttribute("proprietaire",  req.getParameter("newLogin"));
+				
+				res.sendRedirect("../MonIleJsp.jsp");
 				con.close();
 			
 			}
