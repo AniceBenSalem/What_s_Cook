@@ -9,7 +9,7 @@
 		<head><title>Nouvel utilisateur</title></head>
 	</head>
 	<body>
-		<form method="post" action="../servlet/NewUser">
+		<form method="post" action="servlet/NewUser">
 			<div class=formulaire>
 				<fieldset class=fieldset style="width:40%">
 					<h3> <legend  class=legend>Creer votre nouveau compte</legend> </h3>
