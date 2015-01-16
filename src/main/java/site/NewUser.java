@@ -122,13 +122,13 @@ public class NewUser extends HttpServlet {
 				session.setAttribute("nbCoco", nbCoco);
 				
 				/*Nombre cromagnon*/
-				String idCroMagnon = "select idCocoCanon from ile where id =" + idIleInt + ";";
-				ResultSet rs7 = stmt.executeQuery(idCocoCanon);
-				int idCoco = Integer.parseInt(rs7.getString("idCocoCanon"));			
-				String nombreCocoCanon = "select nombre from CocoCanon where id =" + idCoco + ";";
-				ResultSet rs8 = stmt.executeQuery(nombreCocoCanon);
-				int nbCoco = Integer.parseInt(rs8.getString("nombre"));
-				
+				String idCroMagnon = "select idSurfeurCroMagnon from ile where id =" + idIleInt + ";";
+				ResultSet rs10 = stmt.executeQuery(idCroMagnon);
+				int idCro = Integer.parseInt(rs10.getString("idSurfeurCroMagnon"));			
+				String nombreCroMagnon = "select nombre from SurfeurCromagnon where id =" + idCro + ";";
+				ResultSet rs11 = stmt.executeQuery(nombreCroMagnon);
+				int nbCro = Integer.parseInt(rs11.getString("nombre"));
+				session.setAttribute("nbCro", nbCro);
 				
 				
 				

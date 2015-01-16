@@ -43,22 +43,27 @@
 			%>
 			<%request.getAttribute("entrepotcoquillagemax"); %><br>
 			</td>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>
 				<%Integer prod = (Integer) session.getAttribute("production"); out.println(prod);%>
+				 : Production Coquillage 
 			</td>
 			
 		
 			
 			
-			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons
+			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> 
 			<%Integer nbCoco = (Integer)  session.getAttribute("nbCoco"); out.println(nbCoco); %>
+			CocoCanon
+			<br><br>
+			
+			
+			</td>
+			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img>
+			<%Integer nbCro = (Integer) session.getAttribute("nbCro"); out.println(nbCro );%>
+			Cromagnon Surfeurs
 			
 			
 			<br><br>
-				<img src="image/tiki.jpeg" style="width:25px;height:25px"></img> nb tiki
-			</td>
-			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img> nb cromagnons surfeurs<br><br>
-				<img src="image/icon-requin.png" style="width:25px;height:25px"></img> nb requins
 			</td>
 		</tr>
 		<tr>
