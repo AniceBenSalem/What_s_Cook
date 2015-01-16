@@ -56,9 +56,9 @@ public class Authent extends HttpServlet{
 						res.sendRedirect((String) session.getAttribute("url"));
 					else
 						//res.sendRedirect("Menu");    //A modifier
-						res.sendRedirect("MonIleJsp.jsp"); // test Amaury : authentifie donc MonIleJsp.jsp
+						res.sendRedirect("../MonIleJsp.jsp"); // test Amaury : authentifie donc MonIleJsp.jsp
 				}else{
-					res.sendRedirect("index.html");
+					res.sendRedirect("../index.html");
 					//session.setAttribute("idTrue",rs.getString("false"));
 				}
 				//fermeture des espaces
