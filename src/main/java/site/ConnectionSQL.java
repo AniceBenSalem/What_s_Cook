@@ -10,6 +10,7 @@ import fr.iutinfo.Armee;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
+import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 
@@ -74,9 +75,22 @@ public class ConnectionSQL {
 		Statement stmt = con.createStatement();
 		
 		String query = "insert into caserne (coutDeConstructionCaserne, tempsDeConstructionCaserne, nombre) values (";
-		query+= c.getCoutdeConstruction()+ ",";
+		query+= c.getCoutdeConstruction() + ",";
 		query += c.getTempsConstruction() + ",";
 		query+= c.getNombre() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
+	public static void setCocoCanon (CocoCanon coco) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "insert into cococanon (pvCanon, coutDeConstructionCocoCanon, tempsDeConstructionCocoCanon, nombre) values (";
+		query+= coco.getPv() + ",";
+		query+= coco.getCoutdeConstruction() + ",";
+		query += coco.getTempsConstruction() + ",";
+		query+= coco.getNombre() + ");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
