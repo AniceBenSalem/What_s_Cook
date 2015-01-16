@@ -21,15 +21,10 @@ public class ServletIleJoueur extends HttpServlet{
 		try{
 			//Creation de la session
 			HttpSession session = req.getSession();
-
-			//Enregistrement du driver
-			Class.forName("org.sqlite.JDBC");			
-
-			//Connexion a la base
-			String url = "jdbc:sqlite:vinland.db";
-			String name = null;
-			String passwd = null;
-			try (Connection con = DriverManager.getConnection(url, name, passwd)) {
+			if(session.getAttribute("proprietaire")==null){
+				res.sendRedirect("../index.html");
+			}
+			try (Connection con = ConnectionSQL.getCon()) {
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "select * from ile Where id = " + session.getAttribute("idIle");
