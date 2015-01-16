@@ -1,10 +1,16 @@
 package fr.iutinfo.batiments;
 
+import java.sql.SQLException;
+
+import site.ConnectionSQL;
+import fr.iutinfo.Ile;
+
 
 public class CocoCanon extends BatimentDefensif {
 
 	
-	public CocoCanon() {
+	public CocoCanon(Ile i) throws SQLException { // OK
+		this.i=i;
 		this.pv=70;
 		this.tempsConstruction=5;
 		this.coutdeConstruction=40;

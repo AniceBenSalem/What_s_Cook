@@ -50,20 +50,20 @@ public class Clan {
 	 * @return true si l'ajout a fonctionne false sinon
 	 * @throws SQLException 
 	 */
-	public boolean addMembre(Ile e) throws SQLException {
-
-		if (this.nombreMembres == this.capacite) {
-			return false;
-		}
-
-		else {
-			this.membresClan.add(e);
-			e.setDansUnClan(true);
-			this.nombreMembres ++;
-			return true;
-		}
-
-	}
+//	public boolean addMembre(Ile e) throws SQLException {
+//
+//		if (this.nombreMembres == this.capacite) {
+//			return false;
+//		}
+//
+//		else {
+//			this.membresClan.add(e);
+//			e.setDansUnClan(true);
+//			this.nombreMembres ++;
+//			return true;
+//		}
+//
+//	}
 
 	/**
 	 * Supprime un membre du clan
@@ -72,16 +72,16 @@ public class Clan {
 	 * @return true si la suppression a fonctionne false sinon
 	 * @throws SQLException 
 	 */
-	public boolean removeMembre(Ile e) throws SQLException {
-		if (e.isDansUnClan() && this.nombreMembres > 0) {
-			e.setDansUnClan(false);
-			this.membresClan.remove(e);
-			this.nombreMembres --;
-			return true;
-		}
-		return false;
-
-	}
+//	public boolean removeMembre(Ile e) throws SQLException {
+//		if (e.isDansUnClan() && this.nombreMembres > 0) {
+//			e.setDansUnClan(false);
+//			this.membresClan.remove(e);
+//			this.nombreMembres --;
+//			return true;
+//		}
+//		return false;
+//
+//	}
 
 	public int getNombreMembres() {
 		return nombreMembres;

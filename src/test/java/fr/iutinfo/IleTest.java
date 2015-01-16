@@ -8,6 +8,7 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.iutinfo.batiments.CocoCanon;
@@ -18,17 +19,24 @@ public class IleTest extends JerseyTest{
 		return new App();
 	}
 	Univers u;
+	public static Ile i,i2;
 	
-	@Before
-	public void testInit(){
-		u = new Univers("UnivTest");
+	@BeforeClass
+	public static void before() throws PlacementOccupeException, SQLException{
+		if(IleTest.i==null){
+			IleTest.i=new Ile(new Univers("test"),"test");
+			IleTest.i.getGenerateurCoquillage().stopGenererRessource();
+		}
+		if(IleTest.i2==null){
+			IleTest.i2=new Ile(new Univers("test"),"test2");
+			IleTest.i2.getGenerateurCoquillage().stopGenererRessource();
+		}
 	}
 	
 	@Test
 	public void TestGetValeurDefense() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"test");
+		i.getCococanon().setNombre(0);
 		assertEquals(i.getValeurDefense(),0);
-		i.upCococanon();
 		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
 		assertEquals(i.getValeurDefense(),((CocoCanon)i.getCococanon()).getPv());
@@ -36,7 +44,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpGenerateur() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"test");
+		i.getGenerateurCoquillage().setNombre(1);
 		assertEquals(i.getGenerateurCoquillage().getNombre(),1);
 		i.getEntrepot().setCoquillage(300);
 		i.upGenerateurCoquillage();
@@ -45,7 +53,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpCococanon() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon");
+		i.getCococanon().setNombre(0);
 		assertEquals(i.getCococanon().getNombre(),0);
 		i.getEntrepot().setCoquillage(300);
 		i.upCococanon();
@@ -54,7 +62,7 @@ public class IleTest extends JerseyTest{
 	
 	@Test
 	public void TestUpSurfeur() throws PlacementOccupeException, SQLException{
-		Ile i = new Ile(u,"leon");
+		//i.getSurfeur().setNombre(0);
 		assertEquals(i.getSurfeur().getNombre(),0);
 		i.getEntrepot().setCoquillage(300);
 		i.upCromagnonSurfeur();

@@ -8,6 +8,7 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import fr.iutinfo.App;
@@ -19,6 +20,18 @@ public class ArmeeTest extends JerseyTest{
 	Univers u;
 	Armee a;
 	Ile i,i2;
+	
+	@BeforeClass
+	public static void before() throws PlacementOccupeException, SQLException{
+		if(IleTest.i==null){
+			IleTest.i=new Ile(new Univers("test"),"test");
+			IleTest.i.getGenerateurCoquillage().stopGenererRessource();
+		}
+		if(IleTest.i2==null){
+			IleTest.i2=new Ile(new Univers("test"),"test2");
+			IleTest.i2.getGenerateurCoquillage().stopGenererRessource();
+		}
+	}
 	
 	@Before
 	public void init() throws PlacementOccupeException, SQLException{

@@ -33,12 +33,38 @@ public class Ile {
 	/*Batiments*/
 	private Entrepot entrepot;
 	private Caserne caserne;
-	private Generateur generateurCoquillage;
+	private GenerateurCoquillage generateurCoquillage;
 	private CocoCanon cococanon;
 	
-	/*Connection*/
-	ConnectionSQL connectionSQL = new ConnectionSQL();
-	Connection conn = null;
+	public Ile(Univers univers,String proprietaire) throws PlacementOccupeException, SQLException{
+		this.id=ConnectionSQL.getMaxID();
+		this.univers=univers;	
+		this.proprietaire=proprietaire;
+		this.points = 0;
+		
+		/*
+		 * AJOUTER L'ID ICI
+		 */
+
+		/*entrepot*/
+		this.entrepot=new Entrepot(this); // OK 
+
+		// caserne
+		
+		this.caserne = new Caserne(this);// OK 
+		
+		// cococanon
+		this.cococanon=new CocoCanon(this);// OK 
+		this.generateurCoquillage=new GenerateurCoquillage(this);// OK 
+		
+		/*Unites*/
+		this.armee=new Armee(this);
+		this.surfeur=new SurfeurCroMagnon(this);
+	}
+	
+	public void ajouterABDD() throws SQLException{
+		ConnectionSQL.addIle(this);
+	}
 	
 	public Caserne getCaserne() {
 		return caserne;
@@ -46,14 +72,6 @@ public class Ile {
 
 	public void setCaserne(Caserne caserne) {
 		this.caserne = caserne;
-	}
-
-	public ConnectionSQL getCon() {
-		return connectionSQL;
-	}
-
-	public void setCon(ConnectionSQL con) {
-		this.connectionSQL = con;
 	}
 
 	public void setId(int id) {
@@ -76,7 +94,7 @@ public class Ile {
 		this.entrepot = entrepot;
 	}
 
-	public void setGenerateurCoquillage(Generateur generateurCoquillage) {
+	public void setGenerateurCoquillage(GenerateurCoquillage generateurCoquillage) {
 		this.generateurCoquillage = generateurCoquillage;
 	}
 
@@ -92,62 +110,6 @@ public class Ile {
 		this.univers = univers;
 	}
 
-
-
-	
-	public Ile(Univers univers,String proprietaire) throws PlacementOccupeException, SQLException{
-		//this.id=univers.getMaxId()+1;
-		conn = connectionSQL.getCon();
-		this.univers=univers;	
-		this.proprietaire=proprietaire;
-		
-
-
-		System.out.println("Je suis une ile mon id = " + this.id);
-		
-		
-		/*entrepot*/
-		this.entrepot=new Entrepot(this);
-		String query = "update ile set idEntrepot=" + this.entrepot.getId() + " where id=" + this.getId()+ ";";
-		System.out.println("Query = " + query);
-		conn.createStatement().executeUpdate(query);
-		
-		/*niveau entrepot*/
-		
-		
-		
-		
-		// caserne
-		
-		this.caserne = new Caserne();
-		String query2 = "update ile set idCaserne=" + this.caserne.getId() + " where id=" + this.getId()+ ";";
-		System.out.println("Query2 = " + query);
-		conn.createStatement().executeUpdate(query2);
-
-		
-		
-		// cococanon
-		this.cococanon=new CocoCanon();
-		this.generateurCoquillage=new GenerateurCoquillage(this);
-		
-		/*Unites*/
-		this.armee=new Armee(this);
-		this.surfeur=new SurfeurCroMagnon();
-
-		this.points = 0;
-		
-		/*Connection sql*/
-
-		
-		connectionSQL.addIle(this);
-		this.id = ConnectionSQL.recupIDIle(this);
-		
-		conn.close();
-		//con.getCon();
-		
-
-	}
-
 	public boolean isDansUnClan() {
 		return dansUnClan;
 	}
@@ -158,11 +120,6 @@ public class Ile {
 
 	public void setPoints(int points) {
 		this.points = points;
-	}
-
-	public void setDansUnClan(boolean dansUnClan) throws SQLException {
-		connectionSQL.setDansUnClan(this, dansUnClan);
-		this.dansUnClan = dansUnClan;
 	}
 
 	public int getValeurDefense(){
@@ -220,11 +177,11 @@ public class Ile {
 		return entrepot;
 	}
 
-	public Generateur getGenerateurCoquillage() {
+	public GenerateurCoquillage getGenerateurCoquillage() {
 		return this.generateurCoquillage;
 	}
 
-	public Batiment getCococanon() {
+	public CocoCanon getCococanon() {
 		return this.cococanon;
 	}
 

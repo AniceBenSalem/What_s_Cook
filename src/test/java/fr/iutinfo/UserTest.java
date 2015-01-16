@@ -3,6 +3,7 @@ package fr.iutinfo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.client.ClientBuilder;
@@ -16,10 +17,26 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import fr.iutinfo.exceptions.PlacementOccupeException;
 
 
 public class UserTest extends JerseyTest {
+	
+	@BeforeClass
+	public static void before() throws PlacementOccupeException, SQLException{
+		if(IleTest.i==null){
+			IleTest.i=new Ile(new Univers("test"),"test");
+			IleTest.i.getGenerateurCoquillage().stopGenererRessource();
+		}
+		if(IleTest.i2==null){
+			IleTest.i2=new Ile(new Univers("test"),"test2");
+			IleTest.i2.getGenerateurCoquillage().stopGenererRessource();
+		}
+	}
+	
 	@Override
     protected Application configure() {
         return new App();

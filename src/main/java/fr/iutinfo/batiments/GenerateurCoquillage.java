@@ -1,12 +1,15 @@
 package fr.iutinfo.batiments;
 
+import java.sql.SQLException;
+
+import site.ConnectionSQL;
 import fr.iutinfo.Ile;
 
 public class GenerateurCoquillage extends Generateur{
 	
 	private int coutConstruction = 100; 
 	
-	public GenerateurCoquillage(Ile ile) {
+	public GenerateurCoquillage(Ile ile) throws SQLException { // OK
 		super(ile);
 		this.productionCoquillageParMinute=1;
 	}

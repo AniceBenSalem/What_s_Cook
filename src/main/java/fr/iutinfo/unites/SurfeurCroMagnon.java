@@ -1,11 +1,14 @@
 package fr.iutinfo.unites;
 
+import java.sql.SQLException;
+
+import site.ConnectionSQL;
+import fr.iutinfo.Ile;
+
 
 public class SurfeurCroMagnon extends Unite {
-
-	int id=0;
 	
-	public SurfeurCroMagnon () {
+	public SurfeurCroMagnon(){
 		super();
 		this.nombre=0;
 		this.force = 10;
@@ -14,7 +17,11 @@ public class SurfeurCroMagnon extends Unite {
 		this.tempsFabrication = 20;
 		this.niveauCaserneNecessaire = 1;
 		this.initialiseCoutFabrication();
-		id ++;
+	}
+	public SurfeurCroMagnon (Ile i) throws SQLException {
+		this();
+		this.ile=i;
+		
 	}
 	
 	@Override

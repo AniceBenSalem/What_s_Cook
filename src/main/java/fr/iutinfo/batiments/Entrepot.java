@@ -20,10 +20,27 @@ public class Entrepot extends Batiment {
 
 	private int coquillage;
 	private int capacite;
-	private int coutDeConstructionEntrepot;
-	private int tempsConstructionEntrepot; //en minute
 
+	/*Connection*/
+	ConnectionSQL connectionSQL = new ConnectionSQL();
+	Connection conn = null;
+	
 	private Ile ile;
+	
+	
+	/**
+	 * On initialise un entrepot sur une ile
+	 * @throws SQLException 
+	 */
+	public Entrepot (Ile i) throws SQLException {
+		coquillage=0;
+		this.ile = i;
+		capacite = 200;
+		coutdeConstruction = 100;
+		tempsConstruction= 11;
+		this.setNombre(1);	
+
+	}
 	
 	public Ile getIle() {
 		return ile;
@@ -33,9 +50,7 @@ public class Entrepot extends Batiment {
 		this.ile = ile;
 	}
 
-	/*Connection*/
-	ConnectionSQL connectionSQL = new ConnectionSQL();
-	Connection conn = null;
+	
 	public int getCapacite() {
 		return capacite;
 	}
@@ -52,21 +67,6 @@ public class Entrepot extends Batiment {
 		this.coquillage = coquillage;
 		if(this.coquillage<0)
 			this.coquillage=0;
-	}
-
-
-	/**
-	 * On initialise un entrepot sur une ile
-	 * @throws SQLException 
-	 */
-	public Entrepot (Ile i) throws SQLException {
-		coquillage=0;
-		capacite = 200;
-		coutDeConstructionEntrepot = 100;
-		tempsConstructionEntrepot = 11;
-		this.setNombre(1);	
-//		connectionSQL.addEntrepot();
-		this.ile = i;
 	}
 
 	/**

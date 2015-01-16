@@ -2,11 +2,15 @@ package fr.iutinfo;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.test.JerseyTest;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.iutinfo.exceptions.PlacementOccupeException;
 import fr.iutinfo.unites.SurfeurCroMagnon;
 
 public class CromagnonSurfeurTest extends JerseyTest {
@@ -16,6 +20,18 @@ public class CromagnonSurfeurTest extends JerseyTest {
 		return new App();
 	}
 	Univers u;
+	
+	@BeforeClass
+	public static void before() throws PlacementOccupeException, SQLException{
+		if(IleTest.i==null){
+			IleTest.i=new Ile(new Univers("test"),"test");
+			IleTest.i.getGenerateurCoquillage().stopGenererRessource();
+		}
+		if(IleTest.i2==null){
+			IleTest.i2=new Ile(new Univers("test"),"test2");
+			IleTest.i2.getGenerateurCoquillage().stopGenererRessource();
+		}
+	}
 	
 	@Test
 	public void testConstructeur(){

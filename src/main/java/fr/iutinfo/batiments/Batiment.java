@@ -2,6 +2,8 @@ package fr.iutinfo.batiments;
 
 import java.util.Calendar;
 
+import fr.iutinfo.Ile;
+
 
 
 /**This class allow to create a building*/
@@ -9,6 +11,7 @@ public abstract class Batiment {
 
 protected int id,nombre, coutdeConstruction, tempsConstruction; 	
 	protected Calendar lancement,fin;
+	Ile i;
 
 	public boolean enConstruction(){
 		System.out.println("En construction");
@@ -58,6 +61,9 @@ protected int id,nombre, coutdeConstruction, tempsConstruction;
 		return this.nombre;
 	}
 	
+	public Ile getIle(){
+		return this.i;
+	}
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}	

@@ -3,20 +3,46 @@ package fr.iutinfo.unites;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.iutinfo.Ile;
+
 public abstract class Unite {
+	protected Ile ile;
 	protected int nombre;
 	protected int pv;
 	protected int force;
 	protected int vitesseDeplacement; // sur une échelle de 1 à 10 (1 étant le plus rapide, 10 le plus lent)
+	
 	protected int tempsFabrication; // en secondes
 	protected int niveauCaserneNecessaire; // niveau de la caserne a partir duquel on peut construire l'unite
-	String nom;
 	protected Map <String, Integer> coutFabrication; 
 	
-
 	public Unite () {
 		this.coutFabrication = new HashMap <String, Integer> ();
 		this.nombre=0;
+	}
+	public Unite (Ile i) {
+		this();
+		this.ile=i;
+	}
+	
+	public int getVitesseDeplacement() {
+		return vitesseDeplacement;
+	}
+
+	public void setVitesseDeplacement(int vitesseDeplacement) {
+		this.vitesseDeplacement = vitesseDeplacement;
+	}
+
+	public int getTempsFabrication() {
+		return tempsFabrication;
+	}
+
+	public void setTempsFabrication(int tempsFabrication) {
+		this.tempsFabrication = tempsFabrication;
+	}
+	
+	public Ile getIle(){
+		return ile;
 	}
 	
 	public int getNombre(){

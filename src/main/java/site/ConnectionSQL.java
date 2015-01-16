@@ -44,71 +44,83 @@ public class ConnectionSQL {
         return null;
 	}
 	
-	public void addIle (Ile i) throws SQLException {
+	public static  int getMaxID () throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
-		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan) values (";
-		query+= "'" + i.getUnivers().getNomUnivers() + "',";
-		query += "'"+  i.getProprietaire() + "',";
-		query+= "'false');";
-		//query += addArmee(i.getArmee().getId()+");";
-
-		System.out.println("Query = " + query);
+		String query = "select max(id) as top from ile";
+		ResultSet rs = stmt.executeQuery(query);
+		int top =0;
+		if(rs.next())
+			top = rs.getInt("top")+1;
+		con.close();
+		return top;
+	}
+	
+	public static void addIle(Ile i) throws SQLException{
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		int id = getMaxID();
+		String query = "insert into ile (id,nomUnivers, proprietaire, dansUnClan,points,idSurfeurCroMagnon,idEntrepot,idCaserne,idGenerateurCoquillage,idCocoCanon) values (";
+		query+= id+","
+				+"'" + i.getUnivers().getNomUnivers() + "',"
+				+ "'"+  i.getProprietaire() + "',"
+				+ "'false'),"
+				+id+","
+				+id+","
+				+id+","
+				+id+","
+				+id+")";
 		stmt.executeUpdate(query);
 		con.close();
+		ConnectionSQL.addEntrepot(i.getEntrepot(),i);
+		ConnectionSQL.addCocoCanon(i.getCococanon());
+		ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
+		ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
+		ConnectionSQL.addCaserne(i.getCaserne());
+
+
+
 		System.out.println("OK maggle");
 	}
 	
-
-	public static void addEntrepot2 (Entrepot e) throws SQLException {
+	public static void addCaserne(Caserne c) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
-		String query = "insert into entrepot (coquillage, capacite, coutDeConstructionEntrepot, tempsDeConstructionEntrepot, nombre) values (";
-		query+= e.getCoquillage() + ",";
-		query += e.getCapacite() + ",";
-		query+= e.getCoutdeConstruction() + ",";
-		query+= e.getTempsConstruction() + ",";
-		query+= e.getNombre() + ");";
-		System.out.println("Query = " + query);
-		stmt.executeUpdate(query);
-		con.close();
-	}
-	
-	public static void addCaserne(Caserne c) throws SQLException {
-		Connection con = ConnectionSQL.getCon();
-		Statement stmt = con.createStatement();
-		
-		String query = "insert into caserne (coutDeConstructionCaserne, tempsDeConstructionCaserne, nombre) values (";
-		query+= c.getCoutdeConstruction() + ",";
+		String query = "insert into caserne (id,coutDeConstructionCaserne, tempsDeConstructionCaserne, nombre,idIle) values (";
+		query+= c.getIle().getId()+","
+				+c.getCoutdeConstruction() + ",";
 		query += c.getTempsConstruction() + ",";
-		query+= c.getNombre() + ");";
-		System.out.println("Query = " + query);
+		query+= c.getNombre() +","+c.getIle().getId()+");";
 		stmt.executeUpdate(query);
 		con.close();
 	}
 	
-	public static void addCocoCanon (CocoCanon coco) throws SQLException {
+	public static void addCocoCanon (CocoCanon coco) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		String query = "insert into cococanon (pvCanon, coutDeConstructionCocoCanon, tempsDeConstructionCocoCanon, nombre) values (";
-		query+= coco.getPv() + ",";
+		String query = "insert into cococanon (id,pvCocoCanon, coutDeConstructionCocoCanon, tempsDeConstructionCocoCanon, nombre,idIle) values (";
+		query+=coco.getIle().getId()+","
+				+ coco.getPv() + ",";
 		query+= coco.getCoutdeConstruction() + ",";
 		query += coco.getTempsConstruction() + ",";
-		query+= coco.getNombre() + ");";
-		System.out.println("Query = " + query);
+		query+= coco.getNombre() + ","
+				+coco.getIle().getId()+");";
 		stmt.executeUpdate(query);
 		con.close();
 	}
 	
-	public static void addGenerateurCoquillage (GenerateurCoquillage genCoq) throws SQLException {
+	public static void addGenerateurCoquillage (GenerateurCoquillage genCoq) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		String query = "insert into generateurCoquillage (productionParMinute, nombre) values (";
-		query+= genCoq.getProductionCoquillage() + ",";
-		query+= genCoq.getNombre() + ");";
-		System.out.println("Query = " + query);
+		String query = "insert into generateurCoquillage (id,productionParMinute,tempsDeConstruction,coutDeConstruction, nombre,idIle) values (";
+		query+= genCoq.getIle().getId()+","
+				+genCoq.getProductionCoquillage() + ","
+				+genCoq.getTempsConstruction()+","
+				+genCoq.getCoutDeConstruction()+","
+				+genCoq.getNombre() +","
+				+genCoq.getIle().getId()+");";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -136,14 +148,17 @@ public class ConnectionSQL {
 		
 	}
 
-	public void addEntrepot (Entrepot e) throws SQLException {
+	public static void addEntrepot (Entrepot e,Ile i) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		String query = "insert into entrepot(coquillage,capacite, nombre) values (";
-		//query+= e.getId() + ",";
+		String query = "insert into entrepot(id,coquillage,capacite, nombre,coutDeConstruction,tempsDeConstruction,idIle) values (";
+		query+= i.getId() + ",";
 		query+= e.getCoquillage() + ",";
 		query+= e.getCapacite() + ",";
-		query += e.getNombre() + ");";
+		query += e.getNombre() + ","
+				+e.getCoutDeConstruction()+","
+				+e.getTempsConstruction()+","
+				+i.getId()+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -254,15 +269,22 @@ public class ConnectionSQL {
 		con.close();
 		return a;
 	}
-	
-	
-	
-	public static void main(String[] args) throws PlacementOccupeException, SQLException {
-		Univers u = new Univers ("UniversTest");
-		Ile i = new Ile (u,"ma");
-		System.out.println("Id entrepot = " + i.getEntrepot().getId());
-		System.out.println("Id caserne = " + i.getCaserne().getId());
 
+	public static void addSurfeurCromagnon(SurfeurCroMagnon s) throws SQLException { // OK
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "insert into surfeurCroMagnon(id,idIle, nombre,pv,force,vitesseDeplacement,tempsFabrication,coutCoquillage) values (";
+		query+= s.getIle().getId() + ","
+				+ s.getIle().getId() + ","
+				+ s.getNombre() + ","
+				+ s.getPV() + ","
+				+ s.getForce() + ","
+				+ s.getVitesseDeplacement() + ","
+				+ s.getTempsFabrication() + ","
+				+ s.getCoutFabrication("Coquillage") + ")";
+				;
+		stmt.executeUpdate(query);
+		con.close();
 	}
 	
 	

@@ -1,5 +1,10 @@
 package fr.iutinfo.batiments;
 
+import java.sql.SQLException;
+
+import site.ConnectionSQL;
+import fr.iutinfo.Ile;
+
 public class Caserne extends Batiment {
 
 	private final int coutDeConstructionCaserne = 150;
@@ -8,13 +13,16 @@ public class Caserne extends Batiment {
 
 	/**
 	 * On initialise un entrepot sur une ile
+	 * @throws SQLException 
 	 */
-	public Caserne() {
+	public Caserne(Ile i) throws SQLException {
+		this.i=i;
 		this.setTempsConstruction(tempsConstructionCaserne);
 		this.setCoutDeConstruction(coutDeConstructionCaserne);
 		this.setNombre(0);
 		this.id = k;
 		this.k ++;
+		
 	}
 
 	@Override
