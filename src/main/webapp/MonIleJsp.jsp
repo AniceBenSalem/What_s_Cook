@@ -21,8 +21,8 @@
 		<table class="table table-bordered" style="background-color:#FFF">
 		<tr>
 			<th>Entrepots</th>
-			<th>Gï¿½nï¿½rateurs</th>
-			<th>Dï¿½fenses</th>
+			<th>Générateurs</th>
+			<th>Défenses</th>
 			<th>Caserne</th>
 		</tr>
 		<tr>
