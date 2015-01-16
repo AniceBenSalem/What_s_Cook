@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.iutinfo.Armee;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Entrepot;
@@ -82,6 +83,22 @@ public class ConnectionSQL {
 		
 	}
 
+	public void addArmee(Armee armee) throws SQLException{
+		Connection con = this.getCon();
+		Statement stmt = con.createStatement();
+		
+		String query = "insert into armee (nomUnivers, proprietaire, dansUnClan, x,y) values (";
+		query+= "'" + i.getUnivers().getNomUnivers() + "',";
+		query += "'"+  i.getProprietaire() + "',";
+		query+= "'false',";
+		query+= i.getX() + ",";
+		query+= i.getY() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+		
+	}
+	
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
 		Univers u = new Univers ("UniversTest");
