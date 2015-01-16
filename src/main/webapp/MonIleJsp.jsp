@@ -35,15 +35,21 @@
 		<tr>
 			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%request.getAttribute("entrepotcoquillage");
 			Integer coquillage = (Integer) session.getAttribute("coquillage");
-			out.println("" + coquillage);
+			out.println(coquillage);
 				Integer capacite = (Integer) session.getAttribute("capacite");
 			out.println(" / " + capacite);
 			
 			
-			%>/
+			%>
 			<%request.getAttribute("entrepotcoquillagemax"); %><br>
 			</td>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage</td>
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage
+				<%Integer prod = (Integer) session.getAttribute("production"); out.println(prod);%>
+			</td>
+			
+		
+			
+			
 			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons<br><br>
 				<img src="image/tiki.jpeg" style="width:25px;height:25px"></img> nb tiki
 			</td>

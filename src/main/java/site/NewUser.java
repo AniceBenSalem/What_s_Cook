@@ -73,7 +73,7 @@ public class NewUser extends HttpServlet {
 				session.setAttribute("proprietaire",
 						req.getParameter("newLogin"));
 
-				/* Nombre de coquillage */
+				/* Nombre de coquillage  et capacite entrepot*/
 				String idIleString = "Select id from ile where proprietaire='"
 						+ req.getParameter("newLogin") + "';";
 				ResultSet rs = stmt.executeQuery(idIleString);
@@ -93,11 +93,24 @@ public class NewUser extends HttpServlet {
 				
 				String capaciteString = "select capacite from entrepot where id=" + idEntrepotInt + ";";
 				ResultSet rs4 = stmt.executeQuery(capaciteString);
-				int capaciteInt = Integer.parseInt(capaciteString);
+				int capaciteInt = Integer.parseInt(rs4.getString("capacite"));
 				System.out.println("Capacite = " + capaciteInt);
 				
 				
 				session.setAttribute("capacite", capaciteInt);
+				
+				
+				/*Production de coquillage*/
+				String idGenerateurCoquillageString = "select idGenerateurCoquillage from ile where id =" + idIleInt + ";";
+				ResultSet rs5 = stmt.executeQuery(idGenerateurCoquillageString);
+				int idGen = Integer.parseInt(rs5.getString("idGenerateurCoquillage"));
+				
+				String prodCoqS = "select productionParMinute from generateurCoquillage where id =" + idGen + ";";
+				ResultSet rs6 = stmt.executeQuery(prodCoqS);
+				int prod = Integer.parseInt(rs6.getString("productionParMinute"));
+				System.out.println("prod = " + prod);
+				
+				session.setAttribute("production", prod);
 				
 				
 				res.sendRedirect("../MonIleJsp.jsp");
