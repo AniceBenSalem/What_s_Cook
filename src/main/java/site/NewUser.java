@@ -28,7 +28,7 @@ public class NewUser extends HttpServlet {
 			if(req.getParameter("newLogin").equals("") || req.getParameter("newPassword").equals("") || req.getParameter("newPassword1").equals("") || req.getParameter("newMail").equals(""))
 				res.sendRedirect("../NewUser.jsp");
 			else{
-				out.println("Bienvenue sur Vinland");
+			
 				//Enregistrement du driver
 				Class.forName("org.sqlite.JDBC");
 
@@ -45,11 +45,14 @@ public class NewUser extends HttpServlet {
 				Statement stmt = con.createStatement();
 				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
 				int update = stmt.executeUpdate(query);
-				
-				String Champ = req.getParameter("newLogin");
-				out.println("Compte cree :-)" + "bienvenue " + Champ);
+							
 				
 				con.close();
+				
+				String Champ = req.getParameter("newLogin");
+				HttpSession session = req.getSession();
+				session.setAttribute("login", Champ);
+				out.println("Compte cree :-)" + "bienvenue " + Champ);
 			}
 		}catch(Exception e){
 				System.out.println(e.getMessage());
