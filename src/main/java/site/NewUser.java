@@ -29,6 +29,7 @@ public class NewUser extends HttpServlet {
 				res.sendRedirect("../NewUser.jsp");
 			else{
 			
+				System.out.println("On est la");
 				//Enregistrement du driver
 				Class.forName("org.sqlite.JDBC");
 
@@ -38,6 +39,7 @@ public class NewUser extends HttpServlet {
 				String mdp = null;
 				Connection con = DriverManager.getConnection(url, nom, mdp);
 				
+				System.out.println("On est ici");
 				//Instanciation de l'ile
 				//Ile ile = new Ile(null, req.getParameter("newLogin"));
 				
@@ -47,6 +49,7 @@ public class NewUser extends HttpServlet {
 			//	int update = stmt.executeUpdate(query);
 							
 				
+				System.out.println("On est a cet endroit");
 				String Champ = req.getParameter("newLogin");
 				HttpSession session = req.getSession();
 				session.setAttribute("login", Champ);
