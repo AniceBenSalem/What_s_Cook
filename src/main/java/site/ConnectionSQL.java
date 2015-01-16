@@ -9,6 +9,7 @@ import java.sql.Statement;
 import fr.iutinfo.Armee;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
+import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.exceptions.PlacementOccupeException;
 
@@ -38,7 +39,7 @@ public class ConnectionSQL {
 	}
 	
 	public void addIle (Ile i) throws SQLException {
-		Connection con = this.getCon();
+		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
 		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y) values (";
@@ -50,6 +51,7 @@ public class ConnectionSQL {
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
+		System.out.println("OK maggle");
 	}
 	
 	public static void setEntrepot (Entrepot e) throws SQLException {
@@ -67,6 +69,19 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
+	public static void setCaserne(Caserne c) throws SQLException {
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		
+		String query = "insert into caserne (coutDeConstructionCaserne, tempsDeConstructionCaserne, nombre) values (";
+		query+= c.getCoutdeConstruction()+ ",";
+		query += c.getTempsConstruction() + ",";
+		query+= c.getNombre() + ");";
+		System.out.println("Query = " + query);
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
 	public static void setDansUnClan (Ile i, boolean b) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -76,10 +91,17 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
-	public static void recupIDIle (Ile i) throws SQLException {
+	public static Integer recupIDIle (Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		//String query = "sle"
+		String query = "select id from ile where proprietaire = '" + i.getProprietaire() + "';";
+		System.out.println("Query = " + query);
+		ResultSet rs = stmt.executeQuery(query);
+		String s = rs.getString("id");
+		Integer a = Integer.parseInt(s);
+		System.out.println("s = " + s);
+		con.close();
+		return a;
 		
 	}
 
@@ -104,7 +126,7 @@ public class ConnectionSQL {
 		Univers u = new Univers ("UniversTest");
 		Ile i = new Ile (u,"ma", 42,42);
 		ConnectionSQL c = new ConnectionSQL();
-		c.setDansUnClan(i, true);
+		ConnectionSQL.setDansUnClan(i, true);
 		
 	 
 	}
