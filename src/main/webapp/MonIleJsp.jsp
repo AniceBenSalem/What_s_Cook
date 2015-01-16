@@ -75,6 +75,12 @@
 		</table>
 		<table class="table table-bordered" style="background-color:#FFF">
 		</table>
+		
+		<form action='/servlet/Deconnexion'/>
+			<input type="submit" value="Deconnexion" />
+		</form>
+		
+		
 		</div>
 	</body>
 </html>
