@@ -4,7 +4,7 @@ import java.io.*;
 import javax.servlet.*; // pour les servlets
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
-@WebServlet("/servlet/Deconnexion")
+@WebServlet("servlet/Deconnexion")
 
 public class Deconnexion extends HttpServlet{
 	
