@@ -210,9 +210,16 @@ public class ConnectionSQL {
 		con.close();
 	}
 	
-	public static void main(String[] args) throws SQLException, PlacementOccupeException {
-		ConnectionSQL.clean();
-	}
+//	public static void main(String[] args) throws SQLException, PlacementOccupeException {
+//		ConnectionSQL.clean();
+//		Ile i = new Ile(null,"test");
+//		System.out.println("et de 1");
+//		System.out.println(ConnectionSQL.getMaxID());
+//		i.ajouterABDD();
+//		Ile i2= new Ile(null,"test2");
+//		System.out.println(i2.getId());
+//		i2.ajouterABDD();
+//	}
 	/*
 	public int addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
