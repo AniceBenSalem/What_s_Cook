@@ -47,12 +47,13 @@ public class NewUser extends HttpServlet {
 				int update = stmt.executeUpdate(query);
 							
 				
-				con.close();
-				
 				String Champ = req.getParameter("newLogin");
 				HttpSession session = req.getSession();
 				session.setAttribute("login", Champ);
 				out.println("Compte cree :-)" + "bienvenue " + Champ);
+				res.sendRedirect("MonIleJsp.jsp");
+				con.close();
+			
 			}
 		}catch(Exception e){
 				System.out.println(e.getMessage());
