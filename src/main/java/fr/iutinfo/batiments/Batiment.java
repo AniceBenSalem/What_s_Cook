@@ -1,5 +1,6 @@
 package fr.iutinfo.batiments;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import fr.iutinfo.Ile;
@@ -22,7 +23,7 @@ protected int id,nombre, coutdeConstruction, tempsConstruction;
 		return Calendar.getInstance().after(fin);	
 	}
 	
-	public void lanceConstruction(){
+	public void lanceConstruction() throws SQLException{
 		this.lancement= Calendar.getInstance();
 		this.fin=(Calendar) lancement.clone();
 		this.fin.add(Calendar.SECOND,tempsConstruction);
@@ -74,7 +75,7 @@ protected int id,nombre, coutdeConstruction, tempsConstruction;
 	}
 	
 	public abstract String getNom();
-	public abstract  void up();
+	public abstract  void up() throws SQLException;
 
 	
 }

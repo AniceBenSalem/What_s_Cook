@@ -128,7 +128,7 @@ public class Ile {
 		return def;
 	}
 
-	public void upCromagnonSurfeur(){
+	public void upCromagnonSurfeur() throws SQLException{
 		int cout = surfeur.getCoutFabrication("Coquillage");
 		if(this.entrepot.getCoquillage()>=cout){
 			surfeur.up();
@@ -137,7 +137,7 @@ public class Ile {
 
 	}
 
-	public void upGenerateurCoquillage(){
+	public void upGenerateurCoquillage() throws SQLException{
 		int cout = generateurCoquillage.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
 			generateurCoquillage.lanceConstruction();
@@ -146,7 +146,7 @@ public class Ile {
 		}
 	}
 
-	public void upEntrepot(){
+	public void upEntrepot() throws SQLException{
 		int cout = entrepot.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>=cout){
 			entrepot.lanceConstruction();
@@ -155,7 +155,7 @@ public class Ile {
 		}	
 	}	
 
-	public void upCococanon(){
+	public void upCococanon() throws SQLException{
 		int cout = cococanon.getCoutDeConstruction();
 		if(this.entrepot.getCoquillage()>cout){
 			cococanon.lanceConstruction();

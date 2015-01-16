@@ -55,18 +55,21 @@ public class Entrepot extends Batiment {
 		return capacite;
 	}
 
-	public void setCapacite(int capacite) {
+	public void setCapacite(int capacite) throws SQLException {
 		this.capacite = capacite;
+		ConnectionSQL.updateEntrepot(this);
+
 	}
 
 	public int getCoquillage() {
 		return coquillage;
 	}
 
-	public void setCoquillage(int coquillage) {
+	public void setCoquillage(int coquillage) throws SQLException {
 		this.coquillage = coquillage;
 		if(this.coquillage<0)
 			this.coquillage=0;
+		ConnectionSQL.updateEntrepot(this);
 	}
 
 	/**
@@ -92,7 +95,7 @@ public class Entrepot extends Batiment {
 
 	}
 
-	public void ajouter(String ressource,int montant ){
+	public void ajouter(String ressource,int montant ) throws SQLException{
 		switch(ressource){
 		case "Coquillage":	
 			this.coquillage+=montant;
@@ -102,10 +105,12 @@ public class Entrepot extends Batiment {
 		default:
 			break;
 		}
+		ConnectionSQL.updateEntrepot(this);
+
 		
 	}
 
-	public void retirer(String ressource,int montant){
+	public void retirer(String ressource,int montant) throws SQLException{
 		switch(ressource){
 		case "Coquillage":
 			this.coquillage-=montant;
@@ -115,6 +120,8 @@ public class Entrepot extends Batiment {
 		default:
 			break;
 		}
+		ConnectionSQL.updateEntrepot(this);
+
 	}
 
 	@Override
@@ -124,10 +131,12 @@ public class Entrepot extends Batiment {
 
 	// niveau  = nombre
 	@Override
-	public void up() {
+	public void up() throws SQLException {
 		this.setCapacite(this.capacite *2);
 		this.setCoutDeConstruction(coutdeConstruction*4);
 		this.setTempsConstruction((int) (tempsConstruction*1.5));
 		this.nombre++;
+		ConnectionSQL.updateEntrepot(this);
+
 	}
 }
