@@ -12,9 +12,7 @@
 	
 	  <%
 	  	 String login = (String) session.getAttribute("proprietaire");
-	  	 if(login != null)
-         	out.println(login);
-	     else{
+	  	 if(login == null){
 	     	login = (String) session.getAttribute("identificateur");
 	     	out.println(login);
       	 }
@@ -45,7 +43,7 @@
 			</td>
 			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>
 				<%Integer prod = (Integer) session.getAttribute("production"); out.println(prod);%>
-				 : Production Coquillage 
+				 par minute 
 			</td>
 			
 		
