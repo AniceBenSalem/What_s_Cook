@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("servlet/Authent")
+@WebServlet("/servlet/Authent")
 
 public class Authent extends HttpServlet{
 
@@ -58,7 +58,7 @@ public class Authent extends HttpServlet{
 						//res.sendRedirect("Menu");    //A modifier
 						res.sendRedirect("MonIleJsp.jsp"); // test Amaury : authentifie donc MonIleJsp.jsp
 				}else{
-					res.sendRedirect("../index.html");
+					res.sendRedirect("index.html");
 					//session.setAttribute("idTrue",rs.getString("false"));
 				}
 				//fermeture des espaces

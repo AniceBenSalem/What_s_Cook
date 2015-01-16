@@ -11,8 +11,13 @@
 	<body>
 	
 	  <%
-	  String login = (String) session.getAttribute("proprietaire");
-         out.println(login);
+	  	 String login = (String) session.getAttribute("proprietaire");
+	  	 if(login != null)
+         	out.println(login);
+	     else{
+	     	login = (String) session.getAttribute("identificateur");
+	     	out.println(login);
+      	 }
       %>
 	
 	
