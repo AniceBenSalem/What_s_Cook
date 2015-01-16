@@ -31,7 +31,7 @@ public class Authent extends HttpServlet{
 			String url = "jdbc:sqlite:vinland.db";
 			String name = null;
 			String passwd = null;
-			try (Connection con = DriverManager.getConnection(url, name, passwd)) {
+			try (Connection con = ConnectionSQL.getCon()) {
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "select * from users Where login = '" + req.getParameter("login") + "' AND password = '" + req.getParameter("password") + "'";
@@ -41,6 +41,7 @@ public class Authent extends HttpServlet{
 				
 				
 				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
+				out.println("<body><a href='../MonIleJsp.jsp'>Mon ile</a></body>");
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
 					
@@ -64,7 +65,7 @@ public class Authent extends HttpServlet{
 				//fermeture des espaces
 				con.close();
 			}catch(Exception e){
-				System.out.println("Problem requete");
+				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}
 		}catch(Exception e){
