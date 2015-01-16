@@ -43,13 +43,20 @@ public class Authent extends HttpServlet{
 				out.println("<head><link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" /><title>Authentification</title></head>"); //Iconne
 				if(rs.next()){
 					session.setAttribute("role",rs.getString("role"));
-					// on se connecte
-				
 					
+					
+					/*On se connecte et on envoie les parametres dans la session pour la JSP*/
+					String login = req.getParameter("login");
+					System.out.println("Authent, login user = " + login) ;
+					session.setAttribute("login", login);
+					
+					
+					/*On est authentifie on va sur la jsp MonIleJsp.jsp*/
 					if(session.getAttribute("url") != null)
 						res.sendRedirect((String) session.getAttribute("url"));
 					else
-						res.sendRedirect("Menu");    //A modifier
+						//res.sendRedirect("Menu");    //A modifier
+						res.sendRedirect("MonIleJsp.jsp"); // test Amaury : authentifie donc MonIleJsp.jsp
 				}else{
 					res.sendRedirect("../index.html");
 					//session.setAttribute("idTrue",rs.getString("false"));

@@ -1,21 +1,27 @@
 package site;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
-import javax.servlet.*; // pour les servlets
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.iutinfo.Ile;
-import fr.iutinfo.Univers;
-
-import java.sql.*;
+// pour les servlets
 @WebServlet("/servlet/NewUser")
 
 public class NewUser extends HttpServlet{
 	
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		try{
+			HttpSession http = req.getSession();
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/html");
 			out.println(html());
@@ -38,7 +44,13 @@ public class NewUser extends HttpServlet{
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
+				System.out.println("NewUser.java : query = " + query );
 				int update = stmt.executeUpdate(query);
+				
+				
+				// Test amaury : on mets le login dans la session pour lenvoyer a MonIle.Jsp
+				String login = req.getParameter("newLogin");
+				http.setAttribute("login", login);
 				
 				con.close();
 			}

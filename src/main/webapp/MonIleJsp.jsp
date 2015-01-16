@@ -8,14 +8,21 @@
 		<head><title>Gestion de l'ile</title></head>
 	</head>
 	<body>
+	
+	  <% String login = (String) request.getAttribute("login");
+         out.println(login);
+      %>
+	
+	
+	
 	<div class="container">
 	
 		<h1> <%req.getAttribute("proprietaire")%> </h1>
 		<table class="table table-bordered" style="background-color:#FFF">
 		<tr>
 			<th>Entrepots</th>
-			<th>Générateurs</th>
-			<th>Défenses</th>
+			<th>Gï¿½nï¿½rateurs</th>
+			<th>Dï¿½fenses</th>
 			<th>Caserne</th>
 		</tr>
 		<tr>
