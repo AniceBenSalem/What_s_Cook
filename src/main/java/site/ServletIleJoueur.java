@@ -47,7 +47,7 @@ public class ServletIleJoueur extends HttpServlet{
 					//session.setAttribute("idTrue",rs.getString("false"));
 				//fermeture des espaces
 				con.close();
-				this.getServletContext().getRequestDispatcher("MonIleJsp.jsp").forward(req,res);
+				this.getServletContext().getRequestDispatcher("../MonIleJsp.jsp").forward(req,res);
 			}catch(Exception e){
 				System.out.println("Problem requete");
 				System.out.println(e.getMessage());

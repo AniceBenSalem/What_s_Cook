@@ -26,7 +26,7 @@
 			<th>Caserne</th>
 		</tr>
 		<tr>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%req.getAttribute("entrepotcoquillage") %>/
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%req.getAttribute("entrepotcoquillage"); %>/
 			<%req.getAttribute("entrepotcoquillagemax") %><br>
 			</td>
 			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage</td>
