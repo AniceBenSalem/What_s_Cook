@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.iutinfo.Ile;
 
 // pour les servlets
-@WebServlet("/servlet/NewUser")
+@WebServlet("servlet/NewUser")
 public class NewUser extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException{
@@ -41,12 +41,12 @@ public class NewUser extends HttpServlet {
 				
 				System.out.println("On est ici");
 				//Instanciation de l'ile
-				//Ile ile = new Ile(null, req.getParameter("newLogin"));
+				Ile ile = new Ile(null, req.getParameter("newLogin"));
 				
 				//execution de la requete
 				Statement stmt = con.createStatement();
-			//	String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
-			//	int update = stmt.executeUpdate(query);
+				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
+				int update = stmt.executeUpdate(query);
 							
 				
 				System.out.println("On est a cet endroit");
