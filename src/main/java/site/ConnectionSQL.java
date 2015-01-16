@@ -191,6 +191,25 @@ public class ConnectionSQL {
 		
 	}
 	
+	public static void clean() throws SQLException{
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "delete from entrepot";
+		stmt.executeUpdate(query);
+		query = "delete from ile";
+		stmt.executeUpdate(query);
+		query = "delete from generateurCoquillage";
+		stmt.executeUpdate(query);
+		query = "delete from cococanon";
+		stmt.executeUpdate(query);
+		query = "delete from caserne";
+		stmt.executeUpdate(query);
+		con.close();
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		ConnectionSQL.clean();
+	}
 	/*
 	public int addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
