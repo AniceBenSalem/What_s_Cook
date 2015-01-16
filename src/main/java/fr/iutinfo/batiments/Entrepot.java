@@ -23,7 +23,6 @@ public class Entrepot extends Batiment {
 	private int coutDeConstructionEntrepot;
 	private int tempsConstructionEntrepot; //en minute
 
-	private int k= 1;
 	private Ile ile;
 	
 	public Ile getIle() {
@@ -68,8 +67,6 @@ public class Entrepot extends Batiment {
 		this.setNombre(1);	
 		connectionSQL.addEntrepot(this);
 		this.ile = i;
-		this.id = k;
-		k++;
 	}
 
 	/**
