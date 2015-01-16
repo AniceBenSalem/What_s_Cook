@@ -14,14 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.iutinfo.Ile;
+
 // pour les servlets
 @WebServlet("/servlet/NewUser")
+public class NewUser extends HttpServlet {
 
-public class NewUser extends HttpServlet{
-	
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		try{
-			HttpSession http = req.getSession();
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/html");
 			out.println(html());
@@ -29,6 +28,7 @@ public class NewUser extends HttpServlet{
 			if(req.getParameter("newLogin").equals("") || req.getParameter("newPassword").equals("") || req.getParameter("newPassword1").equals("") || req.getParameter("newMail").equals(""))
 				res.sendRedirect("../NewUser.jsp");
 			else{
+				out.println("Bienvenue sur Vinland");
 				//Enregistrement du driver
 				Class.forName("org.sqlite.JDBC");
 
@@ -44,14 +44,10 @@ public class NewUser extends HttpServlet{
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
-				System.out.println("NewUser.java : query = " + query );
 				int update = stmt.executeUpdate(query);
 				
-				
-				// Test amaury : on mets le login dans la session pour lenvoyer a MonIle.Jsp
-				String login = req.getParameter("newLogin");
-				http.setAttribute("login", login);
-				res.sendRedirect("MonIleJsp.jsp");
+				String Champ = req.getParameter("newLogin");
+				out.println("Compte cree :-)" + "bienvenue " + Champ);
 				
 				con.close();
 			}
@@ -59,17 +55,16 @@ public class NewUser extends HttpServlet{
 				System.out.println(e.getMessage());
 		}	
 	}
-	
-	public String html(){
-		return 	"<head>" + 
-					"<meta charset=\"utf-8\" />" + 
-					"<LINK rel=\"stylesheet\" href=\"../style.css\" type=\"text/css\">" + 
-					"<link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" />" +
-					"<head><title>Nouvel utilisateur</title></head>" + 
-				"</head>" +
-				"<body>" +
-					
+
+	public String html() {
+		return "<head>"
+				+ "<meta charset=\"utf-8\" />"
+				+ "<LINK rel=\"stylesheet\" href=\"../style.css\" type=\"text/css\">"
+				+ "<link rel=\"icon\" type=\"image/png\" href=\"../IMG/favicon.png\" />"
+				+ "<head><title>Nouvel utilisateur</title></head>" + "</head>"
+				+ "<body>" +
+
 				"</body>";
 	}
-	
+
 }
