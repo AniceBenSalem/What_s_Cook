@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Stack;
 
 import fr.iutinfo.Armee;
+import fr.iutinfo.Data;
 import fr.iutinfo.Ile;
 import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
@@ -78,6 +79,7 @@ public class ConnectionSQL {
 		ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
 		ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
 		ConnectionSQL.addCaserne(i.getCaserne());
+		Data.dataIles.put(id, i);
 
 
 
