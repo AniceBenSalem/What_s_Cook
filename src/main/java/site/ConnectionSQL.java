@@ -5,50 +5,76 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Stack;
 
-import fr.iutinfo.Armee;
 import fr.iutinfo.Data;
 import fr.iutinfo.Ile;
-import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.batiments.GenerateurCoquillage;
-import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.unites.GuerrierRequin;
 import fr.iutinfo.unites.SurfeurCroMagnon;
-import fr.iutinfo.unites.Unite;
 
 public class ConnectionSQL {	
 	Connection con = null;
-	private int i = 0;
+
+	public static void updateEntrepot (Entrepot e) throws SQLException { // OK
+		Connection con = ConnectionSQL.getCon();
+		Statement stmt = con.createStatement();
+		String query = "update entrepot set coquillage="+e.getCoquillage()+"," 
+				+"capacite="+e.getCapacite()
+				+",nombre="+e.getNombre()+",coutDeConstruction="
+				+e.getCoutdeConstruction()+",tempsDeConstruction="+e.getTempsConstruction()
+				+" where id="+e.getId();
+		stmt.executeUpdate(query);
+		con.close();
+	}
 	public static Connection getCon () {
-		
-        try {
+
+		try {
 			Class.forName("org.sqlite.JDBC");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Probleme dans le driver");
 			e.printStackTrace();
 		}			
-        String url = "jdbc:sqlite:vinland.db";
-        String name = null;
-        String passwd = null;
-        try {
-			return DriverManager.getConnection(url, name, passwd);
+		String url = "jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"vinland.db";
+		String name = null;
+		String passwd = null;
+		try {
+			Connection con =DriverManager.getConnection(url, name, passwd);
+			Statement stmt = con.createStatement();
+
+			String query="CREATE TABLE if not exists ile(id integer PRIMARY KEY AUTOINCREMENT,nomUnivers	text,proprietaire	text,dansUnClan	text,points	integer,idSurfeurCroMagnon	integer,idEntrepot	TEXT,idCaserne	TEXT,idGenerateurCoquillage	TEXT,idCocoCanon	TEXT)";
+			stmt.executeUpdate(query);
+			query="CREATE TABLE if not exists SurfeurCromagnon (id INTEGER,idIle	INTEGER,nombre	INTEGER,pv	INTEGER,force	INTEGER,vitesseDeplacement	INTEGER,tempsFabrication	INTEGER,coutCoquillage	INTEGER,PRIMARY KEY(id))";
+			stmt.executeUpdate(query);
+			query = "CREATE TABLE if not exists caserne(id integer primary key,coutDeConstructionCaserne integer, tempsDeConstructionCaserne integer, nombre integer,idIle integer references ile(id) on update cascade)";
+			stmt.executeUpdate(query);
+			query ="CREATE TABLE if not exists cococanon(id integer primary key, pvCocoCanon integer, coutDeConstructionCocoCanon integer, tempsDeConstructionCocoCanon integer, nombre integer, idIle integer references ile(id) on update cascade)";
+			stmt.executeUpdate(query);
+			query="CREATE TABLE if not exists entrepot (id	INTEGER,coquillage	INTEGER,capacite	INTEGER,coutDeConstruction	INTEGER,tempsDeConstruction	INTEGER,nombre	INTEGER,idIle	INTEGER,PRIMARY KEY(id))";
+			stmt.executeUpdate(query);
+			query="CREATE TABLE if not exists users(login text, password text, mail text, role text, idIsland integer)";
+			stmt.executeUpdate(query);
+			query="CREATE TABLE if not exists generateurCoquillage (id	integer PRIMARY KEY AUTOINCREMENT,productionParMinute	integer,idIle	integer,tempsDeConstruction	integer,nombre	integer,coutDeConstruction	INTEGER)";
+			stmt.executeUpdate(query);
+			query="CREATE TABLE if not exists univers (id integer primary key autoincrement, nomUnivers text, largeur integer, longueur integer)";
+			stmt.executeUpdate(query);
+
+
+			return con;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Probleme dans la co");
 			e.printStackTrace();
 		}
-        return null;
+		return null;
 	}
-	
+
 	public static  int getMaxID () throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		
+
 		String query = "select max(id) as top from ile";
 		ResultSet rs = stmt.executeQuery(query);
 		int top =0;
@@ -57,48 +83,82 @@ public class ConnectionSQL {
 		con.close();
 		return top;
 	}
-	
-	public static void addIle(Ile i) throws SQLException{
+
+	public static void addIle(Ile i){
 		Connection con = ConnectionSQL.getCon();
-		Statement stmt = con.createStatement();
-		int id = getMaxID();
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Pb stmt" + e.getMessage());
+			e.printStackTrace();
+		}
+
+		int id = 0;
+		try {
+			id = getMaxID();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("pb id" + e.getMessage());
+
+			e.printStackTrace();
+		}
 		String query = "insert into ile (id,nomUnivers, proprietaire, dansUnClan,points,idSurfeurCroMagnon,idEntrepot,idCaserne,idGenerateurCoquillage,idCocoCanon) values (";
 		query+= id+","
-				+"'" + i.getUnivers().getNomUnivers() + "',"
+				+"null,"
 				+ "'"+  i.getProprietaire() + "',"
-				+ "'false'),"
+				+ "'false',"
+				+"0,"
 				+id+","
 				+id+","
 				+id+","
 				+id+","
 				+id+")";
-		stmt.executeUpdate(query);
-		con.close();
-		ConnectionSQL.addEntrepot(i.getEntrepot(),i);
-		ConnectionSQL.addCocoCanon(i.getCococanon());
-		ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
-		ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
-		ConnectionSQL.addCaserne(i.getCaserne());
+		try {
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ConnectionSQL.addEntrepot(i.getEntrepot(),i);
+			ConnectionSQL.addCocoCanon(i.getCococanon());
+			ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
+			ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
+			ConnectionSQL.addCaserne(i.getCaserne());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Pb add " + e.getMessage());
+			e.printStackTrace();
+		}
+
 		Data.dataIles.put(id, i);
 
 
 
 		System.out.println("OK maggle");
 	}
-	
+
 	public static void addCaserne(Caserne c) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
-		
+
 		String query = "insert into caserne (id,coutDeConstructionCaserne, tempsDeConstructionCaserne, nombre,idIle) values (";
 		query+= c.getIle().getId()+","
 				+c.getCoutdeConstruction() + ",";
 		query += c.getTempsConstruction() + ",";
-		query+= c.getNombre() +","+c.getIle().getId()+");";
+		query+= c.getNombre() +","+c.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
+
 	public static void addCocoCanon (CocoCanon coco) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -108,11 +168,11 @@ public class ConnectionSQL {
 		query+= coco.getCoutdeConstruction() + ",";
 		query += coco.getTempsConstruction() + ",";
 		query+= coco.getNombre() + ","
-				+coco.getIle().getId()+");";
+				+coco.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
+
 	public static void addGenerateurCoquillage (GenerateurCoquillage genCoq) throws SQLException { // OK
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -122,11 +182,11 @@ public class ConnectionSQL {
 				+genCoq.getTempsConstruction()+","
 				+genCoq.getCoutDeConstruction()+","
 				+genCoq.getNombre() +","
-				+genCoq.getIle().getId()+");";
+				+genCoq.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
+
 	public static void setDansUnClan (Ile i, boolean b) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -135,7 +195,7 @@ public class ConnectionSQL {
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
+
 	public static Integer recupIDIle (Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -147,7 +207,7 @@ public class ConnectionSQL {
 		System.out.println("id ile= " + s);
 		con.close();
 		return a;
-		
+
 	}
 
 	public static void addEntrepot (Entrepot e,Ile i) throws SQLException { // OK
@@ -160,12 +220,12 @@ public class ConnectionSQL {
 		query += e.getNombre() + ","
 				+e.getCoutDeConstruction()+","
 				+e.getTempsConstruction()+","
-				+i.getId()+");";
+				+i.getId()+")";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
+
 	public Integer afficheCoquillage (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -177,10 +237,10 @@ public class ConnectionSQL {
 		System.out.println("Coquillage = " + s);
 		con.close();
 		return a;
-		
-		
+
+
 	}
-	
+
 	public void idIlePourEntrepot (Entrepot e, Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -188,9 +248,9 @@ public class ConnectionSQL {
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
-		
+
 	}
-	
+
 	public static void clean() throws SQLException{
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -204,12 +264,21 @@ public class ConnectionSQL {
 		stmt.executeUpdate(query);
 		query = "delete from caserne";
 		stmt.executeUpdate(query);
+		query = "delete from surfeurcromagnon";
+		stmt.executeUpdate(query);
 		con.close();
 	}
-	
-	public static void main(String[] args) throws SQLException {
-		ConnectionSQL.clean();
-	}
+
+	//	public static void main(String[] args) throws SQLException, PlacementOccupeException {
+	//		ConnectionSQL.clean();
+	//		Ile i = new Ile(null,"test");
+	//		System.out.println("et de 1");
+	//		System.out.println(ConnectionSQL.getMaxID());
+	//		i.ajouterABDD();
+	//		Ile i2= new Ile(null,"test2");
+	//		System.out.println(i2.getId());
+	//		i2.ajouterABDD();
+	//	}
 	/*
 	public int addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();
@@ -217,7 +286,7 @@ public class ConnectionSQL {
 		int nbSurfeurCroMagnon = 0;
 		int nbRequinGuerrier = 0 ;
 		Stack<Unite> pile = armee.getStack();
-		
+
 		while(!pile.isEmpty()){//incrementation des NB selon le type d'unité
 			Unite u = pile.pop();
 			if(u instanceof GuerrierRequin){
@@ -227,7 +296,7 @@ public class ConnectionSQL {
 				nbSurfeurCroMagnon++;
 			}
 		}
-		
+
 		String query = "insert into armee (surfeurCroMagnon, requinGuerrier) values (";
 		query+= " "+ nbSurfeurCroMagnon + ",";
 		query += ""+  nbRequinGuerrier + "";
@@ -239,45 +308,45 @@ public class ConnectionSQL {
 		if(rs.next()){
 			id = Integer.parseInt(rs.getString("id"));
 		}
-		
-		
+
+
 		con.close();
 		return id;
 	}  
-	*/
-	
-//	
-//	public void addUnitee(Armee armee, Unite u) throws SQLException{
-////		//int idIle = recupIDIle(armee.getIle());
-////		Connection con = this.getCon();
-//////		Statement stmt = con.createStatement();
-//////		String query;
-//////		query = "update armee set ";
-//		if (u instanceof SurfeurCroMagnon){
-//			//query += "nbSurfeurCroMagnon = nbSurfeurCroMagnon + 1";
-//		}
-//		if (u instanceof GuerrierRequin){
-//			//query += "requinGuerrier = requinGuerrier + 1";
-//		}
-//		//query += " where idArmee = (select idArmee from ile where id = "+idIle;
-//		//query +=" );";
-////		System.out.println("Query hhhh= " + query);
-//		//stmt.executeUpdate(query);
-//		//ResultSet rs = stmt.executeQuery("select max(idArmee) from armee;");
-//		//ResultSet aaa = stmt.executeQuery("PRAGMA table_info(armee);");
-//		///System.out.println(aaa.toString());
-//		
-//		
-//		//ResultSet rs = stmt.executeQuery("select * from armee;");
-//		int id=0;
-//		/*if(rs.next()){
-//			id = Integer.parseInt(rs.getString("idArmee"));
-//		}
-//		*/
-//		con.close();
-//	} 
-	
-	
+	 */
+
+	//	
+	//	public void addUnitee(Armee armee, Unite u) throws SQLException{
+	////		//int idIle = recupIDIle(armee.getIle());
+	////		Connection con = this.getCon();
+	//////		Statement stmt = con.createStatement();
+	//////		String query;
+	//////		query = "update armee set ";
+	//		if (u instanceof SurfeurCroMagnon){
+	//			//query += "nbSurfeurCroMagnon = nbSurfeurCroMagnon + 1";
+	//		}
+	//		if (u instanceof GuerrierRequin){
+	//			//query += "requinGuerrier = requinGuerrier + 1";
+	//		}
+	//		//query += " where idArmee = (select idArmee from ile where id = "+idIle;
+	//		//query +=" );";
+	////		System.out.println("Query hhhh= " + query);
+	//		//stmt.executeUpdate(query);
+	//		//ResultSet rs = stmt.executeQuery("select max(idArmee) from armee;");
+	//		//ResultSet aaa = stmt.executeQuery("PRAGMA table_info(armee);");
+	//		///System.out.println(aaa.toString());
+	//		
+	//		
+	//		//ResultSet rs = stmt.executeQuery("select * from armee;");
+	//		int id=0;
+	//		/*if(rs.next()){
+	//			id = Integer.parseInt(rs.getString("idArmee"));
+	//		}
+	//		*/
+	//		con.close();
+	//	} 
+
+
 	public Integer recupIDEntrepot(Entrepot e, Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
@@ -303,16 +372,16 @@ public class ConnectionSQL {
 				+ s.getVitesseDeplacement() + ","
 				+ s.getTempsFabrication() + ","
 				+ s.getCoutFabrication("Coquillage") + ")";
-				;
+		;
 		stmt.executeUpdate(query);
 		con.close();
 	}
-	
-	
-	
+
+
+
 	/*
 	public static void main(String[] args) throws SQLException {
-		
+
 		try{
             //Recorde driver
             Class.forName("org.sqlite.JDBC");			
@@ -323,11 +392,11 @@ public class ConnectionSQL {
             String passwd = null;
             try (Connection con = DriverManager.getConnection(url, name, passwd)) {
             	Statement stmt = con.createStatement();
-                
+
                 //String query = "insert into users values('troll', 'lolilol', 'prout@geugeul.fr', 152)";
                 String query = "select * from ile";
                 ResultSet rs  = stmt.executeQuery(query);
-                
+
                 while(rs.next()){
                 	System.out.println(rs.getString(1) + " ," + rs.getString(2) + " ," + rs.getString(3) + " ," + rs.getString(4));
                 }
@@ -340,12 +409,12 @@ public class ConnectionSQL {
             System.out.println("Problem connection");
             System.out.println(e.getMessage());
             System.out.println(e.toString());
-            
+
         }
 	}
-	
-	*/
-	
-	
+
+	 */
+
+
 
 }

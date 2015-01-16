@@ -52,21 +52,21 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void retirerRessourceTestOK(){
+	public void retirerRessourceTestOK() throws SQLException{
 		i.getEntrepot().setCoquillage(200);
 		i.getEntrepot().retirer("Coquillage", 50);
 		assertEquals(150,i.getEntrepot().getCoquillage());
 	}
 	
 	@Test
-	public void retirerRessourceTestNegatif(){
+	public void retirerRessourceTestNegatif() throws SQLException{
 		i.getEntrepot().setCoquillage(20);
 		i.getEntrepot().retirer("Coquillage", 50);
 		assertEquals(0,i.getEntrepot().getCoquillage());
 	}
 	
 	@Test
-	public void retirerRessourceTestMauvaiseRessource(){
+	public void retirerRessourceTestMauvaiseRessource() throws SQLException{
 		i.getEntrepot().setCoquillage(200);
 		i.getGenerateurCoquillage().stopGenererRessource();
 		i.getEntrepot().retirer("Coquillage", 50);
@@ -74,7 +74,7 @@ public class EntrepotTest extends JerseyTest {
 	}
 	
 	@Test
-	public void ajouterRessourceTestOK(){
+	public void ajouterRessourceTestOK() throws SQLException{
 		i.getEntrepot().setCoquillage(200);
 		i.getEntrepot().setCapacite(300);
 		i.getEntrepot().ajouter("Coquillage", 50);

@@ -96,7 +96,7 @@ public class Armee {
 		return valdef<0;
 	}
 	
-	public void volRessource(Ile i){
+	public void volRessource(Ile i) throws SQLException{
 		int taux = i.getPoints()/this.ile.getPoints()*100;
 		
 		if(taux>40)

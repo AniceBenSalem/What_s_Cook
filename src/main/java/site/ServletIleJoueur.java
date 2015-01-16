@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("servlet/ServletIleJoueur")
+@WebServlet("/servlet/ServletIleJoueur")
 
 public class ServletIleJoueur extends HttpServlet{
 
@@ -21,24 +21,23 @@ public class ServletIleJoueur extends HttpServlet{
 		try{
 			//Creation de la session
 			HttpSession session = req.getSession();
-
-			//Enregistrement du driver
-			Class.forName("org.sqlite.JDBC");			
-
-			//Connexion a la base
-			String url = "jdbc:sqlite:vinland.db";
-			String name = null;
-			String passwd = null;
-			try (Connection con = DriverManager.getConnection(url, name, passwd)) {
+			if(session.getAttribute("proprietaire")==null){
+				res.sendRedirect("../index.html");
+			}
+			try (Connection con = ConnectionSQL.getCon()) {
 				//execution de la requete
 				Statement stmt = con.createStatement();
 				String query = "select * from ile Where id = " + session.getAttribute("idIle");
 				ResultSet rs = stmt.executeQuery(query);
 				PrintWriter out = res.getWriter();
 				rs.next();
-				int idEntrepot = rs.getInt("idEntrepot");
 				req.setAttribute("proprietaire", rs.getString("proprietaire"));
-				query="select * from entrepot where id ="+idEntrepot;
+				
+				/*
+				 *  ATTRIBUTS ENTREPOT
+				 */
+				
+				query="select * from entrepot where id ="+session.getAttribute("idIle");
 				rs=stmt.executeQuery(query);
 				rs.next();
 				req.setAttribute("entrepotcoquillage", rs.getInt("coquillage"));

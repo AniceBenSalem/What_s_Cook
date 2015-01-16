@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,32 +10,58 @@
 	</head>
 	<body>
 	
-	  <% String login = (String) request.getAttribute("login");
-         out.println(login);
+	  <%
+	  	 String login = (String) session.getAttribute("proprietaire");
+	  	 if(login == null){
+	     	login = (String) session.getAttribute("identificateur");
+	     	out.println(login);
+      	 }
       %>
 	
 	
 	
 	<div class="container">
 	
-		<h1> <%req.getAttribute("proprietaire")%> </h1>
+		<h1> <%out.println(login);%> </h1>
 		<table class="table table-bordered" style="background-color:#FFF">
 		<tr>
 			<th>Entrepots</th>
-			<th>G�n�rateurs</th>
-			<th>D�fenses</th>
+			<th>Generateurs</th>
+			<th>Defenses</th>
 			<th>Caserne</th>
 		</tr>
 		<tr>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%req.getAttribute("entrepotcoquillage"); %>/
-			<%req.getAttribute("entrepotcoquillagemax") %><br>
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%request.getAttribute("entrepotcoquillage");
+			Integer coquillage = (Integer) session.getAttribute("coquillage");
+			out.println(coquillage);
+				Integer capacite = (Integer) session.getAttribute("capacite");
+			out.println(" / " + capacite);
+			
+			
+			%>
+			<%request.getAttribute("entrepotcoquillagemax"); %><br>
 			</td>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage</td>
-			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons<br><br>
-				<img src="image/tiki.jpeg" style="width:25px;height:25px"></img> nb tiki
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>
+				<%Integer prod = (Integer) session.getAttribute("production"); out.println(prod);%>
+				 par minute 
 			</td>
-			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img> nb cromagnons surfeurs<br><br>
-				<img src="image/icon-requin.png" style="width:25px;height:25px"></img> nb requins
+			
+		
+			
+			
+			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> 
+			<%Integer nbCoco = (Integer)  session.getAttribute("nbCoco"); out.println(nbCoco); %>
+			CocoCanon
+			<br><br>
+			
+			
+			</td>
+			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img>
+			<%Integer nbCro = (Integer) session.getAttribute("nbCro"); out.println(nbCro );%>
+			Cromagnon Surfeurs
+			
+			
+			<br><br>
 			</td>
 		</tr>
 		<tr>
@@ -46,6 +73,12 @@
 		</table>
 		<table class="table table-bordered" style="background-color:#FFF">
 		</table>
+		
+		<form action='servlet/Deconnexion'/>
+			<input type="submit" value="Deconnexion" />
+		</form>
+		
+		
 		</div>
 	</body>
 </html>

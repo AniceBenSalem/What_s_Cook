@@ -23,7 +23,7 @@ public class GenerateurCoquillage extends Generateur{
 	}
 	
 	@Override
-	public void ajouterRessource() {
+	public void ajouterRessource() throws SQLException {
 		ile.getEntrepot().ajouter("Coquillage",productionCoquillageParMinute);
 	}
 

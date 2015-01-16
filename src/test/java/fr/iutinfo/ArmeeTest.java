@@ -50,7 +50,7 @@ public class ArmeeTest extends JerseyTest{
     }
 	
 	@Test
-	public void testVol() throws PlacementOccupeException{
+	public void testVol() throws PlacementOccupeException, SQLException{
 		i.setPoints(100);
 		i.getEntrepot().setCoquillage(100);
 		i2.setPoints(100);
@@ -61,7 +61,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testVolPetitRatio() throws PlacementOccupeException{
+	public void testVolPetitRatio() throws PlacementOccupeException, SQLException{
 		i.setPoints(100);
 		i2.setPoints(15030);
 		
@@ -75,7 +75,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testVolMoyenRatio() throws PlacementOccupeException{
+	public void testVolMoyenRatio() throws PlacementOccupeException, SQLException{
 		i.setPoints(110);
 		i2.setPoints(100);
 		
@@ -89,7 +89,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testVolGrosRatio() throws PlacementOccupeException{
+	public void testVolGrosRatio() throws PlacementOccupeException, SQLException{
 		i2.setPoints(100);
 		i.setPoints(15000);
 		
