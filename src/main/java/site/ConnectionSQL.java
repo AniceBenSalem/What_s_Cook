@@ -64,9 +64,10 @@ public class ConnectionSQL {
 		int id = getMaxID();
 		String query = "insert into ile (id,nomUnivers, proprietaire, dansUnClan,points,idSurfeurCroMagnon,idEntrepot,idCaserne,idGenerateurCoquillage,idCocoCanon) values (";
 		query+= id+","
-				+"'" + i.getUnivers().getNomUnivers() + "',"
+				+"null,"
 				+ "'"+  i.getProprietaire() + "',"
-				+ "'false'),"
+				+ "'false',"
+				+"0,"
 				+id+","
 				+id+","
 				+id+","
@@ -94,7 +95,7 @@ public class ConnectionSQL {
 		query+= c.getIle().getId()+","
 				+c.getCoutdeConstruction() + ",";
 		query += c.getTempsConstruction() + ",";
-		query+= c.getNombre() +","+c.getIle().getId()+");";
+		query+= c.getNombre() +","+c.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -108,7 +109,7 @@ public class ConnectionSQL {
 		query+= coco.getCoutdeConstruction() + ",";
 		query += coco.getTempsConstruction() + ",";
 		query+= coco.getNombre() + ","
-				+coco.getIle().getId()+");";
+				+coco.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -122,7 +123,7 @@ public class ConnectionSQL {
 				+genCoq.getTempsConstruction()+","
 				+genCoq.getCoutDeConstruction()+","
 				+genCoq.getNombre() +","
-				+genCoq.getIle().getId()+");";
+				+genCoq.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -160,7 +161,7 @@ public class ConnectionSQL {
 		query += e.getNombre() + ","
 				+e.getCoutDeConstruction()+","
 				+e.getTempsConstruction()+","
-				+i.getId()+");";
+				+i.getId()+")";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -204,10 +205,12 @@ public class ConnectionSQL {
 		stmt.executeUpdate(query);
 		query = "delete from caserne";
 		stmt.executeUpdate(query);
+		query = "delete from surfeurcromagnon";
+		stmt.executeUpdate(query);
 		con.close();
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, PlacementOccupeException {
 		ConnectionSQL.clean();
 	}
 	/*
