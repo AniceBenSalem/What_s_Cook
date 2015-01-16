@@ -19,7 +19,7 @@ import fr.iutinfo.Ile;
 @WebServlet("/servlet/NewUser")
 public class NewUser extends HttpServlet {
 
-	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		try{
 			PrintWriter out = res.getWriter();
 			res.setContentType("text/html");
@@ -39,12 +39,12 @@ public class NewUser extends HttpServlet {
 				Connection con = DriverManager.getConnection(url, nom, mdp);
 				
 				//Instanciation de l'ile
-				Ile ile = new Ile(null, req.getParameter("newLogin"));
+				//Ile ile = new Ile(null, req.getParameter("newLogin"));
 				
 				//execution de la requete
 				Statement stmt = con.createStatement();
-				String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
-				int update = stmt.executeUpdate(query);
+			//	String query = "Insert into users values('" + req.getParameter("newLogin") + "','" + req.getParameter("newPassword") + "','" + req.getParameter("newMail") + "','user'," + ile.getId() + ")";
+			//	int update = stmt.executeUpdate(query);
 							
 				
 				String Champ = req.getParameter("newLogin");
@@ -56,6 +56,7 @@ public class NewUser extends HttpServlet {
 			
 			}
 		}catch(Exception e){
+			System.out.println("Probleme redirection ou requete");
 				System.out.println(e.getMessage());
 		}	
 	}
