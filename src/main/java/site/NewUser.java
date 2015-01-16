@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.iutinfo.Ile;
 
 // pour les servlets
-@WebServlet("servlet/NewUser")
+@WebServlet("/servlet/NewUser")
 public class NewUser extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException{
