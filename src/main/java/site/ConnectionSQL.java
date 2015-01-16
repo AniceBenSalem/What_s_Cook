@@ -58,10 +58,26 @@ public class ConnectionSQL {
 		return top;
 	}
 	
-	public static void addIle(Ile i) throws SQLException{
+	public static void addIle(Ile i){
 		Connection con = ConnectionSQL.getCon();
-		Statement stmt = con.createStatement();
-		int id = getMaxID();
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Pb stmt" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		int id = 0;
+		try {
+			id = getMaxID();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("pb id" + e.getMessage());
+			
+			e.printStackTrace();
+		}
 		String query = "insert into ile (id,nomUnivers, proprietaire, dansUnClan,points,idSurfeurCroMagnon,idEntrepot,idCaserne,idGenerateurCoquillage,idCocoCanon) values (";
 		query+= id+","
 				+"null,"
@@ -73,13 +89,30 @@ public class ConnectionSQL {
 				+id+","
 				+id+","
 				+id+")";
-		stmt.executeUpdate(query);
-		con.close();
-		ConnectionSQL.addEntrepot(i.getEntrepot(),i);
-		ConnectionSQL.addCocoCanon(i.getCococanon());
-		ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
-		ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
-		ConnectionSQL.addCaserne(i.getCaserne());
+		try {
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ConnectionSQL.addEntrepot(i.getEntrepot(),i);
+			ConnectionSQL.addCocoCanon(i.getCococanon());
+			ConnectionSQL.addGenerateurCoquillage(i.getGenerateurCoquillage());
+			ConnectionSQL.addSurfeurCromagnon(i.getSurfeur());
+			ConnectionSQL.addCaserne(i.getCaserne());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Pb add " + e.getMessage());
+			e.printStackTrace();
+		}
+	
 		Data.dataIles.put(id, i);
 
 

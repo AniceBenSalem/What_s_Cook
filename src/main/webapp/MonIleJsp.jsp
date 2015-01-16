@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +10,8 @@
 	</head>
 	<body>
 	
-	  <% String login = (String) request.getAttribute("login");
+	  <%
+	  String login = (String) session.getAttribute("proprietaire");
          out.println(login);
       %>
 	
@@ -17,24 +19,24 @@
 	
 	<div class="container">
 	
-		<h1> <%req.getAttribute("proprietaire")%> </h1>
+		<h1> <%out.println(login);%> </h1>
 		<table class="table table-bordered" style="background-color:#FFF">
 		<tr>
 			<th>Entrepots</th>
-			<th>Générateurs</th>
-			<th>Défenses</th>
+			<th>Generateurs</th>
+			<th>Defenses</th>
 			<th>Caserne</th>
 		</tr>
 		<tr>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%req.getAttribute("entrepotcoquillage"); %>/
-			<%req.getAttribute("entrepotcoquillagemax") %><br>
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%request.getAttribute("entrepotcoquillage"); %>/
+			<%request.getAttribute("entrepotcoquillagemax"); %><br>
 			</td>
 			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage</td>
 			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons<br><br>
 				<img src="image/tiki.jpeg" style="width:25px;height:25px"></img> nb tiki
 			</td>
 			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img> nb cromagnons surfeurs<br><br>
-				<img src="image/icon-requin.png" style="width:25px;height:25px"></img> nb requins
+				<img src="image/icon-requestuin.png" style="width:25px;height:25px"></img> nb requins
 			</td>
 		</tr>
 		<tr>
