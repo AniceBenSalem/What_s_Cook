@@ -36,9 +36,13 @@ public class ServletIleJoueur extends HttpServlet{
 				ResultSet rs = stmt.executeQuery(query);
 				PrintWriter out = res.getWriter();
 				rs.next();
-				int idEntrepot = rs.getInt("idEntrepot");
 				req.setAttribute("proprietaire", rs.getString("proprietaire"));
-				query="select * from entrepot where id ="+idEntrepot;
+				
+				/*
+				 *  ATTRIBUTS ENTREPOT
+				 */
+				
+				query="select * from entrepot where id ="+session.getAttribute("idIle");
 				rs=stmt.executeQuery(query);
 				rs.next();
 				req.setAttribute("entrepotcoquillage", rs.getInt("coquillage"));

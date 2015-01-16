@@ -80,9 +80,10 @@ public class ConnectionSQL {
 		}
 		String query = "insert into ile (id,nomUnivers, proprietaire, dansUnClan,points,idSurfeurCroMagnon,idEntrepot,idCaserne,idGenerateurCoquillage,idCocoCanon) values (";
 		query+= id+","
-				+"'" + i.getUnivers().getNomUnivers() + "',"
+				+"null,"
 				+ "'"+  i.getProprietaire() + "',"
-				+ "'false'),"
+				+ "'false',"
+				+"0,"
 				+id+","
 				+id+","
 				+id+","
@@ -127,7 +128,7 @@ public class ConnectionSQL {
 		query+= c.getIle().getId()+","
 				+c.getCoutdeConstruction() + ",";
 		query += c.getTempsConstruction() + ",";
-		query+= c.getNombre() +","+c.getIle().getId()+");";
+		query+= c.getNombre() +","+c.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -141,7 +142,7 @@ public class ConnectionSQL {
 		query+= coco.getCoutdeConstruction() + ",";
 		query += coco.getTempsConstruction() + ",";
 		query+= coco.getNombre() + ","
-				+coco.getIle().getId()+");";
+				+coco.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -155,7 +156,7 @@ public class ConnectionSQL {
 				+genCoq.getTempsConstruction()+","
 				+genCoq.getCoutDeConstruction()+","
 				+genCoq.getNombre() +","
-				+genCoq.getIle().getId()+");";
+				+genCoq.getIle().getId()+")";
 		stmt.executeUpdate(query);
 		con.close();
 	}
@@ -193,7 +194,7 @@ public class ConnectionSQL {
 		query += e.getNombre() + ","
 				+e.getCoutDeConstruction()+","
 				+e.getTempsConstruction()+","
-				+i.getId()+");";
+				+i.getId()+")";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -237,12 +238,21 @@ public class ConnectionSQL {
 		stmt.executeUpdate(query);
 		query = "delete from caserne";
 		stmt.executeUpdate(query);
+		query = "delete from surfeurcromagnon";
+		stmt.executeUpdate(query);
 		con.close();
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		ConnectionSQL.clean();
-	}
+//	public static void main(String[] args) throws SQLException, PlacementOccupeException {
+//		ConnectionSQL.clean();
+//		Ile i = new Ile(null,"test");
+//		System.out.println("et de 1");
+//		System.out.println(ConnectionSQL.getMaxID());
+//		i.ajouterABDD();
+//		Ile i2= new Ile(null,"test2");
+//		System.out.println(i2.getId());
+//		i2.ajouterABDD();
+//	}
 	/*
 	public int addArmee(Armee armee) throws SQLException{
 		Connection con = this.getCon();

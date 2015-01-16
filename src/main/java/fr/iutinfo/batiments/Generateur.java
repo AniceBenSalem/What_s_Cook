@@ -17,7 +17,10 @@ public abstract class Generateur extends Batiment{
 		this.nombre=1;
 		genererRessource();
 	}
-
+	
+	public Ile getIle(){
+		return ile;
+	}
 
 	public int getProductionCoquillage(){
 		return productionCoquillageParMinute;
