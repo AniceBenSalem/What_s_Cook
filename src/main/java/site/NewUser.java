@@ -51,6 +51,7 @@ public class NewUser extends HttpServlet{
 				// Test amaury : on mets le login dans la session pour lenvoyer a MonIle.Jsp
 				String login = req.getParameter("newLogin");
 				http.setAttribute("login", login);
+				res.sendRedirect("MonIleJsp.jsp");
 				
 				con.close();
 			}
