@@ -5,24 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Stack;
 
-import fr.iutinfo.Armee;
 import fr.iutinfo.Data;
 import fr.iutinfo.Ile;
-import fr.iutinfo.Univers;
 import fr.iutinfo.batiments.Caserne;
 import fr.iutinfo.batiments.CocoCanon;
 import fr.iutinfo.batiments.Entrepot;
 import fr.iutinfo.batiments.GenerateurCoquillage;
-import fr.iutinfo.exceptions.PlacementOccupeException;
-import fr.iutinfo.unites.GuerrierRequin;
 import fr.iutinfo.unites.SurfeurCroMagnon;
-import fr.iutinfo.unites.Unite;
 
 public class ConnectionSQL {	
 	Connection con = null;
-	private int i = 0;
+
 	public static Connection getCon () {
 		
         try {
@@ -32,11 +26,32 @@ public class ConnectionSQL {
 			System.out.println("Probleme dans le driver");
 			e.printStackTrace();
 		}			
-        String url = "jdbc:sqlite:vinland.db";
+        String url = "jdbc:sqlite:"+System.getProperty("java.io.tmpdir")+System.getProperty("file.separator")+"vinland.db";
         String name = null;
         String passwd = null;
         try {
-			return DriverManager.getConnection(url, name, passwd);
+        	Connection con =DriverManager.getConnection(url, name, passwd);
+        	Statement stmt = con.createStatement();
+        	
+        	String query="CREATE TABLE if not exists ile(id integer PRIMARY KEY AUTOINCREMENT,nomUnivers	text,proprietaire	text,dansUnClan	text,points	integer,idSurfeurCroMagnon	integer,idEntrepot	TEXT,idCaserne	TEXT,idGenerateurCoquillage	TEXT,idCocoCanon	TEXT)";
+        	stmt.executeUpdate(query);
+        	query="CREATE TABLE if not exists SurfeurCromagnon (id INTEGER,idIle	INTEGER,nombre	INTEGER,pv	INTEGER,force	INTEGER,vitesseDeplacement	INTEGER,tempsFabrication	INTEGER,coutCoquillage	INTEGER,PRIMARY KEY(id))";
+        	stmt.executeUpdate(query);
+        	query = "CREATE TABLE if not exists caserne(id integer primary key,coutDeConstructionCaserne integer, tempsDeConstructionCaserne integer, nombre integer,idIle integer references ile(id) on update cascade)";
+        	stmt.executeUpdate(query);
+        	query ="CREATE TABLE if not exists cococanon(id integer primary key, pvCocoCanon integer, coutDeConstructionCocoCanon integer, tempsDeConstructionCocoCanon integer, nombre integer, idIle integer references ile(id) on update cascade)";
+        	stmt.executeUpdate(query);
+        	query="CREATE TABLE if not exists entrepot (id	INTEGER,coquillage	INTEGER,capacite	INTEGER,coutDeConstruction	INTEGER,tempsDeConstruction	INTEGER,nombre	INTEGER,idIle	INTEGER,PRIMARY KEY(id))";
+        	stmt.executeUpdate(query);
+        	query="CREATE TABLE if not exists users(login text, password text, mail text, role text, idIsland integer)";
+        	stmt.executeUpdate(query);
+        	query="CREATE TABLE if not exists generateurCoquillage (id	integer PRIMARY KEY AUTOINCREMENT,productionParMinute	integer,idIle	integer,tempsDeConstruction	integer,nombre	integer,coutDeConstruction	INTEGER)";
+        	stmt.executeUpdate(query);
+        	query="CREATE TABLE if not exists univers (id integer primary key autoincrement, nomUnivers text, largeur integer, longueur integer)";
+        	stmt.executeUpdate(query);
+
+
+			return con;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Probleme dans la co");
