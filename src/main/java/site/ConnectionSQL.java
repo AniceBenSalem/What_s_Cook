@@ -48,12 +48,13 @@ public class ConnectionSQL {
 		Connection con = ConnectionSQL.getCon();
 		Statement stmt = con.createStatement();
 		
-		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y) values (";
+		String query = "insert into ile (nomUnivers, proprietaire, dansUnClan, x,y,idArmee) values (";
 		query+= "'" + i.getUnivers().getNomUnivers() + "',";
 		query += "'"+  i.getProprietaire() + "',";
 		query+= "'false',";
 		query+= i.getX() + ",";
-		query+= i.getY() + ");";
+		query+= i.getY() + ",";
+		query += addArmee(i.getArmee())+");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
 		con.close();
@@ -135,13 +136,15 @@ public class ConnectionSQL {
 		
 	}
 	
-	public void addArmee(Armee armee) throws SQLException{
+	public int addArmee(Armee armee) throws SQLException{
+		
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
 		int nbSurfeurCroMagnon = 0;
 		int nbRequinGuerrier = 0 ;
 		Stack<Unite> pile = armee.getStack();
-		while(!pile.isEmpty()){
+		
+		while(!pile.isEmpty()){//incrementation des NB selon le type d'unité
 			Unite u = pile.pop();
 			if(u instanceof GuerrierRequin){
 				nbRequinGuerrier++;
@@ -150,14 +153,22 @@ public class ConnectionSQL {
 				nbSurfeurCroMagnon++;
 			}
 		}
+		
 		String query = "insert into armee (surfeurCroMagnon, requinGuerrier) values (";
 		query+= " "+ nbSurfeurCroMagnon + ",";
 		query += ""+  nbRequinGuerrier + "";
 		query +=");";
 		System.out.println("Query = " + query);
 		stmt.executeUpdate(query);
-		con.close();
+		ResultSet rs = stmt.executeQuery("select max(id) from armee;");
+		int id=0;
+		if(rs.next()){
+			id = Integer.parseInt(rs.getString("id"));
+		}
 		
+		
+		con.close();
+		return id;
 	}  
 	
 	public static void main(String[] args) throws PlacementOccupeException, SQLException {
