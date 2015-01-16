@@ -61,10 +61,6 @@ public class ConnectionSQL {
 		System.out.println("OK maggle");
 	}
 	
-	private String addArmee(Armee armee) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public static void addEntrepot2 (Entrepot e) throws SQLException {
 		Connection con = ConnectionSQL.getCon();
@@ -178,13 +174,9 @@ public class ConnectionSQL {
 		con.close();
 		
 	}
-	/*
-	public void addArmee(Armee armee) throws SQLException{
-=======
+	
 	
 	public int addArmee(Armee armee) throws SQLException{
-		
->>>>>>> d93d139125d3d02e1ef0a196dd6c2d57f5da3339
 		Connection con = this.getCon();
 		Statement stmt = con.createStatement();
 		int nbSurfeurCroMagnon = 0;
@@ -217,7 +209,31 @@ public class ConnectionSQL {
 		con.close();
 		return id;
 	}  
-	*/
+	
+	public void addUnitee(Armee armee, Unite u) throws SQLException{
+		int idIle = recupIDIle(armee.getIle());
+		Connection con = this.getCon();
+		Statement stmt = con.createStatement();
+		String query;
+		query = "update armee set ";
+		if (u instanceof SurfeurCroMagnon){
+			query += "nbSurfeurCroMagnon = nbSurfeurCroMagnon + 1";
+		}
+		if (u instanceof GuerrierRequin){
+			query += "requinGuerrier = requinGuerrier + 1";
+		}
+		query += " where idArmee = (select idArmee from ile where id = "+idIle;
+		query +=" );";
+		System.out.println("Query = " + query);
+		stmt.executeQuery(query);
+		ResultSet rs = stmt.executeQuery("select max(id) from armee;");
+		int id=0;
+		if(rs.next()){
+			id = Integer.parseInt(rs.getString("id"));
+		}
+		
+		con.close();
+	} 
 	
 	public Integer recupIDEntrepot(Entrepot e, Ile i) throws SQLException {
 		Connection con = ConnectionSQL.getCon();

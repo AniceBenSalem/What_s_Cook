@@ -252,7 +252,7 @@ public class Ile {
 		return this.cococanon;
 	}
 
-	public void putSurfeurCromagnonArmee(){
+	public void putSurfeurCromagnonArmee() throws SQLException{
 		if(surfeur.getNombre()>0){
 			SurfeurCroMagnon surf = new SurfeurCroMagnon();
 			surf.up();
@@ -264,7 +264,7 @@ public class Ile {
 		return surfeur;
 	}
 
-	public void putAllSurfeurCromagnonArmee(){
+	public void putAllSurfeurCromagnonArmee() throws SQLException{
 		while(this.surfeur.getNombre()>0){
 			putSurfeurCromagnonArmee();
 		}

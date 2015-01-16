@@ -89,14 +89,14 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testAddUnite() {
+	public void testAddUnite() throws SQLException {
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
 		assertEquals(a.getStack().size(),2);
 	}
 	
 	@Test
-	public void testGetPV() {
+	public void testGetPV() throws SQLException {
 		
 		a=new Armee(i);
 		a.addUnite(new SurfeurCroMagnon());
@@ -105,7 +105,7 @@ public class ArmeeTest extends JerseyTest{
 	}
 	
 	@Test
-	public void testGetForce() {
+	public void testGetForce() throws SQLException {
 		a=new Armee(i);
 		a.addUnite(new SurfeurCroMagnon());
 		a.addUnite(new SurfeurCroMagnon());
