@@ -50,7 +50,11 @@
 		
 			
 			
-			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons<br><br>
+			<td><img src="image/coconutcanon.png" style="width:25px;height:25px"></img> nb cococanons
+			<%Integer nbCoco = (Integer)  session.getAttribute("nbCoco"); out.println(nbCoco); %>
+			
+			
+			<br><br>
 				<img src="image/tiki.jpeg" style="width:25px;height:25px"></img> nb tiki
 			</td>
 			<td><img src="image/surfeur-icon.png" style="width:25px;height:25px"></img> nb cromagnons surfeurs<br><br>

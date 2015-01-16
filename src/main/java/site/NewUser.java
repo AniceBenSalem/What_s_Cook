@@ -41,7 +41,7 @@ public class NewUser extends HttpServlet {
 				String url = "jdbc:sqlite:vinland.db";
 				String nom = null;
 				String mdp = null;
-				Connection con = DriverManager.getConnection(url, nom, mdp);
+				Connection con = ConnectionSQL.getCon();
 
 				System.out.println("On est ici");
 				// Instanciation de l'ile
@@ -111,6 +111,25 @@ public class NewUser extends HttpServlet {
 				System.out.println("prod = " + prod);
 				
 				session.setAttribute("production", prod);
+				
+				/*Nombre cococanon*/
+				String idCocoCanon = "select idCocoCanon from ile where id =" + idIleInt + ";";
+				ResultSet rs7 = stmt.executeQuery(idCocoCanon);
+				int idCoco = Integer.parseInt(rs7.getString("idCocoCanon"));			
+				String nombreCocoCanon = "select nombre from CocoCanon where id =" + idCoco + ";";
+				ResultSet rs8 = stmt.executeQuery(nombreCocoCanon);
+				int nbCoco = Integer.parseInt(rs8.getString("nombre"));
+				session.setAttribute("nbCoco", nbCoco);
+				
+				/*Nombre cromagnon*/
+				String idCroMagnon = "select idCocoCanon from ile where id =" + idIleInt + ";";
+				ResultSet rs7 = stmt.executeQuery(idCocoCanon);
+				int idCoco = Integer.parseInt(rs7.getString("idCocoCanon"));			
+				String nombreCocoCanon = "select nombre from CocoCanon where id =" + idCoco + ";";
+				ResultSet rs8 = stmt.executeQuery(nombreCocoCanon);
+				int nbCoco = Integer.parseInt(rs8.getString("nombre"));
+				
+				
 				
 				
 				res.sendRedirect("../MonIleJsp.jsp");
