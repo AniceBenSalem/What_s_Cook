@@ -28,7 +28,14 @@
 			<th>Caserne</th>
 		</tr>
 		<tr>
-			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%request.getAttribute("entrepotcoquillage"); %>/
+			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img><%request.getAttribute("entrepotcoquillage");
+			Integer coquillage = (Integer) session.getAttribute("coquillage");
+			out.println("" + coquillage);
+				Integer capacite = (Integer) session.getAttribute("capacite");
+			out.println(" / " + capacite);
+			
+			
+			%>/
 			<%request.getAttribute("entrepotcoquillagemax"); %><br>
 			</td>
 			<td><img src="image/shell-icon.png" style="width:25px;height:25px"></img>prod coquillage</td>
