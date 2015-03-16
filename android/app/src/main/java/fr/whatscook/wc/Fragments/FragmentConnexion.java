@@ -1,27 +1,19 @@
 package fr.whatscook.wc.Fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.whatscook.wc.Acceuil;
 import fr.whatscook.wc.R;
-
-import static fr.whatscook.wc.R.string.email;
 
 /**
  * Created by hilmoinb on 11/03/15.
@@ -37,7 +29,7 @@ public class FragmentConnexion extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_compte, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_connexion, container, false);
         final EditText login = (EditText) rootView.findViewById(R.id.email);
         final EditText pass = (EditText) rootView.findViewById(R.id.passwd);
         final Button loginButton = (Button) rootView.findViewById(R.id.connect);
@@ -55,10 +47,9 @@ public class FragmentConnexion extends Fragment {
                 } else if (passTxt.equals("")) {
                     pass.setError("error password");
                 } else {
+
                     FragmentManager fm = getFragmentManager();
-
                     if (fm != null) {
-
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.replace(R.id.frame_container, new FragmentAcceuil());
                         ft.commit();

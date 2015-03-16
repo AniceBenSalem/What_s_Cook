@@ -20,6 +20,7 @@ package fr.whatscook.wc;
     import android.view.MenuItem;
     import android.view.View;
     import android.widget.AdapterView;
+    import android.widget.LinearLayout;
     import android.widget.ListView;
 
     import fr.whatscook.wc.Fragments.FragmentAcceuil;
@@ -27,6 +28,7 @@ package fr.whatscook.wc;
     import fr.whatscook.wc.Fragments.FragmentEvenements;
     import fr.whatscook.wc.Fragments.FragmentFrigo;
     import fr.whatscook.wc.Fragments.FragmentConnexion;
+    import fr.whatscook.wc.Fragments.FragmentParametre;
     import fr.whatscook.wc.Fragments.FragmentRecettes;
 
 public class Acceuil extends ActionBarActivity {
@@ -61,7 +63,7 @@ public class Acceuil extends ActionBarActivity {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)/*, true, "2222"*/));
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-           navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(4, -1)));
+           navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 
             navMenuIcons.recycle();
 
@@ -71,8 +73,7 @@ public class Acceuil extends ActionBarActivity {
                     navDrawerItems);
             mDrawerList.setAdapter(adapter);
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
+
 
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F46200")));
             mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -95,6 +96,8 @@ public class Acceuil extends ActionBarActivity {
             if (savedInstanceState == null) {
                displayView(1);
             }
+           getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+           getSupportActionBar().setHomeButtonEnabled(true);
 
 
         }
@@ -149,8 +152,7 @@ public class Acceuil extends ActionBarActivity {
                 return true;
             }
             switch (item.getItemId()) {
-                case R.id.action_settings:
-                    return true;
+
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -160,8 +162,7 @@ public class Acceuil extends ActionBarActivity {
         @Override
         public boolean onPrepareOptionsMenu(Menu menu) {
             boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-            menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-            return super.onPrepareOptionsMenu(menu);
+                return super.onPrepareOptionsMenu(menu);
         }
 
 
@@ -189,7 +190,7 @@ public class Acceuil extends ActionBarActivity {
 
                     break;
                 case 5:
-                    fragment = new FragmentCompte();
+                    fragment = new FragmentParametre();
 
                     break;
                 default:

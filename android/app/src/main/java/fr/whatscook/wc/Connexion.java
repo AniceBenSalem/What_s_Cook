@@ -19,7 +19,7 @@ public class Connexion extends ActionBarActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_compte);
+        setContentView(R.layout.fragment_connexion);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final EditText login = (EditText) findViewById(R.id.email);
         final EditText pass = (EditText) findViewById(R.id.passwd);
@@ -102,10 +102,10 @@ public class Connexion extends ActionBarActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
             case R.id.homeAsUp:
-                setContentView(R.layout.fragment_compte);
+                setContentView(R.layout.fragment_connexion);
                 return true;
              case R.id.useLogo:
-             setContentView(R.layout.fragment_compte);
+             setContentView(R.layout.fragment_connexion);
            return true;
             default:
                 return super.onOptionsItemSelected(item);
