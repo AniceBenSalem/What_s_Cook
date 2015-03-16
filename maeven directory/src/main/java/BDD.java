@@ -116,11 +116,44 @@ public class BDD {
 		}
 		return g;
 	}
+
+	public void ajouterRecette(String name, int nb,String Temps, String ingredients, String description) throws SQLException{
+		int idRecettes = this.nbRecettes()+1;
+		String insert="";
+		if(idRecettes >0){
+		insert ="insert into Recettes (NumRecette, TitreRecette, NbPersonnne ,Temps ,Ingredients , TxtRecette) " +
+				"values("+idRecettes+","+name+" ,"+nb+" ,"+Temps+" ,"+ingredients+" ,"+" ,"+description+" ;";
+		}
+		try{
+		statement.executeQuery(insert);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public int nbRecettes() throws SQLException{
+		int ret =-1; 
+		rs =statement.executeQuery("select count(*) from Recettes");
+		
+		if(rs.next()){
+			ret =rs.getInt(0);
+		}
+		return ret;
+	}
+
+	public String Frigo(int idFrigo, int idUser) throws SQLException{
+		String retour ="Huuuumm J'ai tout ça de bon: \n";
+		rs = statement.executeQuery("select ingredients from Frigo where idFrigo ="+idFrigo+" AND idUser="+idUser+";");
+		while(rs.next()){
+			retour+= rs.getString(0)+"\n";
+		}
+		return retour;
+	}
 	
 	public static void main(String[] args) throws SQLException {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("rhubarbe");
 		list.add("cassis");
-		new BDD().executeRequete("Recettes", "TxtRecette", "cassis");
+		new BDD().executeRequete("Recettes", "TxtRecette","cassis");
 	}
 }

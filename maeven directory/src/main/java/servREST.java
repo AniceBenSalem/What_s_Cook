@@ -41,17 +41,21 @@ public class servREST {
 	}
 
 	@GET
-	@Path("/addx/{a}/{b}")
+	@Path("/addRecettes/{name}/{nbPersonnes}/{ingredients}/{Temps}/{Descriptions}")
 	@Produces(MediaType.TEXT_XML)
-	public String addXML(@PathParam("a") double a, @PathParam("b") double b) {
-		return "<?xml version=\"1.0\"?>" + "<result>" + (a + b) + "</result>";
+	public String addRecettes(@PathParam("name") String name, @PathParam("nbPersonnes") int nb,@PathParam("ingredients") String ingredients, @PathParam("Temps") String time, @PathParam("Description") String description ) throws SQLException {
+		bdd.connexion();
+		bdd.ajouterRecette(name, nb, time, ingredients, description);
+		return "succès de l'ajout";
 	}
 
 	@GET
-	@Path("/subx/{a}/{b}")
+	@Path("/getRecettesbyName/{name}/")
 	@Produces(MediaType.TEXT_XML)
-	public String subXML(@PathParam("a") double a, @PathParam("b") double b) {
-		return "<?xml version=\"1.0\"?>" + "<result>" + (a - b) + "</result>";
+	public String getRecettesbyName(@PathParam("name") String name) throws SQLException {
+		bdd.connexion();
+		String hummm = bdd.executeRequete("Recettes","TitreRecette" , name).get(0);
+		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
 	}
 	
 	@POST
@@ -63,9 +67,11 @@ public class servREST {
 	}
 	
 	@GET
-	@Path("/liste")
+	@Path("/monFrigo/{idFrigo}/{idUser}")
 	@Produces(MediaType.TEXT_XML)
-	public String liste1() {
-		return "<?xml version=\"1.0\"?>" + "<result>" + liste.toString() + "</result>";
+	public String monFrigo(@PathParam("idFrigo") int idFrigo, @PathParam("idUser") int idUser) throws SQLException {
+		bdd.connexion();
+		String frigo = bdd.Frigo(idFrigo, idUser); 
+		return "<?xml version=\"1.0\"?>" + "<result>" + frigo + "</result>";
 	}
 }
