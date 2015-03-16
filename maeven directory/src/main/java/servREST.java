@@ -2,6 +2,7 @@
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,9 +35,13 @@ public class servREST {
 	@Path("/getRecettes/{mesIngredients}")
 	@Produces(MediaType.TEXT_XML)
 	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException {
+		List<String> results = new ArrayList<String>();
 	   //ParamToString(mesIngredients);
 		bdd.connexion();
-		String Cbon = bdd.executeRequete("Recettes","TxtRecette", mesIngredients).get(0);
+		String Cbon ="";
+		for(int i =0;i<results.size(); i++){
+			Cbon+=bdd.executeRequete("Recettes","TxtRecette", mesIngredients).get(i)+"\n";
+		}
 		return "<?xml version=\"1.0\"?>" + "<result>"+Cbon+"</result>";
 	}
 
