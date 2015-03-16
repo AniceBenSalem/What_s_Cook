@@ -1,3 +1,4 @@
+package cuisine;
 
 
 import java.sql.SQLException;

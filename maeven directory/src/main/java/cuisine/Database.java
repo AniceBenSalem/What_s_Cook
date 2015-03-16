@@ -1,3 +1,4 @@
+package cuisine;
 import java.sql.Date;
 
 import org.skife.jdbi.v2.sqlobject.Bind;

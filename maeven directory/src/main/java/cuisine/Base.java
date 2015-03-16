@@ -1,3 +1,4 @@
+package cuisine;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,3 +1,4 @@
+package cuisine;
 public class User {
 	String mail;
 	String login;
