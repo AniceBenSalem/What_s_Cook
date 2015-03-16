@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@android:color/background_light">
+
+    <EditText
+        android:id="@+id/pseudo"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:hint="Votre pseudo ?"
+        android:layout_gravity="center_horizontal" />
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:hint="Votre email ?"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwd"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_gravity="center_horizontal"
+        android:hint="Votre mot de passe ?" />
+
+    <EditText
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwd2"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:layout_gravity="center_horizontal"
+        android:hint="Votre mot de passe ?" />
+
+
+
+    <Button
+        android:id="@+id/enregistrer"
+        android:layout_width="283dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="@string/register"
+        android:layout_gravity="center_horizontal" />
+
+
+
+</LinearLayout>
