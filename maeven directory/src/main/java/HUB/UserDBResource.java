@@ -34,6 +34,7 @@ public class UserDBResource {
 	public User getUser(@PathParam("name") String name) {
 		User out = dao.findByName(name);
 		if (out == null) {
+		System.out.println(name);
 		throw new WebApplicationException(404);
 		}
 		return out;
