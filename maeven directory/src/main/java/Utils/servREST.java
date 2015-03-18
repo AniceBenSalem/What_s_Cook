@@ -13,6 +13,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import fr.iutinfo.Requetes;
+import fr.iutinfo.SQLiteConnectionData;
+
 @Path("/cook")
 public class servREST {
 	private static ArrayList<String> liste;
@@ -40,6 +43,9 @@ public class servREST {
 	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException {
 		List<String> results = new ArrayList<String>();
 	   //ParamToString(mesIngredients);
+		c=new SQLiteConnectionData();
+		r=new Requetes();
+		
 		String Cbon ="";
 		for(int i =0;i<results.size(); i++){
 			Cbon+= r.executeRequete("Recettes","TxtRecette", mesIngredients).get(i)+"\n";

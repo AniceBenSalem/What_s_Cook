@@ -15,28 +15,30 @@ public class UserDBResource {
 	
 	public UserDBResource() {
 		try {
-			dao.createUserTable();
+			dao.createUser();
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
-		dao.insert("foo");
+		dao.insertUser("toto","toto2","tro");
 	}
 	
-	@POST
+/*	@POST
 	public User createUser(User user) {
 		int id = dao.insert(user.getName());
 		user.setId(id);
 		return user;
 	}
-	
+*/	
 	@GET
 	@Path("/{name}")
-	public User getUser(@PathParam("name") String name) {
-		User out = dao.findByName(name);
+	public String getUser(@PathParam("name") String name) {
+		/*User out = dao.findByName(name);
 		if (out == null) {
 		System.out.println(name);
 		throw new WebApplicationException(404);
 		}
-		return out;
+		return out;*/
+		System.out.println("ici");
+		return name;
 	}
 }

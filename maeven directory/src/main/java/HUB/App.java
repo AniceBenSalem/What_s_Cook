@@ -16,8 +16,9 @@ import org.sqlite.SQLiteDataSource;
 import Resources.ConnexionResource;
 import Resources.InscriptionResource;
 import Resources.UserResource;
+import Utils.Database;
 
-@ApplicationPath("/v1/")
+@ApplicationPath("/whatcook/")
 public class App extends Application {
 	public static DBI dbi;
 	public static SQLiteDataSource ds;
@@ -28,14 +29,18 @@ public class App extends Application {
 		ds.setUrl("jdbc:sqlite:bdd");
 		dbi = new DBI(ds);
 		org.skife.jdbi.v2.Handle h = dbi.open();
+		
+		/*
 		File fichier = new File("dump.sql");
-		System.out.println("fichier existe ? "+fichier.exists());	
+		System.out.println("fichier existe ? "+fichier.exists());	*/
 		Set<Class<?>> s = new HashSet<Class<?>>();
 		s.add(UserResource.class);
-		s.add(LoggingFilter.class);
-		s.add(UserDBResource.class);
-		s.add(ConnexionResource.class);
-		s.add(InscriptionResource.class);
+		s.add(UserDao.class);
+		s.add(Database.class);
+	//	s.add(LoggingFilter.class);
+	//	s.add(UserDBResource.class);
+	//	s.add(ConnexionResource.class);
+	//	s.add(InscriptionResource.class);
 		return s;
 	}
 	
@@ -45,9 +50,9 @@ public class App extends Application {
 		org.skife.jdbi.v2.Handle h = dbi.open();
 		File fichier = new File("dump.sql");
 		System.out.println("fichier existe ? "+fichier.exists());		
-	}
+	}*/
 	
-	public static void main(String[] args) throws IOException, URISyntaxException {
+/*	public static void main(String[] args) throws IOException, URISyntaxException {
 		new App().CreationTables();
 	}*/
 }

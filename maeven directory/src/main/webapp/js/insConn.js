@@ -58,7 +58,7 @@ function connexion(){
 		$.ajax({
 			type : 'GET',
 			contentType : 'application/json',
-			url : "v1/connexion/",
+			url : "whatcook/connexion/",
 			dataType : "json",
 			data: JSON.stringify({
 				"login" : login,
