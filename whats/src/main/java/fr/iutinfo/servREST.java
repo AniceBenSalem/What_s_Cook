@@ -24,7 +24,7 @@ public class servREST {
 
 	@GET
 	@Path("/getRecettes/{mesIngredients}")
-	@Produces(MediaType.TEXT_XML)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException {
 		List<String> results = new ArrayList<String>();
 		Base b = new Base();
@@ -36,7 +36,7 @@ public class servREST {
 		while (r.next()){
 			Cbon+=r.getString("NumRecette")+"---"+r.getString("TitreRecette")+"---"+r.getString("TxtRecette")+"\n";
 		}
-		return "<?xml version=\"1.0\"?>" + "<result>"+Cbon+"</result>";
+		return "<result>"+Cbon+"</result>";
 	}
 	
 	/*

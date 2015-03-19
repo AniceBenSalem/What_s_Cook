@@ -13,9 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.iutinfo.Requetes;
-import fr.iutinfo.SQLiteConnectionData;
-
 @Path("/cook")
 public class servREST {
 	private static ArrayList<String> liste;
