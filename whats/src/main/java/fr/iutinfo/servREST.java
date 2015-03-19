@@ -39,6 +39,13 @@ public class servREST {
 		return "<result>"+Cbon+"</result>";
 	}
 	
+	@GET
+	@Path("/RecetteDuJour")
+	@Produces(MediaType.TEXT_HTML)
+	public String getRecettesDuJour() throws SQLException {
+		r = new Requetes();
+		return "<result>"+r.RecetteDuJour()+"</result>";
+	}
 	
 	
 

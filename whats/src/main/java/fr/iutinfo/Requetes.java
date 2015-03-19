@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Requetes {
@@ -91,6 +92,14 @@ public class Requetes {
 		}
 		return g;
 	}
+	
+	public String RecetteDuJour() throws SQLException {
+		rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+new Random().nextInt(this.nbRecettes())+";");
+		if(rs.next())
+			return rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+		return "PAS DE RECETTE AUJOURD HUI";
+	}
+	
 
 	public void ajouterRecette(String name, int nb,String Temps, String ingredients, String description) throws SQLException{
 		int idRecettes = this.nbRecettes()+1;

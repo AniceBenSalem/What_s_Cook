@@ -140,22 +140,20 @@
 		$('#platdujour').click(function(event){console.log("dans #bouton.click");
 		//$('#output').html("<h1> #bouton!!!!</h1>");
 	  	$.ajax({
-	    	url:'http://localhost:8080/v1/cook/getRecettes/rhubarbe',
+	    	url:'http://localhost:8080/v1/cook/RecetteDuJour',
 		type: "GET",
-		datatype:'TEXT_PLAIN',
+		datatype:'TEXT_HTML',
 		success: function(json){
-			
-			$('#output').append('<br>'+json+'</br>');
-			console.log(json);
+			$('.panel-body').append('<br>'+json+'</br>');
 	/*		reponse = json;
 			json.forEach( function(book, idx){
 				$('#output').append(idx+': '+book+'<br></br>');
-			});*/
+			});
 			//console.log(json);
 			/*for(var key in json){
 				console.log(key);
-	//			var text=data[key].author+" "+data[key].title;
-	//			$("<li>").html(text).apprendTo($("#idSu"));	
+				var text=data[key].author+" "+data[key].title;
+				$("<li>").html(text).apprendTo($("#idSu"));	
 			}*/
 		}})})});
 	</script>
