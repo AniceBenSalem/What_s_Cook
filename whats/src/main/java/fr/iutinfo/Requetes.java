@@ -7,22 +7,14 @@ import java.util.ArrayList;
 
 
 public class Requetes {
-	/*private Connection c;
-	private Statement statement = null;
-	
 
-	public Requetes(SQLiteConnectionData s) throws SQLException {
-		this.c = s.getConnection();
-		statement = c.createStatement();
-	}*/
 	public Base b;
 	public ResultSet rs = null;
 	
 	public Requetes() throws SQLException {
 		b =new Base();
-		/*this.c = SQLiteConnectionData.getConnection();
-		statement = c.createStatement();*/
 		
+		b.open();
 	}
 	
 	public ArrayList<String> executeRequete(String table,String colonne,String requete){
@@ -104,8 +96,8 @@ public class Requetes {
 		int idRecettes = this.nbRecettes()+1;
 		String insert="";
 		if(idRecettes >0){
-		insert ="insert into Recettes (NumRecette, TitreRecette, NbPersonnne ,Temps ,Ingredients , TxtRecette) " +
-				"values("+idRecettes+","+name+" ,"+nb+" ,"+Temps+" ,"+ingredients+" ,"+" ,"+description+" ;";
+		insert ="insert into Recettes (NumRecette, TitreRecette, NbPersonne ,Temps ,Ingredients , TxtRecette) " +
+				"values("+idRecettes+",'"+name+"' ,"+nb+" ,'"+Temps+"' ,'"+ingredients+"' ,'"+description+"');";
 		}
 		try{
 		
@@ -121,7 +113,7 @@ public class Requetes {
 		rs =b.executeQry("select count(*) from Recettes");
 		
 		if(rs.next()){
-			ret =rs.getInt(0);
+			ret =rs.getInt(1);
 		}
 		return ret;
 	}
