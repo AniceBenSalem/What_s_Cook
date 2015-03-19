@@ -23,14 +23,14 @@ public class Base {
 	}
 
 	public ResultSet executeQry(String instruction) throws SQLException {
-		open();
+		
 		ResultSet r = statement.executeQuery(instruction);
 		
 		return r;
 	}
 
 	public void executeStmt(String instruction) throws SQLException {
-		open();
+		
 		statement.executeUpdate(instruction);
 		
 	}
