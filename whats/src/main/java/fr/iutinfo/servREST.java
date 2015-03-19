@@ -74,19 +74,20 @@ public class servREST {
 		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
 	}
 	
-	@POST
-	@Path("/liste/{string}")
+	@GET
+	@Path("/recherche/{string}")
 	@Produces(MediaType.TEXT_XML)
-	public String liste(@PathParam("string") String s) {
-		liste.add(s);
-		return "<?xml version=\"1.0\"?>" + "<result>" + liste.toString() + "</result>";
+	public String recherche(@PathParam("string") String iSearch) throws SQLException {
+		r = new Requetes();
+		return "<?xml version=\"1.0\"?>" + "<result>" + r.searchRecettes(iSearch) + "</result>";
 	}
 	
 	@GET
 	@Path("/monFrigo/{idFrigo}/{idUser}")
 	@Produces(MediaType.TEXT_XML)
 	public String monFrigo(@PathParam("idFrigo") int idFrigo, @PathParam("idUser") int idUser) throws SQLException {
-		String frigo = r.Frigo(idFrigo, idUser); 
+		String frigo = r.frigo(idFrigo, idUser); 
 		return "<?xml version=\"1.0\"?>" + "<result>" + frigo + "</result>";
 	}
+	
 }

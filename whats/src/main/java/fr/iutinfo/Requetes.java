@@ -127,13 +127,44 @@ public class Requetes {
 		return ret;
 	}
 
-	public String Frigo(int idFrigo, int idUser) throws SQLException{
+	public String frigo(int idFrigo, int idUser) throws SQLException{
 		String retour ="Huuuumm J'ai tout ça de bon: \n";
 		rs = b.executeQry("select ingredients from Frigo where idFrigo ="+idFrigo+" AND idUser="+idUser+";");
 		while(rs.next()){
-			retour+= rs.getString(0)+"\n";
+			retour+= rs.getString(1)+"\n";
 		}
 		return retour;
+	}
+	public String searchRecettes(String s) throws SQLException{
+		
+		/*int jeChercheUnInt = Integer.parseInt(s);*/
+		String retour ="";
+		System.out.println("select * from Recettes where TitreRecette like '%"+s+"%'" +
+				" OR NbPersonneTxt like '%"+s+"%' OR Temps like '%"+s+"%'" +
+						" OR Ingredients like '%"+s+"%'+ OR TxtRecette like '%"+s+"%';");
+		
+		rs = b.executeQry("select * from Recettes where TitreRecette like '%"+s+"%'" +
+				" OR NbPersonneTxt like '%"+s+"%' OR Temps like '%"+s+"%'" +
+						" OR Ingredients like '%"+s+"%' OR TxtRecette like '%"+s+"%';");
+		
+		
+		while(rs.next()){
+			retour+= rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+		}
+		return retour;
+		
+		/*
+		 * NumRecette` INTEGER NOT NULL DEFAULT 0, 
+  `TitreRecette` VARCHAR(255), 
+  `NbPersonne` INTEGER DEFAULT 0, 
+  `NbPersonneTxt` VARCHAR(255), 
+  `Temps` VARCHAR(255), 
+  `Ingredients` LONGTEXT, 
+  `TxtRecette` LONGTEXT, 
+  PRIMARY KEY (`NumRecette`)
+
+		 * 
+		 */
 	}
 	
 /*	public void insertUser(User u) {
