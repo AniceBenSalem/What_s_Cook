@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -94,9 +95,23 @@ public class Requetes {
 	}
 	
 	public String RecetteDuJour() throws SQLException {
-		rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+new Random().nextInt(this.nbRecettes())+";");
-		if(rs.next())
-			return rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+		int tmp =0;
+		rs = b.executeQry("SELECT * FROM RecetteDuJour ;");
+		if(rs.next()){
+			tmp = Integer.parseInt(rs.getString("date"));
+			if ( tmp == new Date().getDate()){
+				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+rs.getString("id")+";");
+				if(rs.next())
+					return rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+			}
+			else{
+				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+new Random().nextInt(this.nbRecettes())+";");
+				String id = rs.getString("NumRecette");
+				int date = new Date().getDate();
+				b.executeStmt("UPDATE RecetteDuJour SET id = "+Integer.parseInt(id)+" , date = "+date+";");
+				RecetteDuJour();
+			}
+		}
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
