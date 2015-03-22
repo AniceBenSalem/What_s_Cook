@@ -24,30 +24,19 @@ public class servREST {
 
 	@GET
 	@Path("/getRecettes/{mesIngredients}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException {
-		List<String> results = new ArrayList<String>();
-		Base b = new Base();
-		b.open();
-		ResultSet r =b.executeQry("SELECT * FROM Recettes where TxtRecette like '%"+mesIngredients+"%';");
-	
-	   //ParamToString(mesIngredients);
-		String Cbon ="";
-		while (r.next()){
-			Cbon+=r.getString("NumRecette")+"---"+r.getString("TitreRecette")+"---"+r.getString("TxtRecette")+"\n";
-		}
-		return "<result>"+Cbon+"</result>";
+		return new Requetes().executeRequete("Recettes", "TxtRecette", mesIngredients);
 	}
 	
 	@GET
 	@Path("/RecetteDuJour")
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettesDuJour() throws SQLException {
 		r = new Requetes();
-		return "<result>"+r.RecetteDuJour()+"</result>";
+		return  r.recetteDuJour();
 	}
-	
-	
+		
 
 	@GET
 	@Path("/addRecettes/{name}/{nbPersonnes}/{ingredients}/{Temps}/{Descriptions}")
@@ -70,7 +59,7 @@ public class servREST {
 	@Produces(MediaType.TEXT_XML)
 	public String getRecettesbyName(@PathParam("name") String name) throws SQLException {
 		r= new Requetes();
-		String hummm = r.executeRequete("Recettes","TitreRecette" , name).get(0);
+		String hummm = r.executeRequete("Recettes","TitreRecette" , name);
 		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
 	}
 	

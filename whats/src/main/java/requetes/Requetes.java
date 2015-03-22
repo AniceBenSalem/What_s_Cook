@@ -19,10 +19,32 @@ public class Requetes {
 		b.open();
 	}
 	
-	public ArrayList<String> executeRequete(String table,String colonne,String requete){
-		ArrayList<String> list = new ArrayList<String>();
+	public String executeRequete(String table,String colonne,String requete){
+		String JSON = "{\"Recettes\" :[";
 		try {
-			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '%"+this.Requete(requete)+"%';");
+			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '%"+this.requete(requete)+"%';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			rs.next();
+			JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			while (rs.next()) {
+				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON +"]}";
+	}
+	
+	public String executeRequete(String table,String colonne,ArrayList<String> requete){
+		String JSON = "{\"Recettes\" :[";
+		try {
+			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '%"+this.requete(requete)+"%';");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,37 +52,21 @@ public class Requetes {
 
 		try {
 			while (rs.next()) {
-				list.add(rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette"));
+				if(rs.isLast()){
+					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+				}
+				else
+					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"},";
+				System.out.println(JSON);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(list.get(0));
-		return list;
+		return JSON +"]}";
 	}
 	
-	public ArrayList<String> executeRequete(String table,String colonne,ArrayList<String> requete){
-		ArrayList<String> list = new ArrayList<String>();
-		try {
-			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '%"+this.Requete(requete)+"%';");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			while (rs.next()) {
-				list.add(rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
-	public String Requete(ArrayList<String> list){
+	public String requete(ArrayList<String> list){
 		String g = "";
 		
 		for(int i =0 ; i< list.size();i++){
@@ -73,7 +79,7 @@ public class Requetes {
 		return g;
 	}
 
-	public String Requete(String s) {
+	public String requete(String s) {
 		boolean suite = false;
 		String g = "";
 
@@ -94,7 +100,7 @@ public class Requetes {
 		return g;
 	}
 	
-	public String RecetteDuJour() throws SQLException {
+	public String recetteDuJour() throws SQLException {
 		int tmp =0;
 		rs = b.executeQry("SELECT * FROM RecetteDuJour ;");
 		if(rs.next()){
@@ -102,14 +108,14 @@ public class Requetes {
 			if ( tmp == new Date().getDate()){
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+rs.getString("id")+";");
 				if(rs.next())
-					return rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+					return "{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
 			else{
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+new Random().nextInt(this.nbRecettes())+";");
 				String id = rs.getString("NumRecette");
 				int date = new Date().getDate();
 				b.executeStmt("UPDATE RecetteDuJour SET id = "+Integer.parseInt(id)+" , date = "+date+";");
-				RecetteDuJour();
+				return recetteDuJour();
 			}
 		}
 		return "PAS DE RECETTE AUJOURD HUI";
