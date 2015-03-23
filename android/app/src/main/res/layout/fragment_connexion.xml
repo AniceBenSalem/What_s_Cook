@@ -13,6 +13,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.14"></FrameLayout>
 
+    <ImageView
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.54"
+        android:src="@mipmap/logo" />
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"

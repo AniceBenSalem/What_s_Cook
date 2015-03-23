@@ -3,6 +3,7 @@ package fr.whatscook.wc.Fragments;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.whatscook.wc.Acceuil;
 import fr.whatscook.wc.R;
 
 /**
@@ -47,7 +49,7 @@ public class FragmentConnexion extends Fragment {
                 } else if (passTxt.equals("")) {
                     pass.setError("error password");
                 } else {
-
+                   
                     FragmentManager fm = getFragmentManager();
                     if (fm != null) {
                         FragmentTransaction ft = fm.beginTransaction();
