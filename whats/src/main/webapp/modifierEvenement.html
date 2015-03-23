@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<!-- jQuery -->
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		
+		<!-- bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/bootstrap.min.js"></script>
+		
+		<!-- Styles -->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/banniere-defilante.css" rel="stylesheet">
+	
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>What's Cooking</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+		<li>
+		  <a href="index.html">Accueil</a>
+		</li>
+        <li>
+          <a href="recettes.html">Recettes</a>
+        </li>
+        <li>
+          <a href="platdujour.html">Plat du jour</a>
+        </li>
+        <li>
+          <a href="evenement.html">Evénements</a>
+        </li>
+        <li>
+          <a href="contact.html">Contact</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-right navbar-nav">
+        <li>
+          <a href="inscription.html">S'inscrire</a>
+        </li>
+        <li>
+          <a href="connexion.html">Se connecter</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="masthead">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>What's Cooking
+          <p class="lead"></p>
+        </h1>
+      </div>
+      <div class="col-md-5">
+        <!--<div class="well well-lg"> -->
+          <div class="row">
+            <div class="col-sm-12">
+			  <div class="banniere">
+			  <img src="images/Image1.jpg"/>
+			  <img src="images/Image2.jpg"/>
+			  <img src="images/Image3.jpg"/>
+			  <img src="images/Image4.jpg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="top-spacer"> </div>
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+</div>
+
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-12"> 
+      
+      <div class="panel">
+        <div class="panel-body">
+          
+             <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+		<li>
+		  <a href="evenement.html">Evénement en cours</a>
+		</li>
+        <li>
+          <a href="creerEvenement.html">Créer un événement</a>
+        </li>
+        <li>
+          <a href="modifierEvenement.html">Modifier votre événement</a>
+        </li>
+      </ul>
+    </nav>
+          
+          <!--/stories-->
+    <center><h1>Modifier un Evenement existant </h1></center>
+           <br>
+			<p>Nom de l'event : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Nom de l'event"></p>
+			<p>Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="où ca se pass ?"></p>
+			<br>
+			<p><button id="valider" onclick="setEvenement()" class="btn btn-primary">Valider</button></p>
+                  
+          <!--/stories-->
+          
+          
+          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+        
+          
+        </div>
+      </div>
+                                                                                       
+	                                                
+                                                      
+   	</div><!--/col-12-->
+  </div>
+</div>
+                                                
+                                                                                
+<hr>
+
+<div class="container" id="footer">
+  <div class="row">

@@ -17,9 +17,9 @@ public class InitBDD {
 				+ System.getProperty("file.separator") + */"bdd");
 		dbi = new DBI(ds);
 		dao = dbi.open(GenericDao.class);
-		dao.createEvent();
+	/*	dao.createEvent();
 		dao.createUser();
-		dao.createParticipant();
+		dao.createParticipant();*/
 	}
 	public void setParticipant(int id, String login,String ingredient){
 		dao.insertParticipant(id, login, ingredient);
@@ -32,9 +32,10 @@ public class InitBDD {
 	
 	}
 	
-	public String getEvenement(int id){
-		return dao.verifEvent(id);
-	}
+	/*public String getEvenement(String nom/* String lieu){
+		System.out.println(dao.verifAllEvent(nom));
+		return dao.verifAllEvent(nom);/*verifEvent(nom, lieu);
+	}*/
 	public String getParticipant(int id, String login, Date date){
 		return dao.verifPartic(id, login,date);
 		

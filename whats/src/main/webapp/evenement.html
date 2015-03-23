@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<!-- jQuery -->
+		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		
+		<!-- bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/bootstrap.min.js"></script>
+		
+		<!-- Styles -->
+		<link href="css/styles.css" rel="stylesheet">
+		<link href="css/banniere-defilante.css" rel="stylesheet">
+	
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>What's Cooking</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+		<li>
+		  <a href="index.html">Accueil</a>
+		</li>
+        <li>
+          <a href="recettes.html">Recettes</a>
+        </li>
+        <li>
+          <a href="platdujour.html">Plat du jour</a>
+        </li>
+        <li>
+          <a href="evenement.html">Evénements</a>
+        </li>
+        <li>
+          <a href="contact.html">Contact</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-right navbar-nav">
+        <li>
+          <a href="inscription.html">S'inscrire</a>
+        </li>
+        <li>
+          <a href="connexion.html">Se connecter</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="masthead">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>What's Cooking
+          <p class="lead"></p>
+        </h1>
+      </div>
+      <div class="col-md-5">
+        <!--<div class="well well-lg"> -->
+          <div class="row">
+            <div class="col-sm-12">
+			  <div class="banniere">
+			  <img src="images/Image1.jpg"/>
+			  <img src="images/Image2.jpg"/>
+			  <img src="images/Image3.jpg"/>
+			  <img src="images/Image4.jpg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="top-spacer"> </div>
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+</div>
+
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-12"> 
+      
+      <div class="panel">
+        <div class="panel-body">
+           <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+		<li>
+		  <a id="evenement" href="evenement.html">Evénement en cours</a>
+		</li>
+        <li>
+          <a href="creerEvenement.html">Créer un événement</a>
+        </li>
+        <li>
+          <a href="modifierEvenement.html">Modifier votre événement</a>
+        </li>
+      </ul>
+    </nav>
+          
+          <!--/stories-->
+
+                  
+          <!--/stories-->
+          
+          
+          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+        
+          
+        </div>
+      </div>
+                                                                                       
+	                                                
+                                                      
+   	</div><!--/col-12-->
+  </div>
+</div>
+                                                
+                                                                                
+<hr>
+
+<div class="container" id="footer">
+  <div class="row">
+    <div class="col col-sm-12">
+      <script>
+		$(document).ready(function() {
+		$('#evenement').click(function(event){
+	  	$.ajax({
+	    	url:'http://localhost:8080/v1/event/getEvenement/',
+		type: "GET",
+		datatype:'APPLICATION_JSON',
+		success: function(json){
+		    for (var i =0 ; i< json.Event.length ; i++){
+		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'<h3>'+json.Event[i].date+'</h3>'+'<h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
+		         $('.panel-body').append('<hr>');
+		    }
+			
+		}})})});
+	</script>
+      <h1>Follow Us</h1>
+      <div class="btn-group">
+       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+	   <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li><i class="icon-facebook icon-2x"></i></li>
+          <li><i class="icon-twitter icon-2x"></i></li>
+          <li><i class="icon-google-plus icon-2x"></i></li>
+          <li><i class="icon-pinterest icon-2x"></i></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+	<!-- JavaScript -->
+	<script src="js/timer.js"></script>
+	<script src="js/banniere-defilante.js"></script>
+
+	</body>
+</html>
