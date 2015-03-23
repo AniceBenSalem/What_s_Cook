@@ -15,8 +15,6 @@ import fr.iutinfo.InitBDD;
 
 @Path("/user")
 public class User {
-	String nom;
-	String prenom;
 	String mail;
 	String login;
 	String password;
@@ -35,13 +33,10 @@ public class User {
 		b.setUser(mail, login, password);
 	}
 	
-	public User(String nom, String prenom, String mail, String login, String password, String password2) {
-		this.nom = nom;
-		this.prenom = prenom;
+	public User(String mail, String login, String password) {
 		this.mail=mail;
 		this.login=login;
 		this.password=password;
-		this.password2=password2;
 	}
 	
 	public String getMail(){

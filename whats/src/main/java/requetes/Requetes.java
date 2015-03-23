@@ -29,8 +29,9 @@ public class Requetes {
 		}
 
 		try {
-			rs.next();
-			JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
 				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
@@ -51,13 +52,11 @@ public class Requetes {
 		}
 
 		try {
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
-				if(rs.isLast()){
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
-				}
-				else
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"},";
-				System.out.println(JSON);
+				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +71,7 @@ public class Requetes {
 		for(int i =0 ; i< list.size();i++){
 			g += list.get(i);
 			if( i != list.size()-1){
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 			}		
 		}
 		
@@ -86,7 +85,7 @@ public class Requetes {
 		for (int i = 0; i < s.length(); i++) {
 
 			if (s.charAt(i) == ' ' && i != s.length() - 1 && i > 2 && suite && (s.charAt(i + 1) >= 'a' && s.charAt(i + 1) <= 'z')) {
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 				suite = false;
 			} else if (s.charAt(i) != ' ') {
 				g += s.charAt(i);
@@ -148,14 +147,27 @@ public class Requetes {
 		return ret;
 	}
 
-	public String frigo(int idFrigo, int idUser) throws SQLException{
+	/*public String frigo(int idFrigo, int idUser) throws SQLException{
 		String retour ="Huuuumm J'ai tout ça de bon: \n";
 		rs = b.executeQry("select ingredients from Frigo where idFrigo ="+idFrigo+" AND idUser="+idUser+";");
 		while(rs.next()){
 			retour+= rs.getString(1)+"\n";
 		}
 		return retour;
+	}*/
+	
+	public String monFrigo() throws SQLException {
+		String JSON = "{\"Ingredients\" :[";
+		rs = b.executeQry("select Libelle from Abreviations;");
+		
+		if(rs.next());
+		JSON +="{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		while (rs.next()) {
+			JSON +=",{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		}
+		return JSON +"]}";
 	}
+	
 	public String searchRecettes(String s) throws SQLException{
 		
 		/*int jeChercheUnInt = Integer.parseInt(s);*/
@@ -170,15 +182,27 @@ public class Requetes {
 		
 		
 		while(rs.next()){
-			retour+= rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\r\n";
+			retour+= rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
 		}
 		return retour;
 		
+		/*
+		 * NumRecette` INTEGER NOT NULL DEFAULT 0, 
+  `TitreRecette` VARCHAR(255), 
+  `NbPersonne` INTEGER DEFAULT 0, 
+  `NbPersonneTxt` VARCHAR(255), 
+  `Temps` VARCHAR(255), 
+  `Ingredients` LONGTEXT, 
+  `TxtRecette` LONGTEXT, 
+  PRIMARY KEY (`NumRecette`)
+
+		 * 
+		 */
 	}
 	
 	public void insertUser(User u) {
 		try {
-			b.executeStmt("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
+			b.executeStmt("INSERT INTO User VALUES('"+u.getMail()+"','"+u.getLogin()+"','"+u.getPassword()+"');");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -192,7 +216,7 @@ public class Requetes {
 	
 	public boolean checkUser(String l, String p) {
 		try {
-			rs = b.executeQry("select * from test where login='"+l+"' and password='"+p+"';");
+			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");
 			if(rs.next()) {
 				return true;
 			}

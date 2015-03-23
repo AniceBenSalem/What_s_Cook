@@ -1,13 +1,11 @@
 function inscription(){
-	var nom = $('#nom').val();
-	var prenom = $('#prenom').val();
 	var mail = $('#mail').val();
 	var login = $('#login').val()
 	var password = $('#password').val();
 	var password2 = $('#password2').val();
 	
 
-	if(nom === "" || prenom === "" ||mail === "" || login ==="" || password === "" || password2 === ""){
+	if(mail === "" || login ==="" || password === "" || password2 === ""){
 		alert("Champs manquants");
 	}else{
 		var cpt=0;
@@ -25,19 +23,18 @@ function inscription(){
 		}else{
 			$.ajax({
 				type : 'POST',
-				url : "/v1/inscription/",	
+				url : "http://localhost:8080/v1/inscription/"+mail+"/"+login+"/"+password,	
 				datatype : "json",
 				data: JSON.stringify({
-					"nom" : nom,
-					"prenom" : prenom,
 					"mail" : mail,
 					"login" : login,
 					"password" : password,
 					"password2" : password2
 				}),
 	
-				success : function(data, textStatus, jqXHR){
-					alert("Vous etes inscrit sur What s cooking !!");
+				success : function(json){
+					if(json.bouletbill == "true")
+						alert("Vous etes inscrit sur What s cooking !!");
 				},
 
 				error: function( xhr, status, errorThrown ) {
@@ -49,6 +46,8 @@ function inscription(){
 }
 
 function connexion() {
+	var login = $('#login').val()
+	var password = $('#password').val();
 	if(login==="" || password === ""){
 		alert("Champs manquants");
 	}else{
@@ -58,8 +57,9 @@ function connexion() {
 			url : "http://localhost:8080/v1/connexion/"+$('#login').val()+"/"+$('#password').val(),
 			datatype:'APPLICATION_JSON',
 			success: function(json){
-				if(json.boulet1 == "true")
+				if(json.boulet1 == true){
 					alert("Connexion reussie !!");
+				}
 			},
 
 			error : function(jqXHR, textStatus, errorThrown) {

@@ -42,10 +42,10 @@
           <a href="recettes.html">Recettes</a>
         </li>
         <li>
-          <a id = "platdujour" href="platdujour.html">Plat du jour</a>
+          <a href="platdujour.html">Plat du jour</a>
         </li>
         <li>
-          <a href="evenement.html">Ev�nements</a>
+          <a id="monFrigo" href="monFrigo.html">Événements</a>
         </li>
         <li>
           <a href="contact.html">Contact</a>
@@ -109,12 +109,9 @@
           
           
           <!--/stories-->
-
+			
                   
           <!--/stories-->
-          
-          
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
         
           
         </div>
@@ -137,7 +134,6 @@
       <div class="btn-group">
        <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
 	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
-	   <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
       </div>
       
     </div>
@@ -167,6 +163,28 @@
 	<!-- JavaScript -->
 	<script src="js/timer.js"></script>
 	<script src="js/banniere-defilante.js"></script>
+	<script>
+		$(document).ready(function() {
+		$('#monFrigo').click(function(event){
+	  	$.ajax({
+	    	url:'http://localhost:8080/v1/cook/monFrigo',
+		type: "GET",
+		datatype:'APPLICATION_JSON',
+		success: function(json){
+			for (var i= 0; i< json.Ingredients.length; i++){
+				$('.panel-body').append('<h2>'+json.Ingredients[i].Libelle+'</h2>');
+				$('.panel-body').append('<input type="button" value="+" id="plus" onClick="increment(1)"><input type="text" id="qty">');
+				$('.panel-body').append('<input type="button" value="-" id="moins" onClick="increment(-1)">');
+               	$('.panel-body').append('<hr>');
+			}
+		}})})});
+		
+		var valeur=0;
+		function increment(increment) {
+			valeur += increment;
+			document.getElementById('qty').value = valeur;
+		}
+	</script>
 
 	</body>
 </html>
