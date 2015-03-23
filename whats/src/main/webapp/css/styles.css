@@ -1,7 +1,7 @@
 /* override bootstrap styles */
-/*@import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
+@import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
-@import url(http://fonts.googleapis.com/css?family=Pacifico);*/
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
 
 .navbar-form input, .form-inline input {
   width:auto;

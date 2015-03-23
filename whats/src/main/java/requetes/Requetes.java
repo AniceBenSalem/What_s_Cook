@@ -29,8 +29,9 @@ public class Requetes {
 		}
 
 		try {
-			rs.next();
-			JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
 				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
@@ -51,13 +52,11 @@ public class Requetes {
 		}
 
 		try {
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
-				if(rs.isLast()){
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
-				}
-				else
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"},";
-				System.out.println(JSON);
+				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +71,7 @@ public class Requetes {
 		for(int i =0 ; i< list.size();i++){
 			g += list.get(i);
 			if( i != list.size()-1){
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 			}		
 		}
 		
@@ -86,7 +85,7 @@ public class Requetes {
 		for (int i = 0; i < s.length(); i++) {
 
 			if (s.charAt(i) == ' ' && i != s.length() - 1 && i > 2 && suite && (s.charAt(i + 1) >= 'a' && s.charAt(i + 1) <= 'z')) {
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 				suite = false;
 			} else if (s.charAt(i) != ' ') {
 				g += s.charAt(i);
