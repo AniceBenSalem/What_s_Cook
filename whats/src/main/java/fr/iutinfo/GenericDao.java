@@ -81,10 +81,14 @@ public interface GenericDao {
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	String verifUser(@Bind("login") String login, @Bind("password") String password);
 
-	@SqlQuery("select * from Event where id = :id ")
+	@SqlQuery("select * from Event where nom like '%:nom%' OR ville like '%:lieu%' ")
 	@RegisterMapperFactory(BeanMapperFactory.class)
-	String verifEvent(@Bind("id") int id);
-
+	String verifEvent(@Bind("nom") String nom, @Bind("lieu") String lieu);
+	
+	/*@SqlQuery("select * from :table")
+	@RegisterMapperFactory(BeanMapperFactory.class)
+	String verifAllEvent(@Bind("table") String table);
+	*/
 	@SqlQuery("select * from Participant where id=:id and login = :login and date = :date")
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	String verifPartic(@Bind("id") int id, @Bind("login") String login, @Bind("date") Date date);

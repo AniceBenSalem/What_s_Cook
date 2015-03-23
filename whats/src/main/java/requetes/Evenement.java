@@ -2,11 +2,8 @@ package requetes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -20,13 +17,24 @@ import fr.iutinfo.InitBDD;
 
 public class Evenement {
 	InitBDD b;
+	private static Requetes r ;
 
 	@GET
-	@Path("/getEvenement/{id}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getEvent(@PathParam("id") int id) throws SQLException {
-		b= new InitBDD();
-		return b.getEvenement(id);
+	@Path("/getEvenement/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getEvent(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException {
+		Base b = new Base();
+		b.open();
+		String retour =" { \"Event\" : [";
+		ResultSet rs = b.executeQry("Select * from Event;");
+	if(rs.next())
+		retour+= "{\"Nom\" : \""+rs.getString("nom")+"\" ,\"date\" : \""+rs.getString("date")+"\" , \"Lieu\" : \""+rs.getString("ville")+ "\" ,\"Desc\" : \""+rs.getString("description")+"\"}";
+	while(rs.next()){
+		retour+= ",{\"Nom\" : \""+rs.getString("nom")+"\" ,\"date\" : \""+rs.getString("date")+"\" , \"Lieu\" : \""+rs.getString("ville")+ "\" ,\"Desc\" : \""+rs.getString("description")+"\"}";
+	}
+	return retour + "]}";
+	
+	
 	}
 	
 	
