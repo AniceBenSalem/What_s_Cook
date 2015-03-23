@@ -36,6 +36,14 @@ public class servREST {
 		r = new Requetes();
 		return  r.recetteDuJour();
 	}
+	
+	@GET
+	@Path("/monFrigo")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String monFrigo() throws SQLException {
+		r = new Requetes();
+		return  r.monFrigo();
+	}
 		
 
 	@GET
@@ -71,13 +79,13 @@ public class servREST {
 		return "<?xml version=\"1.0\"?>" + "<result>" + r.searchRecettes(iSearch) + "</result>";
 	}
 	
-	@GET
+	/*@GET
 	@Path("/monFrigo/{idFrigo}/{idUser}")
 	@Produces(MediaType.TEXT_XML)
 	public String monFrigo(@PathParam("idFrigo") int idFrigo, @PathParam("idUser") int idUser) throws SQLException {
 		String frigo = r.frigo(idFrigo, idUser); 
 		return "<?xml version=\"1.0\"?>" + "<result>" + frigo + "</result>";
-	}
+	}*/
 	
 
 }
