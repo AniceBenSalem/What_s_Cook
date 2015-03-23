@@ -50,7 +50,7 @@ public class FragmentRecettes extends Fragment {
                 // TODO Auto-generated method stub
 
                 t.setText("fla recherche");
-        
+
                 return false;
             }
 

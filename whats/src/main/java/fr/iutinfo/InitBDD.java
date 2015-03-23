@@ -17,15 +17,15 @@ public class InitBDD {
 				+ System.getProperty("file.separator") + */"bdd");
 		dbi = new DBI(ds);
 		dao = dbi.open(GenericDao.class);
-	/*	dao.createEvent();
+		dao.createEvent();
 		dao.createUser();
-		dao.createParticipant();*/
+		dao.createParticipant();
 	}
 	public void setParticipant(int id, String login,String ingredient){
 		dao.insertParticipant(id, login, ingredient);
 	}
-	public void setEvenement(String nom,String date, String login, String passwordEv, String recette){
-		dao.insertEvent(nom, date, login, passwordEv, recette);
+	public void setEvenement(String nom,String date, String login, String lieu){
+		dao.insertEvent(nom, date, login, lieu);
 	}
 	public void setUser(String mail, String login, String password){
 		dao.insertUser(mail, login, password);

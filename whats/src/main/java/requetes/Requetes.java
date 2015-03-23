@@ -29,8 +29,9 @@ public class Requetes {
 		}
 
 		try {
-			rs.next();
-			JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
 				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
@@ -51,13 +52,11 @@ public class Requetes {
 		}
 
 		try {
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
 			while (rs.next()) {
-				if(rs.isLast()){
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
-				}
-				else
-					JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"},";
-				System.out.println(JSON);
+				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +71,7 @@ public class Requetes {
 		for(int i =0 ; i< list.size();i++){
 			g += list.get(i);
 			if( i != list.size()-1){
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 			}		
 		}
 		
@@ -86,7 +85,7 @@ public class Requetes {
 		for (int i = 0; i < s.length(); i++) {
 
 			if (s.charAt(i) == ' ' && i != s.length() - 1 && i > 2 && suite && (s.charAt(i + 1) >= 'a' && s.charAt(i + 1) <= 'z')) {
-				g += "%' OR TxtRecette LIKE '";
+				g += "%' AND TxtRecette LIKE '%";
 				suite = false;
 			} else if (s.charAt(i) != ' ') {
 				g += s.charAt(i);
@@ -148,14 +147,27 @@ public class Requetes {
 		return ret;
 	}
 
-	public String frigo(int idFrigo, int idUser) throws SQLException{
+	/*public String frigo(int idFrigo, int idUser) throws SQLException{
 		String retour ="Huuuumm J'ai tout ça de bon: \n";
 		rs = b.executeQry("select ingredients from Frigo where idFrigo ="+idFrigo+" AND idUser="+idUser+";");
 		while(rs.next()){
 			retour+= rs.getString(1)+"\n";
 		}
 		return retour;
+	}*/
+	
+	public String monFrigo() throws SQLException {
+		String JSON = "{\"Ingredients\" :[";
+		rs = b.executeQry("select Libelle from Abreviations;");
+		
+		if(rs.next());
+		JSON +="{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		while (rs.next()) {
+			JSON +=",{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		}
+		return JSON +"]}";
 	}
+	
 	public String searchRecettes(String s) throws SQLException{
 		
 		/*int jeChercheUnInt = Integer.parseInt(s);*/
@@ -188,27 +200,23 @@ public class Requetes {
 		 */
 	}
 	
-/*	public void insertUser(User u) {
+	public void insertUser(User u) {
 		try {
-			statement = c.createStatement();
-			statement.executeUpdate("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
+			b.executeStmt("INSERT INTO User VALUES('"+u.getMail()+"','"+u.getLogin()+"','"+u.getPassword()+"');");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
-				statement.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	public boolean checkUser(User u) {
-		System.out.println("fqskdmfl");
+	public boolean checkUser(String l, String p) {
 		try {
-			statement = c.createStatement();
-			rs = statement.executeQuery("select * from test where login='"+u.getLogin()+"' and password='"+u.getPassword()+"';");
+			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");
 			if(rs.next()) {
 				return true;
 			}
@@ -217,7 +225,6 @@ public class Requetes {
 			System.exit(0);
 		} finally {
 			try {
-				statement.close();
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -231,5 +238,5 @@ public class Requetes {
 		list.add("rhubarbe");
 		list.add("cassis");
 		new Requetes().executeRequete("Recettes", "TxtRecette","cassis");
-	}*/
+	}
 }
