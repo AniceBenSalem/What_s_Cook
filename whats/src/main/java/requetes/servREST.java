@@ -2,13 +2,10 @@ package requetes;
 
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -56,10 +53,10 @@ public class servREST {
 	}
 	@GET
 	@Path("/nbRecettes")
-	@Produces(MediaType.TEXT_XML)
-	public String getNbRecettes() throws SQLException {
+	@Produces(MediaType.TEXT_PLAIN)
+	public int getNbRecettes() throws SQLException {
 		r = new Requetes();
-		return "<?xml version=\"1.0\"?>" + "<result>" +r.nbRecettes() + "</result>";
+		return r.nbRecettes();
 	}
 
 	@GET
