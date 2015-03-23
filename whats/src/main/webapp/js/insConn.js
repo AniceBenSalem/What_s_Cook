@@ -57,8 +57,9 @@ function connexion() {
 			url : "http://localhost:8080/v1/connexion/"+$('#login').val()+"/"+$('#password').val(),
 			datatype:'APPLICATION_JSON',
 			success: function(json){
-				if(json.boulet1 == "true")
+				if(json.boulet1 == true){
 					alert("Connexion reussie !!");
+				}
 			},
 
 			error : function(jqXHR, textStatus, errorThrown) {
