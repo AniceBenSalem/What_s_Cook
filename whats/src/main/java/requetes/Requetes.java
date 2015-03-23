@@ -190,7 +190,7 @@ public class Requetes {
 	
 	public void insertUser(User u) {
 		try {
-			b.executeStmt("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
+			b.executeStmt("INSERT INTO User VALUES('"+u.getMail()+"','"+u.getLogin()+"','"+u.getPassword()+"');");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -204,7 +204,7 @@ public class Requetes {
 	
 	public boolean checkUser(String l, String p) {
 		try {
-			rs = b.executeQry("select * from test where login='"+l+"' and password='"+p+"';");
+			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");
 			if(rs.next()) {
 				return true;
 			}
