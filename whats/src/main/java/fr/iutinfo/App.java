@@ -15,6 +15,7 @@ import org.sqlite.SQLiteDataSource;
 
 import requetes.ConnexionResource;
 import requetes.Evenement;
+import requetes.InscriptionResource;
 import requetes.User;
 import requetes.servREST;
 
@@ -30,6 +31,7 @@ public class App extends Application {
     	s.add(User.class);
     	s.add(Evenement.class);
     	s.add(ConnexionResource.class);
+    	s.add(InscriptionResource.class);
     	return s;
     }
   /*  

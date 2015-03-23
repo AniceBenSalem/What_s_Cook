@@ -147,14 +147,27 @@ public class Requetes {
 		return ret;
 	}
 
-	public String frigo(int idFrigo, int idUser) throws SQLException{
+	/*public String frigo(int idFrigo, int idUser) throws SQLException{
 		String retour ="Huuuumm J'ai tout ça de bon: \n";
 		rs = b.executeQry("select ingredients from Frigo where idFrigo ="+idFrigo+" AND idUser="+idUser+";");
 		while(rs.next()){
 			retour+= rs.getString(1)+"\n";
 		}
 		return retour;
+	}*/
+	
+	public String monFrigo() throws SQLException {
+		String JSON = "{\"Ingredients\" :[";
+		rs = b.executeQry("select Libelle from Abreviations;");
+		
+		if(rs.next());
+		JSON +="{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		while (rs.next()) {
+			JSON +=",{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
+		}
+		return JSON +"]}";
 	}
+	
 	public String searchRecettes(String s) throws SQLException{
 		
 		/*int jeChercheUnInt = Integer.parseInt(s);*/
@@ -189,7 +202,7 @@ public class Requetes {
 	
 	public void insertUser(User u) {
 		try {
-			b.executeStmt("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
+			b.executeStmt("INSERT INTO User VALUES('"+u.getMail()+"','"+u.getLogin()+"','"+u.getPassword()+"');");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -203,7 +216,7 @@ public class Requetes {
 	
 	public boolean checkUser(String l, String p) {
 		try {
-			rs = b.executeQry("select * from test where login='"+l+"' and password='"+p+"';");
+			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");
 			if(rs.next()) {
 				return true;
 			}
