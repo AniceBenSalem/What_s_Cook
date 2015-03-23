@@ -31,11 +31,12 @@ public class Evenement {
 	
 	
 	/*@POST*/ @GET
-	@Path("/setEvenement/{nom}/{date}")
+	@Path("/setEvenement/{nom}/{date}/{login}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public void setEvent(@PathParam("nom")String nom,@PathParam("date")String date) throws SQLException {
+	public String setEvent(@PathParam("nom")String nom,@PathParam("date")String date, @PathParam("login")String login) throws SQLException {
 		b= new InitBDD();
-		b.setEvenement(nom, date, "osef", "osef", "osef");
+		b.setEvenement(nom, date, login, "panama");
+		return "ok";
 	}
 	
 	

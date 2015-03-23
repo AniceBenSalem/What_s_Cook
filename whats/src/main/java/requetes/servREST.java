@@ -79,4 +79,5 @@ public class servREST {
 		return "<?xml version=\"1.0\"?>" + "<result>" + frigo + "</result>";
 	}
 	
+
 }
