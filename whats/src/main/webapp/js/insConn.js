@@ -48,25 +48,18 @@ function inscription(){
 	}
 }
 
-function connexion(){
-	var login = $('#login').val();
-	var password = $('#password').val();
-
+function connexion() {
 	if(login==="" || password === ""){
 		alert("Champs manquants");
 	}else{
 		$.ajax({
 			type : 'GET',
 			contentType : 'application/json',
-			url : "v1/connexion/login",
-			dataType : "text json",
-			cache: false,
-			data: JSON.stringify({
-				"login" : login,
-				"password" : password
-			}),
-			success : function(data, textStatus, jqXHR){
-				alert("Connexion reussie !!");
+			url : "http://localhost:8080/v1/connexion/"+$('#login').val()+"/"+$('#password').val(),
+			datatype:'APPLICATION_JSON',
+			success: function(json){
+				if(json.boulet1 == "true")
+					alert("Connexion reussie !!");
 			},
 
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -75,7 +68,6 @@ function connexion(){
 				console.log(errorThrown);
 				alert( "Desole la connexion a echoue!" );
 			}
-	      
 		});
 	}
 }
