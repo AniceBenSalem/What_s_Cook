@@ -1,10 +1,14 @@
 package fr.whatscook.wc;
 
     import java.util.ArrayList;
+    import java.util.List;
 
     import android.app.AlertDialog;
     import android.app.Fragment;
     import android.app.FragmentManager;
+    import android.app.SearchManager;
+    import android.app.SearchableInfo;
+    import android.content.Context;
     import android.content.DialogInterface;
     import android.content.Intent;
     import android.content.res.Configuration;
@@ -17,11 +21,16 @@ package fr.whatscook.wc;
     import android.support.v7.app.ActionBarActivity;
     import android.view.KeyEvent;
     import android.view.Menu;
+    import android.view.MenuInflater;
     import android.view.MenuItem;
     import android.view.View;
+    import android.view.Window;
     import android.widget.AdapterView;
+    import android.widget.Button;
     import android.widget.LinearLayout;
     import android.widget.ListView;
+    import android.widget.SearchView;
+    import android.widget.TextView;
 
     import fr.whatscook.wc.Fragments.FragmentAcceuil;
     import fr.whatscook.wc.Fragments.FragmentCompte;
@@ -31,7 +40,7 @@ package fr.whatscook.wc;
     import fr.whatscook.wc.Fragments.FragmentParametre;
     import fr.whatscook.wc.Fragments.FragmentRecettes;
 
-public class Acceuil extends ActionBarActivity {
+public class Acceuil extends ActionBarActivity{
         final String EXTRA_LOGIN = "user_login";
         final String EXTRA_PASSWORD = "user_password";
         private DrawerLayout mDrawerLayout;
@@ -44,8 +53,11 @@ public class Acceuil extends ActionBarActivity {
         private ArrayList<NavDrawerItem> navDrawerItems;
         private NavDrawerListAdapter adapter;
 
-       @Override
+
+
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acceuil);
 
@@ -100,6 +112,11 @@ public class Acceuil extends ActionBarActivity {
            getSupportActionBar().setHomeButtonEnabled(true);
 
 
+
+
+
+
+
         }
         private class SlideMenuClickListener implements
                 ListView.OnItemClickListener {
@@ -140,22 +157,20 @@ public class Acceuil extends ActionBarActivity {
     }
 
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+
+   /*     public boolean onCreateOptionsMenu(Menu menu) {
             getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
-        }
+        }*/
 
-        @Override
+
         public boolean onOptionsItemSelected(MenuItem item) {
             if (mDrawerToggle.onOptionsItemSelected(item)) {
                 return true;
             }
-            switch (item.getItemId()) {
 
-                default:
                     return super.onOptionsItemSelected(item);
-            }
+
         }
 
 
@@ -227,4 +242,7 @@ public class Acceuil extends ActionBarActivity {
              mDrawerToggle.onConfigurationChanged(newConfig);
         }
 
-    }
+
+
+}
+
