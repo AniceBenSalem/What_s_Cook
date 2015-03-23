@@ -17,13 +17,13 @@ public interface GenericDao {
 
 
 
-	@SqlUpdate("CREATE TABLE User if not exists (mail TEXT, login TEXT, password TEXT, constraint loginUser_pk PRIMARY KEY(login));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS User (mail TEXT, login TEXT, password TEXT, constraint loginUser_pk PRIMARY KEY(login));")
 	void createUser();
 	/*table fausse ? il n'y a q'une recette par evenement ?*/
-	@SqlUpdate("CREATE TABLE Event if not exists (id INT AUTO_INCREMENT, nom TEXT, date DATE, login TEXT, passwordEv TEXT, recette TEXT, constraint idEvent_pk PRIMARY KEY(ID));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS Event (id INT AUTO_INCREMENT, nom TEXT, date DATE, description TEXT, ville TEXT, constraint idEvent_pk PRIMARY KEY(ID));")
 	void createEvent();
 
-	@SqlUpdate("CREATE TABLE Participant if not exists (id INT, login TEXT, ingredient TEXT, constraint fk_idPartic FOREIGN KEY (id) REFERENCES Event(id) ON UPDATE CASCADE, constraint fk_loginPart FOREIGN KEY (login) REFERENCES User(login) ON UPDATE CASCADE, constraint pk_Participant PRIMARY KEY(id,login));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS Participant (id INT, login TEXT, recette TEXT, constraint fk_idPartic FOREIGN KEY (id) REFERENCES Event(id) ON UPDATE CASCADE, constraint fk_loginPart FOREIGN KEY (login) REFERENCES User(login) ON UPDATE CASCADE, constraint pk_Participant PRIMARY KEY(id,login));")
 	void createParticipant();
 
 /*
@@ -48,13 +48,13 @@ public interface GenericDao {
 	@GetGeneratedKeys
 	int insertUser(@Bind("mail") String mail, @Bind("login") String login, @Bind("password") String password);
 
-	@SqlUpdate("insert into Event (nom, date, login, passwordEv, recette) values (:nom, :date, :login, :passwordEv, :recette)")
+	@SqlUpdate("insert into Event (nom, date, description, ville) values (:nom, :date, :description, :ville)")
 	@GetGeneratedKeys
-	int insertEvent(@Bind("nom") String nom,@Bind("date") String date, @Bind("login") String login, @Bind("passwordEv") String passwordEv, @Bind("recette") String recette);
+	int insertEvent(@Bind("nom") String nom,@Bind("date") String date, @Bind("description") String description, @Bind("ville") String ville);
 
-	@SqlUpdate("insert into Participant (id, login, ingredient) values (:id, :login, :ingredient)")
+	@SqlUpdate("insert into Participant (id, login, recette) values (:id, :login, :recette)")
 	@GetGeneratedKeys
-	int insertParticipant(@Bind("id") int id,@Bind("login") String login, @Bind("ingredient") String ingredient);
+	int insertParticipant(@Bind("id") int id,@Bind("login") String login, @Bind("recette") String recette);
 
 /*
 	@SqlUpdate("insert into CreeRecette (login, nomRecette, ingredient, methode, temps) values (:login, :nomRecette, :ingredient, :methode, :temps)")

@@ -1,7 +1,7 @@
 /* override bootstrap styles */
-/*@import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
+@import url('http://fonts.googleapis.com/css?family=Oswald:300,400:latin,latin-ext');
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
-@import url(http://fonts.googleapis.com/css?family=Pacifico);*/
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
 
 .navbar-form input, .form-inline input {
   width:auto;
@@ -44,13 +44,13 @@ footer {
   margin-top:55px;
 }
 
-/*#masthead .well {
+#masthead .well {
   margin-top:31px;
   background-color:#F09100;
   border-color:#EC5F00;
   color:#efefff;
   min-height:127px;
-}*/
+}
 
 #topPanel {
   padding-top:0px;

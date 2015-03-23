@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,8 +15,6 @@ import fr.iutinfo.InitBDD;
 
 @Path("/user")
 public class User {
-	String nom;
-	String prenom;
 	String mail;
 	String login;
 	String password;
@@ -26,7 +25,7 @@ public class User {
 	}
 	
 
-	@GET
+	@POST
 	@Path("/setUser/{mail}/{login}/{password}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public void addUser(@PathParam("mail") String mail,@PathParam("login") String login, @PathParam("password") String password) throws SQLException {
@@ -34,13 +33,10 @@ public class User {
 		b.setUser(mail, login, password);
 	}
 	
-	public User(String nom, String prenom, String mail, String login, String password, String password2) {
-		this.nom = nom;
-		this.prenom = prenom;
+	public User(String mail, String login, String password) {
 		this.mail=mail;
 		this.login=login;
 		this.password=password;
-		this.password2=password2;
 	}
 	
 	public String getMail(){
