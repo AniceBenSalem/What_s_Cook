@@ -188,27 +188,23 @@ public class Requetes {
 		 */
 	}
 	
-/*	public void insertUser(User u) {
+	public void insertUser(User u) {
 		try {
-			statement = c.createStatement();
-			statement.executeUpdate("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
+			b.executeStmt("INSERT INTO test(login, password) VALUES('"+u.getLogin()+"','"+u.getPassword()+"';");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		} finally {
 			try {
-				statement.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	public boolean checkUser(User u) {
-		System.out.println("fqskdmfl");
+	public boolean checkUser(String l, String p) {
 		try {
-			statement = c.createStatement();
-			rs = statement.executeQuery("select * from test where login='"+u.getLogin()+"' and password='"+u.getPassword()+"';");
+			rs = b.executeQry("select * from test where login='"+l+"' and password='"+p+"';");
 			if(rs.next()) {
 				return true;
 			}
@@ -217,7 +213,6 @@ public class Requetes {
 			System.exit(0);
 		} finally {
 			try {
-				statement.close();
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -231,5 +226,5 @@ public class Requetes {
 		list.add("rhubarbe");
 		list.add("cassis");
 		new Requetes().executeRequete("Recettes", "TxtRecette","cassis");
-	}*/
+	}
 }
