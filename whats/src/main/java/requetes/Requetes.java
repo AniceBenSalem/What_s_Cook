@@ -214,6 +214,25 @@ public class Requetes {
 		}
 	}
 	
+	public boolean checkLogin(String l) {
+		try {
+			rs = b.executeQry("select * from User where login='"+l+"';");
+			if(rs.next()) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		} finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		return false;
+	}
+	
 	public boolean checkUser(String l, String p) {
 		try {
 			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");

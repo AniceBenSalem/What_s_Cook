@@ -171,18 +171,18 @@
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json){
-			for (var i= 0; i< json.Ingredients.length; i++){
+			for (var i=0; i< json.Ingredients.length; i++){
 				$('.panel-body').append('<h2>'+json.Ingredients[i].Libelle+'</h2>');
-				$('.panel-body').append('<input type="button" value="+" id="plus" onClick="increment(1)"><input type="text" id="qty">');
-				$('.panel-body').append('<input type="button" value="-" id="moins" onClick="increment(-1)">');
+				$('.panel-body').append('<input type="button" value="+" id="plus" onClick="increment(1,\"+i+\")"><input type="text" id="qty\"+i+\"">');
+				$('.panel-body').append('<input type="button" value="-" id="moins" onClick="increment(-1,\"+i+\")">');
                	$('.panel-body').append('<hr>');
 			}
 		}})})});
 		
 		var valeur=0;
-		function increment(increment) {
+		function increment(increment,i) {
 			valeur += increment;
-			document.getElementById('qty').value = valeur;
+			document.getElementById('qty'+i+'').value = valeur;
 		}
 	</script>
 

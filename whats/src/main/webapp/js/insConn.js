@@ -33,13 +33,12 @@ function inscription(){
 				}),
 	
 				success : function(json){
-					if(json.bouletbill == "true")
+					if(json.bouletbill == "true") {
 						alert("Vous etes inscrit sur What s cooking !!");
+					} else {
+						alert("Votre pseudo est déjà utilisé");
+					}
 				},
-
-				error: function( xhr, status, errorThrown ) {
-					alert( "Desole l'inscription a echoue!" );
-				}	
 			});
 		}
 	}
@@ -57,54 +56,14 @@ function connexion() {
 			url : "http://localhost:8080/v1/connexion/"+login+"/"+password,
 			datatype:'APPLICATION_JSON',
 			success: function(json){
-				if(json.boulet1 == "true")
+				if(json.boulet1 == true) {
 					alert("Connexion reussie !!");
-					createCookie("login",login,365);
+					if(readCookie("login") === null) {
+						createCookie("login",login);
+					document.location = 'test.html';
+					}
+				}
 			},
-
-			error : function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
-				alert( "Desole la connexion a echoue!" );
-			}
 		});
 	}
 }
-
-function deconnexion(login){
-	createCookie(login,"",-1);
-	window.location.href = "index.html";
-}
-
-
-function createCookie(login, monLogin, expire) {
-    var d = new Date();
-    d.setTime(d.getTime() + (expire*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = login + "=" + monLogin + "; " + expires;
-}
-
-function getCookie(login) {
-    var name = login + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' '){
-        	 c = c.substring(1,c.length);
-        }
-        if (c.indexOf(name) == 0){
-        	return c.substring(name.length, c.length);
-    	}
-    }
-    return "";
-}
-
-function checkCookie() {
-    var user = getCookie("username");
-    if (user != "") {
-        alert("Bienvenue " + user);
-    }
-}
-
-

@@ -16,7 +16,7 @@ public class InscriptionResource {
 	public String inscription(@PathParam("mail") String mail, @PathParam("login") String login, @PathParam("password") String password) throws SQLException{
 		Requetes r = new Requetes();
 		User u = new User(mail, login,password);
-		if(!(r.checkUser(login,password))){
+		if(!(r.checkLogin(login))){
 			r.insertUser(u);
 			return "{\"bouletbill\": \"true\"}";
 		}

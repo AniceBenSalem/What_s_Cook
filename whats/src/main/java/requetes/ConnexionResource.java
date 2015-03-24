@@ -39,9 +39,8 @@ public class ConnexionResource {
 	@Path("/{login}/{password}")
 	public String connexion(@PathParam("login") String login, @PathParam("password") String password) throws SQLException {
 		Requetes r = new Requetes();
-		if(r.checkUser(login,password)) {
+		if(r.checkUser(login,password))
 			return "{\"boulet1\": true}";
-		}
 		return "{\"boulet1\": false}";
 	}
 }
