@@ -1,5 +1,6 @@
 package requetes;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class Evenement {
 	@GET
 	@Path("/getEvenement/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getEvent(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException {
+	public String getEvent(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException, IOException {
 		Base b = new Base();
 		b.open();
 		String retour =" { \"Event\" : [";
@@ -39,12 +40,13 @@ public class Evenement {
 	
 	
 	/*@POST*/ @GET
-	@Path("/setEvenement/{nom}/{date}/{login}")
+	@Path("/setEvenement/{nom}/{date}/{description}/{lieu}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String setEvent(@PathParam("nom")String nom,@PathParam("date")String date, @PathParam("login")String login) throws SQLException {
+	public String setEvent(@PathParam("nom")String nom,@PathParam("date")String date, @PathParam("description")String description, @PathParam("lieu") String ville) throws SQLException, IOException {
 		b= new InitBDD();
-		b.setEvenement(nom, date, login, "panama");
-		return "ok";
+		r = new Requetes();
+		
+		return r.insertEvent(nom, date, description, ville);
 	}
 	
 	

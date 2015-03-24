@@ -34,7 +34,8 @@ function inscription(){
 	
 				success : function(json){
 					if(json.bouletbill == "true") {
-						alert("Vous etes inscrit sur What s cooking !!");
+						alert("Vous etes inscrit sur What's cooking !!");
+						document.location = "connexion.html";
 					} else {
 						alert("Votre pseudo est déjà utilisé");
 					}
@@ -43,6 +44,7 @@ function inscription(){
 		}
 	}
 }
+
 
 function connexion() {
 	var login = $('#login').val()
@@ -57,11 +59,13 @@ function connexion() {
 			datatype:'APPLICATION_JSON',
 			success: function(json){
 				if(json.boulet1 == true) {
-					alert("Connexion reussie !!");
+					alert("Connexion reussie");
 					if(readCookie("login") === null) {
-						createCookie("login",login);
-					document.location = 'test.html';
+						createCookie("login",login,1);
+					document.location = 'index.html';
 					}
+				} else {
+					alert("Votre identifiant ou votre mot de passe est incorrect");
 				}
 			},
 		});

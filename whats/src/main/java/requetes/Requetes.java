@@ -1,4 +1,5 @@
 package requetes;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class Requetes {
 	public Base b;
 	public ResultSet rs = null;
 	
-	public Requetes() throws SQLException {
+	public Requetes() throws SQLException, IOException {
 		b =new Base();
 		
 		b.open();
@@ -233,6 +234,25 @@ public class Requetes {
 		return false;
 	}
 	
+	public boolean checkPassword(String p) {
+		try {
+			rs = b.executeQry("select * from User where password='"+p+"';");
+			if(rs.next()) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		} finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		return false;
+	}
+	
 	public boolean checkUser(String l, String p) {
 		try {
 			rs = b.executeQry("select * from User where login='"+l+"' and password='"+p+"';");
@@ -251,8 +271,22 @@ public class Requetes {
 		} 
 		return false;
 	}
+	public String insertEvent(String nom, String date, String description, String ville  ) {
+		String succes="";
+		try {
+			b.executeStmt("INSERT INTO Event(nom ,date ,description ,ville ) VALUES('"+nom+"','"+date+"','"+description+"','"+ville+"');");
+			succes=" Creer avec succès!! faites en de meme pour cet evenement";
+		} catch (Exception e) {
+			succes="petit probleme veuillez contacter l'admin ou patienter que le probleme soit resolu \n merci à vous pour votre patience et dosolé pour la gêne occasionée";
+			e.printStackTrace();
+			System.exit(0);
+			
+		} 
+		return succes;
+	}
 	
-	public static void main(String[] args) throws SQLException {
+	
+	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("rhubarbe");
 		list.add("cassis");

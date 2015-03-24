@@ -32,7 +32,7 @@
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/profil</item>
+        <item>@drawable/ic_launcher</item>
         <item>@drawable/home</item>
         <item>@drawable/frigo</item>
         <item>@drawable/recettes</item>

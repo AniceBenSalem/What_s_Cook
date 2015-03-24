@@ -81,6 +81,23 @@ a,a:hover {
   background-color:#fff;
 }
 
+.navbar-toggle, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+   background-color:#F46200;
+}
+
+
+.dropdown-menu {
+  background-color:#F09100;
+}
+
+.dropdown-menu li a {
+  color:#FFFFFF;
+}
+
+.dropdown-menu li > a:hover {
+  color:#FFFFFF;
+}
+
 @media screen and (min-width: 768px) {
   #masthead h1 {
     font-size: 75px;

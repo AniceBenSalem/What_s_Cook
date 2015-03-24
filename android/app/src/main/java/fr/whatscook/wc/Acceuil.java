@@ -11,6 +11,7 @@ package fr.whatscook.wc;
     import android.content.Context;
     import android.content.DialogInterface;
     import android.content.Intent;
+    import android.content.SharedPreferences;
     import android.content.res.Configuration;
     import android.content.res.TypedArray;
     import android.graphics.Color;
@@ -39,6 +40,7 @@ package fr.whatscook.wc;
     import fr.whatscook.wc.Fragments.FragmentConnexion;
     import fr.whatscook.wc.Fragments.FragmentParametre;
     import fr.whatscook.wc.Fragments.FragmentRecettes;
+    import fr.whatscook.wc.Fragments.User;
 
 public class Acceuil extends ActionBarActivity{
         final String EXTRA_LOGIN = "user_login";
@@ -53,6 +55,12 @@ public class Acceuil extends ActionBarActivity{
         private ArrayList<NavDrawerItem> navDrawerItems;
         private NavDrawerListAdapter adapter;
 
+    protected User u;
+
+
+    public User getU() {
+        return u;
+    }
 
 
     @Override
@@ -185,8 +193,11 @@ public class Acceuil extends ActionBarActivity{
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment=new FragmentConnexion();
 
+                 /*   if (settings.getString("login",null).equals(null))
+
+                    else*/
+                    fragment=new FragmentConnexion();
                     break;
                 case 1:
                     fragment = new FragmentAcceuil();

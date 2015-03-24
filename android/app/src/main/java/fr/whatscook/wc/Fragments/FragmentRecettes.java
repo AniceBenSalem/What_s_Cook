@@ -1,20 +1,34 @@
 package fr.whatscook.wc.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.SearchView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import fr.whatscook.wc.HttpGetTitreRecette;
 import fr.whatscook.wc.R;
 
 /**
@@ -22,15 +36,15 @@ import fr.whatscook.wc.R;
  */
 public class FragmentRecettes extends Fragment {
     SearchView search;
-    TextView t;
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_recettes, container, false);
-       t = (TextView) rootView.findViewById(R.id.searchViewResult);
         search=(SearchView) rootView.findViewById(R.id.searchView);
-        search.setQueryHint("SearchView");
+        search.setQueryHint("ingredients, plats..");
 
         //*** setOnQueryTextFocusChangeListener ***
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -47,18 +61,26 @@ public class FragmentRecettes extends Fragment {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // TODO Auto-generated method stub
+               // TODO Auto-generated method stub
+              try {
+                    TextView dd= (TextView) rootView.findViewById(R.id.textView2);
+                  String[] countryArray = dd.getText().toString().split(" ") ;
+                  ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, countryArray);
+                  ListView lv = (ListView)rootView.findViewById(R.id.listeRecherche);
+                  lv.setAdapter(adapter);
 
-                t.setText("fla recherche");
 
-                return false;
+
+
+              }catch (Exception e){
+                e.getStackTrace();
+              }
+                 return false;
             }
+
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // TODO Auto-generated method stub
-                t.setText("fla recherche22");
-
                 return false;
             }
         });
@@ -66,6 +88,9 @@ public class FragmentRecettes extends Fragment {
 
         return rootView;
     }
+
 }
+
+
 
 
