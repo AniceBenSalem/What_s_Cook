@@ -63,25 +63,19 @@ public class FragmentRecettes extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                // TODO Auto-generated method stub
               try {
-
-              /*   String[] listS ={"item1","item2","item3"};
-                ListView lv = (ListView)rootView.findViewById(R.id.listeRecherche);
-
-
-                  lv.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.listeRecherche, listS));
-*/
-                  String[] countryArray = {"India", "Pakistan", "USA", "UK"};
+                    TextView dd= (TextView) rootView.findViewById(R.id.textView2);
+                  String[] countryArray = dd.getText().toString().split(" ") ;
                   ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, countryArray);
-                  ListView lv = (ListView)rootView.findViewById(R.id.listeRecherche);;
+                  ListView lv = (ListView)rootView.findViewById(R.id.listeRecherche);
                   lv.setAdapter(adapter);
 
 
 
 
               }catch (Exception e){
-
+                e.getStackTrace();
               }
-                                return false;
+                 return false;
             }
 
 
