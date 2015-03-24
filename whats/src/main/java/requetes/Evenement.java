@@ -40,12 +40,13 @@ public class Evenement {
 	
 	
 	/*@POST*/ @GET
-	@Path("/setEvenement/{nom}/{date}/{login}")
+	@Path("/setEvenement/{nom}/{date}/{description}/{lieu}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String setEvent(@PathParam("nom")String nom,@PathParam("date")String date, @PathParam("login")String login) throws SQLException {
+	public String setEvent(@PathParam("nom")String nom,@PathParam("date")String date, @PathParam("description")String description, @PathParam("lieu") String ville) throws SQLException, IOException {
 		b= new InitBDD();
-		b.setEvenement(nom, date, login, "panama");
-		return "ok";
+		r = new Requetes();
+		
+		return r.insertEvent(nom, date, description, ville);
 	}
 	
 	
