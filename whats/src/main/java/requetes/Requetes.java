@@ -233,6 +233,20 @@ public class Requetes {
 		} 
 		return false;
 	}
+	public String insertEvent(String nom, String date, String description, String ville  ) {
+		String succes="";
+		try {
+			b.executeStmt("INSERT INTO Event(nom ,date ,description ,ville ) VALUES('"+nom+"','"+date+"','"+description+"','"+ville+"');");
+			succes=" Creer avec succès!! faites en de meme pour cet evenement";
+		} catch (Exception e) {
+			succes="petit probleme veuillez contacter l'admin ou patienter que le probleme soit resolu \n merci à vous pour votre patience et dosolé pour la gêne occasionée";
+			e.printStackTrace();
+			System.exit(0);
+			
+		} 
+		return succes;
+	}
+	
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();

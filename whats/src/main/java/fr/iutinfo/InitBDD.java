@@ -17,9 +17,9 @@ public class InitBDD {
 				+ System.getProperty("file.separator") + */"bdd");
 		dbi = new DBI(ds);
 		dao = dbi.open(GenericDao.class);
-	/*	dao.createEvent();
+		dao.createEvent();
 		dao.createUser();
-		dao.createParticipant();*/
+		dao.createParticipant();
 	}
 	public void setParticipant(int id, String login,String ingredient){
 		dao.insertParticipant(id, login, ingredient);
