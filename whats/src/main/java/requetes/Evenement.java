@@ -1,5 +1,6 @@
 package requetes;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -22,7 +23,7 @@ public class Evenement {
 	@GET
 	@Path("/getEvenement/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getEvent(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException {
+	public String getEvent(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException, IOException {
 		Base b = new Base();
 		b.open();
 		String retour =" { \"Event\" : [";

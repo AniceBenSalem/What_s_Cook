@@ -4,6 +4,7 @@ package requetes;
 
 
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.ws.rs.GET;
@@ -37,7 +38,7 @@ public class ConnexionResource {
 	
 	@GET
 	@Path("/{login}/{password}")
-	public String connexion(@PathParam("login") String login, @PathParam("password") String password) throws SQLException {
+	public String connexion(@PathParam("login") String login, @PathParam("password") String password) throws SQLException, IOException {
 		Requetes r = new Requetes();
 		if(r.checkUser(login,password)) {
 			return "{\"boulet1\": true}";

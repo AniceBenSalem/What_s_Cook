@@ -1,4 +1,5 @@
 package requetes;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class Requetes {
 	public Base b;
 	public ResultSet rs = null;
 	
-	public Requetes() throws SQLException {
+	public Requetes() throws SQLException, IOException {
 		b =new Base();
 		
 		b.open();
@@ -233,7 +234,7 @@ public class Requetes {
 		return false;
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("rhubarbe");
 		list.add("cassis");

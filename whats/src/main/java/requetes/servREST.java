@@ -2,6 +2,7 @@ package requetes;
 
 
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,14 +23,14 @@ public class servREST {
 	@GET
 	@Path("/getRecettes/{mesIngredients}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException {
+	public String getRecettes(@PathParam("mesIngredients") String mesIngredients) throws SQLException, IOException {
 		return new Requetes().executeRequete("Recettes", "TxtRecette", mesIngredients);
 	}
 	
 	@GET
 	@Path("/RecetteDuJour")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getRecettesDuJour() throws SQLException {
+	public String getRecettesDuJour() throws SQLException, IOException {
 		r = new Requetes();
 		return  r.recetteDuJour();
 	}
@@ -37,7 +38,7 @@ public class servREST {
 	@GET
 	@Path("/monFrigo")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String monFrigo() throws SQLException {
+	public String monFrigo() throws SQLException, IOException {
 		r = new Requetes();
 		return  r.monFrigo();
 	}
@@ -46,7 +47,7 @@ public class servREST {
 	@GET
 	@Path("/addRecettes/{name}/{nbPersonnes}/{ingredients}/{Temps}/{Descriptions}")
 	@Produces(MediaType.TEXT_XML)
-	public String addRecettes(@PathParam("name") String name, @PathParam("nbPersonnes") int nb,@PathParam("ingredients") String ingredients, @PathParam("Temps") String time, @PathParam("Description") String description ) throws SQLException {
+	public String addRecettes(@PathParam("name") String name, @PathParam("nbPersonnes") int nb,@PathParam("ingredients") String ingredients, @PathParam("Temps") String time, @PathParam("Description") String description ) throws SQLException, IOException {
 		r = new Requetes();
 		r.ajouterRecette(name, nb, time, ingredients, description);
 		return "<?xml version=\"1.0\"?>" + "<result> succès de l'ajout </result>";
@@ -54,7 +55,7 @@ public class servREST {
 	@GET
 	@Path("/nbRecettes")
 	@Produces(MediaType.TEXT_PLAIN)
-	public int getNbRecettes() throws SQLException {
+	public int getNbRecettes() throws SQLException, IOException {
 		r = new Requetes();
 		return r.nbRecettes();
 	}
@@ -62,7 +63,7 @@ public class servREST {
 	@GET
 	@Path("/getRecettesbyName/{name}/")
 	@Produces(MediaType.TEXT_XML)
-	public String getRecettesbyName(@PathParam("name") String name) throws SQLException {
+	public String getRecettesbyName(@PathParam("name") String name) throws SQLException, IOException {
 		r= new Requetes();
 		String hummm = r.executeRequete("Recettes","TitreRecette" , name);
 		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
@@ -71,7 +72,7 @@ public class servREST {
 	@GET
 	@Path("/recherche/{string}")
 	@Produces(MediaType.TEXT_XML)
-	public String recherche(@PathParam("string") String iSearch) throws SQLException {
+	public String recherche(@PathParam("string") String iSearch) throws SQLException, IOException {
 		r = new Requetes();
 		return "<?xml version=\"1.0\"?>" + "<result>" + r.searchRecettes(iSearch) + "</result>";
 	}
