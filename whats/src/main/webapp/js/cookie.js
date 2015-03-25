@@ -17,7 +17,7 @@ function readCookie(name) {
 
 function deconnexion(){
 	createCookie("login",null,-1);
-	window.location.href = "index.html";
+	document.location = 'index.html';
 }
 
 var nom = readCookie("login");
