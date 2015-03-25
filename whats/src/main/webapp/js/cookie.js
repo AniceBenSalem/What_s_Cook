@@ -17,7 +17,7 @@ function readCookie(name) {
 
 function deconnexion(){
 	createCookie("login",null,-1);
-	window.location.href = "index.html";
+	document.location = 'index.html';
 }
 
 var nom = readCookie("login");
@@ -25,4 +25,6 @@ var nom = readCookie("login");
 		$('#lol').append('<ul class="nav navbar-nav"><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">'+nom+'<span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="evenement.html">Evenements</a></li><li><a href="monFrigo.html" id="monFrigo">Mon Frigo</a><li><a onClick="deconnexion()">Se deconnecter</a></li></ul></li></ul>');
 	} else {
 		$('#lol').append('<li><a href="inscription.html">S\'inscrire</a></li><li><a href="connexion.html">Se connecter</a></li>');
+		$('#post').hide();
+		$('#partager').hide();
 	}

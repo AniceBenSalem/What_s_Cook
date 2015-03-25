@@ -20,7 +20,7 @@ public interface GenericDao {
 	@SqlUpdate("CREATE TABLE if NOT EXISTS User (mail TEXT, login TEXT, password TEXT, constraint loginUser_pk PRIMARY KEY(login));")
 	void createUser();
 	/*table fausse ? il n'y a q'une recette par evenement ?*/
-	@SqlUpdate("CREATE TABLE if NOT EXISTS Event (id INT AUTO_INCREMENT, nom TEXT, date DATE, description TEXT, ville TEXT, constraint idEvent_pk PRIMARY KEY(ID));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS Event (id INT AUTO_INCREMENT, nom TEXT, date DATE, description TEXT, ville TEXT, constraint idEvent_pk PRIMARY KEY(nom,ville));")
 	void createEvent();
 
 	@SqlUpdate("CREATE TABLE if NOT EXISTS Participant (id INT, login TEXT, recette TEXT, constraint fk_idPartic FOREIGN KEY (id) REFERENCES Event(id) ON UPDATE CASCADE, constraint fk_loginPart FOREIGN KEY (login) REFERENCES User(login) ON UPDATE CASCADE, constraint pk_Participant PRIMARY KEY(id,login));")

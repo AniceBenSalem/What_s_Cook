@@ -114,10 +114,10 @@
           <!--/stories-->
     <center><h1>Modifier un Evenement existant </h1></center>
            <br>
-			<p>Nom de l'event : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Nom de l'event"></p>
-			<p>Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="où ca se pass ?"></p>
+			<p>Nom de l'event : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Name of the event ?"></p>
+			<p>Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="where is it?"></p>
 			<br>
-			<p><button id="valider" onclick="setEvenement()" class="btn btn-primary">Valider</button></p>
+			<p><button id="valider" class="btn btn-primary">Valider</button></p>
                   
           <!--/stories-->
         
@@ -139,10 +139,28 @@
   <div class="row">
     <div class="col col-sm-12">
       
+             <script>
+		$(document).ready(function() {
+		$('#valider').click(function(event){
+	  	$.ajax({
+	    	url:'http://localhost:8080/v1/event/modifEvent/'+document.getElementById("nom").value+'/'+document.getElementById("ville").value,
+		type: "GET",
+		datatype:'APPLICATION_JSON',
+		success: function(json){
+		    for (var i =0 ; i< json.Event.length ; i++){
+		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
+		         $('.panel-body').append('<hr>');
+		         
+		          $('.panel-body').append('<hr>');
+		    }
+			
+		}})})});
+	</script>
+	
       <h1>Follow Us</h1>
       <div class="btn-group">
-       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
-	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+       <a class="btn btn-twitter btn-lg" href="https://twitter.com/What_s_Cooking"><i class="icon-twitter icon-large"></i> Twitter</a>
+	   <a class="btn btn-facebook btn-lg" href="https://www.facebook.com/whatscookiing?notif_t=page_new_likes"><i class="icon-facebook icon-large"></i> Facebook</a>
       </div>
       
     </div>
