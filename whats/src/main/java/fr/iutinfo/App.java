@@ -11,8 +11,9 @@ import org.glassfish.jersey.filter.LoggingFilter;
 import requetes.ConnexionResource;
 import requetes.Evenement;
 import requetes.InscriptionResource;
-import requetes.Post;
 import requetes.Mail;
+import requetes.ModifierProfil;
+import requetes.Post;
 import requetes.User;
 import requetes.servREST;
 
@@ -31,6 +32,7 @@ public class App extends Application {
     	s.add(ConnexionResource.class);
     	s.add(InscriptionResource.class);
     	s.add(Post.class);
+    	s.add(ModifierProfil.class);
     	return s;
     }
   /*  
