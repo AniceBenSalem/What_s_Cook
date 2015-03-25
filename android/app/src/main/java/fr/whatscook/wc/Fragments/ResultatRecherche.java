@@ -6,9 +6,12 @@ package fr.whatscook.wc.Fragments;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +59,30 @@ public class ResultatRecherche extends Fragment {
         tv2 = (TextView)rootView.findViewById(R.id.TitreRecette);
         tv2.setText(nom);
         new getTitre().execute();
+        rootView.setFocusableInTouchMode(true);
+         rootView.requestFocus();
+       rootView.setOnKeyListener(new View.OnKeyListener() {
+
+
+           @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if( keyCode == KeyEvent.KEYCODE_BACK ) {
+                    FragmentManager fm = getFragmentManager();
+                    if (fm != null) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.frame_container, new FragmentRecettes());
+                        ft.commit();
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+
+
+       });
         return rootView;
     }
     class getTitre extends AsyncTask<String, String, String> {

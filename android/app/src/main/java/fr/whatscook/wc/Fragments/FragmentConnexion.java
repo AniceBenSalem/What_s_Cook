@@ -42,14 +42,12 @@ public class FragmentConnexion extends Fragment {
                 final EditText pass = (EditText) rootView.findViewById(R.id.passwd);
                 final String loginTxt = login.getText().toString();
                 final String passTxt = pass.getText().toString();
-                Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-                Matcher m = p.matcher(loginTxt);
-                if (loginTxt.equals("") || !m.matches()) {
+
+                if (loginTxt.equals("")) {
                     login.setError("error login");
                 } else if (passTxt.equals("")) {
                     pass.setError("error password");
                 } else {
-                   
                     FragmentManager fm = getFragmentManager();
                     if (fm != null) {
                         FragmentTransaction ft = fm.beginTransaction();
