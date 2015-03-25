@@ -147,8 +147,8 @@
 	    	url:'http://localhost:8080/v1/event/setEvenement/'+document.getElementById("nom").value+'/'+document.getElementById("date").value+'/'+document.getElementById("description").value+'/'+document.getElementById("ville").value,
 		type: "GET",
 		datatype:'APPLICATION_JSON',
-		    success: function(json){  $('.panel-body').append('<h2>'+json.Succes+'</h2>');
-		window.location.href="http://localhost:8080/evenement.html";
+		    success: function(json){  $('.panel-body').append('<h2>'+json.Succes[0].Succes+'</h2>');
+		 setInterval(function () {window.location.href="evenement.html"}, 3000);
 		}})})}); 
 		
 	</script> 
