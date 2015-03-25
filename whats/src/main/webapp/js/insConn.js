@@ -25,12 +25,6 @@ function inscription(){
 				type : 'POST',
 				url : "http://localhost:8080/v1/inscription/"+mail+"/"+login+"/"+password,	
 				datatype : "json",
-				data: JSON.stringify({
-					"mail" : mail,
-					"login" : login,
-					"password" : password,
-					"password2" : password2
-				}),
 	
 				success : function(json){
 					if(json.bouletbill == "true") {
