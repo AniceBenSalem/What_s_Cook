@@ -7,9 +7,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-public class TitreRecettes {
+public class RequeteServeur {
 
-    public TitreRecettes() {
+    public RequeteServeur() {
     }
     public String getJSONFromUrl(String url) {
         String result="";

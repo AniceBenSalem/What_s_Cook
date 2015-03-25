@@ -284,4 +284,25 @@ public class Requetes {
 		list.add("cassis");
 		new Requetes().executeRequete("Recettes", "TxtRecette","cassis");
 	}
+
+	public String contenu(String titre) {
+		String JSON = "";
+		try {
+			rs = b.executeQry("SELECT TxtRecette FROM Recettes where TitreRecette = \""+titre+"\";");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			if(rs.next()){
+				JSON += rs.getString("TxtRecette");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON ;
+	}
 }
