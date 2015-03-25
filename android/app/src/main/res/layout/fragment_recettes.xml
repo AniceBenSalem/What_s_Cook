@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fffcf6ff"
+    android:id="@+id/frame_container"
+   >
 
-   <SearchView
+
+    <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/searchView"
@@ -16,6 +20,7 @@
 
     <FrameLayout
         android:id="@+id/liste_recherche"
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/searchView"
@@ -27,15 +32,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listeRecherche"
+            android:textColor="#0000"
             android:layout_gravity="center_horizontal|top"
-            android:choiceMode="singleChoice" />
+            android:choiceMode="singleChoice"
+            android:clickable="true"
+            android:focusable="false"
+            android:background="@color/list_background"
+            android:listSelector="@color/list_background_pressed" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal|top" />
     </FrameLayout>
+
+
 
 
 </RelativeLayout>

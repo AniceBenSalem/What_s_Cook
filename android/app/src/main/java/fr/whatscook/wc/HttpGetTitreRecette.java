@@ -27,7 +27,7 @@ public class HttpGetTitreRecette extends AsyncTask<TextView, Void, String> {
 
     final String GetSomething()
     {
-        String url = "http://bouleau.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/RecetteDuJour";
+        String url = "http://bouleau25.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/RecetteDuJour";
         try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpRequest = new HttpGet(url);

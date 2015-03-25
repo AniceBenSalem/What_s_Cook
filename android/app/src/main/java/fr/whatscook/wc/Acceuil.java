@@ -1,17 +1,11 @@
 package fr.whatscook.wc;
 
     import java.util.ArrayList;
-    import java.util.List;
 
     import android.app.AlertDialog;
     import android.app.Fragment;
     import android.app.FragmentManager;
-    import android.app.SearchManager;
-    import android.app.SearchableInfo;
-    import android.content.Context;
     import android.content.DialogInterface;
-    import android.content.Intent;
-    import android.content.SharedPreferences;
     import android.content.res.Configuration;
     import android.content.res.TypedArray;
     import android.graphics.Color;
@@ -22,25 +16,17 @@ package fr.whatscook.wc;
     import android.support.v7.app.ActionBarActivity;
     import android.view.KeyEvent;
     import android.view.Menu;
-    import android.view.MenuInflater;
     import android.view.MenuItem;
     import android.view.View;
-    import android.view.Window;
     import android.widget.AdapterView;
-    import android.widget.Button;
-    import android.widget.LinearLayout;
     import android.widget.ListView;
-    import android.widget.SearchView;
-    import android.widget.TextView;
 
     import fr.whatscook.wc.Fragments.FragmentAcceuil;
-    import fr.whatscook.wc.Fragments.FragmentCompte;
     import fr.whatscook.wc.Fragments.FragmentEvenements;
     import fr.whatscook.wc.Fragments.FragmentFrigo;
     import fr.whatscook.wc.Fragments.FragmentConnexion;
     import fr.whatscook.wc.Fragments.FragmentParametre;
     import fr.whatscook.wc.Fragments.FragmentRecettes;
-    import fr.whatscook.wc.Fragments.User;
 
 public class Acceuil extends ActionBarActivity{
         final String EXTRA_LOGIN = "user_login";
@@ -55,12 +41,7 @@ public class Acceuil extends ActionBarActivity{
         private ArrayList<NavDrawerItem> navDrawerItems;
         private NavDrawerListAdapter adapter;
 
-    protected User u;
 
-
-    public User getU() {
-        return u;
-    }
 
 
     @Override
@@ -84,7 +65,8 @@ public class Acceuil extends ActionBarActivity{
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)/*, true, "2222"*/));
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-
+            navDrawerItems.get(2).setCount("1");
+             navDrawerItems.get(2).setCounterVisibility(true);
             navMenuIcons.recycle();
 
             mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
