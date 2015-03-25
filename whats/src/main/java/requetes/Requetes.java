@@ -18,29 +18,7 @@ public class Requetes {
 		b.open();
 	}
 	
-	/*public String afficheCommentaire(){
-		String JSON = "{\"Commentaires\" :[";
-		try {
-			rs = b.executeQry("SELECT message FROM Post;");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		try {
-			if(rs.next()){
-				JSON +="{"+"\"Commentaire\" : \""+rs.getString("message")+"\"}";
-			}
-			while (rs.next()) {
-				JSON +=",{"+"\"Commentaire\" : \""+rs.getString("message")+"\"}";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return JSON +"]}";
-	}*/
-	
 	public String executeRequete(String table,String colonne,String requete){
 		String JSON = "{\"Recettes\" :[";
 		try {
@@ -355,6 +333,15 @@ public class Requetes {
 		}
 	}
 	
+	public void ajouterFavoris(String login, String titre, String recette) {
+		try {
+			b.executeStmt("insert into Favoris(login,titre,recette) values('"+login+"','"+titre+",'"+recette+"');");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
+	
 	/*public String getPost() {
 		String JSON = "{\"Post\" :[";
 		try {
@@ -382,10 +369,24 @@ public class Requetes {
 		String JSON = "{\"Post\" :[";
 		rs = b.executeQry("select * from Post;");
 		
-		if(rs.next());
-		JSON +="{ \"message\" : \""+rs.getString("message")+"\"}";
-		while (rs.next()) {
-			JSON +=",{ \"message\" : \""+rs.getString("message")+"\"}";
+		if(rs.next()) {
+			JSON +="{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
+			while (rs.next()) {
+				JSON +=",{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
+			}
+		}
+		return JSON +"]}";
+	}
+	
+	public String getFavoris(String login) throws SQLException {
+		String JSON = "{\"Favoris\" :[";
+		rs = b.executeQry("select * from Favoris where login='"+login+"';");
+		
+		if(rs.next()) {
+			JSON +="{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+			while (rs.next()) {
+				JSON +=",{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+			}
 		}
 		return JSON +"]}";
 	}

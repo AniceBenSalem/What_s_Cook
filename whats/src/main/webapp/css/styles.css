@@ -13,16 +13,13 @@ body {
   background-color:#efefef;
 }
 
-#message, #post {
-	resize : none;
-	width:75em;
-	margin:auto;
+#post, #message {
+	resize: none;
 }
 
 #titre, #adresse{
 	resize : none;
 	width:20em;
-	margin:auto;
 }
 
 #supprimerCompte, #consulterPost, #consulterRecettes{

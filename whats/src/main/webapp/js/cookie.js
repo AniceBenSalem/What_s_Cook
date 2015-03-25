@@ -22,7 +22,7 @@ function deconnexion(){
 
 var nom = readCookie("login");
 	if(nom !== null) {
-		$('#lol').append('<ul class="nav navbar-nav"><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">'+nom+'<span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="evenement.html">Evenements</a></li><li><a href="monFrigo.html" id="monFrigo">Mon Frigo</a></li><li><a href="profil.html" id="profil">Mon Profil</a></li><li><a onClick="deconnexion()">Se deconnecter</a></li></ul></li></ul>');
+		$('#lol').append('<ul class="nav navbar-nav"><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">'+nom+'<span class="caret"></span></a><ul class="dropdown-menu" role="menu"><li><a href="evenement.html">Evenements</a></li><li><a href="monFrigo.html" id="monFrigo">Mon Frigo</a><li><a href="favoris.html" id="favoris">Mes favoris</a><li><a href="profil.html" id="profil">Mon Profil</a><li><a onClick="deconnexion()">Se deconnecter</a></li></ul></li></ul>');
 	} else {
 		$('#lol').append('<li><a href="inscription.html">S\'inscrire</a></li><li><a href="connexion.html">Se connecter</a></li>');
 		$('#post').hide();
