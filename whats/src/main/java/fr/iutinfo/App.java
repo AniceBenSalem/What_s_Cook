@@ -11,12 +11,11 @@ import org.glassfish.jersey.filter.LoggingFilter;
 import requetes.ConnexionResource;
 import requetes.Evenement;
 import requetes.InscriptionResource;
-<<<<<<< HEAD
-import requetes.Mail;
+
 import requetes.ModifierProfil;
-=======
+
 //import requetes.Mail;
->>>>>>> d069be189a307666fef4bfe27c4ecaec6970ac23
+
 import requetes.Post;
 import requetes.User;
 import requetes.servREST;
