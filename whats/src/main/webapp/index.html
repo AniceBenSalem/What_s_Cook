@@ -224,6 +224,24 @@
 	<script src="js/banniere-defilante.js"></script>
 	<script src="js/cookie.js"></script>
 	<script src="js/partager.js"></script>
+	<script>
+	$(document).ready(function() {
 	
+	  	$.ajax({
+	    	url:'http://localhost:8080/v1/post/getPost',
+			type: "GET",
+			datatype:'APPLICATION_JSON',
+			success: function(json){
+				for (var i=0; i< json.Post.length; i++) {
+					$('#partagerRecette').prepend('<h2>'+json.Post[i].message+'</h2>');
+					$('#partagerRecette').append('<hr>');
+				}
+			},
+			error:function(msg){
+            	console.log( "Error !: " + msg   );
+            }
+		})
+});
+	</script>
 	</body>
 </html>

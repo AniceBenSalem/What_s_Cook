@@ -6,16 +6,12 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-
-
-
 import org.glassfish.jersey.filter.LoggingFilter;
-import org.skife.jdbi.v2.DBI;
-import org.sqlite.SQLiteDataSource;
 
 import requetes.ConnexionResource;
 import requetes.Evenement;
 import requetes.InscriptionResource;
+import requetes.Post;
 import requetes.User;
 import requetes.servREST;
 
@@ -32,6 +28,7 @@ public class App extends Application {
     	s.add(Evenement.class);
     	s.add(ConnexionResource.class);
     	s.add(InscriptionResource.class);
+    	s.add(Post.class);
     	return s;
     }
   /*  
