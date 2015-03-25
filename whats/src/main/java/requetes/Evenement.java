@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -19,7 +20,7 @@ import fr.iutinfo.InitBDD;
 public class Evenement {
 	InitBDD b;
 	private static Requetes r ;
-
+	private static String nomModif="", lieuModif="";
 	@GET
 	@Path("/getEvenement/")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,18 +53,73 @@ public class Evenement {
 	 @GET
 		@Path("/modifEvent/{nom}/{lieu}")
 		@Produces(MediaType.APPLICATION_JSON)
-		public String modifEvent(@PathParam("nom")String nom,@PathParam("lieu") String ville) throws SQLException, IOException {
+		public String afficheMonEvent(@PathParam("nom")String nom,@PathParam("lieu") String ville) throws SQLException, IOException {
 		 Base b = new Base();
 			b.open();
+		
 			String retour =" { \"Event\" : [";
 			ResultSet rs = b.executeQry("Select * from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
-		System.out.println("Select * from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
+	
 			if(rs.next())
 			retour+= "{\"Nom\" : \""+rs.getString("nom")+"\" ,\"date\" : \""+rs.getString("date")+"\" , \"Lieu\" : \""+rs.getString("ville")+ "\" ,\"Desc\" : \""+rs.getString("description")+"\"}";
 		while(rs.next()){
 			retour+= ",{\"Nom\" : \""+rs.getString("nom")+"\" ,\"date\" : \""+rs.getString("date")+"\" , \"Lieu\" : \""+rs.getString("ville")+ "\" ,\"Desc\" : \""+rs.getString("description")+"\"}";
 		}
+		nomModif = nom;
+		 lieuModif = ville;
+		
 		return retour + "]}";
 		}
+	 
+
+	 @POST
+		@Path("/modifier/{newdesc}/{date}/{ville}/{nom}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public void modifEvent(@PathParam("newdesc") String newdesc, @PathParam("date") String date, @PathParam("ville") String ville, @PathParam("nom") String nom) throws SQLException, IOException {
+		 Base b = new Base();
+			b.open();
+			String requete = "Update Event set ";
+			boolean in =false;
+			
+			if(newdesc.length() > 0){
+				requete+="description ='"+newdesc+"' ";
+				in = true;
+			}
+			if(date.length() > 0){
+
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="date ='"+date+"' ";
+				
+			}
+			if(ville.length() > 0){
+				in =true;
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="ville ='"+ville+"' ";
+				in = false;
+			}
+			if(nom.length() > 0){
+				in = true;
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="nom ='"+nom+"' ";
+				
+			}
+			requete+= "where id=(select id from Event where nom ='"+nomModif+"' AND ville ='"+lieuModif+"');" ;
+
+
+			System.out.println(requete);
+		  b.executeStmt(requete);
+			
+		}
+
+	 
 
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -61,12 +62,20 @@ public class servREST {
 	}
 
 	@GET
-	@Path("/getRecettesbyName/{name}/")
-	@Produces(MediaType.TEXT_XML)
+	@Path("/getRecettesbyName/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettesbyName(@PathParam("name") String name) throws SQLException, IOException {
 		r= new Requetes();
-		String hummm = r.executeRequete("Recettes","TitreRecette" , name);
-		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
+
+		return r.executeRequete("Recettes","TitreRecette" , name);
+	}
+	
+	@GET
+	@Path("/getRecettesName/{name}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getContenuRecette(@PathParam("name") String name) throws SQLException, IOException {
+		r= new Requetes();
+		return r.contenu(name);
 	}
 	
 	@GET

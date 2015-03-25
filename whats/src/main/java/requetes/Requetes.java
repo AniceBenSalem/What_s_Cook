@@ -277,11 +277,47 @@ public class Requetes {
 		return succes;
 	}
 	
+	public void ajouterPostRecette(String login, String message, String date) {
+		try {
+			b.executeStmt("insert into Post(login,message,date) values('"+login+"','"+message+"','"+date+"';");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		} finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+	}
+	
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("rhubarbe");
 		list.add("cassis");
 		new Requetes().executeRequete("Recettes", "TxtRecette","cassis");
+	}
+
+	public String contenu(String titre) {
+		String JSON = "";
+		try {
+			rs = b.executeQry("SELECT TxtRecette FROM Recettes where TitreRecette = \""+titre+"\";");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			if(rs.next()){
+				JSON += rs.getString("TxtRecette");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON ;
 	}
 }

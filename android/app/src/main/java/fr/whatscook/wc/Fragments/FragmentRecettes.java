@@ -1,6 +1,8 @@
 package fr.whatscook.wc.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,10 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import fr.whatscook.wc.TitreRecettes;
+import fr.whatscook.wc.RequeteServeur;
 import fr.whatscook.wc.R;
 
 /**
@@ -21,7 +21,7 @@ import fr.whatscook.wc.R;
  */
 public class FragmentRecettes extends Fragment {
     SearchView search;
-    TextView tv;
+
     ListView lv ;
     String recherchemot="";
 
@@ -32,9 +32,9 @@ public class FragmentRecettes extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_recettes, container, false);
         search=(SearchView) rootView.findViewById(R.id.searchView);
         search.setQueryHint("ingredients, plats..");
-        search.setIconifiedByDefault(false);
+     //   search.setIconifiedByDefault(false);
         lv = (ListView)rootView.findViewById(R.id.listeRecherche);
-        tv = (TextView)rootView.findViewById(R.id.textView2);
+
 
 
         //*** setOnQueryTextListener ***
@@ -61,21 +61,18 @@ public class FragmentRecettes extends Fragment {
                 return false;
             }
         });
-/*  //ça marche pas le click fuck
-        tv.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                System.out.println(tv.getText().toString());
-            }
-        });
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {
-
-
-                Toast.makeText(getActivity().getApplicationContext(),tv.getText().toString(), Toast.LENGTH_SHORT).show();
+               FragmentManager fm = getFragmentManager();
+                if (fm != null) {
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.frame_container, new ResultatRecherche(lv.getItemAtPosition(position).toString()));
+                    ft.commit();
+                }
             }
-        });*/
+        });
         return rootView;
     }
     private class JSONParse extends AsyncTask<String, String, String> {
@@ -87,9 +84,9 @@ public class FragmentRecettes extends Fragment {
         }
         @Override
         protected String doInBackground(String... args) {
-            TitreRecettes t = new TitreRecettes();
+            RequeteServeur t = new RequeteServeur();
             // Getting JSON from URL
-            String s = t.getJSONFromUrl("http://bouleau23.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/recherche/"+recherchemot);
+            String s = t.getJSONFromUrl("http://bouleau25.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/recherche/"+recherchemot);
             return s;
         }
         @Override
@@ -98,8 +95,8 @@ public class FragmentRecettes extends Fragment {
             try {
                 String res[]=json.split("---");
 
-
-                ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, res);
+                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, res);
+              //  ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, res);
                 lv.setAdapter(adapter);
 
             } catch (Exception e) {
