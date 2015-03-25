@@ -183,7 +183,7 @@ public class Requetes {
 		
 		
 		while(rs.next()){
-			retour+= rs.getString("NumRecette")+"---"+rs.getString("TitreRecette")+"---"+rs.getString("TxtRecette")+"\n";
+			retour+= /*rs.getString("NumRecette")+"---"+*/rs.getString("TitreRecette")+"---"/*rs.getString("TxtRecette")+"\n"*/;
 		}
 		return retour;
 		
