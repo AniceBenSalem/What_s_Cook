@@ -12,6 +12,7 @@ import requetes.ConnexionResource;
 import requetes.Evenement;
 import requetes.InscriptionResource;
 import requetes.Post;
+import requetes.Mail;
 import requetes.User;
 import requetes.servREST;
 
@@ -25,6 +26,7 @@ public class App extends Application {
     	s.add(LoggingFilter.class);
     	s.add(servREST.class);
     	s.add(User.class);
+    	s.add(Mail.class);
     	s.add(Evenement.class);
     	s.add(ConnexionResource.class);
     	s.add(InscriptionResource.class);

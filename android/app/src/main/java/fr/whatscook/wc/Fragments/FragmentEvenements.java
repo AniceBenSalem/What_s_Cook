@@ -21,8 +21,8 @@ public class FragmentEvenements extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_evenements, container, false);
-        ScrollView scroll = (ScrollView) rootView.findViewById(R.id.scrollEvent);
+       final View rootView = inflater.inflate(R.layout.fragment_evenements, container, false);
+  /*      ScrollView scroll = (ScrollView) rootView.findViewById(R.id.scrollEvent);
 
         TextView[] tv = new TextView[4];
         for (int i = 0; i < 4; i++) {
@@ -33,7 +33,7 @@ public class FragmentEvenements extends Fragment {
         }
             //   }
 
-
+        */
             return rootView;
         }
 

@@ -114,7 +114,7 @@
           <!--/stories-->
     <center><h1>Modifier un Evenement existant </h1></center>
            <br>
-			<p>Nom de l'event : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Name of the event ?"></p>
+			<p>Nom de l'event : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Name of the event ?">    </p>
 			<p>Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="where is it?"></p>
 			<br>
 			<p><button id="valider" class="btn btn-primary">Valider</button></p>
@@ -150,8 +150,9 @@
 		    for (var i =0 ; i< json.Event.length ; i++){
 		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
 		         $('.panel-body').append('<hr>');
+		          $('.panel-body').append('<p><button id="Modifier" href="effectuerModif.html" class="btn btn-primary">Modifier</button></p>');
+		            	$('#Modifier').click(function(){window.location.href="effectuerModif.html"});
 		         
-		          $('.panel-body').append('<hr>');
 		    }
 			
 		}})})});

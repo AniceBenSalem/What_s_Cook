@@ -19,7 +19,13 @@ import javax.ws.rs.core.MediaType;
 public class servREST {
 	private static ArrayList<String> liste;
 	private static Requetes r ;
-
+	
+	/*@GET
+	@Path("/getCommentaire")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCommentaire() throws SQLException, IOException {
+		return new Requetes().afficheCommentaire();
+	}*/
 
 	@GET
 	@Path("/getRecettes/{mesIngredients}")
@@ -62,12 +68,20 @@ public class servREST {
 	}
 
 	@GET
-	@Path("/getRecettesbyName/{name}/")
-	@Produces(MediaType.TEXT_XML)
+	@Path("/getRecettesbyName/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettesbyName(@PathParam("name") String name) throws SQLException, IOException {
 		r= new Requetes();
-		String hummm = r.executeRequete("Recettes","TitreRecette" , name);
-		return "<?xml version=\"1.0\"?>" + "<result>" + hummm + "</result>";
+
+		return r.executeRequete("Recettes","TitreRecette" , name);
+	}
+	
+	@GET
+	@Path("/getRecettesName/{name}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getContenuRecette(@PathParam("name") String name) throws SQLException, IOException {
+		r= new Requetes();
+		return r.contenu(name);
 	}
 	
 	@GET
