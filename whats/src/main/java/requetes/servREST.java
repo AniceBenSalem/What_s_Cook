@@ -18,7 +18,13 @@ import javax.ws.rs.core.MediaType;
 public class servREST {
 	private static ArrayList<String> liste;
 	private static Requetes r ;
-
+	
+	/*@GET
+	@Path("/getCommentaire")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCommentaire() throws SQLException, IOException {
+		return new Requetes().afficheCommentaire();
+	}*/
 
 	@GET
 	@Path("/getRecettes/{mesIngredients}")

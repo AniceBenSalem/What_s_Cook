@@ -20,6 +20,29 @@ public class Requetes {
 		b.open();
 	}
 	
+	/*public String afficheCommentaire(){
+		String JSON = "{\"Commentaires\" :[";
+		try {
+			rs = b.executeQry("SELECT message FROM Post;");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			if(rs.next()){
+				JSON +="{"+"\"Commentaire\" : \""+rs.getString("message")+"\"}";
+			}
+			while (rs.next()) {
+				JSON +=",{"+"\"Commentaire\" : \""+rs.getString("message")+"\"}";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON +"]}";
+	}*/
+	
 	public String executeRequete(String table,String colonne,String requete){
 		String JSON = "{\"Recettes\" :[";
 		try {
@@ -121,6 +144,21 @@ public class Requetes {
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
+	/*public void ajouterCommentaire(String login, String message, Date date) throws SQLException{
+		int idCommentaire = this.nbCommentaires()+1;
+		String insert="";
+		if(idCommentaire >0){
+		insert ="insert into Post (idPost, login, message, date) " +
+				"values("+idCommentaire+",'"+login+"' ,"+message+" ,'"+date+"');";
+		}
+		try{
+		
+		b.executeStmt(insert);
+		
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}*/
 
 	public void ajouterRecette(String name, int nb,String Temps, String ingredients, String description) throws SQLException{
 		int idRecettes = this.nbRecettes()+1;
@@ -137,6 +175,16 @@ public class Requetes {
 			e.printStackTrace();
 		}
 	}
+	
+	/*public int nbCommentaires() throws SQLException{
+		int com =-1; 
+		rs =b.executeQry("select count(*) from Post");
+		
+		if(rs.next()){
+			com =rs.getInt(1);
+		}
+		return com;
+	}*/
 	
 	public int nbRecettes() throws SQLException{
 		int ret =-1; 
