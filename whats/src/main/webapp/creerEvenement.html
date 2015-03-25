@@ -119,7 +119,7 @@
 			<p>description : <br><INPUT type="text" SIZE="100" id=description name=description placeholder="description"></p>
 			<p>Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="où ca se pass ?"></p>
 			<br>
-			<p><button id="valider" onclick="http://localhost:8080/ajoutEvenementsucces.html" class="btn btn-primary">Valider</button></p>
+			<p><button id="valider" class="btn btn-primary">Valider</button></p>
                   
           <!--/stories-->
         
@@ -140,16 +140,18 @@
   <div class="row">
     <div class="col col-sm-12">
       
-       <script>
+    <script>
 		$(document).ready(function() {
 		$('#valider').click(function(event){
 	  	$.ajax({
 	    	url:'http://localhost:8080/v1/event/setEvenement/'+document.getElementById("nom").value+'/'+document.getElementById("date").value+'/'+document.getElementById("description").value+'/'+document.getElementById("ville").value,
 		type: "GET",
 		datatype:'APPLICATION_JSON',
-		success: function(json){
-		}})})});
-	</script>
+		    success: function(json){  $('.panel-body').append('<h2>'+json.Succes[0].Succes+'</h2>');
+		 setInterval(function () {window.location.href="evenement.html"}, 3000);
+		}})})}); 
+		
+	</script> 
 	
       <h1>Follow Us</h1>
       <div class="btn-group">
