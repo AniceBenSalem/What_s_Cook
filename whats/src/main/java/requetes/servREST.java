@@ -71,10 +71,10 @@ public class servREST {
 	
 	@GET
 	@Path("/recherche/{string}")
-	@Produces(MediaType.TEXT_XML)
+	@Produces(MediaType. APPLICATION_JSON)
 	public String recherche(@PathParam("string") String iSearch) throws SQLException, IOException {
 		r = new Requetes();
-		return "<?xml version=\"1.0\"?>" + "<result>" + r.searchRecettes(iSearch) + "</result>";
+		return r.searchRecettes(iSearch);
 	}
 	
 	/*@GET

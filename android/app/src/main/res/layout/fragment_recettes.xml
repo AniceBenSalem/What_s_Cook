@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <SearchView
+    <SearchView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/searchView"
@@ -27,8 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listeRecherche"
+
             android:layout_gravity="center_horizontal|top"
-            android:choiceMode="singleChoice" />
+            android:choiceMode="multipleChoice"
+            android:clickable="true"
+            android:focusable="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,6 +39,8 @@
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal|top" />
     </FrameLayout>
+
+
 
 
 </RelativeLayout>

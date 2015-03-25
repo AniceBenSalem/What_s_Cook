@@ -1,34 +1,19 @@
 package fr.whatscook.wc.Fragments;
 
 import android.app.Fragment;
-import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.SearchView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import fr.whatscook.wc.HttpGetTitreRecette;
+import fr.whatscook.wc.TitreRecettes;
 import fr.whatscook.wc.R;
 
 /**
@@ -36,7 +21,9 @@ import fr.whatscook.wc.R;
  */
 public class FragmentRecettes extends Fragment {
     SearchView search;
-
+    TextView tv;
+    ListView lv ;
+    String recherchemot="";
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -45,16 +32,10 @@ public class FragmentRecettes extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_recettes, container, false);
         search=(SearchView) rootView.findViewById(R.id.searchView);
         search.setQueryHint("ingredients, plats..");
+        search.setIconifiedByDefault(false);
+        lv = (ListView)rootView.findViewById(R.id.listeRecherche);
+        tv = (TextView)rootView.findViewById(R.id.textView2);
 
-        //*** setOnQueryTextFocusChangeListener ***
-        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         //*** setOnQueryTextListener ***
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -63,13 +44,9 @@ public class FragmentRecettes extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                // TODO Auto-generated method stub
               try {
-                    TextView dd= (TextView) rootView.findViewById(R.id.textView2);
-                  String[] countryArray = dd.getText().toString().split(" ") ;
-                  ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, countryArray);
-                  ListView lv = (ListView)rootView.findViewById(R.id.listeRecherche);
-                  lv.setAdapter(adapter);
 
-
+                 recherchemot=query;
+                 new JSONParse().execute();
 
 
               }catch (Exception e){
@@ -84,12 +61,55 @@ public class FragmentRecettes extends Fragment {
                 return false;
             }
         });
+/*  //ça marche pas le click fuck
+        tv.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                System.out.println(tv.getText().toString());
+            }
+        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {
 
 
+                Toast.makeText(getActivity().getApplicationContext(),tv.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });*/
         return rootView;
     }
+    private class JSONParse extends AsyncTask<String, String, String> {
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        @Override
+        protected String doInBackground(String... args) {
+            TitreRecettes t = new TitreRecettes();
+            // Getting JSON from URL
+            String s = t.getJSONFromUrl("http://bouleau23.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/recherche/"+recherchemot);
+            return s;
+        }
+        @Override
+        protected void onPostExecute(String json) {
+          // Getting JSON Array
+            try {
+                String res[]=json.split("---");
+
+
+                ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_recettes,R.id.textView2, res);
+                lv.setAdapter(adapter);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
+
 
 
 

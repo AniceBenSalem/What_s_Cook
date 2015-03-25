@@ -84,7 +84,8 @@ public class Acceuil extends ActionBarActivity{
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)/*, true, "2222"*/));
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-
+            navDrawerItems.get(2).setCount("1");
+             navDrawerItems.get(2).setCounterVisibility(true);
             navMenuIcons.recycle();
 
             mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
