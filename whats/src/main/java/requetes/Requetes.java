@@ -277,6 +277,21 @@ public class Requetes {
 		return succes;
 	}
 	
+	public void ajouterPostRecette(String login, String message, String date) {
+		try {
+			b.executeStmt("insert into Post(login,message,date) values('"+login+"','"+message+"','"+date+"';");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		} finally {
+			try {
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+	}
+	
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();
