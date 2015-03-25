@@ -13,6 +13,7 @@ $(document).ready(
 			$('.panel-body > hr').hide();
 			for (var i= 0; i< json.Recettes.length; i++){
 				$('.panel-body').append('<h2>'+json.Recettes[i].TitreRecette+'</h2>'+'<h3>'+json.Recettes[i].TxtRecette+'</h3>');
+				$('.panel-body').append("<button id=\"partager"+i+"\" class=\"btn btn-primary\" onClick=\"partagerRecette("+json.Recettes[i].txtRecette+")\">Partager</button>
                			$('.panel-body').append('<hr>');	
 			} 
 		 },
@@ -20,3 +21,8 @@ $(document).ready(
                             console.log( "Error !: " + msg   );
                   }
 		})}return false;}));
+
+
+function partagerRecette(recette) {
+	document.location = 'index.html';
+}
