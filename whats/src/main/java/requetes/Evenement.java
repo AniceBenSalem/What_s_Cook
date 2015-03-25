@@ -73,14 +73,50 @@ public class Evenement {
 	 
 
 	 @POST
-		@Path("/modifier/{newdesc}")
+		@Path("/modifier/{newdesc}/{date}/{ville}/{nom}")
 		@Produces(MediaType.APPLICATION_JSON)
-		public void modifEvent(@PathParam("newdesc") String newdesc) throws SQLException, IOException {
+		public void modifEvent(@PathParam("newdesc") String newdesc, @PathParam("date") String date, @PathParam("ville") String ville, @PathParam("nom") String nom) throws SQLException, IOException {
 		 Base b = new Base();
 			b.open();
-			String retour =" { \"Event\" : [";
-			System.out.println("Update Event set description='"+newdesc+"' where id=(select id from Event where nom ='"+nomModif+"' AND ville ='"+lieuModif+"');");
-		  b.executeStmt("Update Event set description='"+newdesc+"' where nom ='"+nomModif+"' AND ville ='"+lieuModif+"';");
+			String requete = "Update Event set ";
+			boolean in =false;
+			
+			if(newdesc.length() > 0){
+				requete+="description ='"+newdesc+"' ";
+				in = true;
+			}
+			if(date.length() > 0){
+
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="date ='"+date+"' ";
+				
+			}
+			if(ville.length() > 0){
+				in =true;
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="ville ='"+ville+"' ";
+				in = false;
+			}
+			if(nom.length() > 0){
+				in = true;
+				if(in){ 
+					requete+=", ";
+					in = false;
+				}
+				requete+="nom ='"+nom+"' ";
+				
+			}
+			requete+= "where id=(select id from Event where nom ='"+nomModif+"' AND ville ='"+lieuModif+"');" ;
+
+
+			System.out.println(requete);
+		  b.executeStmt(requete);
 			
 		}
 

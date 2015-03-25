@@ -113,9 +113,12 @@
           
           <!--/stories-->
     <center><h1>Vous pouvez maintenant modifier l'événement sélectionné au préalable </h1></center>
+            <h2>Choisissez les élèments que vous voulez modifier</h2>
            <br>
+            <p>Nouveau Nom : <br><INPUT type="text" SIZE="20" id=nom name=nom placeholder="Nom de l'event"></p>
 			<p>Nouvelle description: <br><INPUT type="text" SIZE="100" id=description name=description placeholder="saisissez par exemple l'adresse exacte l'heure du rassemblement etc....">    </p>
-			<p>Date : <br><INPUT type="Date" SIZE="20" id=date name=date placeholder="nouvelle date"></p>	
+			<p>Changer la Date : <br><INPUT type="Date" SIZE="20" id=date name=date placeholder="nouvelle date"></p>	
+			<p>Changer le Lieu : <br><INPUT type="text" SIZE="20" id=ville name=ville placeholder="une nouvelle adresse?"></p>
 			<br>
 			<p><button id="valider" class="btn btn-primary">Valider vos changements</button></p>
                   
@@ -143,11 +146,12 @@
 		$(document).ready(function() {
 		$('#valider').click(function(event){
 	  	$.ajax({
-	    	url:'http://localhost:8080/v1/event/modifier/'+document.getElementById("description").value,
+	    	url:'http://localhost:8080/v1/event/modifier/'+document.getElementById("description").value+'/'+document.getElementById("date").value+'/'+document.getElementById("ville").value+'/'+document.getElementById("nom").value,
 		type: "POST",
 		datatype:'APPLICATION_JSON',
 		success: function(json){
 			$('.panel-body').append('<h1>Changements effectués </h1>');
+			 setInterval(function () {window.location.href="evenement.html"}, 3000);
 		}})})});
 	</script>
 	
