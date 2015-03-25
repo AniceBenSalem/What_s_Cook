@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#monFrigo').click(function(event){
+	
 	  	$.ajax({
 	    	url:'http://localhost:8080/v1/cook/monFrigo',
 			type: "GET",
@@ -10,7 +10,9 @@ $(document).ready(function() {
 					$('.panel-body').append("<input type=\"button\" value=\"+\" id=\"plus\" onClick=\"increment(1,"+i+")\"><input type=\"text\" id=\"qty"+i+"\">");
 					$('.panel-body').append("<input type=\"button\" value=\"-\" id=\"moins\" onClick=\"increment(-1,"+i+")\">");
 				}
-}})})});
+			}
+		})
+});
 		
 var valeur=0;
 
