@@ -1,20 +1,15 @@
-package requetes;
+/*package requetes;
 
 import java.util.Properties;
 
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 //import org.eclipse.persistence.internal.oxm.record.json.JSONParser.pair_return;
+
+
 
 @Path("/poster")
 @Produces(MediaType.APPLICATION_JSON)
@@ -97,3 +92,4 @@ public class Mail {
 		return "{\"b\": true}";
 	}
 }
+*/

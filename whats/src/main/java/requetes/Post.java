@@ -17,9 +17,9 @@ public class Post {
 			
 
 	@GET
-	@Path("/ajouterPostRecette/{login}/{message}")
+	@Path("/ajouterPost/{login}/{message}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void ajouterPostRecette(@PathParam("login") String login, @PathParam("message") String message) throws SQLException, IOException {
+	public void ajouterPost(@PathParam("login") String login, @PathParam("message") String message) throws SQLException, IOException {
 		r = new Requetes();
 		r.ajouterPost(login, message);
 	}

@@ -100,11 +100,13 @@
           
           
           <!--/stories-->
-          <div class="col-md-10 col-sm-9">
-          
-			<center><TEXTAREA id="post" placeholder="Entrez votre publication !"></TEXTAREA>
-			<button id="partager" >Je Partage !</button>
+			<div class="form-group">
+			<textarea class="form-control" rows="4" maxlength="250" id="post" placeholder="Entrez votre publication ! 250 caractères maximum"></textarea>
+			</div>
+			<center>
+			<button id="partager" onClick="publier()" class="btn btn-primary" type="submit" value="">Je partage !</button>
 		    </center>
+			<br>
 		  	<div id="share">
 		  	</div>
 		  <div id="partagerRecette">
@@ -116,54 +118,16 @@
            		</div>
 
 	 			<div class="col-md-10 col-sm-9">
-             		 <h3>Bienvenue sur What's Cooking !! Le site n'est qu'au tout début de ce que nous voulons vous apportez, et avec votre participation nous espérons que le projet durera longtemps ! Alors n'hésitez pas
+             		 <h3>Bienvenue sur What's Cooking !! Le site n'est qu'au tout début de ce que nous voulons vous apportez, et avec votre participation nous espérons que le projet durera longtemps ! Alors n'hésitez pas à partager le site et à vous inscrire :)</h3>
              		 <div class="row">
                			 <div class="col-xs-9">
-                  			<small style="font-family:courier,'new courier';" class="text-muted">2 hours ago  • <a href="#" class="text-muted">Read More</a></small>
+                  			<small style="font-family:courier,'new courier';" class="text-muted">De What's Cooking</small>
                  	 	</h4></div>
                			 <div class="col-xs-3"></div>
              		 </div>
              		 <br><br>
            		 </div>
          	 </div>
-          <hr>
-
-          <div class="row">    
-            <br>
- 			<div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle"></a>
-            </div>
-
-            <div class="col-md-10 col-sm-9">
-              <h3>Hummm j'aime beaucoup cette recette, allez voir les amis !</h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <small style="font-family:courier,'new courier';" class="text-muted">2 hours ago  • <a href="#" class="text-muted">Read More</a></small>
-                  </h4></div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-            </div>
-          </div>
-          <hr>
-          
-          <div class="row">    
-            <br>
-
-            <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="http://api.randomuser.me/portraits/thumb/women/56.jpg" style="width:100px;height:100px" class="img-circle"></a>
-            </div>
-            <div class="col-md-10 col-sm-9">
-              <h3>Bondour, de vous conteille cette recette de nem !</h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <small style="font-family:courier,'new courier';" class="text-muted">Yesterday • <a href="#" class="text-muted">Read More</a></small>
-                  </h4></div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-            </div>
-          </div>
           <hr>
                   
           <!--/stories-->
@@ -224,24 +188,6 @@
 	<script src="js/banniere-defilante.js"></script>
 	<script src="js/cookie.js"></script>
 	<script src="js/partager.js"></script>
-	<script>
-	$(document).ready(function() {
-	
-	  	$.ajax({
-	    	url:'http://localhost:8080/v1/post/getPost',
-			type: "GET",
-			datatype:'APPLICATION_JSON',
-			success: function(json){
-				for (var i=0; i< json.Post.length; i++) {
-					$('#partagerRecette').prepend('<h2>'+json.Post[i].message+'</h2>');
-					$('#partagerRecette').append('<hr>');
-				}
-			},
-			error:function(msg){
-            	console.log( "Error !: " + msg   );
-            }
-		})
-});
-	</script>
+	<script>partager();</script>
 	</body>
 </html>
