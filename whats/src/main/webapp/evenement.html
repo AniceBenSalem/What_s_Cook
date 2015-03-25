@@ -131,25 +131,11 @@
 <div class="container" id="footer">
   <div class="row">
     <div class="col col-sm-12">
-      <script>
-		$(document).ready(function() {
-		$('#evenement').click(function(event){
-	  	$.ajax({
-	    	url:'http://localhost:8080/v1/event/getEvenement/',
-		type: "GET",
-		datatype:'APPLICATION_JSON',
-		success: function(json){
-		    for (var i =0 ; i< json.Event.length ; i++){
-		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
-		         $('.panel-body').append('<hr>');
-		    }
-			
-		}})})});
-	</script>
+	
       <h1>Follow Us</h1>
       <div class="btn-group">
-       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
-	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+       <a class="btn btn-twitter btn-lg" href="https://twitter.com/What_s_Cooking"><i class="icon-twitter icon-large"></i> Twitter</a>
+	   <a class="btn btn-facebook btn-lg" href="https://www.facebook.com/whatscookiing?notif_t=page_new_likes"><i class="icon-facebook icon-large"></i> Facebook</a>
       </div>
       
     </div>
@@ -180,6 +166,21 @@
 	<script src="js/timer.js"></script>
 	<script src="js/banniere-defilante.js"></script>
 	<script src="js/cookie.js"></script>
+	      <script>
+		$(document).ready(function() {
+		$('#evenement').click(function(event){
+	  	$.ajax({
+	    	url:'http://localhost:8080/v1/event/getEvenement/',
+		type: "GET",
+		datatype:'APPLICATION_JSON',
+		success: function(json){
+		    for (var i =0 ; i< json.Event.length ; i++){
+		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
+		         $('.panel-body').append('<hr>');
+		    }
+			
+		}})})});
+	</script>
 
 	</body>
 </html>
