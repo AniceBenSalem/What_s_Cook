@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="235dp"
-        android:layout_gravity="center_horizontal|top"
-        android:id="@+id/Event">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollEvent"
-            android:fillViewport="false" />
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:text="Lister les événements"
+        android:id="@+id/textView5"
+        android:layout_gravity="center"
+        android:background="@drawable/listeEvent"
+        android:textColor="#ffffffff"
+        android:textSize="@dimen/big_text_size"
+        android:textAlignment="center" />
 </FrameLayout>
