@@ -187,18 +187,6 @@ public class Requetes {
 		}
 		return retour;
 		
-		/*
-		 * NumRecette` INTEGER NOT NULL DEFAULT 0, 
-  `TitreRecette` VARCHAR(255), 
-  `NbPersonne` INTEGER DEFAULT 0, 
-  `NbPersonneTxt` VARCHAR(255), 
-  `Temps` VARCHAR(255), 
-  `Ingredients` LONGTEXT, 
-  `TxtRecette` LONGTEXT, 
-  PRIMARY KEY (`NumRecette`)
-
-		 * 
-		 */
 	}
 	
 	public void insertUser(User u) {
