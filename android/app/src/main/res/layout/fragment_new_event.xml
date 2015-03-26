@@ -4,44 +4,62 @@
     android:id="@+id/frame_container"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="208dp"
-        android:layout_height="76dp"
-        android:id="@+id/editText"
-        android:layout_gravity="left|top"
-        android:text="Nom de l&apos;événement" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:weightSum="1">
 
-    <TextView
-        android:layout_width="138dp"
-        android:layout_height="33dp"
-        android:text="Nouveau evenement"
-        android:id="@+id/textView2"
-        android:layout_gravity="right|top" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NomEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Nom de l&apos;évenment ?"
+            android:singleLine="true" />
 
-    <EditText
-        android:layout_width="143dp"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_gravity="left|center_vertical"
-        android:text="Quand ?" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/DateEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Date de l&apos;évenement ?"
+            android:singleLine="true" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="197dp"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_gravity="left|bottom"
-        android:text="Description" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LieuEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Lieu de l&apos;évenement ?"
+            android:singleLine="true" />
 
-    <EditText
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Où ?"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:layout_gravity="right|center_vertical" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.46"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Description .." />
+
+        <Button
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            android:id="@+id/buttonCreer"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/padding_large"
+            android:background="@color/list_background_pressed" />
+
+    </LinearLayout>
 </FrameLayout>
