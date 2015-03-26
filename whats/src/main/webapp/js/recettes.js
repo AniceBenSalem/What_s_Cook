@@ -7,14 +7,14 @@ $(document).ready(
 		if( $('#ChampDeRecherche').val() != ""  && texte !== $('#ChampDeRecherche').val() ){
 		texte = $('#ChampDeRecherche').val();
 	  	$.ajax({
-	    	url:'http://localhost:8080/v1/cook/getRecettes/'+$('#ChampDeRecherche').val()+'',
+	    	url:'http://localhost:8080/v1/cook/getRecettesPourFavoris/'+$('#ChampDeRecherche').val()+'',
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json){
 			$('.panel-body > h2').remove();
 			$('.panel-body > h3').remove();
 			$('.panel-body > hr').remove();
-			$('.panel-body > button').remove();
+			$('.panel-body > center').remove();
 			
 			for (var i= 0; i< json.Recettes.length; i++){
 				var titre = replaceAll("'", " ",json.Recettes[i].TitreRecette);
@@ -24,7 +24,7 @@ $(document).ready(
 					var prout = "ajouterFavoris(\""+recette+"\")";
 					console.log(prout);
 					//$('.panel-body').append("<center><button id=\"partager"+i+"\" class=\"btn btn-primary\"  onclick=\"partagerRecette('"+titre.toString()+"')\">Partager</button>  <button id=\"favoris"+i+"\" class=\"btn btn-danger\" onclick=\"ajouterFavoris('"+titre.toString()+"','"+recette.toString()+"')\">Favoris</button></center>");
-					$('.panel-body').append("<center><button id='partager"+i+"' class='btn btn-primary'  onclick='partagerRecette(\""+titre+"\")'>Partager</button>  <button id='favoris"+i+"' class='btn btn-danger' onclick ='ajouterFavoris("+json+")'	 >Favoris</button></center>");
+					$('.panel-body').append("<center><button id='partager"+i+"' class='btn btn-primary'  onclick='partagerRecette(\""+titre+"\")'>Partager</button>  <button id='favoris"+i+"' class='btn btn-danger' onclick ='ajouterFavoris("+json.Recettes[i].idRecette+")'	 >Favoris</button></center>");
 					
 					$('.panel-body').append('<hr>');
 				}
@@ -42,14 +42,14 @@ function replaceAll(find, replace, str) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
-function ajouterFavoris(tire,recette){
+function ajouterFavoris(id){
 	
 	console.log(titre);
 	console.log(recette);
 	var login = readCookie("login");
 	if(titre != "" && recette != ""){
 	$.ajax({
-	    url:"http://localhost:8080/v1/cook/ajouterFavoris/"+login+"/"+titre+"/"+recette,
+	    url:"http://localhost:8080/v1/cook/ajouterFavoris/"+login+"/"+id,
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json) {

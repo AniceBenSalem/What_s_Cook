@@ -35,6 +35,20 @@ public class servREST {
 	}
 	
 	@GET
+	@Path("/getRecettesPourFavoris/{mesIngredients}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getRecettesPourFavoris(@PathParam("mesIngredients") String mesIngredients) throws SQLException, IOException {
+		return new Requetes().executeRequetePourFavoris("Recettes", "TxtRecette", mesIngredients);
+	}
+	
+	@GET
+	@Path("/getRecettesPourFavorisTitre/{mesIngredients}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getRecettesPourFavorisTitre(@PathParam("mesIngredients") String mesIngredients) throws SQLException, IOException {
+		return new Requetes().executeRequetePourFavorisTitre("Recettes", "TxtRecette", mesIngredients);
+	}
+	
+	@GET
 	@Path("/RecetteDuJour")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettesDuJour() throws SQLException, IOException {
@@ -96,11 +110,11 @@ public class servREST {
 	}
 	
 	@GET
-	@Path("/ajouterFavoris/{login}/{titre}/{recette}")
+	@Path("/ajouterFavoris/{login}/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void ajouterFavoris(@PathParam("login") String login, @PathParam("titre") String titre, @PathParam("recette") String recette) throws SQLException, IOException {
+	public void ajouterFavoris(@PathParam("login") String login, @PathParam("id") String id) throws SQLException, IOException {
 		r = new Requetes();
-		r.ajouterFavoris(login, titre, recette);
+		r.ajouterFavoris(login, id);
 	}
 	
 	@GET

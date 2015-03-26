@@ -3,12 +3,10 @@ var titre = "";
 var recette = "";
 $(document).ready(
 		$('#BoutonDeRechercheRecette').click(function(event){
-		console.log($('#ChampDeRechercheRecette').val());
-		console.log(texteR);
 		if( $('#ChampDeRechercheRecette').val() != ""  && texteR != $('#ChampDeRechercheRecette').val() ){
 		texteR = $('#ChampDeRechercheRecette').val();
 	  	$.ajax({
-	    	url:'http://localhost:8080/v1/cook/getRecettesbyName/'+$('#ChampDeRechercheRecette').val()+'',
+	    	url:'http://localhost:8080/v1/cook/getRecettesPourFavorisTitre/'+$('#ChampDeRecherche').val()+'',
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json){
@@ -25,7 +23,7 @@ $(document).ready(
 					var prout = "ajouterFavoris(\""+recette+"\")";
 					console.log(prout);
 					//$('.panel-body').append("<center><button id=\"partager"+i+"\" class=\"btn btn-primary\"  onclick=\"partagerRecette('"+titre.toString()+"')\">Partager</button>  <button id=\"favoris"+i+"\" class=\"btn btn-danger\" onclick=\"ajouterFavoris('"+titre.toString()+"','"+recette.toString()+"')\">Favoris</button></center>");
-					$('.panel-body').append("<center><button id='partager"+i+"' class='btn btn-primary'  onclick='partagerRecette(\""+titre+"\")'>Partager</button>  <button id='favoris"+i+"' class='btn btn-danger' onclick ='ajouterFavoris("+json+")'	 >Favoris</button></center>");
+					$('.panel-body').append("<center><button id='partager"+i+"' class='btn btn-primary'  onclick='partagerRecette(\""+titre+"\")'>Partager</button>  <button id='favoris"+i+"' class='btn btn-danger' onclick ='ajouterFavoris("+json.Recettes[i].id+")'	 >Favoris</button></center>");
 					
 					$('.panel-body').append('<hr>');
 				}
@@ -43,21 +41,23 @@ function replaceAll(find, replace, str) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
-function ajouterFavoris(tire,recette){
+function ajouterFavoris(id){
 	
-	console.log(titre);
-	console.log(recette);
+	console.log(id);
 	var login = readCookie("login");
-	if(titre != "" && recette != ""){
+	
 	$.ajax({
-	    url:"http://localhost:8080/v1/cook/ajouterFavoris/"+login+"/"+titre+"/"+recette,
+	    url:"http://localhost:8080/v1/cook/ajouterFavoris/"+login+"/"+id,
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json) {
 			console.log("coucou");
-		}
+		},
+		error:function(msg){
+                            console.log( "Error !: " + msg   );
+                 }
 	});
-	}
+	
 }
 
 
