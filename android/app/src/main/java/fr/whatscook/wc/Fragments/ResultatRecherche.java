@@ -95,7 +95,7 @@ public class ResultatRecherche extends Fragment {
 
         @Override
         protected String doInBackground(String... args) {
-            String url = "http://bouleau25.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/getRecettesName/"+nom;
+            String url = "http://bouleau22.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/getRecettesName/"+nom;
             String result ="";
             try {
                 HttpClient httpClient = new DefaultHttpClient();

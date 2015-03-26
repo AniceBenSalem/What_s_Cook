@@ -12,23 +12,27 @@
 
         android:layout_height="188dp"
         android:id="@+id/listEvent"
+<<<<<<< HEAD
         android:background="@drawable/listeevent"
+=======
+        android:background="@drawable/liste_event"
+>>>>>>> 256937a783462682db26b36b7bc73da7e04319f0
         android:textColor="#ffffffff"
         android:textSize="@dimen/big_text_size"
-        android:textAlignment="center"
+
         android:layout_weight="0.20" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="124dp"
         android:id="@+id/setEvent"
-        android:background="@drawable/evenement"
+
         android:layout_weight="0.65" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/newEvent"
-        android:background="@drawable/creerevent"
+
         android:layout_weight="0.20" />
 </LinearLayout>

@@ -86,7 +86,7 @@ public class FragmentRecettes extends Fragment {
         protected String doInBackground(String... args) {
             RequeteServeur t = new RequeteServeur();
             // Getting JSON from URL
-            String s = t.getJSONFromUrl("http://bouleau25.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/recherche/"+recherchemot);
+            String s = t.getJSONFromUrl("http://bouleau22.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/recherche/"+recherchemot);
             return s;
         }
         @Override

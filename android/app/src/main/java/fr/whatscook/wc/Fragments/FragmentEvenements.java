@@ -24,9 +24,11 @@ public class FragmentEvenements extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_evenements, container, false);
+
         final TextView newEvent = (TextView)rootView.findViewById(R.id.newEvent);
         final TextView setEvent = (TextView)rootView.findViewById(R.id.setEvent);
         final TextView listEvent = (TextView)rootView.findViewById(R.id.listEvent);
+
 
         newEvent.setOnClickListener(new View.OnClickListener() {
             @Override
