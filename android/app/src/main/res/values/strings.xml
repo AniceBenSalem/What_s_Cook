@@ -39,6 +39,21 @@
         <item>@drawable/evenements</item>
         <item>@drawable/parametre</item>
       </array>
+    <string-array name="frigo">
+        <item >Lait</item>
+        <item >Pomme (x10)</item>
+        <item >Beurre</item>
+    </string-array>
+    <string-array name="trier">
+        <item >DLC</item>
+        <item >Fruits</item>
+        <item >Légumes</item>
+        <item >Viandes</item>
+        <item >Poissons</item>
+
+    </string-array>
+
+
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>

@@ -21,7 +21,7 @@ public class FragmentListEvent extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_list_event, container, false);
         lv = (ListView)rootView.findViewById(R.id.listEvent);
-
+        new JSONParse().execute();
         return rootView;
     }
     private class JSONParse extends AsyncTask<String, String, String> {
