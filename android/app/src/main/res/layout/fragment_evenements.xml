@@ -12,11 +12,9 @@
 
         android:layout_height="188dp"
         android:id="@+id/listEvent"
-<<<<<<< HEAD
+
         android:background="@drawable/listeevent"
-=======
-        android:background="@drawable/liste_event"
->>>>>>> 256937a783462682db26b36b7bc73da7e04319f0
+
         android:textColor="#ffffffff"
         android:textSize="@dimen/big_text_size"
 
