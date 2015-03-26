@@ -34,7 +34,20 @@ public class Evenement {
 	while(rs.next()){
 		retour+= ",{\"Nom\" : \""+rs.getString("nom")+"\" ,\"date\" : \""+rs.getString("date")+"\" , \"Lieu\" : \""+rs.getString("ville")+ "\" ,\"Desc\" : \""+rs.getString("description")+"\"}";
 	}
-	return retour + "]}";
+	/*retour +="] \"Participant\" :[";
+	rs = b.executeQry("Select login from Participant;");
+	if(rs.next()){
+		retour +="{\"Login\":\""+rs.getString(1)+"\"}";
+		
+	}
+	while(rs.next()){
+		retour +=",{\"Login\":\""+rs.getString(1)+"\"}";
+	}*/
+	
+	
+	 retour += "]}";
+	
+	 return retour;
 	
 	
 	}
@@ -154,7 +167,7 @@ public class Evenement {
 			 b.open();
 			 System.out.println("Select id from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
 			 ResultSet rs = b.executeQry("Select id from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
-			 String id = rs.getString("id");
+			 int id = rs.getInt("id");
 			 System.out.println(id);
 			 
 			 String requete = "Insert into Participant (id, login) values ("+id+",'"+login+"');" ;
