@@ -362,7 +362,7 @@ public class Requetes {
 	
 	public void ajouterFavoris(String login, String id) {
 		try {
-			b.executeStmt("insert into Favoris(login,id) values('"+login+"','"+id+");");
+			b.executeStmt("insert into Favoris(login,idRecette) values('"+login+"',"+id+");");
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -407,12 +407,13 @@ public class Requetes {
 	
 	public String getFavoris(String login) throws SQLException {
 		String JSON = "{\"Favoris\" :[";
-		rs = b.executeQry("select * from Favoris where login='"+login+"';");
+		rs = b.executeQry("select titreRecette,TxtRecette from Favoris as f,Recettes as r where f.idRecette = r.NumRecette AND login='"+login+"';");
+		
 		
 		if(rs.next()) {
-			JSON +="{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+			JSON +="{ \"titre\" : \""+rs.getString("titreRecette")+"\" , \"recette\" : \""+rs.getString("Txtrecette")+"\"}";
 			while (rs.next()) {
-				JSON +=",{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+				JSON +=",{ \"titre\" : \""+rs.getString("titreRecette")+"\" , \"recette\" : \""+rs.getString("Txtrecette")+"\"}";
 			}
 		}
 		return JSON +"]}";
@@ -467,6 +468,30 @@ public class Requetes {
 				e.printStackTrace();
 			}
 			return JSON +"]}";
+	}
+
+
+	public String executeRequetePourFavorisTitre(String table, String colonne,String requete) {
+		String JSON = "{\"Recettes\" :[";
+		try {
+			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '"+this.requete(requete)+" %';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			if(rs.next()){
+				JSON +="{"+"\"idRecette\" : \""+rs.getString("NumRecette")+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
+			while (rs.next()) {
+				JSON +=",{"+"\"idRecette\" : \""+rs.getString("NumRecette")+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON +"]}";
 	}
 
 

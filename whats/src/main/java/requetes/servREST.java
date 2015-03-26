@@ -42,6 +42,13 @@ public class servREST {
 	}
 	
 	@GET
+	@Path("/getRecettesPourFavorisTitre/{mesIngredients}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getRecettesPourFavorisTitre(@PathParam("mesIngredients") String mesIngredients) throws SQLException, IOException {
+		return new Requetes().executeRequetePourFavorisTitre("Recettes", "TxtRecette", mesIngredients);
+	}
+	
+	@GET
 	@Path("/RecetteDuJour")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getRecettesDuJour() throws SQLException, IOException {
