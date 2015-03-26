@@ -74,8 +74,10 @@ public class servREST {
 	public String getRecettesbyName(@PathParam("name") String name) throws SQLException, IOException {
 		r= new Requetes();
 
-		return r.executeRequete("Recettes","TitreRecette" , name);
+		return r.executeRequeteTitre("Recettes","TitreRecette" , name);
 	}
+	
+	
 	
 	@GET
 	@Path("/getRecettesName/{name}")

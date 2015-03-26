@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="124dp"
         android:id="@+id/setEvent"
+        android:background="@drawable/evenement"
 
         android:layout_weight="0.65" />
 
@@ -30,6 +31,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/newEvent"
-
+        android:background="@drawable/creerevent"
         android:layout_weight="0.20" />
 </LinearLayout>

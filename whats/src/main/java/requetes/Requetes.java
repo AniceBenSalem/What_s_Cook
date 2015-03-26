@@ -42,6 +42,29 @@ public class Requetes {
 		return JSON +"]}";
 	}
 	
+	public String executeRequeteTitre(String table,String colonne,String requete){
+		String JSON = "{\"Recettes\" :[";
+		try {
+			rs = b.executeQry("SELECT * FROM "+table+" where "+colonne+" like '"+this.requete(requete)+" %';");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			if(rs.next()){
+				JSON +="{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
+			while (rs.next()) {
+				JSON +=",{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return JSON +"]}";
+	}
+	
 	public String executeRequete(String table,String colonne,ArrayList<String> requete){
 		String JSON = "{\"Recettes\" :[";
 		try {
@@ -85,7 +108,7 @@ public class Requetes {
 		for (int i = 0; i < s.length(); i++) {
 
 			if (s.charAt(i) == ' ' && i != s.length() - 1 && i > 2 && suite && (s.charAt(i + 1) >= 'a' && s.charAt(i + 1) <= 'z')) {
-				g += "%' AND TxtRecette LIKE '%";
+				g += "%' AND TxtRecette LIKE '% ";
 				suite = false;
 			} else if (s.charAt(i) != ' ') {
 				g += s.charAt(i);
@@ -328,6 +351,7 @@ public class Requetes {
 	}
 	
 	public void ajouterPost(String login, String message) {
+		
 		try {
 			b.executeStmt("insert into Post(login,message) values('"+login+"','"+message+"');");
 		} catch(Exception e) {
