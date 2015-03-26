@@ -120,6 +120,16 @@ public class Evenement {
 			
 		}
 
-	 
+	 @GET
+		@Path("/suppEvent/{nom}/{lieu}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public void supprimerUnEvent(@PathParam("nom")String nom,@PathParam("lieu") String ville) throws SQLException, IOException {
+		 Base b = new Base();
+		 b.open();
+		 String requete = "Delete from Event where nom ='"+nom+"' and ville ='"+ville+"';";
+		 b.executeStmt(requete);
+		 System.out.println(requete);
+		 
+	 }
 
 }
