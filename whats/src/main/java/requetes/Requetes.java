@@ -283,6 +283,29 @@ public class Requetes {
 		} 
 		return false;
 	}
+	
+	public boolean changePassword(String login, String newPassword) {
+		try {
+			b.executeStmt("UPDATE User SET password = '"+newPassword+"' WHERE login = '"+login+"';");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+	
+	public boolean supprimerCompte(String login) {
+		try {
+			b.executeStmt("DELETE FROM User WHERE login = '"+login+"';");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+	
 	public String insertEvent(String nom, String date, String description, String ville  ) {
 		String succes="{\"Succes\" :[";
 		String tmp="";

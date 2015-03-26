@@ -100,8 +100,42 @@
           
           
           <!--/stories-->
-			<p>Impossible de nous contacter, nous sommes comme les professeurs de l'université IUT A de Lille 1. INJOIGNABLE !!</p>
-                  
+          <center><h1>Mon Profil :</h1><br><br> 
+          			<img name="imageProfil" id="imageProfil" alt="" src="images/accueil.png" class="img-circle"><br><br><br>
+          			<button id="changeImage" class="btn btn-primary">Changer votre photo</button>
+					<input type="file" id="source">
+			<script>
+				function readerHandler(e2){ 
+					  var store = document.getElementById('source');
+					  store.innerHTML=e2.target.result; 
+				} 
+
+				function readfile(e1){
+					  var fileobj = e1.target.files[0]; 
+					  var fr = new FileReader();
+					  fr.onload = readerHandler;  
+					  fr.readAsText(fileobj); 
+				}
+
+				window.onload=function(){
+					  var x = $('#source').val();
+					 /* alert(x);*/
+					  $('#imageProfil').val('/home/baptiste/Bureau/'+x);
+				}
+			</script>          
+          
+          	<p><h2> Changer de mot de passe </h2></p>
+			<br>
+			<p>Ancien mot de passe : <br><INPUT type="password" SIZE="20" id=oldPassword name=oldPassword placeholder="Ancien mot de passe"></p>
+			<p>Nouveau mot de passe : <br><INPUT type="password" SIZE="20" id=newPassword name=newPassword placeholder="Nouveau mot de passe"></p>
+			<p>Confirmation mot de passe : <br><INPUT type="password" SIZE="20" id=newPasswordConf name=newPasswordConf placeholder="Confirmation mot de passe"></p>			
+			<br>
+			<p><button id="changePassword" class="btn btn-primary">Valider</button></p>
+			<br><br>
+			<p><button id="consulterPost" class="btn btn-primary">Consulter mes Posts</button><button id="consulterRecettes" class="btn btn-primary">Consulter mes Recettes</button><button id="supprimerCompte" class="btn btn-primary">Supprimer mon Compte</button></p></center>
+			<p>Changer ta photo, voir tes posts et tes recettes</p>
+          <div id="liste">
+          </div>    
           <!--/stories-->
 
         
@@ -156,6 +190,7 @@
 	<script src="js/timer.js"></script>
 	<script src="js/banniere-defilante.js"></script>
 	<script src="js/cookie.js"></script>
+	<script src="js/profil.js"></script>
 	
 
 	</body>

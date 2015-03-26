@@ -22,6 +22,11 @@ body {
 	width:20em;
 }
 
+#supprimerCompte, #consulterPost, #consulterRecettes{
+	margin-left:7em;
+	margin-right:5em;
+}
+
 h2,h3,.highlight,.navbar a,#masthead h4 {
   font-family:'Oswald',arial narrow,sans-serif;
 }
@@ -68,6 +73,12 @@ footer {
 }
 #topPanel .panel-body {
   padding-top:0px;
+}
+
+.img-cicle{
+  width:100px;
+  height:100px;
+  margin-right: 5em;
 }
 
 .navbar.affix {
