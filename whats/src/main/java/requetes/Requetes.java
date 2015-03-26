@@ -133,8 +133,9 @@ public class Requetes {
 			if ( tmp == new Date().getDate()){
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+rs.getString("id")+";");
 				if(rs.next()){
+					String rqt = "{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}"; 
 					b.close();
-					return "{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+					return rqt;
 				}
 			}
 			else{
@@ -146,6 +147,7 @@ public class Requetes {
 			}
 		}
 		b.close();
+
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
