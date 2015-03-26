@@ -39,6 +39,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -62,6 +63,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -85,6 +87,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -129,8 +132,10 @@ public class Requetes {
 			tmp = Integer.parseInt(rs.getString("date"));
 			if ( tmp == new Date().getDate()){
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+rs.getString("id")+";");
-				if(rs.next())
+				if(rs.next()){
+					b.close();
 					return "{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}";
+				}
 			}
 			else{
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+new Random().nextInt(this.nbRecettes())+";");
@@ -140,6 +145,7 @@ public class Requetes {
 				return recetteDuJour();
 			}
 		}
+		b.close();
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
@@ -173,6 +179,7 @@ public class Requetes {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		b.close();
 	}
 	
 	/*public int nbCommentaires() throws SQLException{
@@ -192,6 +199,7 @@ public class Requetes {
 		if(rs.next()){
 			ret =rs.getInt(1);
 		}
+		b.close();
 		return ret;
 	}
 
@@ -213,6 +221,7 @@ public class Requetes {
 		while (rs.next()) {
 			JSON +=",{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -232,6 +241,7 @@ public class Requetes {
 		while(rs.next()){
 			retour+= /*rs.getString("NumRecette")+"---"+*/rs.getString("TitreRecette")+"---"/*rs.getString("TxtRecette")+"\n"*/;
 		}
+		b.close();
 		return retour;
 		
 	}
@@ -248,6 +258,7 @@ public class Requetes {
 				e.printStackTrace();
 			}
 		}
+		b.close();
 	}
 	
 	public boolean checkLogin(String l) {
@@ -266,6 +277,7 @@ public class Requetes {
 				e.printStackTrace();
 			}
 		} 
+		b.close();
 		return false;
 	}
 	
@@ -285,6 +297,7 @@ public class Requetes {
 				e.printStackTrace();
 			}
 		} 
+		b.close();
 		return false;
 	}
 	
@@ -304,26 +317,32 @@ public class Requetes {
 				e.printStackTrace();
 			}
 		} 
+		b.close();
 		return false;
 	}
 	
 	public boolean changePassword(String login, String newPassword) {
 		try {
 			b.executeStmt("UPDATE User SET password = '"+newPassword+"' WHERE login = '"+login+"';");
+			b.close();
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
+			b.close();
 			return false;
 			
 		}
+		
 	}
 	
 	public boolean supprimerCompte(String login) {
 		try {
 			b.executeStmt("DELETE FROM User WHERE login = '"+login+"';");
+			b.close();
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
+			b.close();
 			return false;
 			
 		}
@@ -347,6 +366,7 @@ public class Requetes {
 		
 		succes += "{"+"\"Succes\" : \""+tmp+"\"}]}";
 		System.out.println(succes);
+		b.close();
 		return succes;
 	}
 	
@@ -354,6 +374,7 @@ public class Requetes {
 		
 		try {
 			b.executeStmt("insert into Post(login,message) values('"+login+"','"+message+"');");
+			b.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -363,6 +384,7 @@ public class Requetes {
 	public void ajouterFavoris(String login, String id) {
 		try {
 			b.executeStmt("insert into Favoris(login,idRecette) values('"+login+"',"+id+");");
+			b.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.exit(0);
@@ -402,6 +424,7 @@ public class Requetes {
 				JSON +=",{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
 			}
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -416,6 +439,7 @@ public class Requetes {
 				JSON +=",{ \"titre\" : \""+rs.getString("titreRecette")+"\" , \"recette\" : \""+rs.getString("Txtrecette")+"\"}";
 			}
 		}
+		b.close();
 		return JSON +"]}";
 	}
 	
@@ -444,6 +468,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		b.close();
 		return JSON ;
 	}
 
@@ -467,6 +492,7 @@ public class Requetes {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			b.close();
 			return JSON +"]}";
 	}
 
@@ -491,6 +517,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		b.close();
 		return JSON +"]}";
 	}
 

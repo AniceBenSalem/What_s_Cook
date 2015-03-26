@@ -8,10 +8,10 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.filter.LoggingFilter;
 
+import requetes.Base;
 import requetes.ConnexionResource;
 import requetes.Evenement;
 import requetes.InscriptionResource;
-
 import requetes.ModifierProfil;
 
 //import requetes.Mail;
@@ -26,7 +26,8 @@ public class App extends Application {
 	@Override
     public Set<Class<?>> getClasses() {
     	Set<Class<?>> s = new HashSet<Class<?>>();
-
+    	
+    	s.add(Base.class);
     	s.add(LoggingFilter.class);
     	s.add(servREST.class);
     	s.add(User.class);
