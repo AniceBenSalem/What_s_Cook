@@ -12,7 +12,7 @@
         android:text="Lister les événements"
         android:id="@+id/textView5"
         android:layout_gravity="center"
-        android:background="@drawable/listeEvent"
+        android:background="@drawable/liste_event"
         android:textColor="#ffffffff"
         android:textSize="@dimen/big_text_size"
         android:textAlignment="center" />
