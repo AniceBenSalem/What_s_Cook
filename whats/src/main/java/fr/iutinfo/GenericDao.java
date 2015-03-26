@@ -20,10 +20,10 @@ public interface GenericDao {
 	@SqlUpdate("CREATE TABLE if NOT EXISTS User (mail TEXT, login TEXT, password TEXT, constraint loginUser_pk PRIMARY KEY(login));")
 	void createUser();
 	/*table fausse ? il n'y a q'une recette par evenement ?*/
-	@SqlUpdate("CREATE TABLE if NOT EXISTS Event (id INT AUTO_INCREMENT, nom TEXT, date DATE, description TEXT, ville TEXT, constraint idEvent_pk PRIMARY KEY(nom,ville));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS Event (id INTEGER, nom TEXT, date DATE, description TEXT, ville TEXT, constraint idEvent_pk PRIMARY KEY(nom,ville));")
 	void createEvent();
 
-	@SqlUpdate("CREATE TABLE if NOT EXISTS Participant (id INT, login TEXT, recette TEXT, constraint fk_idPartic FOREIGN KEY (id) REFERENCES Event(id) ON UPDATE CASCADE, constraint fk_loginPart FOREIGN KEY (login) REFERENCES User(login) ON UPDATE CASCADE, constraint pk_Participant PRIMARY KEY(id,login));")
+	@SqlUpdate("CREATE TABLE if NOT EXISTS Participant (id INTEGER, login TEXT, recette TEXT, constraint fk_idPartic FOREIGN KEY (id) REFERENCES Event(id) ON UPDATE CASCADE, constraint fk_loginPart FOREIGN KEY (login) REFERENCES User(login) ON UPDATE CASCADE, constraint pk_Participant PRIMARY KEY(id,login));")
 	void createParticipant();
 
 /*
@@ -47,8 +47,10 @@ public interface GenericDao {
 	@SqlUpdate("insert into User (mail, login, password) values (:mail, :login, :password)")
 	@GetGeneratedKeys
 	int insertUser(@Bind("mail") String mail, @Bind("login") String login, @Bind("password") String password);
+	
+	
 
-	@SqlUpdate("insert into Event (nom, date, description, ville) values (:nom, :date, :description, :ville)")
+	@SqlUpdate("insert into Event (nom, date, description, ville) values ( :nom, :date, :description, :ville)")
 	@GetGeneratedKeys
 	int insertEvent(@Bind("nom") String nom,@Bind("date") String date, @Bind("description") String description, @Bind("ville") String ville);
 

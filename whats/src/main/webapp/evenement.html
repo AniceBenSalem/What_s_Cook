@@ -174,11 +174,19 @@
 		type: "GET",
 		datatype:'APPLICATION_JSON',
 		success: function(json){
+		    
+
 		    for (var i =0 ; i< json.Event.length ; i++){
 		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
-		         $('.panel-body').append('<hr>');
+		   
+		        
+		        
+		        $('.panel-body').append("<p><button id=\"Participer"+i+"\" onclick=\"location.href='http://localhost:8080/v1/event/ParticipEvent/"+json.Event[i].Nom+"/"+json.Event[i].Lieu+"/"+readCookie("login")+"'\" class=\"btn btn-primary\">Participer à cette Evenement</button></p>");
+		    
+		        $('.panel-body').append('<hr>');
+		       
 		    }
-			
+		    			
 		}})});
 	</script>
 

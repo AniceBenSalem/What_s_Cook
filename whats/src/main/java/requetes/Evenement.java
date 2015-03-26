@@ -131,5 +131,20 @@ public class Evenement {
 		 System.out.println(requete);
 		 
 	 }
+		 @GET
+			@Path("/ParticipEvent/{Nom}/{Lieu}/{login}")
+			@Produces(MediaType.APPLICATION_JSON)
+			public void AjouterParticipant(@PathParam("Nom")String nom,@PathParam("Lieu") String ville, @PathParam("login") String login) throws SQLException, IOException {
+			 Base b = new Base();
+			 b.open();
+			 System.out.println("Select id from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
+			 ResultSet rs = b.executeQry("Select id from Event where nom ='"+nom+"' AND ville ='"+ville+"';");
+			 String id = rs.getString("id");
+			 System.out.println(id);
+			 
+			 String requete = "Insert into Participant (id, login) values ("+id+",'"+login+"');" ;
+			 b.executeStmt(requete);
+			 System.out.println(requete);
+	 }
 
 }
