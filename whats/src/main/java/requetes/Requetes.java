@@ -1,9 +1,7 @@
 package requetes;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -20,6 +18,7 @@ public class Requetes {
 		b.open();
 	}
 	
+
 	public String executeRequete(String table,String colonne,String requete){
 		String JSON = "{\"Recettes\" :[";
 		try {
@@ -121,6 +120,21 @@ public class Requetes {
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
+	/*public void ajouterCommentaire(String login, String message, Date date) throws SQLException{
+		int idCommentaire = this.nbCommentaires()+1;
+		String insert="";
+		if(idCommentaire >0){
+		insert ="insert into Post (idPost, login, message, date) " +
+				"values("+idCommentaire+",'"+login+"' ,"+message+" ,'"+date+"');";
+		}
+		try{
+		
+		b.executeStmt(insert);
+		
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}*/
 
 	public void ajouterRecette(String name, int nb,String Temps, String ingredients, String description) throws SQLException{
 		int idRecettes = this.nbRecettes()+1;
@@ -137,6 +151,16 @@ public class Requetes {
 			e.printStackTrace();
 		}
 	}
+	
+	/*public int nbCommentaires() throws SQLException{
+		int com =-1; 
+		rs =b.executeQry("select count(*) from Post");
+		
+		if(rs.next()){
+			com =rs.getInt(1);
+		}
+		return com;
+	}*/
 	
 	public int nbRecettes() throws SQLException{
 		int ret =-1; 
@@ -259,6 +283,29 @@ public class Requetes {
 		} 
 		return false;
 	}
+	
+	public boolean changePassword(String login, String newPassword) {
+		try {
+			b.executeStmt("UPDATE User SET password = '"+newPassword+"' WHERE login = '"+login+"';");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+	
+	public boolean supprimerCompte(String login) {
+		try {
+			b.executeStmt("DELETE FROM User WHERE login = '"+login+"';");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+	
 	public String insertEvent(String nom, String date, String description, String ville  ) {
 		String succes="{\"Succes\" :[";
 		String tmp="";
@@ -277,21 +324,72 @@ public class Requetes {
 		return succes;
 	}
 	
-	public void ajouterPostRecette(String login, String message, String date) {
+	public void ajouterPost(String login, String message) {
 		try {
-			b.executeStmt("insert into Post(login,message,date) values('"+login+"','"+message+"','"+date+"';");
+			b.executeStmt("insert into Post(login,message) values('"+login+"','"+message+"');");
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.exit(0);
+		}
+	}
+	
+	public void ajouterFavoris(String login, String titre, String recette) {
+		try {
+			b.executeStmt("insert into Favoris(login,titre,recette) values('"+login+"','"+titre+",'"+recette+"');");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+	}
+	
+	/*public String getPost() {
+		String JSON = "{\"Post\" :[";
+		try {
+		
+			rs = b.executeQry("select login,message from Post;");
+		
+			if(rs.next());
+			JSON +="{ \"message\" : \""+rs.getString("message")+"\"}";
+			while (rs.next()) {
+				JSON +=",{ \"message\" : \""+rs.getString("message")+"\"}";
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
-			} catch (Exception e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		}
+		return JSON +"]}";
+	}*/
+	
+	public String getPost() throws SQLException {
+		String JSON = "{\"Post\" :[";
+		rs = b.executeQry("select * from Post;");
+		
+		if(rs.next()) {
+			JSON +="{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
+			while (rs.next()) {
+				JSON +=",{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
+			}
+		}
+		return JSON +"]}";
 	}
 	
+	public String getFavoris(String login) throws SQLException {
+		String JSON = "{\"Favoris\" :[";
+		rs = b.executeQry("select * from Favoris where login='"+login+"';");
+		
+		if(rs.next()) {
+			JSON +="{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+			while (rs.next()) {
+				JSON +=",{ \"titre\" : \""+rs.getString("titre")+"\" , \"recette\" : \""+rs.getString("recette")+"\"}";
+			}
+		}
+		return JSON +"]}";
+	}
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		ArrayList<String> list = new ArrayList<String>();

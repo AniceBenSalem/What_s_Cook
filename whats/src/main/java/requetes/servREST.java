@@ -19,7 +19,13 @@ import javax.ws.rs.core.MediaType;
 public class servREST {
 	private static ArrayList<String> liste;
 	private static Requetes r ;
-
+	
+	/*@GET
+	@Path("/getCommentaire")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getCommentaire() throws SQLException, IOException {
+		return new Requetes().afficheCommentaire();
+	}*/
 
 	@GET
 	@Path("/getRecettes/{mesIngredients}")
@@ -53,6 +59,7 @@ public class servREST {
 		r.ajouterRecette(name, nb, time, ingredients, description);
 		return "<?xml version=\"1.0\"?>" + "<result> succès de l'ajout </result>";
 	}
+	
 	@GET
 	@Path("/nbRecettes")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -84,6 +91,22 @@ public class servREST {
 	public String recherche(@PathParam("string") String iSearch) throws SQLException, IOException {
 		r = new Requetes();
 		return r.searchRecettes(iSearch);
+	}
+	
+	@GET
+	@Path("/ajouterFavoris/{login}/{titre}/{recette}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterFavoris(@PathParam("login") String login, @PathParam("titre") String titre, @PathParam("recette") String recette) throws SQLException, IOException {
+		r = new Requetes();
+		r.ajouterFavoris(login, titre, recette);
+	}
+	
+	@GET
+	@Path("/getFavoris/{login}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getFavoris(@PathParam("login") String login) throws SQLException, IOException {
+		r = new Requetes();
+		return  r.getFavoris(login);
 	}
 	
 	/*@GET
