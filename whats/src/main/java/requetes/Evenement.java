@@ -112,7 +112,7 @@ public class Evenement {
 				requete+="nom ='"+nom+"' ";
 				
 			}
-			requete+= "where id=(select id from Event where nom ='"+nomModif+"' AND ville ='"+lieuModif+"');" ;
+			requete+= "where nom ='"+nomModif+"' AND ville ='"+lieuModif+"';" ;
 
 
 			System.out.println(requete);
