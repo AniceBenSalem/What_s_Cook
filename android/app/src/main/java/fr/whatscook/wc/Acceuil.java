@@ -51,7 +51,7 @@ public class Acceuil extends ActionBarActivity{
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acceuil);
             pref = getSharedPreferences("Session", 0);
-            editor = pref.edit();
+
             mTitle =  getTitle();
             mDrawerTitle = getTitle();
             navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -176,37 +176,64 @@ public class Acceuil extends ActionBarActivity{
         public void displayView(int position) {
             Fragment fragment = null;
 
-       switch (position) {
-           case 0:
-                if (!(pref.getString("login",null)==null)){
+            if(position == 0){
+                String prout = pref.getString("login",null);
+                if(prout == null)
+                       System.out.println("c'est null");
+                else
+                        System.out.println(prout);
+                if (pref.getString("login",null) == null){
+                    fragment = new FragmentConnexion();
+                }
+                else{
+
                     fragment = new FragmentEvenements();
-                    break;
-               }
+                }
+            }
+            if(position == 1) {
+                fragment = new FragmentAcceuil();
+            }
+            if(position == 2){
+                fragment = new FragmentFrigo();
+            }
+            if(position == 3){
+                fragment = new FragmentRecettes();
+            }
+            if(position == 4){
+                fragment = new FragmentEvenements();
+            }
+            if(position == 5){
+                fragment = new FragmentParametre();
+            }
+
+      /* switch (position) {
+           case 0:
+                if (pref.getString("login",null) != null){
                     fragment=new FragmentConnexion();
                     break;
-                case 1:
-                    fragment = new FragmentAcceuil();
+                }
+               fragment = new FragmentEvenements();
+               break;
+           case 1:
+                fragment = new FragmentAcceuil();
+                break;
+           case 2:
+                fragment = new FragmentFrigo();
+                break;
+           case 3:
+                fragment = new FragmentRecettes();
+                break;
+           case 4:
+                fragment = new FragmentEvenements();
 
-                    break;
-                case 2:
-                    fragment = new FragmentFrigo();
+                break;
+           case 5:
+                fragment = new FragmentParametre();
 
-                    break;
-                case 3:
-                    fragment = new FragmentRecettes();
-
-                    break;
-                case 4:
-                    fragment = new FragmentEvenements();
-
-                    break;
-                case 5:
-                    fragment = new FragmentParametre();
-
-                    break;
-                default:
-                    break;
-            }
+                break;
+           default:
+                break;
+           }*/
 
             if (fragment != null) {
                 FragmentManager fragmentManager = getFragmentManager();

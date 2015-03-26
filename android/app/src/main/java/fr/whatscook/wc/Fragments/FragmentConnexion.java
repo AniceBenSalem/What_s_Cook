@@ -100,9 +100,17 @@ public class FragmentConnexion extends Fragment {
         }
         @Override
         protected void onPostExecute(String json) {
+
             if (json.equals("yes")){
+                System.out.println(name);
+                System.out.println(passwd);
+                Acceuil.editor = Acceuil.pref.edit();
                Acceuil.editor.putString("login", name);
                Acceuil.editor.putString("passwd", passwd);
+                Acceuil.pref.getString("login",name);
+                System.out.println(Acceuil.pref.getString("login","nooooooooooooooooon"));
+                System.out.println(Acceuil.pref.contains("login"));
+                System.out.println(Acceuil.pref.getString("passwd","nooooooooooooooooon"));
               FragmentManager fm = getFragmentManager();
                if (fm != null) {
                   FragmentTransaction ft = fm.beginTransaction();
