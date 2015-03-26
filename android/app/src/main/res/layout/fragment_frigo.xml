@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
+        android:layout_height="439dp"
+        android:id="@+id/listFrigo"
+        android:layout_gravity="center"
+        android:choiceMode="singleChoice"
+        android:layout_margin="@dimen/padding_large"
+        android:dividerHeight="@dimen/padding_medium" />
+
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="mon frigo blabla..."
-        android:id="@+id/textView3"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:id="@+id/Trier"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_margin="@dimen/padding_large" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_gravity="center_horizontal|bottom"
+        android:hint="ajouter .."
+        android:layout_margin="@dimen/padding_large"
+        android:singleLine="true" />
+
+</FrameLayout>

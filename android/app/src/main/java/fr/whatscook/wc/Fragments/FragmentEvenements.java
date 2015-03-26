@@ -1,6 +1,8 @@
 package fr.whatscook.wc.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -22,40 +24,46 @@ public class FragmentEvenements extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_evenements, container, false);
-        final TextView newEvent = (TextView)rootView.findViewById(R.id.newEvent);
-        TextView setEvent = (TextView)rootView.findViewById(R.id.setEvent);
-        TextView listEvent = (TextView)rootView.findViewById(R.id.listEvent);
 
-        newEvent.setText("jirfoif");
+        final TextView newEvent = (TextView)rootView.findViewById(R.id.newEvent);
+        final TextView setEvent = (TextView)rootView.findViewById(R.id.setEvent);
+        final TextView listEvent = (TextView)rootView.findViewById(R.id.listEvent);
+
+
         newEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                if (fm != null) {
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.frame_container, new FragmentNewEvent());
+                    ft.commit();
+                }
 
-                System.out.println(newEvent.getText()+"prout");
+
             }
         });
-        newEvent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        setEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                System.out.println(v.getText());
+            public void onClick(View v) {
 
-                return true;
+
+            }
+        });
+        listEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                if (fm != null) {
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.frame_container, new FragmentListEvent());
+                    ft.commit();
+                }
+
 
             }
         });
 
-  /*      ScrollView scroll = (ScrollView) rootView.findViewById(R.id.scrollEvent);
-
-        TextView[] tv = new TextView[4];
-        for (int i = 0; i < 4; i++) {
-            tv[i]= new TextView(getActivity());
-            tv[i].setText("lolll\nlolloll^loll");
-       //     scroll.a;
-
-        }
-            //   }
-
-        */
             return rootView;
         }
 

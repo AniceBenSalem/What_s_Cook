@@ -5,7 +5,9 @@ package fr.whatscook.wc;
     import android.app.AlertDialog;
     import android.app.Fragment;
     import android.app.FragmentManager;
+    import android.content.Context;
     import android.content.DialogInterface;
+    import android.content.SharedPreferences;
     import android.content.res.Configuration;
     import android.content.res.TypedArray;
     import android.graphics.Color;
@@ -40,16 +42,17 @@ public class Acceuil extends ActionBarActivity{
         private TypedArray navMenuIcons;
         private ArrayList<NavDrawerItem> navDrawerItems;
         private NavDrawerListAdapter adapter;
-
-
-
+        public static SharedPreferences pref ;
+        public static SharedPreferences.Editor editor;
+    final static String url = "http://bouleau22.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/RecetteDuJour";
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acceuil);
-
+            pref = getSharedPreferences("Session", 0);
+            editor = pref.edit();
             mTitle =  getTitle();
             mDrawerTitle = getTitle();
             navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -173,12 +176,13 @@ public class Acceuil extends ActionBarActivity{
 
         public void displayView(int position) {
             Fragment fragment = null;
-            switch (position) {
-                case 0:
 
-                 /*   if (settings.getString("login",null).equals(null))
-
-                    else*/
+       switch (position) {
+           case 0:
+                if (!(pref.getString("login",null)==null)){
+                    fragment = new FragmentEvenements();
+                    break;
+               }
                     fragment=new FragmentConnexion();
                     break;
                 case 1:

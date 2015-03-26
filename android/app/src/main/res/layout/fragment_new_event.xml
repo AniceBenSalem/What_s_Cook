@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/frame_container"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NomEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Nom de l&apos;évenment ?"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/DateEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Date de l&apos;évenement ?"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LieuEvent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.07"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Lieu de l&apos;évenement ?"
+            android:singleLine="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.46"
+            android:layout_margin="@dimen/padding_large"
+            android:hint="Description .." />
+
+        <Button
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            android:id="@+id/buttonCreer"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/padding_large"
+            android:background="@color/list_background_pressed" />
+
+    </LinearLayout>
+</FrameLayout>
