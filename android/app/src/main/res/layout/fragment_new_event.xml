@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/frame_container"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="208dp"
+        android:layout_height="76dp"
+        android:id="@+id/editText"
+        android:layout_gravity="left|top"
+        android:text="Nom de l&apos;événement" />
+
+    <TextView
+        android:layout_width="138dp"
+        android:layout_height="33dp"
+        android:text="Nouveau evenement"
+        android:id="@+id/textView2"
+        android:layout_gravity="right|top" />
+
+    <EditText
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_gravity="left|center_vertical"
+        android:text="Quand ?" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="197dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_gravity="left|bottom"
+        android:text="Description" />
+
+    <EditText
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Où ?"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_gravity="right|center_vertical" />
+</FrameLayout>

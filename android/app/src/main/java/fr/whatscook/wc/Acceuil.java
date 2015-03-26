@@ -178,6 +178,10 @@ public class Acceuil extends ActionBarActivity{
 
        switch (position) {
            case 0:
+                if (!(pref.getString("login",null)==null)){
+                    fragment = new FragmentEvenements();
+                    break;
+               }
                     fragment=new FragmentConnexion();
                     break;
                 case 1:
