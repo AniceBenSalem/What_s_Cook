@@ -329,11 +329,14 @@ public class Requetes {
 		}
 	}
 	
-	public String insertEvent(String nom, String date, String description, String ville  ) {
+	public String insertEvent(String nom, String date, String description, String ville  ) throws SQLException {
+		int nb;
+		ResultSet rs = b.executeQry("select count(*) from Event");
+		nb = rs.getInt(1)+1;
 		String succes="{\"Succes\" :[";
 		String tmp="";
 		try {
-			b.executeStmt("INSERT INTO Event(nom ,date ,description ,ville ) VALUES('"+nom+"','"+date+"','"+description+"','"+ville+"');");
+			b.executeStmt("INSERT INTO Event(id, nom ,date ,description ,ville ) VALUES("+nb+",'"+nom+"','"+date+"','"+description+"','"+ville+"');");
 			tmp=" Creer avec succès!! faites en de meme pour cet evenement";
 		} catch (Exception e) {
 			tmp="petit probleme veuillez contacter l'admin ou patienter que le probleme soit resolu \n merci à vous pour votre patience et dosolé pour la gêne occasionée";
@@ -443,7 +446,6 @@ public class Requetes {
 		return JSON ;
 	}
 
-
 	public String executeRequetePourFavoris(String table, String colonne,String requete) {
 			String JSON = "{\"Recettes\" :[";
 			try {
@@ -466,5 +468,6 @@ public class Requetes {
 			}
 			return JSON +"]}";
 	}
+
 
 }
