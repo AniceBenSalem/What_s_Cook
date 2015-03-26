@@ -140,6 +140,7 @@ public class Requetes {
 				return recetteDuJour();
 			}
 		}
+		rs.close();
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
 	
