@@ -44,6 +44,7 @@ public class Acceuil extends ActionBarActivity{
         private NavDrawerListAdapter adapter;
         public static SharedPreferences pref ;
         public static SharedPreferences.Editor editor;
+    final static String url = "http://bouleau22.iut-infobio.priv.univ-lille1.fr:8080/v1/cook/RecetteDuJour";
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {

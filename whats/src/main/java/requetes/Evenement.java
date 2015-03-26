@@ -38,6 +38,21 @@ public class Evenement {
 	
 	
 	}
+	@GET
+	@Path("/getEvenementA/")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getEventA(/*@PathParam("nom") String nom,@PathParam("lieu") String lieu*/) throws SQLException, IOException {
+		Base b = new Base();
+		b.open();
+		String retour ="";
+		ResultSet rs = b.executeQry("Select * from Event;");
+	
+	while(rs.next()){
+		retour+= "Evenement : "+rs.getString("nom")+", le "+rs.getString("date")+", à "+rs.getString("ville")+ "\nDescription : "+rs.getString("description")+"---";
+	}
+	return retour;
+
+	}
 	
 	
 	/*@POST*/ @GET
@@ -120,6 +135,16 @@ public class Evenement {
 			
 		}
 
-	 
+	 @GET
+		@Path("/suppEvent/{nom}/{lieu}")
+		@Produces(MediaType.APPLICATION_JSON)
+		public void supprimerUnEvent(@PathParam("nom")String nom,@PathParam("lieu") String ville) throws SQLException, IOException {
+		 Base b = new Base();
+		 b.open();
+		 String requete = "Delete from Event where nom ='"+nom+"' and ville ='"+ville+"';";
+		 b.executeStmt(requete);
+		 System.out.println(requete);
+		 
+	 }
 
 }

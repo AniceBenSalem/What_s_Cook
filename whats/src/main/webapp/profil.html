@@ -101,11 +101,16 @@
           
           <!--/stories-->
           <center><h1>Mon Profil :</h1><br><br> 
-          			<img name="imageProfil" id="imageProfil" alt="" src="images/accueil.png" class="img-circle"><br><br><br>
-          			<button id="changeImage" class="btn btn-primary">Changer votre photo</button>
-					<input type="file" id="source">
+          			<img name="imageProfil" id="imageProfil" alt="" src="images/accueil.png" class="img-circle"><br>
+          			
+          			<script>var nom = readCookie("login");</script><br><br>
+          			<h1>nom</h1>
+          			<!--<button id="changeImage" class="btn btn-primary">Changer votre photo</button><br>
+					<input type="file" id="source">-->
 			<script>
-				function readerHandler(e2){ 
+			
+			var nom = readCookie("login");
+				/*function readerHandler(e2){ 
 					  var store = document.getElementById('source');
 					  store.innerHTML=e2.target.result; 
 				} 
@@ -119,9 +124,9 @@
 
 				window.onload=function(){
 					  var x = $('#source').val();
-					 /* alert(x);*/
-					  $('#imageProfil').val('/home/baptiste/Bureau/'+x);
-				}
+					  alert(x);
+					  $('#imageProfil').val(''+x);
+				}*/
 			</script>          
           
           	<p><h2> Changer de mot de passe </h2></p>
@@ -132,8 +137,7 @@
 			<br>
 			<p><button id="changePassword" class="btn btn-primary">Valider</button></p>
 			<br><br>
-			<p><button id="consulterPost" class="btn btn-primary">Consulter mes Posts</button><button id="consulterRecettes" class="btn btn-primary">Consulter mes Recettes</button><button id="supprimerCompte" class="btn btn-primary">Supprimer mon Compte</button></p></center>
-			<p>Changer ta photo, voir tes posts et tes recettes</p>
+			<p><!--<button id="consulterPost" class="btn btn-primary">Consulter mes Posts</button><button id="consulterRecettes" class="btn btn-primary">Consulter mes Recettes</button>--><button id="supprimerCompte" class="btn btn-primary">Supprimer mon Compte</button></p></center>
           <div id="liste">
           </div>    
           <!--/stories-->

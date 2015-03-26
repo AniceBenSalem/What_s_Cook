@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 
 import fr.whatscook.wc.R;
 
-/**
- * Created by bensalea on 26/03/15.
- */
 public class FragmentNewEvent extends Fragment {
 
 

@@ -40,6 +40,7 @@ public class FragmentEvenements extends Fragment {
                     ft.commit();
                 }
 
+
             }
         });
         setEvent.setOnClickListener(new View.OnClickListener() {
@@ -52,23 +53,17 @@ public class FragmentEvenements extends Fragment {
         listEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                if (fm != null) {
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.frame_container, new FragmentListEvent());
+                    ft.commit();
+                }
 
 
             }
         });
 
-  /*      ScrollView scroll = (ScrollView) rootView.findViewById(R.id.scrollEvent);
-
-        TextView[] tv = new TextView[4];
-        for (int i = 0; i < 4; i++) {
-            tv[i]= new TextView(getActivity());
-            tv[i].setText("lolll\nlolloll^loll");
-       //     scroll.a;
-
-        }
-            //   }
-
-        */
             return rootView;
         }
 

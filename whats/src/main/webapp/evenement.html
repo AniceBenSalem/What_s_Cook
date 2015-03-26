@@ -176,6 +176,7 @@
 		success: function(json){
 		    for (var i =0 ; i< json.Event.length ; i++){
 		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
+		         $('.panel-body').append('<br><br><button id="rejoindre" class="btn btn-primary">Rejoindre cet evenement</button><br>
 		         $('.panel-body').append('<hr>');
 		    }
 			

@@ -31,19 +31,19 @@ $(document).ready(
 		}
 	}),
 	
-	$('#consulterPost').click(function(event){
+	/*$('#consulterPost').click(function(event){
 		var login = readCookie("login");
 		$.ajax({
 			type : 'GET',
-			url : "http://localhost:8080/v1/modifierProfil/consulterPost/"+login,
+			url : "http://localhost:8080/v1/cook/getFavoris/"+login,,
 			datatype : "json",
 			data : JSON.stringify({
 				"login" : login,
 			}),
 		
 			success : function(json){
-				if(json.cr == true){
-					/*$('#liste').append(*/
+				for (var i=0; i< json.Favoris.length; i++) {
+					$('#liste').append('<h2>'+json.Favoris[i].titre+'</h2>'+'<h3>'+json.Favoris[i].recette+'</h3><hr>');
 				}
 			}
 		});
@@ -61,11 +61,11 @@ $(document).ready(
 		
 			success : function(json){
 				if(json.cr == true){
-					/*$('#liste').append(*/
+					$('#liste').append(
 				}
 			}
 		});
-	}),
+	}),*/
 	
 	$('#supprimerCompte').click(function(event){
 		var login = readCookie("login");
@@ -90,7 +90,7 @@ $(document).ready(
 	
 	$('#changeImage').click(function(event){
 		/*alert($('#source').val());*/
-		$('#imageProfil').val('/home/baptiste/Bureau/'+$('#source').val());
+		$('#imageProfil').val(''+$('#source').val());
 		/*$('#source').val("");*/
 	
 	})
