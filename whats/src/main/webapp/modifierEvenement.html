@@ -151,8 +151,11 @@
 		         $('.panel-body').append('<h2>'+json.Event[i].Nom+'</h2>'+'Prévu le :<h3>'+json.Event[i].date+'</h3>'+'Informations sur l\' événement: <h4>'+json.Event[i].Desc+'</h4>'+'<h5>'+json.Event[i].Lieu+'</h5>');
 		         $('.panel-body').append('<hr>');
 		          $('.panel-body').append('<p><button id="Modifier" href="effectuerModif.html" class="btn btn-primary">Modifier</button></p>');
+		          $('.panel-body').append(' <left><p><button id="Supprimer" class="btn btn-primary">Supprimer l\'annonce ?</button></p></left>');
 		            	$('#Modifier').click(function(){window.location.href="effectuerModif.html"});
-		         
+		            $('#Supprimer').click(function(){window.location.href="http://localhost:8080/v1/event/suppEvent/"+document.getElementById("nom").value+'/'+document.getElementById("ville").value});
+		             $('#Supprimer').click(function(){$('.panel-body').append('<h2>L\'événement a été correctement supprimé</h2>')});
+		              $('#Supprimer').click(function(){setInterval(function () {window.location.href="evenement.html"}, 3000);});
 		    }
 			
 		}})})});
