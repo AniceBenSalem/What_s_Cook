@@ -39,7 +39,6 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		b.close();
 		return JSON +"]}";
 	}
 	
@@ -63,7 +62,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		b.close();
+		
 		return JSON +"]}";
 	}
 	
@@ -87,7 +86,7 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		b.close();
+	
 		return JSON +"]}";
 	}
 	
@@ -134,7 +133,6 @@ public class Requetes {
 				rs = b.executeQry("SELECT * FROM Recettes where NumRecette = "+rs.getString("id")+";");
 				if(rs.next()){
 					String rqt = "{"+"\"TitreRecette\" : \""+rs.getString("TitreRecette")+"\" , \"TxtRecette\" : \""+rs.getString("TxtRecette")+"\"}"; 
-					b.close();
 					return rqt;
 				}
 			}
@@ -146,7 +144,7 @@ public class Requetes {
 				return recetteDuJour();
 			}
 		}
-		b.close();
+		
 
 		return "PAS DE RECETTE AUJOURD HUI";
 	}
@@ -181,7 +179,6 @@ public class Requetes {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		b.close();
 	}
 	
 	/*public int nbCommentaires() throws SQLException{
@@ -201,7 +198,6 @@ public class Requetes {
 		if(rs.next()){
 			ret =rs.getInt(1);
 		}
-		b.close();
 		return ret;
 	}
 
@@ -223,7 +219,6 @@ public class Requetes {
 		while (rs.next()) {
 			JSON +=",{ \"Libelle\" : \""+rs.getString("Libelle")+"\"}";
 		}
-		b.close();
 		return JSON +"]}";
 	}
 	
@@ -243,7 +238,6 @@ public class Requetes {
 		while(rs.next()){
 			retour+= /*rs.getString("NumRecette")+"---"+*/rs.getString("TitreRecette")+"---"/*rs.getString("TxtRecette")+"\n"*/;
 		}
-		b.close();
 		return retour;
 		
 	}
@@ -260,7 +254,7 @@ public class Requetes {
 				e.printStackTrace();
 			}
 		}
-		b.close();
+		
 	}
 	
 	public boolean checkLogin(String l) {
@@ -273,13 +267,12 @@ public class Requetes {
 			e.printStackTrace();
 			System.exit(0);
 		} finally {
-			try {
+			/*try {
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		} 
-		b.close();
 		return false;
 	}
 	
@@ -293,13 +286,12 @@ public class Requetes {
 			e.printStackTrace();
 			System.exit(0);
 		} finally {
-			try {
+			/*try {
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		} 
-		b.close();
 		return false;
 	}
 	
@@ -313,24 +305,21 @@ public class Requetes {
 			e.printStackTrace();
 			System.exit(0);
 		} finally {
-			try {
+			/*try {
 				rs.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 		} 
-		b.close();
 		return false;
 	}
 	
 	public boolean changePassword(String login, String newPassword) {
 		try {
 			b.executeStmt("UPDATE User SET password = '"+newPassword+"' WHERE login = '"+login+"';");
-			b.close();
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			b.close();
 			return false;
 			
 		}
@@ -340,11 +329,9 @@ public class Requetes {
 	public boolean supprimerCompte(String login) {
 		try {
 			b.executeStmt("DELETE FROM User WHERE login = '"+login+"';");
-			b.close();
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			b.close();
 			return false;
 			
 		}
@@ -368,7 +355,6 @@ public class Requetes {
 		
 		succes += "{"+"\"Succes\" : \""+tmp+"\"}]}";
 		System.out.println(succes);
-		b.close();
 		return succes;
 	}
 	
@@ -426,7 +412,6 @@ public class Requetes {
 				JSON +=",{ \"message\" : \""+rs.getString("message")+"\" , \"login\" : \""+rs.getString("login")+"\"}";
 			}
 		}
-		b.close();
 		return JSON +"]}";
 	}
 	
@@ -441,7 +426,6 @@ public class Requetes {
 				JSON +=",{ \"titre\" : \""+rs.getString("titreRecette")+"\" , \"recette\" : \""+rs.getString("Txtrecette")+"\"}";
 			}
 		}
-		b.close();
 		return JSON +"]}";
 	}
 	
@@ -470,7 +454,6 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		b.close();
 		return JSON ;
 	}
 
@@ -494,7 +477,6 @@ public class Requetes {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			b.close();
 			return JSON +"]}";
 	}
 
@@ -519,7 +501,6 @@ public class Requetes {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		b.close();
 		return JSON +"]}";
 	}
 
